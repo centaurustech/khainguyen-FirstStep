@@ -1,0 +1,11 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ>
+@{foreach (var item in Model)
+{
+    <div class="faq-ask">
+        <a href="#">@item.TieuDe</a>
+        <div class="faq-ans">
+            @Html.Raw(item.NoiDung)
+        </div>
+    </div>
+}
+}

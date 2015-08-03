@@ -1,0 +1,76 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityNhomChienDich>
+<p>&nbsp;</p>
+<h3>Thêm các thành viên khác tham gia cùng bạn</h3>
+<p>Vui lòng bỏ trống phần này nếu dự án này chỉ có mình bạn tham gia</p>
+<p>&nbsp;</p>
+<div class="col-4-6">
+    <b>Email thành viên: </b>
+    <input type="email" id="emailThanhVien" style="width:50%;" />
+    <a href="#" class="btn bg-green btnemailThanhVien"  style="overflow: visible" onclick="return ThemThanhVien();">Thêm</a>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div id="DanhSachThanhVien">
+   @{
+       foreach(var item in Model)
+       {
+           @Html.Action("_Team_VaiTro_DuAn", "Ajax", new { IdNhomChienDich= item.Id});
+       }
+   }
+</div>
+<br />
+<br />
+<script>
+    function ThemThanhVien() {
+        $('.btnemailThanhVien').hide();
+        var Email = $('#emailThanhVien').val();
+
+        var postURL = '@Url.Action("_Team_ThemThanhVien_DuAn", "Ajax")';
+        $.post(postURL, { "IdDuAn": '@ViewBag.IdDuAn', "Email": Email }, function (data) {
+            if (data == "error") {
+                alert("Email không đúng, xin vui lòng kiểm tra lại");
+            }
+            else {
+                var postURL1 = '@Url.Action("_Team_VaiTro_DuAn", "Ajax")';
+
+                $.post(postURL1, { "IdNhomChienDich": data }, function (data1) {
+                    $('#DanhSachThanhVien').append(data1);
+                    $('#emailThanhVien').val("");
+                });
+            }
+        });
+        $('.btnemailThanhVien').show();
+        return false;
+    }
+    //
+    function ThemVaiTro(IdNhomChienDich) {
+        var VaiTro = $('div[data-nhom=' + IdNhomChienDich + ']').find("input").val();
+        var postURL = '@Url.Action("_Team_ThemVaiTro_DuAn", "Ajax")';
+        $.post(postURL, { "IdNhomChienDich": IdNhomChienDich, "VaiTro": VaiTro }, function (data) {
+             if (data == "error") {
+                 alert("Đã có lỗi, xin vui lòng thử lại");
+             }
+             else {
+                 $('div[data-nhom=' + IdNhomChienDich + ']').find("a").first().text("Sửa");
+            }
+        });
+        return false;
+    }
+    //XoaThanhVien
+    function XoaThanhVien(IdNhomChienDich) {
+        $('div[data-nhom=' + IdNhomChienDich + ']').fadeOut(1000);
+      //  var VaiTro = $('div[data-nhom=' + IdNhomChienDich + ']').find("input").val();
+        var postURL = '@Url.Action("_Team_XoaThanhVien_DuAn", "Ajax")';
+        $.post(postURL, { "IdNhomChienDich": IdNhomChienDich}, function (data) {
+            if (data == "error") {
+                alert("Đã có lỗi, xin vui lòng thử lại");
+            }
+            else {
+              //  $('div[data-nhom=' + IdNhomChienDich + ']').fadeOut(1000);
+            }
+        });
+        return false;
+    }
+</script>

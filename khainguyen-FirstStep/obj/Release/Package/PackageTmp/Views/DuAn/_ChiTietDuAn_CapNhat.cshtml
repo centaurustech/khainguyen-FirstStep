@@ -1,0 +1,12 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityCapNhatDuAn>
+@foreach (var item in Model)
+{
+    <div class="update-row">
+        <a href="#"><h2>@item.TieuDe</h2></a>
+        <div class="time">Cập nhật ngày @string.Format("{0:dd-MM-yyyy}",@item.ThoiGian)</div>
+        <div class="content">
+            @Html.Raw(item.NoiDung)
+        </div>
+    </div>
+}
+

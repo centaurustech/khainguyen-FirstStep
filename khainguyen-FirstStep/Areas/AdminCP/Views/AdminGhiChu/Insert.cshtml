@@ -1,0 +1,99 @@
+﻿
+@model khainguyen_FirstStep.Areas.AdminCP.Models.AdminGhiChuModel
+@{
+    ViewBag.Title = "Thêm ý kiến";
+    Layout = "~/Areas/AdminCP/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/ckeditor/ckeditor.js")"></script>
+
+
+<script>
+    var ckeditor;
+    function create(languageCode, id) {
+        var editor = CKEDITOR.replace(id, { language: languageCode });
+    }
+    function change() {
+        if ($("#changecontrol").text() == "Tài khoản User") {
+            $("#IdUser").hide();
+            $("#changecontrol").text("Hình Ảnh");
+            $(".Image").show();
+        }
+        else {
+            $("#IdUser").show();
+            $("#changecontrol").text("Tài khoản User");
+            $(".Image").hide();
+        }
+    }
+    function Check() {
+        //alert($(".Image").val()=="");
+        //if ( $(".Image").val() == "")
+        //{
+        //    alert("Xin vui lòng điền đủ dữ liệu");
+        //    return false;
+        //}
+        return true;
+
+    }
+
+    $(function () { create("vi", "NoiDung") });
+</script>
+
+<div class="maincontentinner">
+    <ul class="maintabmenu">
+        <li><a href="@Url.Action("Index", "AdminGhiChu")">Index</a></li>
+        <li class="current"><a href="#">Insert</a></li>
+    </ul>
+    <!--maintabmenu-->
+    <div class="notification msgsuccess" style="display: none" id="nofSuccess">
+        <a class="close"></a>
+        <p id="msgNofSuccess">This is a success message.</p>
+    </div>
+    <!-- notification msgsuccess -->
+
+    <div class="notification msgerror" style="display: none" id="nofError">
+        <a class="close"></a>
+        <p id="msgNofError">This is an error message.</p>
+    </div>
+    <!-- notification msgerror -->
+    @using (Html.BeginForm("Insert", "AdminGhiChu",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
+    {
+        <div class="contenttitle radiusbottom0">
+            <h2 class="table"><span>Thêm Ghi Chú</span></h2>
+        </div>
+          <!--contenttitle-->
+        <p>
+            <label>Nội Dung</label>
+            <span class="field">
+                <textarea id="NoiDung" name="NoiDung"></textarea>
+            </span>
+        </p>
+        
+        <p>
+            <label id="changecontrol">Tài khoản User</label>
+            <span class="field">
+                <select id="IdUser" name="IdUser">
+                    @{
+        foreach (var item in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityUser>)
+        {
+                <option value="@item.Id">@item.Email</option>
+        }
+                    }
+                </select>                
+                <input type="file" style="display:none;" class="Image" name="Image"/>
+                <a onclick="return change()">Change</a>
+            </span>
+        </p>
+        
+        <p class="stdformbutton">
+            <input type="submit" value="Ok" onclick="return Check();" />
+            <input type="submit" value="Back" onclick="javascript: history.back(); return false" />
+        </p>
+
+    }
+</div>
+<!--maincontentinner-->

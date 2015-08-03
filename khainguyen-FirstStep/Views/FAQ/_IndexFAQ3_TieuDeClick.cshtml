@@ -1,0 +1,9 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ1>
+
+@{
+    foreach (var item in Model)
+    {        
+        <a data-hashtag3="@Utilities.Encode(item.CauHoi)" href="#noidung" class="noidung" data-idnoidung="@item.Id">@item.CauHoi</a>
+    }
+}
+      

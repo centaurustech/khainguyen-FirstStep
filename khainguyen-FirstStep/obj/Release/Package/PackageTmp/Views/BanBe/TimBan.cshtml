@@ -1,0 +1,98 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityTheoDoi>
+@{
+    ViewBag.Title = " Tìm Bạn Bè";
+}
+
+<div class="page">
+    <div class="panel">
+        <div class="container">
+            <!-- acc-title -->
+            @Html.Action("_Index", "BanBe")
+
+            <div class="friend-list">
+                @{
+                    if (Model.Count() == 0)
+                    {
+                        <div class="friend-item">
+                                <div class="inf">
+                                    <div class="name">Không tìm thấy kết quả</div>                    
+                                </div>
+                            </div>
+                    }
+                    else
+                    {
+                        foreach (var friend in Model)
+                        {
+                            string idd = "follow" + @friend.IdBanBe.ToString();
+                            <div class="friend-item" id="@idd">
+                                <div class="ava"><img src="@friend.EntityUser1.Avatar" alt="" /></div>
+                                <div class="inf">
+                                    <div class="name">@friend.EntityUser1.HoTen</div>
+                                    @*<p><i class="fa-codepen tiny"></i> Backed 1 project</p>*@
+                                    <p><i class="fa-map-marker tiny"></i> @friend.EntityUser1.DiaDiem</p>
+                                    <div >
+                                       <a href="#" class="btn" onclick="return Post_Apply('@friend.IdBanBe')"><i class="fa-plus"></i> Theo dõi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+
+
+            </div>
+            <div style="height: 50px;"></div>
+
+        </div>
+    </div>
+</div>
+@*<script src="~/Scripts/jquery-1.11.1.min.js"></script>*@
+@*<style>
+    .unapply:hover {
+        background-color: red !important;
+    }
+
+        .unapply:hover span {
+            display: none;
+        }
+
+        .unapply:hover ::before {
+            content: "Hủy theo dõi" !important;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+</style>*@
+<script type="text/javascript">
+    //$(document).ready(
+    //   function () {
+
+    //       $(".unapply").hover(function () {
+    //           $(".unapply").text("Hủy theo dõi");
+    //       }, function () {
+    //           $(".unapply").text("Đang theo dõi");
+    //       });
+    //   });
+   @* function Post_Apply(IdBanBe) {
+        var postURL = '@Url.Action("Follow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+            if (data == "complete") {
+                var postURL = '@Url.Action("_NutTheoDoi", "BanBe")';
+                $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+                    $("#follow" + IdBanBe).html(data);
+                });
+            }
+        });
+        return false;
+    }
+    function Un_Apply(IdBanBe) {
+        var postURL = '@Url.Action("UnFollow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+            if (data == "complete") {
+                var postURL = '@Url.Action("_NutTheoDoi", "BanBe")';
+                $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+                    $("#follow" + IdBanBe).html(data);
+                });
+            }
+        });
+        return false;
+    }*@
+</script>

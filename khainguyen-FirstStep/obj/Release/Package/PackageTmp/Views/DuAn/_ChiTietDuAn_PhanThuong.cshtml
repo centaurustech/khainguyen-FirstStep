@@ -1,0 +1,43 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityPhanThuong>
+
+<div class="list-reward">
+    @foreach (var item in Model)
+    {
+        string link = "javascript:void(0)";
+        string songuoimua = "";
+        songuoimua = item.SoNguoiMua == null ? "0" : item.SoNguoiMua.ToString();
+        if (Request.Cookies["ftusername"] != null)
+        {
+           
+            if (ViewBag.cothethamgia == "true")
+            {
+                link = Url.Action("ThanhToan_Lan1", "ThanhToan", new { Id = item.EntityDuAn.Id, pt = item.Id });
+            }
+            <a href="@link">
+                <div class="price"><span>Tài trợ @item.TienHoTro VNĐ hoặc hơn</span></div>
+                <div class="des">@item.NoiDung</div>
+                <div class="info">
+                    <span><i class="fa-check-square-o"></i> @songuoimua</span><br />
+                    <span><i class="fa-calendar"></i> @item.HinhThucGiao</span>
+                </div>
+                 <div class="info">
+                     <span>Thời điểm giao: @item.NgayGiao</span><br />
+                     <span>Phí kèm theo: @item.TienHoTro VNĐ</span>
+                </div>
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("Login","Account")">
+                <div class="price"><span>@item.TienHoTro VNĐ + Phần thưởng</span></div>
+                <div class="des">@item.NoiDung</div>
+                <div class="info">
+                    <span><i class="fa-check-square-o"></i> @songuoimua</span><br />
+                    <span><i class="fa-calendar"></i> @item.HinhThucGiao</span>
+                </div>
+            </a>
+
+        }
+
+    }
+</div>

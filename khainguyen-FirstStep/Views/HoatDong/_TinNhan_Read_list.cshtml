@@ -1,0 +1,39 @@
+﻿@model  IEnumerable<khainguyen_FirstStep.EntityTinNhan>
+@{
+    foreach (var item in Model)
+    {
+        if (item.IdUserGui == Convert.ToInt16(Request.Cookies["ftid"].Value))
+        {
+            <a href="@Url.Action("TinNhan_Read", "HoatDong", new { Id = item.Id})">
+                @if (item.EntityUser1.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                {
+                    <img src="https://graph.facebook.com/@item.EntityUser1.IdFacebook/picture?type=normal" />
+
+                }
+                else
+                {                
+                    <img src="@item.EntityUser1.Avatar" />
+                }
+                <b>@item.EntityUser1.HoTen</b>
+                <i class="fa-check-circle color-green"></i>
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("TinNhan_Read", "HoatDong", new { Id = item.Id})">
+                @if (item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                {
+                    <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=normal" />
+
+                }
+                else
+                {                
+                    <img src="@item.EntityUser.Avatar" />
+                }
+                <b>@item.EntityUser.HoTen</b>
+                <i class="fa-check-circle color-green"></i>
+            </a>
+        }
+    }
+
+}

@@ -1,0 +1,40 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+
+<p>&nbsp;</p>
+<h3>Ý tưởng của bạn là gì?</h3>
+<p>Bạn có ý tưởng giúp ích cho cộng đồng? Hãy sử dụng không gian này để chia sẻ với mọi người về ý tưởng của bạn.</p>
+<p>&nbsp;</p>
+
+<div class="box">
+    <h4>Video Youtube của dự án</h4>
+    <input  class="form-txt" id="LinkVideo" name="LinkVideo" type="text" value="@Model.LinkVideo" placeholder="http://www.youtube.com/watch?v=">
+    <div class="des">
+            <p>Chúng tôi hỗ trợ việc chèn đường dẫn video của bạn trên Youtube.</p>
+    </div>
+</div>
+
+<div class="box">
+    <h4>Mô tả dự án</h4>
+    <div class="des">
+        <p>Sử dụng mô tả dự án của bạn để chia sẻ thêm về những gì bạn đang gây quỹ để làm và làm thế nào bạn có kế hoạch để kéo nó đi. Nó thuộc vào bạn để làm cho các trường hợp cho dự án của bạn.</p>
+    </div>
+    <textarea class="form-txt" id="NoiDung" name="NoiDung" style="height: 700px !important;">@Model.NoiDung</textarea>
+
+</div>
+
+<div class="box">
+    <h4>Rủi ro và thách thức</h4>
+    <div class="des">
+        <p><b>Những rủi ro và thách thức mà đi kèm với hoàn thành dự án của bạn là gì, và làm thế nào bạn đủ điều kiện để vượt qua chúng?</b></p>
+        <p>Khi nói đến hoàn thành, mỗi dự án có những trở ngại tiềm năng, từ sự chậm trễ sản xuất phải có giấy phép để cộng tác rủi ro. Những gì thách thức duy nhất bạn có thể phải đối mặt sau khi dự án của bạn được tài trợ thành công? Và nếu thất bại làm phát sinh (chúng tôi hy vọng họ không, nhưng nó sẽ xảy ra!), Làm thế nào bạn sẽ giải quyết chúng?</p>
+        <p>Địa chỉ này từ đầu sẽ giúp xây dựng một cộng đồng hỗ trợ. Những người ủng hộ sẽ hiểu dự án của bạn là một công việc đang tiến và cảm thấy tự tin rằng bạn sẽ làm việc chăm chỉ để làm theo thông qua, ngay cả khi phải đối mặt với những thách thức.</p>
+    </div>
+    <textarea class="form-txt" rows="10" id="RuiRo" name="RuiRo">@Model.RuiRo</textarea>
+</div>
+
+
+
+@*<input type="button" value="Save and Continue" class="edit_save js_edit_btn1"
+	       onclick="javascript: sb(this);" />
+<input name="video_2" id="js_v_txt2" class="js_video2 cp3_edit_txt cp3_txt_1" style="width:140px" value="" />
+<p class="cp3_ferr"><em id="video_youtube_error" style="display: none;">Sorry, your video url is incorrect or not publicly viewable.</em></p>*@

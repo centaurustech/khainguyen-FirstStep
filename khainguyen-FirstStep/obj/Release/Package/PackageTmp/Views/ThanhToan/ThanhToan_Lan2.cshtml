@@ -1,0 +1,101 @@
+﻿@model khainguyen_FirstStep.EntityDauTu
+@{
+    ViewBag.Title = "ThanhToan_Lan2";
+}
+@{
+    if(Model!= null){
+<div class="page dark">
+    <div class="container">
+        <div class="title"><h1>@Model.EntityDuAn.TenDuAn</h1></div>
+        <div class="author">By <a href="#">@Model.EntityUser.HoTen</a></div>
+
+        <div class="page-detail">
+            <div class="detail-row">
+                <div class="left-col">
+
+                    <p><b>Thanh toán với OnePay</b></p>
+                    @*<p>Don't have an Amazon account? Just select "I am a new customer" on the next page.</p>*@
+
+                    <div class="reward-choose-item dark">
+                        <div class="col-3-7">
+                            <b>SỐ TIỀN THAM GIA</b>
+                            <div class="des"></div>
+                        </div>
+                        <div class="col-7-3">
+                            <div class="reward-des"><h1>@Model.SoTienDauTu VNĐ</h1><a href="#">Chỉnh Sửa</a></div>
+                        </div>
+                    </div>
+                    <div class="reward-choose-item">
+                        <div class="col-3-7">
+                            <b>Phần thưởng đã chọn</b>
+                            <div class="des"></div>
+                        </div>
+                        <div class="col-7-3">
+                            <div class="reward-des">
+                                <h3>@Model.EntityPhanThuong.TienHoTro VNĐ + phần thưởng</h3>
+                                <p>
+                                    @Model.EntityPhanThuong.NoiDung
+                                </p>
+                                <span class="estimated">Hình thức giao hàng : @Model.EntityPhanThuong.HinhThucGiao</span>
+                                @*<span class="estimated">Add $10 USD to ship outside the US</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reward-choose-item">
+                        <div class="col-3-7">
+                            <b>Giao Hàng</b>
+                            <div class="des"></div>
+                        </div>
+                        <div class="col-7-3">
+                            <div class="reward-des">@Model.EntityUser.DiaDiem - @Model.EntityUser.Email<a href="#"> Chỉnh sửa</a></div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <hr />
+                    <!-- btnSave -->
+                    <div class="box-save">
+                        <button class="btn btn-big">Finish with One Pay</button>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="reward-avide">
+                        <h3>IMPORTANT</h3>
+                        <p>
+                            Kickstarter does not guarantee projects or investigate a creator's ability to complete their project. It is the responsibility of the project creator to complete their project as promised, and the claims of this project are theirs alone.
+                        </p>
+                        <p><a href="#">Learn more about accountability</a></p>
+                    </div>
+                    <div class="reward-list-ask">
+                        <h3>FREQUENTLY ASKED QUESTIONS</h3>
+                        <div class="faq-ask">
+                            <a href="#">What happens if a backer's credit card is declined?</a>
+                            <div class="faq-ans">
+                                <p>When a backer's payment cannot be collected, their pledge is displayed with an errored status in your Backer Report. </p>
+                            </div>
+                        </div>
+                        <div class="faq-ask">
+                            <a href="#">What happens if a backer's credit card is declined?</a>
+                            <div class="faq-ans">
+                                <p>When a backer's payment cannot be collected, their pledge is displayed with an errored status in your Backer Report. </p>
+                            </div>
+                        </div>
+                        <div class="faq-ask">
+                            <a href="#">What happens if a backer's credit card is declined?</a>
+                            <div class="faq-ans">
+                                <p>When a backer's payment cannot be collected, their pledge is displayed with an errored status in your Backer Report. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reward-payment"></div>
+                    <img src="~/Content/cssFrontEnd/images/amazon_payments_footer.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else{
+        <div><h3>Cảm ơn sự đóng góp của bạn.</h3></div>
+    }
+}

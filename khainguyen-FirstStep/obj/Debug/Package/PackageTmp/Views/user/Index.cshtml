@@ -1,0 +1,201 @@
+﻿@model khainguyen_FirstStep.EntityUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+@{
+    if (Model == null)
+    {
+    <div class="page page-message">
+        <div class="panel">
+            <div class="container">
+                ERROR VALUE
+            </div>
+        </div>
+    </div>
+    <!-- /.page -->
+    }
+    else
+    {
+    <link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+    <div class="page page-message">
+        <div class="panel">
+            <div class="container">
+
+                <!-- acc-profile -->
+                <div class="acc-profile">
+                    <div class="img">
+                        @if(Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                        {
+                            <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=large" />
+                        }
+                        else
+                        {
+                            <img src="@Model.Avatar" />
+                        }
+                    </div>
+                    <div class="acc-info">
+                        <h1>@Model.HoTen</h1>
+                        @*@{string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                          string url = mang[0] + "//" + mang[2];
+                          string linkk = url + "/user/" + Model.VanityURL;}
+                        <div class="link"><a href="#">@linkk</a></div>*@
+                        <div class="clearfix"></div>
+
+                        <div class="properties">
+                            <a><i class="fa-windows"></i>&nbsp; Gia nhập: @Model.Date</a>
+                             @{
+                    if (ViewBag.idlogin!= 0)
+                    {
+                     <a href="#" class="color-orange float-right show-popup-proj" data-id="popup1"><i class="fa-comment-o"></i> Gửi tin nhắn</a>
+                    }
+                    }
+                          
+                        </div>
+                        @if(Model.DiaDiem != null)
+                        {
+                            <div class="properties">
+                                <a href="#"><i class="fa-map-marker"></i>&nbsp; @Model.DiaDiem</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="properties">
+                                <a href="#"><i class="fa-map-marker"></i>&nbsp; @Model.DiaDiem</a>
+                            </div>
+                        }
+                        <div class="properties">
+                                <a href="#"><i class="fa-child"></i>&nbsp; : </a>
+                        <p>@Model.GioiThieu</p>
+                            </div>
+                           @{
+                    if (ViewBag.idlogin!= 0)
+                    {
+                      @Html.Action("_NutTheoDoi","BanBe",new{IdBanBe=ViewBag.IdFriend})
+                    }
+                    }
+                    
+                    </div>
+
+                    <!--- bo sung div nay -->
+                    <div class="acc-chart">
+                        <div class="acc-chart-in">
+                            <canvas id="chartdiv"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+
+                <nav class="tab-nav" data-tab="tab1">
+                    <a href="#" class="active"><i class="fa-file-archive-o"></i> Dự án đã tạo</a>
+                    <a href="#"><i class="fa-file-archive-o"></i> Dự án đã đầu tư</a>
+                    <a href="#"><i class="fa-comments"></i> Bình luận <span>@ViewBag.BinhLuan.Count</span></a>
+
+                </nav>
+
+                <div class="tab-panel" data-tab="tab1">
+                    <div class="tab active">
+                        <!-- LIST ITEM -->
+                        <div class="row-project">
+                            @{
+                    foreach (var item in ViewBag.DuAn)
+                    {
+                                <div class="item-project">
+                                    <div class="border">
+                                        <div class="img">
+                                            <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                                                <img src="~/Content/Images/DuAn/@item.HinhAnh" alt="@item.TenDuAn" /></a>
+                                        </div>
+                                        <div class="title">
+                                            <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                                                <h4>@item.TenDuAn</h4>
+                                            </a>
+                                        </div>
+                                        <div class="des">@item.ThongTinNgan</div>
+                                    </div>
+                                </div>
+                    }
+                            }
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <!-- LIST ITEM -->
+                        <div class="row-project">
+                            <div class="">
+                                @{
+                    foreach (var item in ViewBag.DauTu)
+                    {
+                                    <div class="item-project mini">
+                                        <div class="border">
+                                            <div class="img">
+                                                <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                                                    <img src="~/Content/Images/DuAn/@item.HinhAnh" alt="@item.TenDuAn" /></a>
+
+                                            </div>
+                                            <div class="title">
+                                                <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                                                    <h4>@item.TenDuAn</h4>
+                                                </a>
+
+                                            </div>
+                                            <div class="des">@item.ThongTinNgan</div>
+                                        </div>
+                                    </div>
+                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <!-- tab comment -->
+                    <div class="tab">
+                        @Html.Action("_LoadBinhLuan", "user", new { binhluan = ViewBag.BinhLuan })
+                        <div class="space_30"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /.page -->
+    <!-- /.page -->
+    }
+}
+@section jqueryPlugin{
+    <script src="~/Content/cssFrontEnd/js/jqplot/jquery.jqplot.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/jqplot/plugins/jqplot.pieRenderer.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/jqplot/plugins/jqplot.donutRenderer.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/chartjs/Chart.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var ssss = '@khainguyen_FirstStep.Models.BanDoModel.getSLDuAn_DaDauTu(ViewBag.DauTu)';
+
+
+            var decoded = $('<div/>').html(ssss).text();
+            var jsonObj = $.parseJSON(decoded);
+
+            var data = jsonObj;
+
+
+            var ctx = document.getElementById("chartdiv").getContext("2d");
+            var myNewChart = new Chart(ctx).Pie(data, { animation: false, responsive: true, tooltipTemplate: "<%if (label){%><%=label%><%}%>" });
+
+            $(window).resize(function () {
+                //myNewChart.toBase64Image();
+            });
+
+        });
+    </script>
+
+}
+ @{
+     if (Model != null)
+     {
+ @Html.Action("_LoadSendTinNhan", "user", new { IdUser = @Model.Id, IdDuAn=0 })
+ }
+ } 

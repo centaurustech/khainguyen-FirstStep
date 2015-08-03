@@ -1,0 +1,24 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDanhMuc>
+
+
+<ul class="col-2">
+    @{
+        foreach(var item in Model)
+        {
+         
+            <li><a href="@Utilities.URLCategory(item.Id)">@item.TenDM</a></li>
+        }
+    }
+    
+</ul>
+
+<ul class="col-2">
+    @{
+        foreach(var item in Model)
+        {
+         
+            <li><a href="@Utilities.URLCategory(item.Id)">@item.TenDM</a></li>
+        }
+    }
+    
+</ul>

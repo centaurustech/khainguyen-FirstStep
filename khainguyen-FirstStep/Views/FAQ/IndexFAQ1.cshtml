@@ -1,0 +1,166 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityGroupFAQ>
+@{
+    ViewBag.Title = "IndexFAQ1";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+ <!-- SLIDE -->
+<div class="slider-fix-300">
+<div id="slides-sm">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+    </ul>
+
+    <div class="faq-intro">
+        <div class="container">
+            <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+            <div class="faq-info">
+                <div class="faq-title">Các nội dung hỗ trợ khác</div>
+                @*<div class="faq-des">Tìm kiếm giải đáp cho những thắc mắc của bạn.</div>*@
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+@* <!-- SLIDE -->
+        <div class="slider-fix-300">
+            <div id="slides-sm">
+                <ul class="slides-container">
+                     <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+                </ul>
+                <div class="faq-intro">
+                    <div class="container">
+                        <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+                        <div class="faq-info">
+                            <div class="faq-title">FAQ</div>
+                            <div class="faq-des faq-gray">Looking for inspiration, tips, tools, and best practices for making a successful project?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+<!-- FAQ -->
+<div class="container">
+
+    @*<div class="faq-search">
+        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+    </div>*@
+
+    <nav class="faq-group">
+        @{
+            foreach (var item in Model)
+            {
+                string a = "#group" + item.Id;
+                <a href="@a" class="group" data-idgroup="@item.Id" data-tengroup="@Utilities.Encode(item.TenGroup)">@item.TenGroup</a>
+            }
+
+        }
+
+    </nav>
+
+    <div class="faq-list-ask" id="noidung">
+
+    </div>
+
+
+</div>
+
+<div style="height: 50px;"></div>
+@section jqueryPlugin{
+<script>
+    $(document).ready(function () {
+        var $slides = $('#slides-sm');
+        Hammer($slides[0]).on("swipeleft", function (e) {
+            $slides.data('superslides').animate('next');
+        });
+
+        Hammer($slides[0]).on("swiperight", function (e) {
+            $slides.data('superslides').animate('prev');
+        });
+        $slides.superslides({
+            slide_easing: 'easeInOutCubic',
+            slide_speed: 800,
+            pagination: false,
+            hashchange: false,
+            scrollable: true,
+            play: 5000,
+            animation: 'fade',
+            inherit_height_from: '.slider-fix-300'
+        });
+        group(@ViewBag.idgroup);
+        
+        //28/07/2015 edit : them actived
+        $(".faq-group").on("click", "a.group", function (e) {
+            e.preventDefault();
+            group($(this).data("idgroup"));           
+        });
+
+    });
+    $('.faq-ans').each(function () {
+        $(this).attr('data-height', $(this).height()).height(0);
+    });
+    $('.faq-ask a:first-child').click(function (e) {
+        e.preventDefault();
+        if ($(this).attr('data-show') == "1") {
+            $(this).attr('data-show', 0);
+            $(this).next().animate({ height: 0 }, 500);
+        }
+        else {
+            $(this).attr('data-show', 1);
+            $n = $(this).next();
+            $n.animate({ height: $n.attr('data-height') }, 500);
+            //$('.faq-ans').animate({ height: 0 }, 300, function () {
+            //    $('.faq-ask a:first-child').attr('data-show', 0);
+            //    $(this).attr('data-show', 1);
+            //    $n.animate({ height: $n.attr('data-height') }, 500);
+            //});
+        }
+    });
+    function group(id) {
+        var postURL = '@Url.Action("_IndexFAQ1_NoiDung", "FAQ")';
+        $.post(postURL, { "id": id }, function (data) {
+            if (data == "Error") {
+                alert("Error");
+            } else {
+                //document.location.hash = "show_picture";
+                $('#noidung').html(data);
+                $this = $("a.group[data-idgroup=" + id + "]");
+                $("a.group").removeClass("actived");
+                $this.addClass("actived");
+                window.location.hash = $this.data("tengroup");
+            }
+        });
+        return false;
+    }
+    //$(document).ready(function () {
+    //    var $slides = $('#slides');
+    //    Hammer($slides[0]).on("swipeleft", function (e) {
+    //        $slides.data('superslides').animate('next');
+    //    });
+
+    //    Hammer($slides[0]).on("swiperight", function (e) {
+    //        $slides.data('superslides').animate('prev');
+    //    });
+    //    $slides.superslides({
+    //        slide_easing: 'easeInOutCubic',
+    //        slide_speed: 800,
+    //        pagination: false,
+    //        hashchange: false,
+    //        scrollable: true,
+    //        play: 5000,
+    //        animation: 'fade'
+    //    });
+    //});
+</script>
+    <style>
+        a.group.actived{color: #fff; background-color: #ffb116}        
+    </style>
+}

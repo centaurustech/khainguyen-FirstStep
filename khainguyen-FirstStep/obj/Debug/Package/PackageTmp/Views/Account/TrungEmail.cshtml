@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Trùng Email";
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            <div class="panel-login">
+                <h4>Đăng ký tài khoản</h4>
+                <div class="form-login">
+                   
+                        <form>
+                            <p>Tài khoản Email bạn đã đăng ký , xin vui lòng kiểm tra lại hoặc click vào <a href="@Url.Action("QuenMatKhau", "Account")">quên mật khẩu ?</a></p>
+                            <p><a href="@Url.Action("DangKy", "Account")" class="btn btn-login-fb"><i class="fa-sign-in"></i>&nbsp;Tiếp tục đăng ký</a></p>
+                        </form>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+ 
+
+   
+}
+
+
+

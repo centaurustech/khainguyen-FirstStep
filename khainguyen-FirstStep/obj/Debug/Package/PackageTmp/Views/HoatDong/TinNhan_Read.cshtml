@@ -1,0 +1,25 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityTinNhan>
+@{
+    foreach(var item in Model)
+    {
+        string iddd = "IdMessage_show" + item.Id.ToString();
+    <div class="ms-text-li">
+        @if(item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+        {                                        
+            <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?width=70&height=70" />
+        }
+        else
+        {
+            <img src="@item.EntityUser.Avatar" />
+        }
+        <div class="ms-t" id="@iddd">
+            <a href="@Url.Action("Index", "user", new { Link = item.EntityUser.VanityURL })">@item.EntityUser.HoTen</a>
+             <span class="time">@item.Date</span>
+            @if (ViewBag.Idlogin != item.IdUserGui && item.TrangThai!= -1) { <a class="sspam" href="javascript:void(0)" onclick="return CheckSpam('@item.Id')">Đánh dấu spam</a>}
+            @if (item.TrangThai == -1) {<p style="color:#ffb116 ;font-style:italic;">Tin Nhắn này đã bị báo Spam</p> } else {<p>@item.NoiDung</p> }
+            
+        </div>
+    </div>
+    }
+}
+

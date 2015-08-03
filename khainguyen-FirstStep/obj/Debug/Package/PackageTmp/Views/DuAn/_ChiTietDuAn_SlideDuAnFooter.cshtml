@@ -1,0 +1,14 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+@{
+    foreach (var item in Model)
+    {
+        <div class="item-project">
+            <div class="border">
+                <div class="img"><a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })"><img src="~/Content/Images/DuAn/@item.HinhAnh" alt="@item.TenDuAn" /></a></div>
+                <div class="title"><a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })"><h4>@item.TenDuAn</h4></a></div>
+                <div class="des">@item.ThongTinNgan</div>
+            </div>
+        </div>
+    }
+}
+

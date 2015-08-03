@@ -1,0 +1,15 @@
+﻿@model khainguyen_FirstStep.EntityNhomChienDich
+<div class="box box-plege" data-nhom="@Model.Id">
+    <div class="" >
+
+        <h4>@Model.EntityUser.HoTen - @Model.EntityUser.Email</h4>
+        <div class="col-4-6">
+            <b>Vai trò: </b>
+            <input type="text" style="width:70%;" value="@Model.VaiTro"/>
+        </div>
+        <div class="col-2-8">
+            <a href="#" class="btn bg-green" onclick="return ThemVaiTro('@Model.Id');" style="overflow: visible">Thêm</a>
+            &nbsp;&nbsp;&nbsp;<a href="#" class="btn bg-red" onclick="return XoaThanhVien('@Model.Id');" style="overflow: visible">Xóa</a>
+        </div>
+    </div>
+</div>

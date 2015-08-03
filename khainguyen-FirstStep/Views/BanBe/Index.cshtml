@@ -1,0 +1,50 @@
+﻿@model  IList<khainguyen_FirstStep.EntityUser>
+
+@{
+    ViewBag.Title = "Tìm bạn bè";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<div class="page">
+    <div class="panel">
+        <div class="container">
+            <!-- acc-title -->
+            @Html.Action("_Index", "BanBe")
+
+            <div class="friend-list">
+                @foreach (var friend in Model)
+                {
+                    <div class="friend-item">
+                        <div class="ava">
+                            @if (friend.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                                    {
+                                        <a href="/user/@friend.VanityURL">
+                                            <img src="https://graph.facebook.com/@friend.IdFacebook/picture?type=normal" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/user/@friend.VanityURL">
+                                            <img src="@friend.Avatar" />
+                                        </a> 
+                                    }
+                        </div>
+                        <div class="inf">
+                            <div class="name">@friend.HoTen</div>
+                            <p><i class="fa-codepen tiny"></i> Backed 1 project</p>
+                            <p><i class="fa-map-marker tiny"></i> Ho Chi Minh city</p>
+                            <a href="#" class="btn"><i class="fa-plus"></i> Theo dõi</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div style="height: 50px;"></div>
+
+        </div>
+    </div>
+</div>

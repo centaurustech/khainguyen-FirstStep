@@ -1,0 +1,46 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+<div class="proj-popup nicescroll" data-id="popup1">
+    <div class="proj-popup-panel">
+        <div class="proj-popup-btnclose">x</div>
+
+        <div class="proj-popup-content">
+            <h3>Gửi tin nhắn </h3>
+            <div class="space_20"></div>
+            <select class="form-txt" style="font-size: 0.85em; width:97.7%;" id="DuAnDuocChon">
+                @{
+                      <option value="0">--Chọn dự án--</option>
+                    foreach (var item in Model)
+                    {
+                                        <option value="@item.Id">@item.TenDuAn</option>
+                    }
+                }
+                                    </select>
+            <div class="">
+                <input  type="hidden"  value="@ViewBag.IdUser" id="IdUser"/>
+                <textarea class="form-txt" id="TinNhan" name="TinNhan" placeholder="Nội dung tin nhắn..." rows="5"></textarea><br>
+                <br>
+                <button class="btn" onclick="return SendTinNhan1();">Gửi tin nhắn</button>                
+            </div>
+        </div>
+    </div>
+</div>
+        <script>
+            // viet binh luan
+            function SendTinNhan1() {
+                var NoiDung = $('#TinNhan').val();
+                var IdUser = $('#IdUser').val();
+                var IdDuAn = $('#DuAnDuocChon').val();
+                var postURL = '@Url.Action("_SendTinNhan", "Ajax")';
+             if (NoiDung != "") {
+                 $.post(postURL, { "NoiDung": NoiDung, "IdUser": IdUser, "IdDuAn": IdDuAn }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('.proj-popup-btnclose').click();
+                        $('#TinNhan').val("")
+                    }
+                });
+            }
+            }
+          
+    </script>

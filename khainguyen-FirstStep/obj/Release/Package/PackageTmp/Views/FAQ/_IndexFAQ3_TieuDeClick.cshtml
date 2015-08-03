@@ -1,0 +1,9 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ>
+
+@{
+    foreach (var item in Model)
+    {
+        <a href="#" onclick="return noidung(@item.Id);">@item.TieuDe</a>
+    }
+}
+      

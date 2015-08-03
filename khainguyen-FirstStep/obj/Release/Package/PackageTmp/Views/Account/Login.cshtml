@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            <div class="panel-login">
+                <div class="social">
+                    <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập với Facebook</a>
+                </div>
+                <div class="form-login">
+                    <h3>hoặc tài khoản FirstStep</h3>
+                    <form id="login" action="#" method="post">
+                        <div class="loginerror"><p style="color:#14C3BE">Tài khoản không tồn tại</p></div>
+                        <p>
+                            <input class="form-txt" type="text" value="" id="username" name="username" placeholder="Email" />
+                        </p>
+                        <p>
+                            <input class="form-txt" type="password" value="" id="password" name="password" placeholder="******" />
+                        </p>
+                        <p>
+                            <input type="checkbox" value="" id="remember" name="remember"/>
+                            Ghi nhớ tài khoản
+                        </p>
+                        <p><button  class="btn btn-login-fb" onclick="checkId()"><i class="fa-sign-in"></i> &nbsp;Đăng nhập</button></p>
+                        <p><a href="@Url.Action("QuenMatKhau", "Account")">Quên mật khẩu ?</a></p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form-login button').hover(function () {
+                $(this).stop().switchClass('default', 'hover');
+            }, function () {
+                $(this).stop().switchClass('hover', 'default');
+            });
+
+            $('#login').submit(function () {
+                return false;
+            });
+
+            $('#username').keypress(function () {
+                jQuery('.loginerror').slideUp();
+            });
+            jQuery('.loginerror').slideUp();
+        });
+        function checkId() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var remember = kiemtracheckbox();
+            var postURL = '@Url.Action("CheckId", "Account")';
+
+            $.post(postURL, { "username": username, "password": password, "remember": remember }, function (data) {
+                if (data.Email == " ") // ko dung pass hoac user
+                {
+                    jQuery('.loginerror').slideDown();
+                    u.focus();
+                    return false;
+                }
+                else {
+                    window.location.href = "@Url.Action("Index", "Home")";
+             }
+         });
+        };
+        function kiemtracheckbox() {
+            if ($('#remember').is(":checked")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        };
+    </script>
+}
+

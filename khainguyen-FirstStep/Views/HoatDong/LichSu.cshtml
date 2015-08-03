@@ -1,0 +1,105 @@
+﻿@model IList<khainguyen_FirstStep.EntityDauTu>
+@{
+    ViewBag.Title = "Lược sử đầu tư";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page page-message">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            @Html.Action("_MenuHoatDong", "HoatDong")
+
+            <!-- LỌC TIN NHẮN -->
+
+            <!-- NỘI DUNG TIN NHẮN -->
+            <!-- table backet -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width:200px;">Dự án</th>
+                        <th style="width:120px;">Tiền đầu tư</th>
+                        <th>Phần thưởng</th>
+                        <th>Trạng thái</th>
+                        <th>Nhắn tin với chủ dự án</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(var item in Model)
+                        {//0: chưa thanh toán 1: đã thanh toán, nhưng chưa giao hàng 2: đã thanh toán đã giao hàng
+                            string trangthai = item.TrangThai ==1 ? "Chưa giao" : "Đã giao";
+                            if (item.TrangThai == 0) { trangthai = "Chưa thanh toán"; }
+                                
+                        <tr>
+                            <td data-title="Project:"> <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.EntityDuAn.TenDuAn), item.EntityDuAn.Id) })">@item.EntityDuAn.TenDuAn</a></td>
+                            <td data-title="Pledged:" class="text-center">@Utilities.FormatCurrent(item.SoTienDauTu.ToString())  VNĐ</td>
+                            @if (@item.IdPhanthuong == null)
+                            {
+                                <td data-title="Reward:">Không nhận phần thưởng</td>
+                            }
+                            else
+                            {
+                                <td data-title="Reward:">@item.EntityPhanThuong.NoiDung</td>
+                            }
+                            <td data-title="Got it!:"><a href="#" xclass="btn DauTuTrangThai">@trangthai</a></td>
+                            @*<a href="javascript:void(0)" onclick="return TrangThai_Edit('@item.Id','@item.TrangThai');" class="btn DauTuTrangThai">@trangthai</a>*@
+                            <td class="config"><center><a href="#" class="show-popup-proj" onclick="return LoadMessage_LichSu('@item.Id')" data-id="popup2"><i class="fa-cog"></i></a></center></td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+               
+        </div>
+    </div>
+</div>
+    @Html.Action("CheckLife","Home")
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        function LoadMessage_LichSu(Id) {
+            //$('#id_addmessage').val(Id);
+            //$('#btn_addmessage').show();
+            //$('.ms-list-user a').removeClass('active');
+            $('.' + Id).addClass("active");            
+            var postURL = '@Url.Action("_Message_LichSu", "HoatDong")';
+            $.post(postURL, { "IdDauTu": Id }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadMessage_LichSu').html(data);
+                }
+            });
+        }
+
+
+        function TrangThai_Edit(IdDauTu, TrangThai) {
+            if (TrangThai <= 0) {
+                window.location = '@Url.Action("ThanhToan_Lan2","ThanhToan")' + "?Id=" + IdDauTu;
+            }
+            var postURL = '@Url.Action("TrangThai_Edit", "HoatDong")';
+            $.post(postURL, { "IdDauTu": IdDauTu }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('.DauTuTrangThai').text("Đã giao");
+                }
+            });
+    }
+    </script>
+}
+
+ <div class="proj-popup nicescroll" data-id="popup2">
+        <div class="proj-popup-panel">
+            <div class="proj-popup-btnclose">x</div>
+            <div class="proj-popup-content" id="LoadMessage_LichSu"></div>
+</div>
+    </div>

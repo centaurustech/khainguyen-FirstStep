@@ -1,0 +1,164 @@
+﻿@*@model IEnumerable<khainguyen_FirstStep.EntityGroupFAQ>*@
+@model IEnumerable<khainguyen_FirstStep.EntityFAQ1>
+@*@{
+    ViewBag.Title = "IndexFAQ4";
+}*@
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<!-- SLIDE -->
+<div class="slider-fix-300">
+<div id="slides">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+    </ul> 
+    <div class="faq-intro">
+        <div class="container">
+            <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+            <div class="faq-info">
+                <div class="faq-title">@ViewBag.Title</div>
+                <div class="faq-des">Tìm kiếm giải đáp cho những thắc mắc của bạn.</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- FAQ -->
+<div class="container">
+
+    @*<div class="faq-search">
+        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+    </div>*@
+
+    <div class="clearfix"></div>
+    <nav class="affix-right nicescroll">
+@{
+    foreach (var item in Model)
+    {
+        string a = "#big-ask" + item.Id;
+        <h4><a data-hashtag1="@Utilities.Encode(item.CauHoi)" href="@a">@item.CauHoi</a></h4>  
+        @*<h4><a href="@a" class="title">@item.CauHoi</a></h4>        
+        @Html.Action("_IndexFAQ4_TieuDePhai", "FAQ", new { id = @item.Id });*@
+    
+    }
+    }
+
+    </nav>
+
+    <div class="faq-list-ask affix-left">
+        @*@{
+            foreach (var item in Model)
+            {
+                string a = "big-ask" + item.Id;
+                 <div id="@a" class="faq-ask">
+            <h3 href="#">@item.CauHoi</h3>
+            @Html.Action("_IndexFAQ4_NoidungTrai", "FAQ", new { id = @item.Id })
+        </div>
+            }
+        }
+       @Html.Action("_IndexFAQ4_NoidungTrai", "FAQ", new { id = @item.Id })*@
+        @{
+            foreach (var item in Model)
+            {
+                //string a = "ask" + item.Id;
+                string a = "big-ask" + item.Id;
+                 <div class="faq-ask" id="@a">
+                     <a data-hashtag="@Utilities.Encode(item.CauHoi)">@item.CauHoi</a>
+                     <div class="faq-ans">
+                        
+               @Html.Raw(item.CauTraLoi)
+            </div>
+        </div>
+            }
+        }
+
+    </div>
+
+
+</div>
+
+<div style="height: 50px;"></div>
+@section jqueryPlugin{
+<script src="~/Content/cssFrontEnd/js/scrolltofixed/jquery-scrolltofixed-min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $slides = $('#slides');
+        Hammer($slides[0]).on("swipeleft", function (e) {
+            $slides.data('superslides').animate('next');
+        });
+
+        Hammer($slides[0]).on("swiperight", function (e) {
+            $slides.data('superslides').animate('prev');
+        });
+        $slides.superslides({
+            slide_easing: 'easeInOutCubic',
+            slide_speed: 800,
+            pagination: false,
+            hashchange: false,
+            scrollable: true,
+            play: 5000,
+            animation: 'fade',
+            inherit_height_from: '.slider-fix-300'
+        });
+
+        var reload = function () {
+            if ($("#iphone").is(':visible')) {
+                if (!$.isScrollToFixed('.affix-right')) { $('.affix-right').scrollToFixed({ marginTop: 50, limit: $('#footer').offset().top - $('.affix-right').height() - 20 }); }
+            }
+            else {
+                $('.affix-right').trigger('detach.ScrollToFixed');
+            }
+        };
+        reload();
+        $(window).resize(function () {
+            reload();
+        });        
+
+        var AutoScrollHashtag = function () {
+            var hashw = window.location.hash;
+            if (hashw.length > 0) {
+                hashw = hashw.replace('#', '');
+                $hashtarget = $("a[data-hashtag=" + hashw + "]");
+                if ($hashtarget.length > 0) {
+                    //alert($hashtarget.offset().top);
+                    $("html, body").animate({ scrollTop: $hashtarget.offset().top - 60 }, '500');
+                }
+            }
+        };
+        AutoScrollHashtag();
+
+        var AutoChangeHashtagOnUrlWhenClick = function () {
+            $(".affix-right a").click(function () {
+                var hasha = $(this).data("hashtag1");
+                document.location.hash = hasha;
+            });
+        };
+        AutoChangeHashtagOnUrlWhenClick();
+
+    });
+
+    //function AutoScrollHashtag() {// Auto scroll hashtag        
+    //    var hashw = window.location.hash;
+    //    if (hashw.length > 0) {
+    //        hashw = hashw.replace('#', '');
+    //        $hashtarget = $("a[data-hashtag=" + hashw + "]");
+    //        if ($hashtarget.length > 0) {
+    //            //alert($hashtarget.offset().top);
+    //            $("html, body").animate({ scrollTop: $hashtarget.offset().top - 150 }, '500');
+    //        }
+    //    }
+    //};
+
+    //function AutoChangeHashtagOnUrlWhenClick() {
+    //    $(".affix-right a").click(function () {
+    //        var hasha = $(this).data("hashtag");
+    //        document.location.hash = hasha;
+    //    });
+    //};
+
+</script>
+}

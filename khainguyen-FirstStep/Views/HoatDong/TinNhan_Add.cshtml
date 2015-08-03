@@ -1,0 +1,20 @@
+﻿@model khainguyen_FirstStep.EntityTinNhan
+@{
+    <div class="ms-text-li">
+        @if (Model.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+        {
+            <img src="https://graph.facebook.com/@Model.EntityUser.IdFacebook/picture?type=normal" />
+
+        }
+        else
+        {                
+            <img src="@Model.EntityUser.Avatar" />
+        }
+        <div class="ms-t">
+            <b>@Model.EntityUser.HoTen</b>
+            <span class="time">@Model.Date</span>
+            <p>@Model.NoiDung</p>
+        </div>
+    </div>
+}
+

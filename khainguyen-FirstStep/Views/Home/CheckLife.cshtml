@@ -1,0 +1,17 @@
+﻿
+
+ @using (Html.BeginForm("LoginLife", "Account",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @id = "postloginLife", @enctype = "multipart/form-data" }))
+ {
+     <input name="link" value="@ViewBag.Life" type="hidden" />
+ }
+<script>
+    $(document).ready(function () {
+        if ('@ViewBag.Life' != "") {
+            $("form#postloginLife").submit();
+           // window.location.href = '@Url.Action("LoginLife","Account")' + '?link=' + '@ViewBag.Life';
+        }
+    });
+
+</script>

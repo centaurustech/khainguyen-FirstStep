@@ -1,0 +1,115 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+<p>&nbsp;</p>
+<h3>Tài khoản</h3>
+<p>Xác thực các thông tin liên lạc và tài khoản của bạn để sẵn sàng nhận tài trợ.</p>
+<p>&nbsp;</p>
+
+<div class="box">
+    <div class="group-text">
+    
+    @if(Model.TKPayoo == string.Empty)
+    {
+        <h3 style="width: 250px;">Thông tin tài khoản Payoo <i class="fa-info-circle tooltip color-green tooltipstered"  title="Nhập username tài khoản Payoo"></i></h3>
+        <p style="width:55%;">
+            <input class="form-txt" data-val="true" id="TKPayoo" name="TKPayoo" type="text"> 
+            <button class="btn btn-primary" id="dataConfirm" data-title="Hello there!" data-confirm-button="Yes I am" onclick="return kiemtraTKPayoo()">kiểm tra ngay</button>
+        </p>        
+    }
+    else
+    {
+        <h3 style="width: 250px;">Thông tin tài khoản Payoo </h3>
+        <p style="width:55%;">
+            @Html.TextBoxFor(m => m.TKPayoo, new { @readonly="readonly" })             
+        </p> 
+    }
+    </div>
+    @*<div class="des" style="padding-left:250px;">
+    <p>Tên dự án của bạn nên được đơn giản, cụ thể, đáng nhớ, tránh các từ như "hỗ trợ", "giúp đỡ", "quỹ", ...</p>
+    </div>*@
+</div>
+
+@*<div class="box taikhoanphanloai">
+    <h3>Funds recipient</h3>
+    <div class="des">
+        <p><b>If your project is successful, we'll need to know where to send your funds.</b></p>
+        <p>To set you on the right verification path, let us know what type of bank account we'll be sending your funds to. If the bank account will be yours, choose "Individual." If the funds will go to a legal entity (e.g., a company or organization), choose "Legal entity."</p>
+    </div>
+
+    <label class="form-label">
+        <input type="radio" value="Cá nhân" data-preson="1" name="whichpreson">Cá nhân</label>
+    <label class="form-label">
+        <input type="radio" value="Doanh nghiệp" data-preson="2" name="whichpreson">Doanh nghiệp</label>
+    <label class="form-label">
+        <input type="radio" value="Tổ chức từ thiện" data-preson="3" name="whichpreson">Tổ chức từ thiện</label>
+</div>*@
+
+@*Cá nhân*@
+@*<div class="box taikhoan" data-preson="1">
+    <h3>Cá nhân</h3>
+    <h4>Tên</h4><input class="form-txt" type="text" value="@Model.cnName" name="cnName">
+    <h4>Ngày sinh</h4>
+        <div class="col-3">
+        <p>
+            <select class="form-txt" id="years" name="cnYear">
+            </select>
+        </p>
+    </div>
+        <div class="col-3">
+        <p>
+            <select class="form-txt" id="months" name="cnMonth">
+            </select>
+        </p>
+    </div>
+    <div class="col-3">
+        <p>
+            <select class="form-txt" id="days" name="cnDay">
+            </select>
+        </p>
+    </div>
+                   
+                   
+    <h4>Home address</h4>
+    <div class="col-2" ><input class="form-txt" type="text"  value="@Model.cnHomeaddress1" name="cnHomeaddress1" placeholder="Address 1"></div>
+    <div class="col-2" ><input class="form-txt" type="text" value="@Model.cnHomeaddress2" name="cnHomeaddress2" placeholder="Address 2"></div>   
+    <h4>Hình ảnh bản sao công chứng cmnd hoặc bản gốc</h4>                    
+    <input class="form-txt" type="file" name="cnHinhAnh">
+    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div> 
+    @if (@Model.cnHinhAnh != null && @Model.cnHinhAnh != "")
+    { <img src="~/Content/Images/TaiKhoan/@Model.cnHinhAnh" />}               
+</div>*@
+
+@*Công ty*@
+@*<div class="box taikhoan" data-preson="2">
+    <h3>Công ty</h3>
+    <h4>Tên công ty</h4><input class="form-txt" type="text" value="@Model.ctTenCongTy" name="ctTenCongTy">      
+    <h4>Địa chỉ</h4><input class="form-txt" type="text" value="@Model.ctDiaChi" name="ctDiaChi">
+    <h4>Mã số thuế</h4><input class="form-txt" type="text" value="@Model.ctMST" name="ctMST">
+    <h4>Số điện thoại bàn</h4><input class="form-txt" type="text" value="@Model.ctSDTBan" name="ctSDTBan">
+    <h4>Tên người đại diện</h4><input class="form-txt" type="text" value="@Model.ctTenNguoiDaiDien" name="ctTenNguoiDaiDien">
+    <h4>Chức vụ</h4><input class="form-txt" type="text" value="@Model.ctChucVu" name="ctChucVu">  
+    <h4>Email liên lạc</h4><input class="form-txt" type="text" value="@Model.ctEmail" name="ctEmail">  
+    <h4>Website</h4><input class="form-txt" type="text" value="@Model.ctWebsite" name="ctWebsite">                                       
+    <h4>Hình ảnh bản sao công chứng hoặc bản gốc giấy phép kinh doanh</h4>                    
+    <input class="form-txt" type="file" name="ctHinhAnh">
+    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div>
+        @if (@Model.ctHinhAnh != null && @Model.ctHinhAnh != "")
+    { <img src="~/Content/Images/TaiKhoan/@Model.ctHinhAnh" />}                   
+</div>*@
+
+@*Tổ chức từ thiện*@
+@*<div class="box taikhoan" data-preson="2">
+    <h3>Công ty</h3>
+    <h4>Tên công ty</h4><input class="form-txt" type="text" value="@Model.ctTenCongTy" name="ctTenCongTy">      
+    <h4>Địa chỉ</h4><input class="form-txt" type="text" value="@Model.ctDiaChi" name="ctDiaChi">
+    <h4>Mã số thuế</h4><input class="form-txt" type="text" value="@Model.ctMST" name="ctMST">
+    <h4>Số điện thoại bàn</h4><input class="form-txt" type="text" value="@Model.ctSDTBan" name="ctSDTBan">
+    <h4>Tên người đại diện</h4><input class="form-txt" type="text" value="@Model.ctTenNguoiDaiDien" name="ctTenNguoiDaiDien">
+    <h4>Chức vụ</h4><input class="form-txt" type="text" value="@Model.ctChucVu" name="ctChucVu">                                           
+    <h4>Hình ảnh bản sao công chứng giấy phép kinh doanh hoặc bản gốc</h4>                    
+    <input class="form-txt" type="file" name="ctHinhAnh">
+    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div>
+        @if (@Model.ctHinhAnh != null && @Model.ctHinhAnh != "")
+    { <img src="~/Content/Images/TaiKhoan/@Model.ctHinhAnh" />}                   
+</div>*@
+
+           

@@ -1,0 +1,424 @@
+﻿@model IList<khainguyen_FirstStep.EntityDanhMuc>
+
+@section MeTaHeader
+{
+    <meta property="fb:app_id" content="570964363013096" />
+    <meta property="og:title" content="Danh sách dự án hấp dẫn trên FirstStep" />
+    <meta property="og:type" content="website" />
+    <meta property="og:img" content="http://www.firststep.vn/Content/Images/Banner/13996b2980437090ff606124226369eb950afcfb9398a72798eb0d6740c62fde.jpg" />
+    <meta property="og:url" content="http://www.firststep.vn/du-an/" />
+    <meta property="og:site_name" content="FirstStep" />
+    <meta name="title" content="Các dự án trên Firststep" />
+    <meta name="description" content="Cùng khám phá và biến các dự án trên Firststep thành hiện thực nào. Dự án thành công tiếp theo có thể sẽ là của bạn." />
+    <link rel="canonical" href="http://www.firststep.vn/du-an/" />   
+}
+
+<!-- SLIDE -->
+ <div class="slider-fix-400">
+<div id="slides">
+    <ul class="slides-container">
+        <li>
+            <img src="~/Content/cssFrontEnd/upload/bigslider/img4.jpg" /></li>
+        <li>
+            <img src="~/Content/cssFrontEnd/upload/bigslider/img5.jpg" /></li>
+        <li>
+            <img src="~/Content/cssFrontEnd/upload/bigslider/img6.jpg" /></li>
+        >
+    </ul>
+    </div>
+
+ </div>
+    <div class="control-filter container">
+        <h1>Discover FirstStep</h1>
+        <div class="group-option">
+            <form id="form-filter" method="get" action="">
+                <div class="cb-filter">
+                    <span class="text">Hiển thị</span>
+                    <button class="btnCategory"><i class="fa-list"></i>
+                        <span id="Category">Tất cả</span><i class="fa-angle-down"></i></button>
+                    <input type="hidden" id="IdCategory" />
+                    <nav class="Category">
+                        <a href="#" class="active" data-id="0">Tất cả danh mục</a>
+                        @* <a href="#" data-id="">Music</a>*@
+                        @{
+                            foreach (var item in Model)
+                            {
+                            <a href="#" data-id="@item.Id">@item.TenDM</a>
+                            }
+                            
+                        }
+                    </nav>
+                </div>
+                <div class="cb-filter">
+                    <span class="text">sắp xếp theo</span>
+                    <button class="btnXuHuong"><i class="fa-list"></i>
+                      <span id="XuHuong">Xu hướng</span><i class="fa-angle-down"></i></button>
+                      <input type="hidden" id="IdXuHuong" /><nav class="XuHuong">
+                        <a href="#" class="active" data-id="0">Xu hướng</a>
+                        @{
+                            foreach (var item in ViewBag.trend)
+                            {
+                            <a href="#" data-id="@item.Id">@item.TenDM</a>
+                            }
+                            
+                        }
+                    </nav>
+                </div>
+                <span class="inline-block" id="syou">
+                    <span class="text">với</span>
+                    <span class="cb-select">
+                        <span class="title">Đã đầu tư</span>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+                <span class="inline-block" id="sfriend">
+                    <span class="text">và</span>
+                    <span class="cb-select">
+                        <span class="title">Bạn bè đã đầu tư</span>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+                <span class="inline-block">
+                    <span class="text">đã được tài trợ</span>
+                    <span class="cb-select">
+                        <span class="title">Đã được tài trợ</span>
+                        <select class="normal_type" name="social">
+                            <option value="0">Tất cả</option>
+                            <option value="1">< 5 triệu</option>
+                            <option value="2">5 triệu -> 20 triệu</option>
+                            <option value="3">20 triệu -> 100 triệu</option>
+                            <option value="4">100 triệu -> 500 triệu</option>
+                            <option value="5">> 500 triệu</option>
+                        </select>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+                <span class="inline-block">
+                    <span class="text">trạng thái</span>
+                    <span class="cb-select">
+                        <span class="title">Trạng thái</span>
+                        <select class="normal_type" name="starred">
+                            <option value="0">Trạng thái</option>
+                            <option value="1">Đã thành công</option>
+                            <option value="2">Chưa thành công</option>
+                        </select>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+                <span class="inline-block">
+                    <span class="text">mục tiêu</span>
+                    <span class="cb-select">
+                        <span class="title">Mục tiêu</span>
+                        <select class="normal_type" name="backed">
+                            <option value="0">Tất cả</option>
+                            <option value="1">< 5 triệu</option>
+                            <option value="2">5 triệu -> 20 triệu</option>
+                            <option value="3">20 triệu -> 100 triệu</option>
+                            <option value="4">100 triệu -> 500 triệu</option>
+                            <option value="5">> 500 triệu</option>
+                        </select>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+                <span class="inline-block">
+                    <span class="text">đã hoàn thành</span>
+                    <span class="cb-select">
+                        <span class="title">Hoàn thành</span>
+                        <select class="normal_type select" name="tag_id">
+                            <option value="0">Tiến độ</option>
+                            <option value="1">< 75 %</option>
+                            <option value="2">75 % -> 100 %</option>
+                            <option value="3">> 100 %</option>
+                        </select>
+                        <i class="fa-minus-circle"></i>
+                    </span>
+                </span>
+
+                <a href="#" class="btn-show-panel-filter"><i class="fa-plus-circle"></i></a>
+            </form>
+            <div class="panel-filter">
+                <span class="close color-red"><i class="fa-minus-circle"></i></span>
+                <p>
+                    <b>Tìm kiếm nâng cao</b>
+
+                    <input type="text" class="form-txt" id="Search1" value="@ViewBag.seach" placeholder="Từ khóa tìm kiếm..." />
+                </p>
+
+                <span class="inline-block show">
+                    <a href="#" data-id="syou">Dự án bạn đã đầu tư</a>
+                </span>
+
+                <span class="inline-block show">
+                    <span class="cb-select">
+                        <span class="title">Đã được tài trợ</span>
+                        <select class="normal_type" name="social">
+                            <option value="0">Tiền tài trợ</option>
+                            <option value="1">< 5 triệu</option>
+                            <option value="2">5 -> 20 triệu</option>
+                            <option value="3">20 -> 100 triệu</option>
+                            <option value="4">100 -> 500 triệu</option>
+                            <option value="5">> 500 triệu</option>
+                        </select>
+                        <i class="fa-angle-down"></i>
+                    </span>
+                </span>
+                <span class="inline-block show">
+                    <span class="cb-select">
+                        <span class="title">Trạng thái</span>
+                        <select class="normal_type" name="starred">
+                            <option value="0">Trạng thái</option>
+                            <option value="1">Đã thành công</option>
+                            <option value="2">Chưa thành công</option>
+                        </select>
+                        <i class="fa-angle-down"></i>
+                    </span>
+                </span>
+                <span class="inline-block show">
+                    <a href="#" data-id="sfriend">Dự án bạn bè đã đầu tư</a>
+                </span>
+                <span class="inline-block show">
+                    <span class="cb-select">
+                        <span class="title">Mục tiêu</span>
+                        <select class="normal_type" name="backed">
+                            <option value="0">Tất cả</option>
+                            <option value="1">< 5 triệu</option>
+                            <option value="2">5 -> 20 triệu</option>
+                            <option value="3">20 -> 100 triệu</option>
+                            <option value="4">100 -> 500 triệu</option>
+                            <option value="5">> 500 triệu</option>
+                        </select>
+                        <i class="fa-angle-down"></i>
+                    </span>
+                </span>
+                <span class="inline-block show">
+                    <span class="cb-select">
+                        <span class="title">Hoàn thành</span>
+                        <select class="normal_type select" name="tag_id">
+                            <option value="0">Tất cả</option>
+                            <option value="1">< 75 %</option>
+                            <option value="2">75 -> 100 %</option>
+                            <option value="3">> 100 %</option>
+                        </select>
+                        <i class="fa-angle-down"></i>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+<!-- LIST ITEM -->
+<div class="row-project">
+    <div class="container" id="individual-development">
+        @Html.Action("_Index_DuAnHienThi", "DuAn", new { page = 0 , option=@ViewBag.option})
+    </div>
+</div>
+
+<input type="hidden" id="ViewBagpage" value="@ViewBag.page">
+<div class="load-more container text-center ">
+    @{
+        <a href="#" class="btn">Thêm nữa </a>
+    }
+</div>
+@section jqueryPlugin{
+    <script>
+        function htmlDecode(value) {
+            if (value) {
+                return $('<div />').html(value).text();
+            } else {
+                return '';
+
+            }
+        }
+        $(document).ready(function () {
+            var $slides = $('#slides');
+            Hammer($slides[0]).on("swipeleft", function (e) {
+                $slides.data('superslides').animate('next');
+            });
+
+            Hammer($slides[0]).on("swiperight", function (e) {
+                $slides.data('superslides').animate('prev');
+            });
+            $slides.superslides({
+                slide_easing: 'easeInOutCubic',
+                slide_speed: 800,
+                pagination: false,
+                hashchange: false,
+                scrollable: true,
+                play: 5000,
+                animation: 'fade',
+                inherit_height_from: '.slider-fix-400'
+            });
+            var noidungsearchmain = htmlDecode('@ViewBag.seach');
+            $('#SearchMain').val(noidungsearchmain);
+        });
+      
+    </script>
+    <script type="text/javascript">
+        
+
+        $(document).ready(function () {
+            // load more
+           
+            $('.load-more a').click(function (e) {
+                e.preventDefault();
+                $btn = $(this);
+                $btn.text('đang tải ...');
+                var kk = parseInt($('#ViewBagpage').val());
+                kk = kk + 1;
+                $('#ViewBagpage').val(kk);
+
+                var postURL = '@Url.Action("_Index_DuAnHienThi", "DuAn")';
+                var optionss = htmlDecode('@ViewBag.option');
+                $.post(postURL, { "page": kk, "option": optionss }, function (data) {
+                $('.row-project .container').append(data);
+                $btn.text('Thêm nữa');
+            });
+            setTimeout(reload, 1000);
+        });
+
+        / * combox box new */
+
+        //// get hash
+        var i_set = function () {
+            var strpara = window.location.search.replace("?", "");
+            var arrpara = strpara.split("-");
+            if (arrpara.length == 0) { return; }
+            for (var i = 0; i < arrpara.length; i++) {
+                var n = arrpara[i].split("=");
+                var v = n[1];
+                n = n[0];
+                $('select[name=' + n + ']').val(v);
+               
+                if (n == "category") {
+                    $('#Category').text($(".Category a[data-id=" + v + "]").text());
+                    $('#IdCategory').val(v);
+                }
+                if (n == "blend") {
+                    $('#XuHuong').text($(".XuHuong a[data-id=" + v + "]").text());
+                    $('#IdXuHuong').val(v);
+                }
+                if (n == "syou") {
+                    $('#syou').addClass('show');
+                }
+                if (n == "sfriend") {
+                    $('#sfriend').addClass('show');
+                }
+            }
+        };
+        var i_remove = function (key) {
+            var strpara = window.location.search.replace("?", "");
+            var arrpara = strpara.split("-");
+            strpara = "";
+            for (var i = 0; i < arrpara.length; i++) {
+                var n = arrpara[i].split("=");
+                n = n[0];
+                if (key != n) { strpara = strpara + arrpara[i] + "-"; }
+            };
+            if (strpara.length > 0) { strpara = strpara.substring(0, strpara.length - 1); }
+        };
+        var i_change = function () {
+            $('.cb-select select').each(function () {
+                $(this).prev().text($(this).find("option:selected").text());
+                if ($(this).find("option:selected").index() == 0) {
+                    $('#form-filter select[name=' + $(this).attr('name') + ']').parent().parent().removeClass('show');
+                }
+                else {
+                    $('#form-filter select[name=' + $(this).attr('name') + ']').parent().parent().addClass('show');
+                    $('#form-filter select[name=' + $(this).attr('name') + ']').prev().text($(this).find("option:selected").text());
+                }
+            });
+        };
+        var i_go = function () {
+            var search = $('#Search1').val();
+          //  alert(search);
+            var strpara = "";
+            $('#form-filter select').each(function () {
+                if ($(this).find("option:selected").index() != 0) {
+                    strpara += $(this).attr('name') + "=" + $(this).val() + "-";
+                };
+            });
+            if (strpara.length > 0) { strpara = strpara.substring(0, strpara.length - 1); };
+            var category = "category=" + $('#IdCategory').val();
+            var XuHuong = "blend=" + $('#IdXuHuong').val();
+            if ($('#IdCategory').val()=="")
+                category = "category=0";
+            if ($('#IdXuHuong').val() == "")
+                XuHuong = "blend=0";
+            var link = "?option=" + search + "-" + category + "-" + XuHuong + "-" + strpara;
+
+            if ($('#syou').hasClass('show')) {
+                link = link + "-syou=1";
+            }
+            if ($('#sfriend').hasClass('show')) {
+                link = link + "-sfriend=1";
+            }
+           
+            window.location.search = link;
+         //   window.location.search = "?option=0-"+ strpara;
+        };
+        
+        //// init
+        i_set();
+        i_change();
+
+        // event
+        $('.cb-select select').change(function () {
+            $('select[name=' + $(this).attr('name') + ']').prev().text($(this).find("option:selected").text());
+            $('select[name=' + $(this).attr('name') + ']').val($(this).val());
+            if ($('select[name=' + $(this).attr('name') + ']').find("option:selected").index() == 0) {
+                $('#form-filter select[name=' + $(this).attr('name') + ']').parent().parent().removeClass('show');
+            }
+            i_go();
+        });
+        $('#form-filter .cb-select i').click(function (e) {
+            e.preventDefault();
+            $s = $(this).parent().find('select');
+            $s.val($s.find("option:first").val());
+            i_change();
+            i_go();
+        });
+        $('.btn-show-panel-filter').click(function (e) {
+            e.preventDefault();
+            $('.panel-filter').addClass('show');
+        });
+        $('.panel-filter .close').click(function (e) {
+            e.preventDefault();
+            $('.panel-filter').removeClass('show');
+        });
+        $('.XuHuong a').click(function (e) {
+            $('#IdXuHuong').val($(this).attr('data-id'));
+            i_go();
+        });
+        $('.Category a').click(function (e) {
+            $('#IdCategory').val($(this).attr('data-id'));
+            i_go();
+        });
+        $('[data-id="syou"]').click(function (e) {
+            $('#syou').addClass('show');
+            i_go();
+        });
+        $('#syou .fa-minus-circle').click(function (e) {
+            $('#syou').removeClass('show');
+            i_go();
+        });
+        $('[data-id="sfriend"]').click(function (e) {
+            $('#sfriend').addClass('show');
+            i_go();
+        });
+        $('#sfriend .fa-minus-circle').click(function (e) {
+            $('#sfriend').removeClass('show');
+            i_go();
+        });
+            // //
+        $('#Search1').keydown(function(event){
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                // alert($('#Search1').val());
+                i_go();
+            }
+        }); 
+        });
+    </script>
+
+}

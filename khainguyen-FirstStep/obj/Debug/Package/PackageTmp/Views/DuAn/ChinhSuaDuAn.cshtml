@@ -1,0 +1,262 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin dự án";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<style>
+    .uploadanh, .uploadanh2 {
+        color: #900;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
+        overflow: hidden;
+        display: none;
+        margin-right: 8px;
+    }
+    .counting_length {
+        text-align:right;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 14px;
+        color: #828587;
+        margin-right:20px;
+    }
+    .tomautab {
+        background: red;
+        color: white;
+    }
+
+    .tomauvien {
+        border: 1px red solid;
+    }
+    .visible {
+        bottom: 0;
+    }
+    
+</style>
+
+<div style="height: 50px"></div>
+<div class="container" id="body-content">
+    @using (Html.BeginForm("ChinhSuaDuAn", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data", @id = "form-id" }))
+    {
+    <!-- NAV TAB -->
+    <nav class="proj-tab-nav">
+        @if(Model.TrangThai == 2)
+        {
+            <a href="#" id="tabCapNhat" onclick="kiemtra()">Cập nhật</a>
+        }
+        <a href="#" id="tabThongTin" class="active" data-id="popup1" onclick="return kiemtra()">Thông tin</a>
+        <a href="#" id="tabPhanThuong" data-id="popup1" onclick="return kiemtra()">Phần thưởng</a>
+        <a href="#" id="tabMoTa" onclick="kiemtra()">Mô tả</a>
+        <a href="#" id="tabGioiThieu" onclick="kiemtra()">Giới thiệu</a>
+        <a href="#" id="tabTaiKhoan" onclick="kiemtra()">Tài khoản</a>
+        <a href="#" id="tabTeam" onclick="kiemtra()">Team</a>        
+        @*<a href="#" id="tabCapNhat" onclick="kiemtra(0)">Cập nhật Dự án</a>*@
+       @*@Url.Action("UpdateDuAn", "DuAn", new { IdDuAn=@Model.Id})" id="tabUpdate*@
+        <a href="#" id="tabReview" class="proj-tab-nav-special bg-tiny" onclick="return xemtruoc(0);">Xem trước</a>
+        <a href="#" id="tabPublic" class="proj-tab-nav-special bg-tiny" onclick="return xuatban();">Xuất bản</a>
+
+    </nav>
+
+    <!-- LIST TAB -->
+    
+        <div class="proj-list-tab">
+            @if(Model.TrangThai == 2)
+            {
+            <!-- tab Cập nhật -->
+            <div class="proj-tab">
+                @Html.Action("_LoadTabCapNhat", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            }
+            <!-- tab thông tin -->
+            <div class="proj-tab active" id="proj-ThongTin">
+                <p>&nbsp;</p>
+<h3>Bắt tay xây dựng dự án của bạn nào !</h3>
+<p>Chọn đúng danh mục, cập nhật hình ảnh, bổ sung và hoàn thiện các thông tin liên quan.</p>
+<p>&nbsp;</p>
+
+<div class="box" id="DanhMuc" data-hide="@Model.TrangThai">
+    <h4>Chọn loại danh mục phù hợp với dự án của bạn nhất</h4>
+
+    <input type="hidden" id="proj-category" name="proj-category" value="@Model.IdDanhMuc" />
+    <nav class="proj-list-category" data-for="proj-category">
+        @{
+            foreach (var dm in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityDanhMuc>)
+            {
+                if (dm.Id == Model.IdDanhMuc)
+                {
+                    <a href="#" data-value="@dm.Id" class="active">@dm.TenDM</a>
+                }
+                else
+                {
+                    <a href="#" data-value="@dm.Id" class="checkclick">@dm.TenDM</a>
+                }
+            }
+        }
+
+        @*<a href="#"><i class="fa-paw"></i> Animals</a>*@
+    </nav>
+</div>
+
+<div class="box">
+    @{
+        int kituten_conlai = 60 - Model.TenDuAn.Length;
+    <div class="group-text">
+    <h3 style="width: 168px;">Tên dự án <i class="fa-info-circle tooltip color-green" title="Bạn nên đặt tên đơn giản, dễ nhớ. Tránh các từ như *hỗ trợ*, *giúp đỡ*, *quỹ*"></i></h3>
+    <p style="width:80%;">@Html.TextBoxFor(model => model.TenDuAn, new { @class = "form-txt" , @id = "tbTenDuAn", maxlength = "60", onkeyup = "javascript:txtCounters('demTenDuAn',60,'tbTenDuAn')"}) </p>
+            <div id="demTenDuAn" class="counting_length">@kituten_conlai/60</div>
+    </div>
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.PhanThuong)
+    @Html.HiddenFor(model => model.IdDanhMuc, new { @id = "IdDanhMuc" })
+    @Html.HiddenFor(model => model.SoNgay)
+    @Html.HiddenFor(model => model.ThoiGianKetThuc)
+
+    @*<div class="des" style="padding-left:168px;">
+        <p>Tên dự án của bạn nên được đơn giản, cụ thể, đáng nhớ, tránh các từ như "hỗ trợ", "giúp đỡ", "quỹ", ...</p>
+    </div>*@
+    }
+</div>
+
+<div class="box">
+    <div class="group-text">
+    <h3 style="width:168px;">Hình Ảnh</h3>
+    @if (@Model.HinhAnh != null && @Model.HinhAnh != "")
+    { <img width="400px" src="~/Content/Images/DuAn/@Model.HinhAnh" />}
+    <p style="padding-left:168px; width:80%;">
+        <input class="form-txt" id="HinhAnh" name="HinhAnh" type="file"/>
+@*        <strong class="center">
+        Choose an image from your computer
+        <span class="has_file_hide">This is the main image associated with your project. Make it count!</span>
+        <span>JPEG, PNG, GIF, or BMP  •  50MB file limit</span>
+        <span>At least 1024x768 pixels  •  4:3 aspect ratio</span>
+        </strong>*@
+    </p>
+        </div>
+    <div class="des" style="padding-left:168px;">
+        <p>Hình ảnh là ấn tượng đầu tiên với đa số người tài trợ trên FirstStep. Hãy lựa chọn cẩn thận!</p>
+    </div>
+    <div class="uploadanh">Vui lòng upload file hình ảnh.</div>
+</div>
+
+<div class="box">  @*data-hide="@Model.TrangThaiFund"*@
+    @{
+        int kitugioithieu_conlai = 160 - Model.ThongTinNgan.Length;
+    <div class="group-text">
+        <h3 style="width:270px;">Giới thiệu ngắn về dự án</h3>
+        <p style="width:70%;">
+            <textarea class="form-txt" maxlength="160" rows="4" id="ThongTinNgan" name="ThongTinNgan" onkeyup="javascript:txtCounters('demThongTinNgan',160,'ThongTinNgan')">@Model.ThongTinNgan</textarea>
+            <div id="demThongTinNgan" class="counting_length">@kitugioithieu_conlai/160</div> 
+        </p>
+        <div class="des" style="padding-left:270px;">
+        <p>Nếu phải mô tả dự án của bạn trong một câu. Bạn sẽ nói gì với mọi người</p>
+        </div>
+    </div>
+    }
+</div>
+
+<div class="box">
+    <div class="group-text">
+        <h3 style="width:270px;">Tổng kinh phí dự án </h3>@*<i class="fa-info-circle tooltip color-green" title="FirstStep đưa ra 2 hình thức huy động vốn: Huy động vốn cố định và Huy động vốn linh hoạt. Tham khảo sổ tay FirstStep để có được những thông tin bổ ích! (dẫn link) (dẫn link)"></i>*@
+        @Html.TextBoxFor(model => model.TienDauTuMucTieu, "{0:0,0}", new { @class = "form-txt  text-right auto", style = "width: 20%;"}) VNĐ
+        @Html.ValidationMessageFor(model => model.TienDauTuMucTieu)
+        <span id="spTienDauTu"></span>
+        <div class="des" style="padding-left:270px;">
+            <p>Mục tiêu huy động sẽ là khoản kinh phí dự kiến tối thiểu bạn cần phải đạt được để thực hiện dự án. Hãy làm những bước dưới đây để ước tính chính xác chi phí các chủ dự án sẽ bỏ ra khi thực hiện</p>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <div class="group-text" id="ToMauSoNgay">
+        <h3 style="width:270px;">Số ngày dự định hoàn thành</h3> @*<i class="fa-info-circle tooltip color-green" title="Nếu không cần "></i>*@
+        <p style="width:70%;">
+        <div class="col-2" style="width:27%;">
+            <label>
+                <input type="radio" name="a1" id="SoNgay1" checked="true" value="SoNgay" onclick="ChangeStyle_NgayHoanThanh(this.id)" />Chọn nhập số ngày sẽ huy động
+            </label>                           
+        </div>
+        <div><input class="form-txt text-right" type="number" style="width: 20%;" placeholder="0" value="@Model.SoNgay" id="SoNgayHoanThanh1" /></div>
+            </p>
+        <h3 style="width:270px;"></h3>
+        <p style="width:70%;">
+        <div class="col-2" style="width:27%;">
+        <label>
+            <input type="radio" name="a1" style="padding-left:270px;" id="SoNgay2" value="ChonNgay" onclick="ChangeStyle_NgayHoanThanh(this.id)" />Chọn hạn chót cho thời gian huy động vốn 
+        </label>
+        </div>
+        <div><input disabled="true" class="form-txt text-right" type="text" style="width: 20%;" value="@Model.ThoiGianKetThuc" id="SoNgayHoanThanh2" /></div>
+            <div class="des" style="padding-left:270px;">
+                <p>Thời gian huy động hợp lý của một dự án thường  từ <b>01 – 60 ngày</b>. Đó là kinh nghiệm mà FirstStep rút ra sau khi thống kê những dự án kêu gọi vốn cộng đồng ở các trang khác. Vì vậy những dự án có thời gian huy động vốn càng dài thì mức độ thành công càng thấp. Thời hạn cho một dự án chỉ nên thiết lập khoảng <b>30 ngày hoặc thấp hơn</b>.</p>
+            </div>
+                        
+        </p>
+    </div>
+</div>
+            </div>
+            <!-- tab phần thưởng -->
+            <div class="proj-tab" id="proj-PhanThuong">
+                @Html.Action("_LoadTabPhanThuong", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab mô tả -->
+            <div class="proj-tab" id="proj-MoTa">
+                @Html.Action("_LoadTabMoTa", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab giới thiệu -->
+            <div class="proj-tab" data-hide="@Model.TrangThai" id="proj-GioiThieu">
+                @Html.Action("_LoadTabGioiThieu", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab tài khoản -->
+            <div class="proj-tab" data-hide="@Model.TrangThai" id="proj-TaiKhoan">
+                @Html.Action("_LoadTabTaiKhoan", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab team -->
+            <div class="proj-tab">
+                @Html.Action("_Team_DuAn", "Ajax", new { IdDuAn = Model.Id })
+            </div>            
+            <!-- tab review -->
+            <div class="proj-tab">
+                <p>&nbsp;</p>
+                <h3>Bạn có thế sử dụng link dưới đây để xem trước dự án của bạn</h3>
+
+                <p>&nbsp;</p>
+                <div class="box">
+
+                    <div class="des">
+
+                        <p>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.TenDuAn.ToString()), Model.Id.Value) })</p>
+                        <a href="javascript:void(0)" id="IReView" onclick="return xemtruoc(-1)">Hủy chế độ xem trước</a>
+                    </div>
+
+                </div>
+            </div>
+
+            @*<div style="position:fixed;background-color:white; width:100%; margin-bottom:0;" id="btnSave">
+                <button class="btn btn-big bg-red" style="left:185px;" type="submit" onclick="return LuuDuAn();">LƯU DỰ ÁN</button>
+                <a href="#" onclick="return KhongLuuDuAn();">Không save</a>          
+                <input type="hidden" name="flag" id="flag" value="@Model.flag"/>
+                <input type="hidden" name="TrangThai" id="TrangThai" value="@Model.TrangThai"/>
+                @Html.HiddenFor(model => model.CheckGioiThieu)
+                @Html.HiddenFor(model => model.CheckPhanThuong)
+                @Html.HiddenFor(model => model.CheckMoTa)
+                @Html.HiddenFor(model => model.CheckThongTin)
+                @Html.HiddenFor(model => model.CheckTaiKhoan)
+            </div>*@
+            <div class="proj-popup nicescroll" data-id="popup1">
+                    <div class="proj-popup-panel">
+                        <div class="proj-popup-content" id="LoadPopUp_LuuDuAn">
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div style="line-height:30px;visibility:hidden;"></div>
+    }
+    <!-- btnSave -->
+    
+</div>

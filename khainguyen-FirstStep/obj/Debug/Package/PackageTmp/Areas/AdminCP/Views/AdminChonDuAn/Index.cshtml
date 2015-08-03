@@ -1,0 +1,105 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+@{
+    ViewBag.Title = "Quản lý hiển thị trang chủ";
+    Layout = "~/Areas/AdminCP/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+
+
+
+<div class="maincontentinner">
+    <ul class="maintabmenu">
+        <li class="current"><a href="#">Index</a></li>
+    </ul>
+    <!--maintabmenu-->
+
+    <div class="notification msgsuccess" style="display: none" id="nofSuccess">
+        <a class="close"></a>
+        <p id="msgNofSuccess">This is a success message.</p>
+    </div>
+    <!-- notification msgsuccess -->
+
+
+    <div class="notification msgerror" style="display: none" id="nofError">
+        <a class="close"></a>
+        <p id="msgNofError">This is an error message.</p>
+    </div>
+    <!-- notification msgerror -->
+
+
+    <div class="contenttitle radiusbottom0">
+        <h2 class="table"><span>View dự án trang chủ</span></h2>
+    </div>
+    <!--contenttitle-->
+
+    <table cellpadding="0" cellspacing="0" border="0" class="stdtable" id="dyntable">
+        <colgroup>
+            <col class="con1" />
+            <col class="con0" />
+            <col class="con1" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="head1">STT</th>
+                <th class="head0">ID</th>
+                <th class="head1">Tên Dự Án</th>
+                <th class="head0">Phần 1</th>
+                <th class="head1">Phần 2</th>
+                <th class="head0">Phần 3</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th class="head1">STT</th>
+                <th class="head0">ID</th>
+                <th class="head1">Tên Dự Án</th>
+                <th class="head0">Phần 1</th>
+                <th class="head1">Phần 2</th>
+                <th class="head0">Phần 3</th>
+                <th></th>
+
+        </tfoot>
+        <tbody>
+            @{
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    <tr class="gradeX">
+                        <td>@i</td>
+                        <td>@item.Id</td>
+                        <td>
+                            @item.TenDuAn
+                        </td>
+                        @if (item.Chon1 == 1)
+                        {
+                        <td><a style="color:red;" href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon1, loai = 1})">Đã chọn</a></td> }
+                        else
+                        {
+                        <td style="color:blue;"><a href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon1, loai = 1})">Chưa chọn</a></td>  }
+
+                        @if (item.Chon2 == 1)
+                        {
+                            <td ><a style="color:red;" href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon2, loai = 2})">Đã chọn</a></td> }
+                        else
+                        {
+                            <td style="color:blue;"><a href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon2, loai = 2})">Chưa chọn</a></td>  }
+
+                        @if (item.Chon3 == 1)
+                        {
+                            <td><a style="color:red;" href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon3, loai = 3})">Đã chọn</a></td> }
+                        else
+                        {
+                            <td style="color:blue;"><a href="@Url.Action("ChonDuAn", "AdminChonDuAn", new { Id = item.Id, stt = item.Chon3, loai = 3})">Chưa chọn</a></td>  }
+                    </tr>
+                        i = i + 1;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!--maincontentinner-->

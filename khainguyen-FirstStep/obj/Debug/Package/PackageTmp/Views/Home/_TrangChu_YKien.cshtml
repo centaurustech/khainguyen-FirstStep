@@ -1,0 +1,34 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityQuote>
+<div class="background">
+    <img src="~/Content/cssFrontEnd/upload/project/bg2-1600x900.jpg" alt="" />
+</div>
+<div class="container">
+    <div class="quote-slide">
+        <i class="fa-quote-left"></i>
+        <div class="slide">
+            @{
+                foreach (var item in Model)
+                {
+                    string hinhanh = "";
+                    if (item.IdUser != null)
+                    {
+                        hinhanh = item.EntityUser.Avatar.ToString();
+                    }
+                    else
+                    {
+                        hinhanh = "/Content/Images/GhiChu/"+@item.Image;
+                    }
+                    <div class="quote-item">
+                       
+                        <img class="avatar" src="@hinhanh" alt="Alternate Text" />
+                        
+                        <p>
+                            @Html.Raw(item.NoiDung)
+                        </p>
+                    </div>
+                }
+            }
+        </div>
+        <i class="fa-quote-right"></i>
+    </div>
+</div>

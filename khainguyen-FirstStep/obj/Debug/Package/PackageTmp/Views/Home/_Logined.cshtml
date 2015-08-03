@@ -1,0 +1,41 @@
+﻿<nav class="menu-login loged">
+                    <a href="#" title="View profile" class="btnUser">
+                        @if (Request.Cookies["ftavatar"].Value.ToString().Contains("fbcdn-profile-a.akamaihd.net"))
+                        {
+                            <img src="https://graph.facebook.com/@Request.Cookies["ftidFacebook"].Value.ToString()/picture?type=square" />
+                        }
+                        else
+                        {
+                            <img src="@Request.Cookies["ftavatar"].Value.ToString()" />
+                        }                        
+                        <span>@HttpUtility.UrlDecode(Request.Cookies["fthoten"].Value.ToString())</span></a>
+                    <div class="menu-user">
+                        <div class="c2">
+                            <h5>Thông tin cá nhân</h5>
+                            <a href="@Url.Action("TinNhan", "HoatDong", new { type = 0 })">
+                                <i class="fa-envelope"></i> Tin nhắn
+                                <label>@Session["fstinnhan"].ToString()</label>
+                            </a>
+                            <a href="@Url.Action("HoatDong", "HoatDong")">
+                                <i class="fa-slack"></i> Nhật ký hoạt động
+                                <label>@Session["fsnhatkyhoatdong"].ToString()</label>
+                            </a>
+                            <a href="@Url.Action("Index", "user", new { Link = 0 })"><i class="fa-user"></i> Quyền riêng tư</a>
+                            <a href="@Url.Action("LichSu", "HoatDong")">
+                                <i class="fa-suitcase"></i> Lược sử đầu tư
+                               @* <label>12</label>*@
+                            </a>
+                            <a href="@Url.Action("TaoDuAn", "DuAn")"><i class="fa-plus"></i> Tạo dự án</a>
+                            <h5>Tùy chỉnh khác</h5>
+                            <a href="@Url.Action("DoiMatKhau", "Account")"><i class="fa-bookmark"></i> Tài khoản</a>
+                            <a href="@Url.Action("SuaThongTin", "Account")"><i class="fa-cog"></i> Thông tin cá nhân</a>
+                            @*<a href="#"><i class="fa-bell"></i> Thông báo</a>*@
+                            @*<a href="@Url.Action("TimBan", "BanBe")"><i class="fa-group"></i> Tìm bạn</a>*@
+                            <a href="@Url.Action("Logout", "Account")"><i class="fa-share-square-o"></i > Đăng xuất</a>
+                        </div>
+                        <div class="c2">
+                            <h5>Dự án của bạn</h5>
+                            @Html.Action("_TaiKhoan_DuAn", "Home")
+                        </div>
+                    </div>
+                </nav>

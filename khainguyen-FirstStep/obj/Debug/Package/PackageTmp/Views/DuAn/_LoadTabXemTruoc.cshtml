@@ -1,0 +1,145 @@
+﻿@model khainguyen_FirstStep.EntityDuAn
+
+<style>
+    .border-left-thick {
+        border-color: #d9d9de;
+        border-left-width: 3px;
+        border-left-style: solid;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 20px;
+    }    
+</style>
+
+<div class="page dark box-preview-project">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.TenDuAn</h1>
+        </div>
+        <input hidden="hidden" value="@Model.Id" id="IdDuAn" name="IdDuAn" />
+        <div class="author">Người đăng :  <a href="@Url.Action("Index", "user", new { Link = Model.EntityUser.VanityURL })">@Model.EntityUser.HoTen</a></div>
+        <div class="page-detail box-effect2">
+
+            <div class="detail-row">
+                <div class="left-col">
+                    <ul class="bxslider">
+                            
+                            @{if (ViewBag.video != "")
+                              {
+                            <li>
+                                <div class="fluid-width-video-wrapper" style="padding-top: 56.25%;"><iframe width="560" height="335" src="@ViewBag.video" frameborder="0"></iframe></div>
+                            </li>
+                              }
+                              <li>
+                                <img src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>
+                            }
+                        </ul>
+@*                    <img style="float: left; list-style: none; position: relative; width: 100%" src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>*@
+                </div>
+                <div class="right-col">
+                    <div class="pledge"><span class="tiny">@Model.TienDauTuHienTai VNĐ </span> <br /> trên tổng huy động @string.Format("{0:0,0}",@Model.TienDauTuMucTieu) VNĐ </div>
+                    <div class="percent">
+                        <div class="value" style="@ViewBag.phantram"></div>
+                    </div>
+                    <div><span><b style="color:#ffb116;"><i class="fa-money"></i> Huy động vốn linh hoạt</b></span></div>
+                    <br /><br /><br />
+                    @if (Model.TrangThai == 1)
+                    {
+                         <div class="border-left-thick">
+                        <h3 class="normal mb1">DỰ ÁN NÀY ĐANG ĐƯỢC DUYỆT</h3>
+                        <p class="mb0 h5">
+                        Thời gian gửi: @Model.ThoigianSummit
+                        </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="border-left-thick">
+                        <h3 class="normal mb1">DỰ ÁN NÀY CHƯA ĐƯỢC DUYỆT</h3>
+                        <p class="mb0 h5">
+                        Đây chỉ là những bản nháp mà chủ dự án chọn để chia sẻ.
+                        </p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- detail-row -->
+
+        </div>
+        <!-- /page-detail -->
+            
+        @*<div class="tag text-center">
+            <a href="#"><i class="fa-map-marker"></i>@Model.DiaDiem</a>
+        <a href="#" class ="grey"><i class="fa-tag"></i>Technolory</a>
+        @{
+            string link = "http://www." + HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2] + Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Model.TenDuAn, Model.Id) });
+        <div class="fb-share-button" data-href="@link" data-layout="button"></div>
+        }
+        <a class ="grey"><i class="fa-link"></i>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Model.TenDuAn, Model.Id) })</a>
+        @if(Request.Cookies["ftusername"] == null)
+        {
+            <a href="http://firststep.vn/Account/Login" class ="grey"><i class="fa-binoculars"></i>Theo Dõi</a>
+        }
+        else
+        {
+            string s = "";
+            if (ViewBag.theodoi == 1)
+            { s = "changecolor"; }
+            else
+            { s = "grey"; }
+            <a href="#" class="@s" onclick="TheoDoi(@Model.Id,@Request.Cookies["ftid"].Value)" id="btTheoDoi"><i class="fa-binoculars"></i>Theo Dõi</a>
+        }
+        <a href="#" class ="grey" onclick="BaoCao()"><i class="fa-warning"></i>Báo Cáo</a>
+        </div>*@
+        <div class="page-detail">
+            <div class="detail-row">
+                <div class="left-col">
+                    <nav class="tab-nav" data-tab="tab1">
+                        <a href="#">Bài viết</a>                       
+                        <a href="#">Cập nhật</a>
+                        <a href="#">Người tham gia</a>
+                        <a href="#">Bình luận</a>                        
+                    </nav>                    
+                    <div class="tab-panel" data-tab="tab1">
+                        <!-- tab story -->
+                        <div class="tab active">
+                            <h2>Nội dung</h2>
+                            @Html.Raw(Model.NoiDung)
+                            
+                            <h2>Rủi ro</h2>
+                            @Html.Raw(Model.RuiRo)
+                        </div>                        
+                        
+                    </div>                    
+                    @*<div class="proj-team">
+                        @Html.Action("_ChiTietDuAn_NhomDuAn", "DuAn", new { Id = Model.Id })                        
+                    </div>*@
+                </div>
+                <div class="right-col">
+                    @Html.Action("_ChiTietDuAn_PhanThuong", "DuAn", new { Id = Model.Id, Status = @ViewBag.cothethamgia })
+                </div>
+            </div>
+        </div>
+    </div>   
+
+</div>
+
+@section jqueryPlugin{
+    <link href="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.css" rel="stylesheet" />
+<script src="~/Content/cssFrontEnd/js/fitvids/jquery.fitvids.js"></script>
+    <script src="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/countto/jquery.countTo.js"></script>
+    <script src="~/Content/cssFrontEnd/js/chartjs/Chart.min.js"></script>
+ <script>
+        $(function () {
+            $('.bxslider').bxSlider({
+                video: true,
+                useCSS: true,
+                pager: false,
+                adaptiveHeight: true,
+                captions: true
+            });
+        });
+    </script>
+    
+    }

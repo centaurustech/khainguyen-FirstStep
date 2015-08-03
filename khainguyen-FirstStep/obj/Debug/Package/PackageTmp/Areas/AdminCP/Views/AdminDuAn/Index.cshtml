@@ -1,0 +1,206 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+@{
+    ViewBag.Title = "Quản lý Dự Án";
+    Layout = "~/Areas/AdminCP/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+<style type="text/css">
+.top {
+    border-top:thin solid;
+    border-color:red;
+}
+
+.bottom {
+    border-bottom:thin solid;
+    border-color:red;
+}
+
+.left {
+    border-left:thin solid;
+    border-color:red;
+}
+
+.right {
+    border-right:thin solid;
+    border-color:red;
+}
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        $('.stdtable a.delete').click(function () {
+            var c = confirm('Continue delete ?');
+            if (c) jQuery(this).parents('tr').fadeOut(function () {
+
+                var id = $(this).closest('tr').find('td:eq(1)').text();
+                var getURL = '@Url.Action("Delete", "AdminDuAn")';
+
+                $.get(getURL, { "id": id }, function (data) {
+                    if (data == "error") //error
+                    {
+                        $('#nofError').show();
+                        $('#nofSuccess').hide();
+                        $('#msgNofError').text("Cannot Delete Record");
+                    }
+                    else {
+                        jQuery(this).remove();
+                        $('#nofError').hide();
+                        $('#nofSuccess').show();
+                        $('#msgNofSuccess').text("Delete Record Ok");
+                    }
+                });
+            });
+            return false;
+        });
+    });
+</script>
+
+<div class="maincontentinner">
+    <ul class="maintabmenu">
+        <li class="current"><a href="@Url.Action("Index", "AdminDuAn")" >Index</a></li>
+        <li><a href="@Url.Action("Insert", "AdminDuAn")" >Insert</a></li>
+    </ul>
+    <!--maintabmenu-->
+
+    <div class="notification msgsuccess" style="display: none" id="nofSuccess">
+        <a class="close"></a>
+        <p id="msgNofSuccess">This is a success message.</p>
+    </div>
+    <!-- notification msgsuccess -->
+
+
+    <div class="notification msgerror" style="display: none" id="nofError">
+        <a class="close"></a>
+        <p id="msgNofError">This is an error message.</p>
+    </div>
+    <!-- notification msgerror -->
+
+
+    <div class="contenttitle radiusbottom0">
+        <h2 class="table"><span>Dự Án</span></h2>
+    </div>
+    <!--contenttitle-->
+
+    <table cellpadding="0" cellspacing="0" border="0" class="stdtable" id="dyntable">
+        <colgroup>
+            <col class="con1" />
+            <col class="con0" />
+            <col class="con1" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="head1">STT</th>
+                <th class="head0">ID</th>
+                <th class="head1">Tên Dự Án</th>
+                <th class="head0">Trạng Thái</th>
+                <th class="head1">User</th>
+                <th class="head0">Hình Ảnh</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th class="head1">STT</th>
+                <th class="head0">ID</th>
+                <th class="head1">Tên Dự Án</th>
+                <th class="head0">Trạng Thái</th>
+                <th class="head1">User</th>
+                <th class="head0">Hình Ảnh</th>
+                <th></th>
+
+        </tfoot>
+        <tbody>
+            @{
+                int i = 0;
+                foreach (var item in Model)
+                {
+                    if (item.TrangThai == 2)
+                    {
+                             <tr class="gradeX">
+                            <td>@i</td>
+                            <td>@item.Id</td>
+                            <td>@item.TenDuAn </td>
+                            <td>Đang chạy</td>
+                            <td>@item.EntityUser.Email</td>
+                            <td><img src="../Content/Images/DuAn/@item.HinhAnh" width="60" height="60" /></td>
+                            <td>
+                                @*@{
+                        if (item.TrangThai == 2)
+                        {
+                                <a href="@Url.Action("Block", "AdminDuAn", new { id = item.Id })" style="color:green">Khóa dự án</a>    
+                        }
+                        else
+                        {
+                                <a href="@Url.Action("Open", "AdminDuAn", new { id = item.Id })"style="color:red">Mở dự án</a> 
+                        }
+                                    }@Url.Action("Email_DuAnKetThuc", "AdminDuAn", new { id = item.Id })*@
+                                <a href="#" onclick="GuiMail(@item.Id)" style="color:blue">Email cho người đầu tư</a>
+                            </td>
+                        </tr>   
+                    }
+                    else
+                    {
+                             <tr class="gradeX" style="background-color:#FF9900;">
+                            <td>@i</td>
+                            <td>@item.Id</td>
+                            <td>@item.TenDuAn </td>
+                            @{
+                                switch(item.TrangThai)
+                                {
+                                    case -1:
+                                        <td>Đang nhập liệu </td>
+                                        break;
+                                    case 0:
+                                        <td>Đang coi nháp </td>
+                                        break;
+                                    case 1:
+                                        <td>Chờ duyệt </td>
+                                        break;                                    
+                                }
+                            }
+                            <td>@item.EntityUser.Email</td>
+                            <td><img src="../Content/Images/DuAn/@item.HinhAnh" width="60" height="60" /></td>
+                            <td>
+                                @{
+                                if (item.TrangThai == 2)
+                                {
+                                <a href="@Url.Action("Block", "AdminDuAn", new { id = item.Id })" style="color:green">Khóa dự án</a>    
+                                }
+                                else if (item.TrangThai == 1)
+                                {
+                                <a href="@Url.Action("Open", "AdminDuAn", new { id = item.Id })"style="color:red">Duyệt dự án</a> 
+                                }
+                                    }
+                         
+                            </td>
+                        </tr> 
+                    }
+
+                    i = i + 1;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!--maincontentinner-->
+<script src="~/Content/cssAdmin/js/custom/tables.js"></script>
+<script src="~/Content/cssAdmin/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    function GuiMail(id) {
+        var postURL = '@Url.Action("Email_DuAnKetThuc", "AdminDuAn")';
+        $.post(postURL, { "id": id }, function (data) {
+                if (data == "False") {
+                    alert("Error");
+                }
+                else {
+                    if (data == "True") {
+                        alert('Đã gửi mail thành công');
+                        location.reload();
+                    }
+                }
+            });
+        }
+</script>

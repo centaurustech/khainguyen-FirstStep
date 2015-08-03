@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Nhập lại mật khẩu";
+}
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            <div class="panel-login">
+               @* <div class="social">
+                    <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập với Facebook</a>
+                </div>*@
+                 <a href="javascript:void(0);" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;THÔNG BÁO</a>
+                <div class="form-login">
+                    <br />
+                   <span style="color:white;">Bạn đã lâu chưa hoạt động, hãy nhập lại <a href="javascript:void(0);">mật khẩu</a>.</span>
+                    <br />
+                   <span>Nếu bạn đăng nhập bằng <a href="javascript:void(0);">facebook</a>, hãy nhập mật khẩu bất kỳ, Nó sẽ có tác dụng cho những lần sau.</span> 
+                        <div class="space_20"></div>
+
+                    <div class="">
+                        Nhập mật khẩu:
+                        <input type="password" id="Password_life" />
+                        &nbsp;&nbsp;&nbsp;
+                            <button class="btn" id="checklife">Tiếp tục</button>
+                        <br />
+                        <label style="color:red;padding:2px;" id="LifeError"></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checklife').click(function (e) {
+                var password = $('#Password_life').val();
+                var postURL = '@Url.Action("CheckPassLife", "Account")';
+
+            $.post(postURL, { "password": password }, function (data) {
+                if (data == "t") {
+                    window.location.href = '@ViewBag.link';
+                }
+                else { $("#LifeError").text("Mật khẩu không đúng, xin vui lòng thứ lại"); }
+            });
+
+          });
+        });
+      
+    </script>
+}
+

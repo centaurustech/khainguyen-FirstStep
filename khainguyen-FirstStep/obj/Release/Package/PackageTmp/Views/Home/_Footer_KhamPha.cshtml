@@ -1,0 +1,12 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDanhMuc>
+
+<ul>
+    @{
+        foreach(var item in Model)
+        {
+         
+            <li><a href="@Utilities.URLCategory(item.Id)">@item.TenDM</a></li>
+        }
+    }
+    
+</ul>

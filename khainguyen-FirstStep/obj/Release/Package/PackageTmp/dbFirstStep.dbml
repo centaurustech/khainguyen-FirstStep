@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Firststep_db" Class="dbFirstStepDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=123.30.135.238;Initial Catalog=Firststep_db;Persist Security Info=True;User ID=firststep" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Firststep_dbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.EntityAdmin" Member="EntityAdmins">
+    <Type Name="EntityAdmin">
+      <Column Name="Username" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityTrend" Member="EntityTrends">
+    <Type Name="EntityTrend">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrendName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="IdCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityTrend" Member="EntityDanhMuc" ThisKey="IdCategory" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityBanner" Member="EntityBanners">
+    <Type Name="EntityBanner">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(650)" CanBeNull="true" />
+      <Column Name="TenNut" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="LinkNut" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="ViTri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityBaoCao" Member="EntityBaoCaos">
+    <Type Name="EntityBaoCao">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(650)" CanBeNull="true" />
+      <Column Name="Ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityBaoCao" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityBaoCao" Member="EntityUser" ThisKey="IdDuAn" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityBinhLuan" Member="EntityBinhLuans">
+    <Type Name="EntityBinhLuan">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="ThoiGian" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Public]" Member="Public" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityBinhLuan" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityBinhLuan" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityDanhMuc" Member="EntityDanhMucs">
+    <Type Name="EntityDanhMuc">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDM" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="IdRoot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HienThi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityTrend" Member="EntityTrends" ThisKey="Id" OtherKey="IdCategory" Type="EntityTrend" />
+      <Association Name="EntityDanhMuc_EntityDanhMuc" Member="EntityDanhMucs" ThisKey="Id" OtherKey="IdRoot" Type="EntityDanhMuc" />
+      <Association Name="EntityDanhMuc_EntityChiTietDanhMuc" Member="EntityChiTietDanhMucs" ThisKey="Id" OtherKey="IdDanhMuc" Type="EntityChiTietDanhMuc" />
+      <Association Name="EntityDanhMuc_EntityDuAnFeature" Member="EntityDuAnFeatures" ThisKey="Id" OtherKey="IdFeature" Type="EntityDuAnFeature" />
+      <Association Name="EntityDanhMuc_EntityDuAnTag" Member="EntityDuAnTags" ThisKey="Id" OtherKey="IdTag" Type="EntityDuAnTag" />
+      <Association Name="EntityDanhMuc_EntityHomePage" Member="EntityHomePages" ThisKey="Id" OtherKey="IdModuleDanhMuc1" Type="EntityHomePage" />
+      <Association Name="EntityDanhMuc_EntityHomePage1" Member="EntityHomePages1" ThisKey="Id" OtherKey="IdModuleDanhMuc2" Type="EntityHomePage" />
+      <Association Name="EntityDanhMuc_EntityHomePage2" Member="EntityHomePages2" ThisKey="Id" OtherKey="IdModuleDanhMuc3" Type="EntityHomePage" />
+      <Association Name="EntityDanhMuc_EntityThongTinDuAn" Member="EntityThongTinDuAns" ThisKey="Id" OtherKey="IdDanhMuc" Type="EntityThongTinDuAn" />
+      <Association Name="EntityDanhMuc_EntityDanhMuc" Member="EntityDanhMuc1" ThisKey="IdRoot" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityDuAn" Member="EntityDuAns">
+    <Type Name="EntityDuAn">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDuAn" Type="System.String" DbType="NVarChar(550)" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThaiFund" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LyDoBlock" Type="System.String" DbType="NVarChar(650)" CanBeNull="true" />
+      <Column Name="TienDauTuMucTieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TienDauTuHienTai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoNguoiDaDauTu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThoiGianBatDau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ThoiGianKetThuc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DiaDiem" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="ThongTinNgan" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="HinhAnh" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="LinkVideo" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RuiRo" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SoNgay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDanhMuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DuAnDuocChon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chon1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chon2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Chon3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuotView" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThongTinWhichPerson" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="IdThongTinTaiKhoan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityBaoCao" Member="EntityBaoCaos" ThisKey="Id" OtherKey="IdDuAn" Type="EntityBaoCao" />
+      <Association Name="EntityDuAn_EntityBinhLuan" Member="EntityBinhLuans" ThisKey="Id" OtherKey="IdDuAn" Type="EntityBinhLuan" />
+      <Association Name="EntityDuAn_EntityHoatDong" Member="EntityHoatDongs" ThisKey="Id" OtherKey="IdDuAn" Type="EntityHoatDong" />
+      <Association Name="EntityDuAn_EntityPhanThuong" Member="EntityPhanThuongs" ThisKey="Id" OtherKey="IdDuAn" Type="EntityPhanThuong" />
+      <Association Name="EntityDuAn_EntityCapNhatDuAn" Member="EntityCapNhatDuAns" ThisKey="Id" OtherKey="IdDuAn" Type="EntityCapNhatDuAn" />
+      <Association Name="EntityDuAn_EntityChiTietDanhMuc" Member="EntityChiTietDanhMucs" ThisKey="Id" OtherKey="IdDuAn" Type="EntityChiTietDanhMuc" />
+      <Association Name="EntityDuAn_EntityChiTietDuAn" Member="EntityChiTietDuAns" ThisKey="Id" OtherKey="IdDuAn" Type="EntityChiTietDuAn" />
+      <Association Name="EntityDuAn_EntityDauTu" Member="EntityDauTus" ThisKey="Id" OtherKey="IdDuAn" Type="EntityDauTu" />
+      <Association Name="EntityDuAn_EntityDuAnFeature" Member="EntityDuAnFeatures" ThisKey="Id" OtherKey="IdDuAn" Type="EntityDuAnFeature" />
+      <Association Name="EntityDuAn_EntityDuAnTag" Member="EntityDuAnTags" ThisKey="Id" OtherKey="IdDuAn" Type="EntityDuAnTag" />
+      <Association Name="EntityDuAn_EntityNhomChienDich" Member="EntityNhomChienDiches" ThisKey="Id" OtherKey="IdDuAn" Type="EntityNhomChienDich" />
+      <Association Name="EntityDuAn_EntityNoiDungLink" Member="EntityNoiDungLinks" ThisKey="Id" OtherKey="IdDuAn" Type="EntityNoiDungLink" />
+      <Association Name="EntityDuAn_EntityThongTinDuAn" Member="EntityThongTinDuAns" ThisKey="Id" OtherKey="IdDuAn" Type="EntityThongTinDuAn" />
+      <Association Name="EntityUser_EntityDuAn" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityHoatDong" Member="EntityHoatDongs">
+    <Type Name="EntityHoatDong">
+      <Column Name="IdUser" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdBanBe" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Loai" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="EntityDuAn_EntityHoatDong" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityHoatDong" Member="EntityUser" ThisKey="IdBanBe" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityHoatDong1" Member="EntityUser1" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityPhanThuong" Member="EntityPhanThuongs">
+    <Type Name="EntityPhanThuong">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TienHoTro" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="NgayGiao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucGiao" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoNgay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoNguoiMua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityPhanThuong_EntityDauTu" Member="EntityDauTus" ThisKey="Id" OtherKey="IdPhanthuong" Type="EntityDauTu" />
+      <Association Name="EntityDuAn_EntityPhanThuong" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityQuote" Member="EntityQuotes">
+    <Type Name="EntityQuote">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="EntityUser_EntityQuote" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityTheoDoi" Member="EntityTheoDois">
+    <Type Name="EntityTheoDoi">
+      <Column Name="IdUser" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdBanBe" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Loaifb" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="EntityUser_EntityTheoDoi" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityTheoDoi1" Member="EntityUser1" ThisKey="IdBanBe" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityTimBan" Member="EntityTimBans">
+    <Type Name="EntityTimBan">
+      <Column Name="IdUser" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdFriend" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="EntityUser_EntityTimBan" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityTimBan1" Member="EntityUser1" ThisKey="IdFriend" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EntityUser" Member="EntityUsers">
+    <Type Name="EntityUser">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="Avatar" Type="System.String" DbType="NVarChar(650)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HasCode" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DiaDiem" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="GioiThieu" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="IdFacebook" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="VanityURL" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Column Name="Login_History" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NhatKyHoatDong" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="SoLuongHoatDong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityUser_EntityBaoCao" Member="EntityBaoCaos" ThisKey="Id" OtherKey="IdDuAn" Type="EntityBaoCao" />
+      <Association Name="EntityUser_EntityBinhLuan" Member="EntityBinhLuans" ThisKey="Id" OtherKey="IdUser" Type="EntityBinhLuan" />
+      <Association Name="EntityUser_EntityDuAn" Member="EntityDuAns" ThisKey="Id" OtherKey="IdUser" Type="EntityDuAn" />
+      <Association Name="EntityUser_EntityHoatDong" Member="EntityHoatDongs" ThisKey="Id" OtherKey="IdBanBe" Type="EntityHoatDong" />
+      <Association Name="EntityUser_EntityHoatDong1" Member="EntityHoatDongs1" ThisKey="Id" OtherKey="IdUser" Type="EntityHoatDong" />
+      <Association Name="EntityUser_EntityQuote" Member="EntityQuotes" ThisKey="Id" OtherKey="IdUser" Type="EntityQuote" />
+      <Association Name="EntityUser_EntityTheoDoi" Member="EntityTheoDois" ThisKey="Id" OtherKey="IdUser" Type="EntityTheoDoi" />
+      <Association Name="EntityUser_EntityTheoDoi1" Member="EntityTheoDois1" ThisKey="Id" OtherKey="IdBanBe" Type="EntityTheoDoi" />
+      <Association Name="EntityUser_EntityTimBan" Member="EntityTimBans" ThisKey="Id" OtherKey="IdUser" Type="EntityTimBan" />
+      <Association Name="EntityUser_EntityTimBan1" Member="EntityTimBans1" ThisKey="Id" OtherKey="IdFriend" Type="EntityTimBan" />
+      <Association Name="EntityUser_EntityDauTu" Member="EntityDauTus" ThisKey="Id" OtherKey="IdUser" Type="EntityDauTu" />
+      <Association Name="EntityUser_EntityNhomChienDich" Member="EntityNhomChienDiches" ThisKey="Id" OtherKey="IdUser" Type="EntityNhomChienDich" />
+      <Association Name="EntityUser_EntityTinNhan" Member="EntityTinNhans" ThisKey="Id" OtherKey="IdUserGui" Type="EntityTinNhan" />
+      <Association Name="EntityUser_EntityTinNhan1" Member="EntityTinNhans1" ThisKey="Id" OtherKey="IdUserNhan" Type="EntityTinNhan" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityCapNhatDuAn" Member="EntityCapNhatDuAns">
+    <Type Name="EntityCapNhatDuAn">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ThoiGian" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SoLuotThich" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityCapNhatDuAn" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityChiTietDanhMuc" Member="EntityChiTietDanhMucs">
+    <Type Name="EntityChiTietDanhMuc">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDanhMuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityChiTietDanhMuc" Member="EntityDanhMuc" ThisKey="IdDanhMuc" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDuAn_EntityChiTietDanhMuc" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityChiTietDuAn" Member="EntityChiTietDuAns">
+    <Type Name="EntityChiTietDuAn">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityChiTietDuAn" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityDauTu" Member="EntityDauTus">
+    <Type Name="EntityDauTu">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoTienDauTu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThoiGian" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdPhanthuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NoteOwner" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityDauTu" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+      <Association Name="EntityPhanThuong_EntityDauTu" Member="EntityPhanThuong" ThisKey="IdPhanthuong" OtherKey="Id" Type="EntityPhanThuong" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityDauTu" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityDuAnFeature" Member="EntityDuAnFeatures">
+    <Type Name="EntityDuAnFeature">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdFeature" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityDuAnFeature" Member="EntityDanhMuc" ThisKey="IdFeature" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDuAn_EntityDuAnFeature" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityDuAnTag" Member="EntityDuAnTags">
+    <Type Name="EntityDuAnTag">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdTag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityDuAnTag" Member="EntityDanhMuc" ThisKey="IdTag" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDuAn_EntityDuAnTag" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityFAQ" Member="EntityFAQs">
+    <Type Name="EntityFAQ">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Loai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(2050)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ViTri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdRoot" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityFAQ_EntityFAQ" Member="EntityFAQs" ThisKey="Id" OtherKey="IdRoot" Type="EntityFAQ" />
+      <Association Name="EntityFAQ_EntityFAQ" Member="EntityFAQ1" ThisKey="IdRoot" OtherKey="Id" Type="EntityFAQ" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityHomePage" Member="EntityHomePages">
+    <Type Name="EntityHomePage">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdModuleDanhMuc1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdModuleDanhMuc2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdModuleDanhMuc3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityHomePage" Member="EntityDanhMuc" ThisKey="IdModuleDanhMuc1" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDanhMuc_EntityHomePage1" Member="EntityDanhMuc1" ThisKey="IdModuleDanhMuc2" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDanhMuc_EntityHomePage2" Member="EntityDanhMuc2" ThisKey="IdModuleDanhMuc3" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityNhomChienDich" Member="EntityNhomChienDiches">
+    <Type Name="EntityNhomChienDich">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUser" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VaiTro" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityNhomChienDich" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityNhomChienDich" Member="EntityUser" ThisKey="IdUser" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityNoiDungLink" Member="EntityNoiDungLinks">
+    <Type Name="EntityNoiDungLink">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Link" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDuAn_EntityNoiDungLink" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityThongTinDuAn" Member="EntityThongTinDuAns">
+    <Type Name="EntityThongTinDuAn">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TieuDe" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="ThongTinWhichPerson" Type="System.String" DbType="NVarChar(1050)" CanBeNull="true" />
+      <Column Name="IdDanhMuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdLocation" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityDanhMuc_EntityThongTinDuAn" Member="EntityDanhMuc" ThisKey="IdDanhMuc" OtherKey="Id" Type="EntityDanhMuc" IsForeignKey="true" />
+      <Association Name="EntityDuAn_EntityThongTinDuAn" Member="EntityDuAn" ThisKey="IdDuAn" OtherKey="Id" Type="EntityDuAn" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityThongTinTaiKhoan" Member="EntityThongTinTaiKhoans">
+    <Type Name="EntityThongTinTaiKhoan">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Col1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col3" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col4" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col5" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col6" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Col7" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="firststep.EntityTinNhan" Member="EntityTinNhans">
+    <Type Name="EntityTinNhan">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdUserGui" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdUserNhan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="IdDuAn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="EntityUser_EntityTinNhan" Member="EntityUser" ThisKey="IdUserGui" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+      <Association Name="EntityUser_EntityTinNhan1" Member="EntityUser1" ThisKey="IdUserNhan" OtherKey="Id" Type="EntityUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,309 @@
+﻿@model khainguyen_FirstStep.EntityDuAn
+@{
+    ViewBag.Title = Model.TenDuAn;
+}
+
+<div class="page dark">
+    <div class="container">
+        <div class="title">
+            <h1>@Model.TenDuAn</h1>
+        </div>
+        <input hidden="hidden" value="@Model.Id" id="IdDuAn" name="IdDuAn" />
+        <div class="author">Người đăng :  <a href="@Url.Action("Index", "user", new { Link=Model.EntityUser.VanityURL})">@Model.EntityUser.HoTen</a></div>
+
+        <div class="page-detail box-effect2">
+
+            <div class="detail-row">
+                <div class="left-col">
+                    <ul class="bxslider">
+                        <li>
+                            <img src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>
+                        @{if(ViewBag.video!= "")
+                          {
+                        <li>
+                            <iframe width="560" height="335" src="@ViewBag.video" frameborder="0"></iframe>
+                        </li>
+                        }
+                        }
+                    </ul>
+                </div>
+                <div class="right-col">
+                    <div class="pledge"><span class="tiny countTo" data-from="0" data-to="@Model.TienDauTuHienTai" data-speed="3000">@Model.TienDauTuHienTai</span> trên @Model.TienDauTuMucTieu VNĐ </div>
+                    <div class="percent">
+                        <div class="value" style="@ViewBag.phantram"></div>
+                    </div>
+                    <div class="day">
+                        <canvas id="chart-day" width="100" height="100"></canvas>
+                        @{
+                            if (ViewBag.songayconlai == 0)
+                            {
+                            <span>Dự án đã kết thúc</span>
+                            <span class="day-text">Dự án kết thúc vào ngày : @string.Format("{0:dd-MM-yyyy}", @Model.ThoiGianKetThuc)</span>
+                            }
+                            else
+                            {
+                            <span class="tiny countTo" data-from="@ViewBag.songaydaqua" data-to="@ViewBag.songayconlai" data-speed="3000">@ViewBag.songayconlai ngày nữa kết thúc.</span>
+                            <span class="day-text">Dự án kết thúc vào ngày : @string.Format("{0:dd-MM-yyyy}", @Model.ThoiGianKetThuc)</span>
+
+                            }
+                        }
+                    </div>
+
+                    @Html.Action("_ChiTietDuAn_SoNguoiThamGia", "DuAn", new { Id = Model.Id })
+                    <div class="share">
+                        <div class="share-item">
+                            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                        </div>
+                        <div class="share-item">
+                            <a href="http://twitter.com/share" class="twitter-share-button" data-counturl="http://twitter.com/share" data-url="http://twitter.com/share" data-text="title here" data-count="horizontal" data-via="kalamonsoft"></a>
+                        </div>
+                        <div class="share-item">
+                            <g:plusone size="medium"></g:plusone>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- detail-row -->
+
+        </div>
+        <!-- /page-detail -->
+
+        <div class="tag text-center">
+           @* <a href="#"><i class="fa-map-marker"></i>@Model.DiaDiem</a>*@
+            <a href="#"><i class="fa-tag"></i>Technolory</a>
+            <a><i class="fa-link"></i>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Model.TenDuAn, Model.Id) })</a>
+            <a href="#"><i class="fa-video-camera"></i>Theo Dõi</a>
+            <a href="#"><i class="fa-warning"></i>Báo Cáo</a>
+        </div>
+
+        <div class="detail-row text-center">
+           
+            @{
+                if (Request.Cookies["ftusername"] == null)
+                {
+                <a href="@Url.Action("Login", "Account")" class="btn btn-pledge">
+                    <h1>Tham Gia Ngay</h1>
+                    <p>Tham gia chỉ được xử lý khi đáp ứng đủ mục tiêu</p>
+                </a>
+                }
+                else
+                {
+                    if (@ViewBag.cothethamgia == "true")
+                    {
+                <a href="@Url.Action("ThanhToan_Lan1", "ThanhToan", new { Id = Model.Id, pt = 0 })" class="btn btn-pledge">
+                    <h1>Tham Gia Ngay</h1>
+                    <p>Tham gia chỉ được xử lý khi đáp ứng đủ mục tiêu</p>
+                </a>
+                    }
+                    if (@ViewBag.cothethamgia == "edit")
+                    {
+                <a href="@Url.Action("TaoDuAn_Buoc2", "DuAn", new { Id = Model.Id })" class="btn btn-pledge">
+                    <h1> Quản lý dự án</h1>
+                    <p>Dự án của bạn chưa hoạt động</p>
+                    
+                </a>
+                    }
+                     if (@ViewBag.cothethamgia == "manager")
+                    {
+                          <a href="@Url.Action("TaoDuAn_Buoc2", "DuAn", new { Id = Model.Id })" class="btn btn-pledge">
+                    <h1> Quản lý dự án</h1>
+                    <p>Dự án của bạn đang hoạt động</p>
+                    
+                 </a>
+                <a href="@Url.Action("QuanLy_DuAn", "DuAn", new { Title = Utilities.Paste_Int64(Model.TenDuAn,Model.Id) })" class="btn btn-pledge">
+                    <h1>Quản lý đầu tư</h1>
+                    <p>Dự án của bạn đã hoạt động</p>
+                    
+                </a>
+                    }
+                }
+            }
+
+        </div>
+
+        <div class="page-detail">
+            <div class="detail-row">
+                <div class="left-col">
+                    <nav class="tab-nav" data-tab="tab1">
+                        <a href="#" class="active">Bài viết</a>
+                       
+                        <a href="#"><span>@ViewBag.capnhat</span>Cập nhật</a>
+                        <a href="#"><span>@ViewBag.songuoithamgia</span>Người tham gia</a>
+                        @if (@Model.TrangThai == 1) { <a href="#"><span>@ViewBag.binhluan</span>Bình luận</a> }
+                        
+                    </nav>
+                    <div class="tab-panel" data-tab="tab1">
+                        <!-- tab story -->
+                        <div class="tab active">
+                            @Html.Raw(Model.NoiDung)
+                        </div>
+
+                        <!-- tab update -->
+                        <div class="tab">
+                            @Html.Action("_ChiTietDuAn_CapNhat", "DuAn", new { Id = Model.Id })
+                        </div>
+
+                        <!-- tab supporter -->
+                        <div class="tab">
+                            @Html.Action("_ChiTietDuAn_NguoiThamGia", "DuAn", new { Id = Model.Id })
+                        </div>
+
+                        <!-- tab comment -->
+                        <div class="tab">
+                            @Html.Action("_ChiTietDuAn_BinhLuan", "DuAn", new { Id = Model.Id })
+                        </div>
+                    </div>
+
+                    <hr />
+                    <div class="proj-team">
+                        @Html.Action("_ChiTietDuAn_NhomDuAn", "DuAn", new { Id = Model.Id })
+                    </div>
+                </div>
+                <div class="right-col">
+                    @Html.Action("_ChiTietDuAn_PhanThuong", "DuAn", new { Id = Model.Id, Status=@ViewBag.cothethamgia })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container tag text-center">
+        @Html.Action("_ChiTietDuAn_TagsDuAn", "DuAn", new { Id = Model.Id })
+    </div>
+
+    <div class="container text-center">
+        <p class="">
+            <i class="fa-warning"></i>Bạn có thể vào mục FAQ để được hướng dẫn về cách tham gia dự án.
+        </p>
+    </div>
+
+    <!-- LIST ITEM -->
+    <div class="row-project item4">
+        <div class="container">
+            @Html.Action("_ChiTietDuAn_SlideDuAnFooter", "DuAn", new { Id = Model.IdUser, IdDuAn = Model.Id })
+        </div>
+    </div>
+
+    @*<div class="load-more container text-center ">
+        <a href="#" class="btn">Load More</a>
+    </div>*@
+
+</div>
+@section jqueryPlugin{
+    <script src="~/Content/cssFrontEnd/js/fitvids/jquery.fitvids.js"></script>
+    <script src="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/countto/jquery.countTo.js"></script>
+    <script src="~/Content/cssFrontEnd/js/chartjs/Chart.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.bxslider').bxSlider({
+                video: true,
+                useCSS: true,
+                pager: false,
+                adaptiveHeight: true,
+                captions: true
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var w = $(this).find(".value").width();
+            $(this).find(".value").width(0);
+            // chạy số
+            $('.countTo').countTo({
+                onComplete: function () {
+                    // chạy ống %
+                    $('.percent').each(function () {
+                        $(this).find(".value").animate({ width: w }, 1000);
+                    });
+                }, speed: 1000
+            });
+
+            // fit video
+            $(".fitvideo, .tab").fitVids();
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // load more
+            $('.load-more a').click(function (e) {
+                e.preventDefault();
+                $btn = $(this);
+                $btn.text('Loading...');
+                // xử lý ajax load dữ liệu
+                var reload = function () {
+                    var html = "<div class='item-project'>" + $('.row-project .item-project').eq(0).html() + "</div>"
+                    + "<div class='item-project'>" + $('.row-project .item-project').eq(1).html() + "</div>"
+                    + "<div class='item-project'>" + $('.row-project .item-project').eq(2).html() + "</div>"
+                    + "<div class='item-project'>" + $('.row-project .item-project').eq(3).html() + "</div>";
+                    $('.row-project .container').append(html);
+                    $btn.text('Read more');
+                };
+                setTimeout(reload, 1000);
+            });
+
+            //chart day
+            var a = parseInt('@ViewBag.songayconlai');
+            var b = parseInt('@ViewBag.songaydaqua');
+            var data = [{ value: b, color: "#14c3be" }, { value: a, color: "#E2EAE9" }];
+            var ctx = document.getElementById("chart-day").getContext("2d");
+            var myNewChart = new Chart(ctx).Doughnut(data);
+        });
+    </script>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script>
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+    <script>
+        // viet binh luan
+        function binhluan() {
+            var NoiDung = $('#BinhLuan').val();
+            var IdDuAn = $('#IdDuAn').val();
+            var Publish = document.getElementById("publish").checked
+            var postURL = '@Url.Action("_ChiTietDuAn_GuiBinhLuan", "DuAn")';
+            if (NoiDung != "") {
+                $.post(postURL, { "IdDuAn": IdDuAn, "NoiDung": NoiDung, "Publish": Publish }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        location.reload();
+                        //  location.href = "/DuAn/TaoDuAn_Buoc2" + "?Id=" + data;
+                    }
+                });
+            }
+            else {
+                //alert("Vui lòng điền đầy đủ thông tin !")
+                jQuery('.loginerror').slideDown();
+            }
+            return false;
+        }
+    </script>
+}
+
+<div class="proj-popup nicescroll" data-id="popup1">
+    <div class="proj-popup-panel">
+        <div class="proj-popup-btnclose">x</div>
+
+        <div class="proj-popup-content">
+            <h3>@Model.TenDuAn</h3>
+            Người đăng <a href="#">@Model.EntityUser.HoTen</a>
+            <div class="space_20"></div>
+            <div class="">
+                <textarea class="form-txt" id="BinhLuan" name="BinhLuan" placeholder="Viết bình luận..." rows="10"></textarea><br>
+                <br>
+                <button class="btn" onclick="return binhluan();">Gửi tin nhắn</button>
+                <label class="float-right">
+                    <input type="checkbox" id="publish" name="publish" />
+                    Tin nhắn riêng</label>
+            </div>
+        </div>
+    </div>
+</div>

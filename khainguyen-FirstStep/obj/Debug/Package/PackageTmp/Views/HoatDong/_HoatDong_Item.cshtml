@@ -1,0 +1,169 @@
+﻿@model khainguyen_FirstStep.Models.DetailHoatDongModel
+@{
+    if (Model!= null)
+    {
+        switch (Model.Loai)
+            {
+                    
+                case "1":// theo dõi
+    <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }            
+        </div>
+        <div class="text"><b>@Model.TenNguoiDung</b> đã theo dõi bạn!</div>
+        <a href="@Url.Action("BiTheoDoi","BanBe")" class="btn">Unfollow</a>
+        <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "2":// block theo dõi 
+    <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }
+        </div>
+        <div class="text"><b>@Model.TenNguoiDung</b> đã hủy theo dõi bạn dõi bạn!</div>
+        <a href="@Url.Action("BiTheoDoi","BanBe")" class="btn">Unfollow</a>
+        <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "3":// tạo dự án
+    <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }
+        </div>
+        <div class="text">
+            <b>@Model.TenNguoiDung</b> đã tạo dự án <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title=@Utilities.Paste_Int64(Model.TenDuAn,Model.IdDuAn)})">@Model.TenDuAn</a>
+            <p>
+                <a href="#">
+                    <img src="~/Content/Images/DuAn/@Model.HinhDuAn" alt="@Model.IdDuAn" /></a>
+            </p>
+        </div>
+       <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "4":// 4 đầu tư
+   <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }
+        </div>
+        <div class="text">
+            <b>@Model.TenNguoiDung</b> đã đầu tư vào dự án <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title=@Utilities.Paste_Int64(Model.TenDuAn,Model.IdDuAn)})">@Model.TenDuAn</a>
+            <p>
+                <a href="#">
+                    <img src="~/Content/Images/DuAn/@Model.HinhDuAn" alt="@Model.IdDuAn" /></a>
+            </p>
+        </div>
+       <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "5":// commnent
+     <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }
+        </div>
+        <div class="text">
+            <b>@Model.TenNguoiDung</b> đã comment <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title=@Utilities.Paste_Int64(Model.TenDuAn,Model.IdDuAn)})">@Model.TenDuAn</a>
+            <p>
+                <a href="#">
+                    <img src="~/Content/Images/DuAn/@Model.HinhDuAn" alt="@Model.IdDuAn" /></a>
+            </p>
+        </div>
+       <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "6"://dự án đầu tư đã update
+                  <div class="row-activity">
+        <div class="ava">
+            @if (Model.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@Model.VanityURL">
+                    <img src="https://graph.facebook.com/@Model.IdFacebook/picture?type=normal" alt="@Model.IdDuAn" />
+                </a>
+            }
+            else
+            {                
+                <a href="/user/@Model.VanityURL">
+                    <img src="@Model.Avatar" alt="@Model.IdDuAn" />
+                </a> 
+            }>
+        </div>
+        <div class="text">
+             Dự án <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title=@Utilities.Paste_Int64(Model.TenDuAn,Model.IdDuAn)})">@Model.TenDuAn</a> đã được update
+            <p>
+                <a href="#">
+                    <img src="~/Content/Images/DuAn/@Model.HinhDuAn" alt="@Model.IdDuAn" /></a>
+            </p>
+        </div>
+       <div class="time">@Model.Date</div>
+    </div>
+                    break;
+                case "7"://dự án đầu tư đã thành công
+    <div class="row-activity success">
+        <div class="text text-center">
+            Dự án <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title=@Utilities.Paste_Int64(Model.TenDuAn,Model.IdDuAn)})">@Model.TenDuAn</a> đã thành công
+            <p>
+                <a href="#">
+                    <img src="~/Content/Images/DuAn/@Model.HinhDuAn" alt="@Model.IdDuAn" /></a>
+            </p>
+        </div>
+        <div class="time">@Model.Date</div>
+    </div>
+                    break;
+            }
+
+    }
+}

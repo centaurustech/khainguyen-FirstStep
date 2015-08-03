@@ -1,0 +1,9 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAnTag>
+
+Tags dự án:
+@{
+    foreach (var item in Model)
+    {
+        <a href="#"><i class="fa-tag"></i> @item.EntityDanhMuc.TenDM</a>
+    }
+}

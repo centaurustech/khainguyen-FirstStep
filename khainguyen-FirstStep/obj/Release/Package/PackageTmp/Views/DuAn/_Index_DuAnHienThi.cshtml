@@ -1,0 +1,47 @@
+﻿@model List<khainguyen_FirstStep.EntityDuAn>
+
+@{
+
+    foreach (var item in Model)
+    {
+        int songayconlai= (int)(item.ThoiGianKetThuc.Value - item.ThoiGianBatDau.Value).TotalDays;
+        var sotien = (item.TienDauTuHienTai * 100) / item.TienDauTuMucTieu;
+        var style = "";
+        if (sotien == 0)
+        {
+            style = "width: 2%;";
+        }
+        else { style = "width:" + sotien + "%;"; }
+        <div class="item-project">
+            <div class="border">
+                <div class="img"><a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })"><img src="~/Content/Images/DuAn/@item.HinhAnh" alt="Alternate Text" /></a></div>
+                <div class="title"><h4>@item.TenDuAn</h4></div>
+                <div class="des">@item.ThongTinNgan</div>
+                <div class="tag">
+                    <a href="#"><i class="fa-map-marker"></i>@item.DiaDiem</a>
+                    <a href="#"><i class="fa-tag"></i> Technology</a>
+                </div>
+                @if (sotien < 50)
+                {
+                    <div class="percent"><div class="value value bg-red" style="@style;"></div></div>
+                }
+                else if (sotien >= 50 && sotien < 80)
+                {
+                    <div class="percent"><div class="value bg-orange" style="@style;"></div></div>
+                }
+                else
+                {
+                    <div class="percent"><div class="value" style="@style;"></div></div>
+                }
+
+                <div class="pledge">
+                    <div><span class="tiny">@item.TienDauTuHienTai VNĐ</span> Pledged</div>
+                    <div><span class="tiny">@sotien%</span> Funded</div>
+                    <div><span class="tiny">@songayconlai</span> Days left</div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+

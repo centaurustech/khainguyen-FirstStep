@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        @Html.Action("FormLogin", "Account")
+    </div>
+</div>
+
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.form-login button').hover(function () {
+                $(this).stop().switchClass('default', 'hover');
+            }, function () {
+                $(this).stop().switchClass('hover', 'default');
+            });
+
+            $('#login').submit(function () {
+                return false;
+            });
+
+            $('#username').keypress(function () {
+                jQuery('.loginerror1').slideUp();
+                //jQuery('.loginerror2').slideUp();
+                //jQuery('.loginerror3').slideUp();
+            });
+            jQuery('.loginerror1').slideUp();            
+            //jQuery('.loginerror2').slideUp();
+            //jQuery('.loginerror3').sliceUp();
+        });
+        function checkId() {            
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var remember = kiemtracheckbox();
+            var postURL = '@Url.Action("CheckId", "Account")';
+
+            $.post(postURL, { "username": username, "password": password, "remember": remember }, function (data) {
+                if (data.Email == "Khong ton tai") // ko dung pass hoac user
+                {
+                    jQuery('.loginerror1').slideDown();
+                    $('.loginerror1 p').text("Tài khoản không tồn tại.");
+                    u.focus();
+                    return false;
+                }
+                else if (data.Email == "Khong dung pass")
+                {
+                    jQuery('.loginerror1').slideDown();
+                    $('.loginerror1 p').text("Bạn chưa nhập đúng password.");
+                    u.focus();
+                    return false;
+                }
+                else if (data.Email == "Chua kich hoat") {
+                    jQuery('.loginerror1').slideDown();
+                    $('.loginerror1 p').text("Tài khoản đã bị khóa hoặc chưa kích hoạt. Vui lòng check Email của bạn để kích hoạt hoặc liên hệ Admin.");
+                    u.focus();
+                    return false;
+                }
+                else {
+                    @*var urlref = "@Request.UrlReferrer";
+                    alert($urlref);
+                    if(urlref != null)
+                        window.location.href = "@Request.UrlReferrer.ToString()";
+                    else
+                        window.location.href = "http://firststep.vn";*@
+                    window.location.href = "@ViewBag.UrlReferrer.ToString()";
+                }
+            });
+    };
+    function kiemtracheckbox() {
+        if ($('#remember').is(":checked")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    };
+    </script>
+}
+
+

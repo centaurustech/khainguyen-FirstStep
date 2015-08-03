@@ -1,0 +1,897 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+@{
+    ViewBag.Title = "Khởi tạo dự án";
+}
+
+<style>
+    .uploadanh, .uploadanh2 {
+        color: #900;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
+        overflow: hidden;
+        display: none;
+        margin-right: 8px;
+    }
+
+    .tomautab {
+        background: red;
+        color: white;
+    }
+
+    .tomauvien {
+        border: 1px red solid;
+    }
+</style>
+
+<div style="height: 50px"></div>
+<div class="proj-form container">
+
+    <!-- NAV TAB -->
+    <nav class="proj-tab-nav">
+        <a href="#" id="tabThongTin" class="active">Thông tin</a>
+        <a href="#" id="tabPhanThuong" class="">Phần thưởng</a>
+        <a href="#" id="tabMoTa">Mô tả</a>
+        <a href="#" id="tabGioiThieu">Giới thiệu</a>
+        <a href="#" id="tabTaiKhoan">Tài khoản</a>
+        <a href="#" id="tabTeam">Team</a>
+       
+         <a href="#" id="tabReview" class="proj-tab-nav-special bg-tiny">Xem trước</a>
+           <a href="@Url.Action("UpdateDuAn", "DuAn", new { IdDuAn=@Model.Id})" id="tabUpdate">Update Dự án</a>
+    </nav>
+
+    <!-- LIST TAB -->
+    @using (Html.BeginForm("TaoDuAn_Buoc2", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
+    {
+        <div class="proj-list-tab">
+            <!-- tab thông tin -->
+            <div class="proj-tab active">
+                <p>&nbsp;</p>
+                <h3>Hãy bắt đầu giới thiệu thông tin của dự án</h3>
+                <p>Thêm một hình ảnh , thuộc danh mục , và một số thứ quan trọng khác.</p>
+                <p>&nbsp;</p>
+
+                <div class="box" id="DanhMuc1" data-hide="@Model.TrangThaiFund">
+                    <h3>Chọn loại danh mục phù hợp với nội dung dự án của bạn nhất .</h3>
+
+                    <input type="hidden" id="proj-category" name="proj-category" value="@Model.IdDanhMuc" />
+                    <nav class="proj-list-category" data-for="proj-category">
+                        @{
+        foreach (var dm in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityDanhMuc>)
+        {
+            if (dm.Id == Model.IdDanhMuc)
+            {
+                            <a href="#" data-value="@dm.Id" class="active"><i class="fa-book"></i>@dm.TenDM</a>
+            }
+            else
+            {
+                            <a href="#" data-value="@dm.Id"><i class="fa-book"></i>@dm.TenDM</a>
+            }
+        }
+                        }
+
+                        @*<a href="#"><i class="fa-paw"></i> Animals</a>*@
+                    </nav>
+                </div>
+
+                <div class="box" data-hide="@Model.TrangThaiFund">
+                    <h3>Tiêu đề dự án<i class="fa-question-circle tooltip color-red" title="description description &lt;span class=&#39;tiny&#39;&gt;description&lt;/span&gt; dshjf &lt;br /&gt;sdfjk dsfjksdf jdsfk djfjsdk"></i></h3>
+                    <p>@Html.TextBoxFor(model => model.TenDuAn, new { @class = "form-txt" }) </p>
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.PhanThuong)
+                    @Html.HiddenFor(model => model.IdDanhMuc)
+                    @Html.HiddenFor(model => model.SoNgay)
+                    @Html.HiddenFor(model => model.ThoiGianKetThuc)
+
+                    <div class="des">
+                        <p>Tiêu đề dự án của bạn nên được đơn giản, cụ thể, đáng nhớ, tránh các từ như "hỗ trợ", "giúp đỡ", "quỹ", ...</p>
+                    </div>
+
+                </div>
+
+                <div class="box">
+                    <h3>Hình Ảnh</h3>
+                    @if (@Model.HinhAnh != null && @Model.HinhAnh != "")
+                    { <img src="~/Content/Images/DuAn/@Model.HinhAnh" />}
+                    <p>
+                        <input class="form-txt" id="HinhAnh" name="HinhAnh" type="file" />
+                    </p>
+                    <div class="uploadanh">Vui lòng upload file hình ảnh.</div>
+                </div>
+
+                <div class="box" data-hide="@Model.TrangThaiFund">
+                    <div class="col-2">
+                        <h3>Giới thiệu ngắn về dự án</h3>
+                        <p>
+                            <textarea class="form-txt" rows="4" id="ThongTinNgan" name="ThongTinNgan">@Model.ThongTinNgan</textarea>
+                        </p>
+                        <h3>Tổng kinh phí dự án <i class="fa-question-circle tooltip color-red" title="description description description dshjf sdfjk dsfjksdf jdsfk djfjsdk"></i></h3>
+                        @*<input class="form-txt text-right" id="TienDauTuMucTieu" name="TienDauTuMucTieu" type="number" style="width: 20%;" placeholder="0" value="@Model.TienDauTuMucTieu" />*@
+                        @Html.TextBoxFor(model => model.TienDauTuMucTieu, new { @class = "form-txt  text-right", type = "number", style = "width: 20%;" })
+                        <div class="des">
+                            <p>Mục tiêu tài trợ của bạn nên được số tiền tối thiểu cần thiết để hoàn thành dự án và thực hiện tất cả các phần thưởng. Bởi vì kinh phí là tất cả hoặc không có gì, bạn luôn có thể nâng cao hơn mục tiêu của bạn nhưng không bao giờ ít hơn.</p>
+                            <p>Nếu dự án của bạn được tài trợ thành công, Kickstarter sẽ áp dụng một khoản phí 5% đến các quỹ lớn lên, và Amazon sẽ áp dụng lệ phí xử lý thẻ tín dụng (khoảng 3-5%). Nếu kinh phí không thành công, không có phí.</p>
+                        </div>
+                    </div>
+                    <div class="col-2" id="ToMauSoNgay" data-hide="@Model.TrangThaiFund">
+                        <h3>Số ngày dự định hoàn thành</h3>
+                        <label class="form-label">
+                            <input type="radio" name="a1" id="SoNgay1" checked="true" value="SoNgay" onclick="check(this.id)" />Chọn nhập số ngày<br />
+                            <input class="form-txt text-right" type="number" style="width: 20%;" placeholder="0" value="@Model.SoNgay" id="SoNgayHoanThanh1" />
+                        </label>
+                        <label class="form-label">
+                            <input type="radio" name="a1" id="SoNgay2" value="ChonNgay" onclick="check(this.id)" />Chọn nhập ngày dự định hoàn thành<br />
+                            <input disabled="true" class="form-txt text-right" type="text" style="width: 50%;" value="@Model.ThoiGianKetThuc" id="SoNgayHoanThanh2" />
+                            <div class="des">
+                                <p>Chúng tôi đề nghị rằng các dự án kéo dài 30 ngày hoặc ít hơn. Khoảng thời gian ngắn hơn có tỷ lệ thành công cao hơn, và sẽ tạo ra một cảm giác cấp bách hữu ích xung quanh dự án của bạn. Để biết thêm về thời gian</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- tab phần thưởng -->
+            <div class="proj-tab">
+                <p>&nbsp;</p>
+                <h3>Mỗi dự án cần phần thưởng tuyệt vời.</h3>
+                <p>Hãy sáng tạo và giá chúng khá. Khám phá các dự án khác để tìm cảm hứng !</p>
+                <p>&nbsp;</p>
+                <input type="hidden" value="@Model.vt_pt_edit" id="vt_pt_edit" name="vt_pt_edit" />
+                <div class="box box-plege" id="PhanThuong">
+
+                    @Html.Action("_ChiTiet_TaoPhanThuong", "DuAn", new { IdDuAn = Model.Id })
+
+                </div>
+                <a href="#" class="btn btn-big" id="btn-add-reward-mode">Thêm phần thưởng khác</a>
+
+            </div>
+            <!-- tab mô tả -->
+            <div class="proj-tab">
+                <p>&nbsp;</p>
+                <h3>Mô tả thêm về dự án</h3>
+                <p>Nó không chỉ là một dự án, đó là một câu chuyện, cho nó với một video. Nó không cần phải cầu kỳ, nó chỉ có thể là bạn.</p>
+                <p>&nbsp;</p>
+
+                <div class="box">
+                    <h4>Link Video dự án</h4>
+                    <input  class="form-txt" id="LinkVideo" name="LinkVideo" type="text" value="@Model.LinkVideo" placeholder="http://...">
+                </div>
+
+                <div class="box">
+                    <h4>Mô tả dự án</h4>
+                    <div class="des">
+                        <p>Sử dụng mô tả dự án của bạn để chia sẻ thêm về những gì bạn đang gây quỹ để làm và làm thế nào bạn có kế hoạch để kéo nó đi. Nó thuộc vào bạn để làm cho các trường hợp cho dự án của bạn.</p>
+                    </div>
+                    <textarea class="form-txt" id="NoiDung" name="NoiDung" style="height: 700px !important;">@Model.NoiDung</textarea>
+
+                </div>
+
+                <div class="box">
+                    <h4>Rủi ro và thách thức</h4>
+                    <div class="des">
+                        <p><b>Những rủi ro và thách thức mà đi kèm với hoàn thành dự án của bạn là gì, và làm thế nào bạn đủ điều kiện để vượt qua chúng?</b></p>
+                        <p>Khi nói đến hoàn thành, mỗi dự án có những trở ngại tiềm năng, từ sự chậm trễ sản xuất phải có giấy phép để cộng tác rủi ro. Những gì thách thức duy nhất bạn có thể phải đối mặt sau khi dự án của bạn được tài trợ thành công? Và nếu thất bại làm phát sinh (chúng tôi hy vọng họ không, nhưng nó sẽ xảy ra!), Làm thế nào bạn sẽ giải quyết chúng?</p>
+                        <p>Địa chỉ này từ đầu sẽ giúp xây dựng một cộng đồng hỗ trợ. Những người ủng hộ sẽ hiểu dự án của bạn là một công việc đang tiến và cảm thấy tự tin rằng bạn sẽ làm việc chăm chỉ để làm theo thông qua, ngay cả khi phải đối mặt với những thách thức.</p>
+                    </div>
+                    <textarea class="form-txt" rows="10" id="RuiRo" name="RuiRo">@Model.RuiRo</textarea>
+                </div>
+
+            </div>
+            <!-- tab giới thiệu -->
+            <div class="proj-tab" data-hide="@Model.TrangThaiFund">
+                <p>&nbsp;</p>
+                <h3>Giới thiệu một chút về bạn</h3>
+                <p>Nói với mọi người bạn là ai! Liên kết hỗ trợ là luôn luôn tốt đẹp.</p>
+                <p>&nbsp;</p>
+
+                <div class="box">
+                    <h4>Hình ảnh hồ sơ cá nhân</h4>
+                    <img src="@Request.Cookies["ftavatar"].Value.ToString()" alt="" />
+                    <input class="form-txt" type="file" value="" id="Avatar" name="Avatar">
+                    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div>
+                    <h4>Họ Tên</h4>
+                    <input class="form-txt" type="text" placeholder="Họ và tên" value="@HttpUtility.UrlDecode(Request.Cookies["fthoten"].Value.ToString())" id="HoTen" name="HoTen">
+                    <div class="des">
+                        <p>Một khi bạn khởi động một dự án, tên của bạn trên FirstStep không thể thay đổi.</p>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h4>Giới thiệu về bạn</h4>
+                    <textarea class="form-txt" rows="4" id="GioiThieu" name="GioiThieu">@Model.GioiThieu</textarea>
+                    <h4>Chỗ ở của bạn</h4>
+                    <p>
+                        <select class="form-txt" id="ChoO" name="ChoO">
+                            <option value='Hồ Chí Minh'>Hồ Chí Minh</option>
+                            <option value='An Giang'>An Giang</option>
+                            <option value='Bắc Giang'>Bắc Giang</option>
+                            <option value='Bắc Kạn'>Bắc Kạn</option>
+                            <option value='Bạc Liêu'>Bạc Liêu</option>
+                            <option value='Bắc Ninh'>Bắc Ninh</option>
+                            <option value='Bến Tre'>Bến Tre</option>
+                            <option value='Bình Dương'>Bình Dương</option>
+                            <option value='Bình Phước'>Bình Phước</option>
+                            <option value='Bình Thuận'>Bình Thuận</option>
+                            <option value='Bình Định'>Bình Định</option>
+                            <option value='BR-Vũng Tàu'>BR-Vũng Tàu</option>
+                            <option value='Cà Mau'>Cà Mau</option>
+                            <option value='Cần Thơ'>Cần Thơ</option>
+                            <option value='Cao Bằng'>Cao Bằng</option>
+                            <option value='Gia Lai'>Gia Lai</option>
+                            <option value='Hà Giang'>Hà Giang</option>
+                            <option value='Hà Nam'>Hà Nam </option>
+                            <option value='Hà Nội'>Hà Nội</option>
+                            <option value='Hà Tĩnh'>Hà Tĩnh </option>
+                            <option value='Hải Dương'>Hải Dương</option>
+                            <option value='Hải Phòng'>Hải Phòng</option>
+                            <option value='Hậu Giang'>Hậu Giang</option>
+                            <option value='Hòa Bình'>Hoà Bình</option>
+                            <option value='Hưng Yên'>Hưng Yên</option>
+                            <option value='Khánh Hòa'>Khánh Hoà</option>
+                            <option value='Kiên Giang'>Kiên Giang</option>
+                            <option value='Kon Tum'>Kon Tum</option>
+                            <option value='Lai Châu'>Lai Châu</option>
+                            <option value='Lâm Đồng'>Lâm Đồng</option>
+                            <option value='Lạng Sơn'>Lạng Sơn</option>
+                            <option value='Lào Cai'>Lào Cai</option>
+                            <option value='Long An'>Long An</option>
+                            <option value='Nam Định'>Nam Định</option>
+                            <option value='Nghệ An'>Nghệ An</option>
+                            <option value='Ninh Bình'>Ninh Bình </option>
+                            <option value='Ninh Thuận'>Ninh Thuận</option>
+                            <option value='Phú Thọ'>Phú Thọ </option>
+                            <option value='Phú Yên'>Phú Yên</option>
+                            <option value='Quảng Bình'>Quảng Bình</option>
+                            <option value='Quảng Nam'>Quảng Nam </option>
+                            <option value='Quãng Ngãi'>Quảng Ngãi</option>
+                            <option value='Quảng Ninh'>Quảng Ninh</option>
+                            <option value='Quảng Trị'>Quảng Trị</option>
+                            <option value='Sóc Trăng'>Sóc Trăng</option>
+                            <option value='Sơn La'>Sơn La</option>
+                            <option value='Tây Ninh'>Tây Ninh</option>
+                            <option value='Thái Bình'>Thái Bình</option>
+                            <option value='Thái Nguyên'>Thái Nguyên</option>
+                            <option value='Thanh Hóa'>Thanh Hoá</option>
+                            <option value='Thừa Thiên Huế'>Thừa Thiên Huế</option>
+                            <option value='Tiền Giang'>Tiền Giang</option>
+                            <option value='Trà Vinh'>Trà Vinh </option>
+                            <option value='Tuyên Quang'>Tuyên Quang</option>
+                            <option value='Vĩnh Lonh'>Vĩnh Long </option>
+                            <option value='Vĩnh Phúc'>Vĩnh Phúc</option>
+                            <option value='Yên Bái'>Yên Bái</option>
+                            <option value='Đà Nẵng'>Đà Nẵng</option>
+                            <option value='Đắc Lắk'>Đắc Lắk </option>
+                            <option value='Đắc Nông'>Đắc Nông</option>
+                            <option value='Điện Biên'>Điện Biên</option>
+                            <option value='Đồng Nai'>Đồng Nai </option>
+                            <option value='Đồng Tháp'>Đồng Tháp</option>
+                            <option value='Khác'>Khác</option>
+                        </select>
+                    </p>
+                    @*<input class="form-txt" type="text" value="@ViewBag.DiaDiem" id="ChoO" name="ChoO">*@
+                    <h4>Website cá nhân</h4>
+                    <input class="form-txt" type="text" value="@Model.WebCaNhan" id="WebCaNhan" name="WebCaNhan" placeholder="http://wwww.websitecuaban.com">
+                </div>
+
+            </div>
+            <!-- tab tài khoản -->
+            <div class="proj-tab" data-hide="@Model.TrangThaiFund">
+                <p>&nbsp;</p>
+                <h3>Tài khoản</h3>
+                <p>sub sub subs sub subs sub sub subs sub susub subs sub susub subs sub sus</p>
+                <p>&nbsp;</p>
+
+                <div class="box taikhoanphanloai">
+                    <h3>Funds recipient</h3>
+                    <div class="des">
+                        <p><b>If your project is successful, we'll need to know where to send your funds.</b></p>
+                        <p>To set you on the right verification path, let us know what type of bank account we'll be sending your funds to. If the bank account will be yours, choose "Individual." If the funds will go to a legal entity (e.g., a company or organization), choose "Legal entity."</p>
+                    </div>
+
+                    <label class="form-label">
+                        <input type="radio" value="Cá nhân" data-preson="1" name="whichpreson">Cá nhân</label>
+                    <label class="form-label">
+                        <input type="radio" value="Doanh nghiệp" data-preson="2" name="whichpreson">Doanh nghiệp</label>
+                    <label class="form-label">
+                        <input type="radio" value="Tổ chức từ thiện" data-preson="3" name="whichpreson">Tổ chức từ thiện</label>
+                </div>
+
+                <div class="box taikhoan" data-preson="1">
+                    <h3>Cá nhân</h3>
+                    <h4>Name</h4><input class="form-txt" type="text" value="@Model.cnName" name="cnName">
+                    <h4>Birthday</h4>
+                     <div class="col-3">
+                        <p>
+                            <select class="form-txt" id="years" name="cnYear">
+                            </select>
+                        </p>
+                    </div>
+                     <div class="col-3">
+                        <p>
+                            <select class="form-txt" id="months" name="cnMonth">
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <p>
+                            <select class="form-txt" id="days" name="cnDay">
+                            </select>
+                        </p>
+                    </div>
+                   
+                   
+                    <h4>Home address</h4>
+                    <div class="col-2" ><input class="form-txt" type="text"  value="@Model.cnHomeaddress1" name="cnHomeaddress1" placeholder="Address 1"></div>
+                    <div class="col-2" ><input class="form-txt" type="text" value="@Model.cnHomeaddress2" name="cnHomeaddress2" placeholder="Address 2"></div>   
+                    <h4>Hình ảnh bản sao công chứng cmnd hoặc bản gốc</h4>                    
+                    <input class="form-txt" type="file" name="cnHinhAnh">
+                    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div> 
+                    @if (@Model.cnHinhAnh != null && @Model.cnHinhAnh != "")
+                    { <img src="~/Content/Images/TaiKhoan/@Model.cnHinhAnh" />}               
+                </div>
+
+                <div class="box taikhoan" data-preson="2">
+                    <h3>Công ty</h3>
+                    <h4>Tên công ty</h4><input class="form-txt" type="text" value="@Model.ctTenCongTy" name="ctTenCongTy">      
+                    <h4>Địa chỉ</h4><input class="form-txt" type="text" value="@Model.ctDiaChi" name="ctDiaChi">
+                    <h4>Mã số thuế</h4><input class="form-txt" type="text" value="@Model.ctMST" name="ctMST">
+                    <h4>Số điện thoại bàn</h4><input class="form-txt" type="text" value="@Model.ctSDTBan" name="ctSDTBan">
+                    <h4>Tên người đại diện</h4><input class="form-txt" type="text" value="@Model.ctTenNguoiDaiDien" name="ctTenNguoiDaiDien">
+                    <h4>Chức vụ</h4><input class="form-txt" type="text" value="@Model.ctChucVu" name="ctChucVu">                                           
+                    <h4>Hình ảnh bản sao công chứng giấy phép kinh doanh hoặc bản gốc</h4>                    
+                    <input class="form-txt" type="file" name="ctHinhAnh">
+                    <div class="uploadanh2">Vui lòng upload file hình ảnh.</div>
+                     @if (@Model.ctHinhAnh != null && @Model.ctHinhAnh != "")
+                    { <img src="~/Content/Images/TaiKhoan/@Model.ctHinhAnh" />}                   
+                </div>
+
+            </div>
+            <!-- tab team -->
+            <div class="proj-tab">
+                @Html.Action("_Team_DuAn", "Ajax", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab review -->
+            <div class="proj-tab">
+                <p>&nbsp;</p>
+                <h3>Bạn có thế sử dụng link dưới đây để xem trước dự án của bạn</h3>
+
+                <p>&nbsp;</p>
+                <div class="box">
+
+                    <div class="des">
+
+                        <p>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.TenDuAn.ToString()), Model.Id.Value) })</p>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- btnSave -->
+            <div class="box-save">
+                <button class="btn btn-big bg-red" type="submit" onclick="return taoduan();">LƯU DỰ ÁN</button>
+            </div>
+
+        </div>
+    }
+</div>
+
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+
+    <script src="~/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/cssFrontEnd/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('NoiDung', {
+            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+    </script>
+    <script type="text/javascript">
+        CKEDITOR.replace('RuiRo', {
+            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+    </script>
+
+
+    <link href="~/Content/cssFrontEnd/js/jqueryui/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <script src="~/Content/cssFrontEnd/js/jqueryui/jquery-ui-1.10.4.min.js"></script>
+    <script>
+        //ẩn một sô tab
+        $(function () {
+            $("div[data-hide='1']").hide();
+        });
+        $(function () {
+            $('#years').append($('<option />').val("").html("Years"));
+            for (i = new Date().getFullYear() ; i > 1900; i--) {
+                $('#years').append($('<option />').val(i).html(i));
+            }
+            $('#months').append($('<option />').val("").html("Months"));
+            for (i = 1; i < 13; i++) {
+                $('#months').append($('<option />').val(i).html(i));
+            }
+            updateNumberOfDays();
+
+            $('#years, #months').change(function () {
+
+                updateNumberOfDays();
+
+            });
+            
+        });
+
+        function updateNumberOfDays() {
+            $('#days').html('');
+            month = $('#months').val();
+            year = $('#years').val();
+            days = daysInMonth(month, year);
+            $('#days').append($('<option />').val("").html("Days"));
+            for (i = 1; i < days + 1 ; i++) {
+                $('#days').append($('<option />').val(i).html(i));
+            }
+
+        }
+
+        function daysInMonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+        function LoadTaiKhoan() {
+           
+            var whichperson = $('<div/>').html('@Model.whichpreson').text();
+            $("input[value='" + whichperson + "']").attr('checked', 'checked');
+            if (whichperson == "Cá nhân") {
+                $(".taikhoan[data-preson='1']").show();
+                $('#years').val('@Model.cnYear');
+                $('#months').val('@Model.cnMonth');
+                $('#days').val('@Model.cnDay');
+
+                if ($("input[name='cnName']").val() && '@Model.cnYear'
+                    && '@Model.cnMonth' && '@Model.cnDay'
+                     && $("input[name='cnHomeaddress1']").val() && $("input[name='cnHomeaddress2']").val()
+                    && '@Model.cnHinhAnh'
+                    ) {
+                    $("#tabTaiKhoan").prepend("<i class=\"fa-check-square\"></i> ");
+                }
+            }
+            else if (whichperson == "Doanh nghiệp") {
+
+                $(".taikhoan[data-preson='2']").show();
+                if ($("input[name='ctTenCongTy']").val() && $("input[name='ctDiaChi']").val()
+                    && $("input[name='ctMST']").val() && $("input[name='ctSDTBan']").val()
+                     && $("input[name='ctTenNguoiDaiDien']").val() && $("input[name='ctChucVu']").val()
+                    && '@Model.ctHinhAnh'
+                    ) {
+                    $("#tabTaiKhoan").prepend("<i class=\"fa-check-square\"></i> ");
+                }
+            }
+            else {
+                $("#tabTaiKhoan").prepend("<i class=\"fa-check-square\"></i> ");
+            }
+        }
+
+        $(document).ready(function () {
+
+            var decoded = $('<div/>').html('@Model.ChoO').text();
+            $('#ChoO').val(decoded);
+            $('.taikhoan').hide();
+            LoadTaiKhoan();
+            $('.taikhoanphanloai input').click(function (e) {
+                var idpreson = $(this).attr('data-preson');
+                $('.taikhoan').hide();
+                $(".taikhoan[data-preson='" + idpreson + "']").show();
+            });
+            $('.proj-list-category a').click(function (e) {
+                e.preventDefault();
+                var idfor = $(this).parent().attr('data-for');
+                $('.proj-list-category a').removeClass('active');
+                $(this).addClass('active');
+                $('#' + idfor).val($(this).attr('data-value'));
+            });
+
+            // tab project
+            $('.proj-tab-nav a').click(function (e) {
+                e.preventDefault();
+                $('.proj-tab').removeClass('active');
+                $('.proj-tab').eq($(this).index()).addClass('active');
+                $('.proj-tab-nav a').removeClass('active');
+                $(this).addClass('active');
+            });
+
+            // datetime picker
+            //   $(".datepicker").datepicker();
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'mm/yy',
+                onClose: function (dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                }
+            });
+            $("#SoNgayHoanThanh2").datepicker();
+
+            // btn add reward
+            $('#btn-add-reward-mode').click(function (e) {
+                e.preventDefault();
+                var vt = $('.box-plege .proj-plege').length + 1;
+
+                var postURL = '@Url.Action("_ChiTiet_TaoPhanThuong_item", "DuAn")';
+                if (NoiDung != "") {
+                    $.post(postURL, { "vt": vt }, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+
+                            $('.box-plege').append(data);
+                            nap_reward();
+                        }
+                    });
+                }
+
+            });
+
+            $(document).on('click', '.btn-delete-reward', function (e) {
+                e.preventDefault();
+                $(this).parent().fadeOut(function () { $(this).remove(); });
+                //phần thưởng
+                var IdPhanThuong = $(this).attr("data-phanthuong");
+                if (IdPhanThuong != 0) {
+                    var postURL = '@Url.Action("_XoaPhanThuong", "DuAn")';
+                    $.post(postURL, { "IdPhanThuong": IdPhanThuong }, function (data) {
+                        if (data == "error") {
+                            alert("Đã có lỗi, xin vui lòng thử lại");
+                        }
+                       
+                    });
+                }
+            });
+
+            var nap_reward = function () {
+                $('.tooltip').tooltipster({ animation: 'grow', contentAsHTML: true });
+            };
+
+
+            //check hoàn thành
+            check_mucdohoanthanh();
+
+        });
+
+        function check(id) {
+            var thistextbox = id.replace('Ngay', 'NgayHoanThanh');
+
+            var othertextarea = 'NgayHoanThanh1';
+            if (id.slice(-1) == '1') {
+
+                $("#SoNgayHoanThanh2").prop('disabled', true);
+                $("#SoNgayHoanThanh1").prop('disabled', false);
+                $("#SoNgayHoanThanh2").prop('value', "")
+            }
+            else {
+                $("#SoNgayHoanThanh1").prop('disabled', true);
+                $("#SoNgayHoanThanh2").prop('disabled', false);
+                $("#SoNgayHoanThanh1").prop('value', "0")
+            }
+
+
+        }
+        function trimPhanThuong() {
+
+            var ketqua = "";
+            var input = $("#PhanThuong input");
+            var textarea = $("#PhanThuong textarea");
+            var checkbox = $("#PhanThuong checkbox");
+            var i = 0;
+            var check = true;
+            $("#PhanThuong select").each(function () {
+                // o muc gia
+                if ($(input[i * 4]).val() == "") {
+                    $(input[i * 4]).css({
+                        border: "1px red solid"
+                    });
+
+                    check = false;
+                }
+                else {
+                    $(input[i * 4]).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // o so ngay giao hang
+                if ($(input[i * 4 + 1]).val() == "") {
+
+                    $(input[i * 4 + 1]).css({
+                        border: "1px red solid"
+                    });
+                    check = false;
+                }
+                else {
+                    $(input[i * 4 + 1]).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // hinh thuc nhan hang
+                if ($(this).val() == 0) {
+                    $(this).css({
+                        border: "1px red solid"
+                    });
+
+                    check = false;
+                }
+                else {
+                    $(this).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // mo ta textarea
+                if ($(textarea[i]).val() == "") {
+
+                    $(textarea[i]).css({
+                        border: "1px red solid"
+                    });
+                    check = false;
+                }
+                else {
+                    $(textarea[i]).css({
+                        border: "1px #F3F3F3 solid"
+
+                    });
+                }
+
+                ketqua = ketqua + $(input[i * 4]).val() + "^";
+                ketqua = ketqua + $(input[i * 4 + 1]).val() + "^";
+                ketqua = ketqua + $(this).val() + "^";
+
+
+                ketqua = ketqua + $(input[i * 4 + 3]).val() + "^";
+                ketqua = ketqua + $(textarea[i]).val() + "#";
+                i++;
+            });
+
+            if (check == true) {
+                $("#tabPhanThuong").prepend("<i class=\"fa-check-square\"></i> ");
+                return ketqua;
+            }
+            else {
+                //$("#tabPhanThuong").addClass("tomautab");
+                return "";
+            }
+
+        }
+        //check fileupload
+        function ValidateFileUpload() {
+            var fuData = document.getElementById('HinhAnh');
+            if ((FileUploadPath == "" || FileUploadPath == null) && ('@Model.HinhAnh' != null && '@Model.HinhAnh' != "")) {
+                return "complete";
+            }
+            var FileUploadPath = fuData.value;
+
+            //To check if user upload any file
+            if (FileUploadPath == '') {
+                return "error";
+
+            } else {
+                var Extension = FileUploadPath.substring(
+                        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+                //The file uploaded is an image
+
+                if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                                    || Extension == "jpeg" || Extension == "jpg") {
+
+                    // To Display
+                    if (fuData.files && fuData.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(fuData.files[0]);
+                    }
+                    return "complete";
+                }
+
+                    //The file upload is NOT an image
+                else {
+                    return "error";
+
+                }
+            }
+        }
+        function ValidateFileUpload2() {
+            var fuData = document.getElementById('Avatar');
+            var FileUploadPath = fuData.value;
+
+            //To check if user upload any file
+            if (FileUploadPath == '') {
+                return "error";
+
+            } else {
+                var Extension = FileUploadPath.substring(
+                        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+                //The file uploaded is an image
+
+                if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                                    || Extension == "jpeg" || Extension == "jpg") {
+
+                    // To Display
+                    if (fuData.files && fuData.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(fuData.files[0]);
+                    }
+                    return "complete";
+                }
+
+                    //The file upload is NOT an image
+                else {
+                    return "error";
+
+                }
+            }
+        }
+
+        function htmlEncode(value) {
+            if (value) {
+                return jQuery('<div />').text(value).html();
+            } else {
+                return '';
+            }
+        }
+
+        function htmlDecode(value) {
+            if (value) {
+                return $('<div />').html(value).text();
+            } else {
+                return '';
+
+            }
+        }
+
+        // hinh anh 
+        function Upload(sender) {
+            var iframe = $("<iframe>").hide();
+            var newForm = $("<FORM>");
+            newForm.attr({ method: "POST", enctype: "multipart/form-data", action: "/ControllerName/Final" });
+            var $this = $(sender), $clone = $this.clone();
+            $this.after($clone).appendTo($(newForm));
+            iframe.appendTo($("html")).contents().find('body').html($(newForm));
+            newForm.submit();
+        }
+
+        function check_mucdohoanthanh() {
+
+            // thong tin
+            var IdDuAn = $('#IdDuAn').val();
+            var DanhMuc = $('#proj-category').val();
+
+            var TenDuAn = $('#TenDuAn').val();
+            var TienDauTuMucTieu = $("#TienDauTuMucTieu").val();
+            var DiaDiem = $("#DiaDiem").val();
+            var ThongTinNgan = $("#ThongTinNgan").val();
+            var SoNgay = $("#SoNgayHoanThanh1").val();
+            var ThoiGianKetThuc = $("#SoNgayHoanThanh2").val();
+
+            // phan thuong
+            var PhanThuong = trimPhanThuong();
+
+
+            var HinhAnh = ValidateFileUpload();
+            // mo ta
+            var LinkVideo = $('#LinkVideo').val();
+
+            var MoTa = CKEDITOR.instances['NoiDung'].getData();
+            MoTa = htmlEncode(MoTa);
+
+            var RuiRo = CKEDITOR.instances['RuiRo'].getData();
+            RuiRo = htmlEncode(RuiRo);
+
+            // gioi thieu
+            var HoTen = $('#HoTen').val();
+            var GioiThieu = $('#GioiThieu').val();
+            var ChoO = $('#ChoO').val();
+            var WebCaNhan = $('#WebCaNhan').val();
+            // thong tin
+            if (DanhMuc == "" || TenDuAn == "" || HinhAnh == "error" || ThongTinNgan == "" || TienDauTuMucTieu == "" || TienDauTuMucTieu == 0 || ((SoNgay == "" || SoNgay == 0) && ThoiGianKetThuc == "" || HinhAnh == "error" || LinkVideo.length < 5 || MoTa.length < 10 || RuiRo.length < 10 || HoTen.length < 3 || GioiThieu.length < 10 || ChoO.length < 5)) {
+                //thong tin
+                if (DanhMuc == "" || TenDuAn == "" || HinhAnh == "error" || ThongTinNgan == "" || TienDauTuMucTieu == "" || TienDauTuMucTieu == 0 || ((SoNgay == "" || SoNgay == 0) && ThoiGianKetThuc == "")) {
+                }
+                else {
+                    $("#tabThongTin").prepend("<i class=\"fa-check-square\"></i> ");
+                }
+
+                //mo ta
+                if (LinkVideo.length < 5 || MoTa.length < 10 || RuiRo.length < 10) {
+
+                }
+                else {
+                    $("#tabMoTa").prepend("<i class=\"fa-check-square\"></i> ");
+                }
+
+                // Gioi Thieu
+                if (HoTen.length < 3 || GioiThieu.length < 10 || ChoO.length < 5) {
+                }
+                else {
+                    $("#tabGioiThieu").prepend("<i class=\"fa-check-square\"></i> ");
+                }
+            }
+            else {
+                $("#tabThongTin").prepend("<i class=\"fa-check-square\"></i> ");
+                $("#tabMoTa").prepend("<i class=\"fa-check-square\"></i> ");
+                $("#tabGioiThieu").prepend("<i class=\"fa-check-square\"></i> ");
+            }
+        }
+        function taoduan() {
+
+
+            // phan thuong
+            var PhanThuong = trimPhanThuong();
+            var DanhMuc = $('#proj-category').val();
+
+
+            $("#PhanThuong").val(PhanThuong);
+            $("#DanhMuc").val(DanhMuc);
+
+
+            var HinhAnh = ValidateFileUpload();
+
+            var Id = $('#Id').val();
+
+            if ($('#SoNgay1').is(':checked')) {
+                if ($("#SoNgayHoanThanh1").val() <= 0) {
+                    jQuery('#SoNgayHoanThanh2').val("");
+                    $('#SoNgayHoanThanh1').addClass("tomauvien");
+                    return false;
+                } else {
+                    $('#SoNgayHoanThanh1').removeClass("tomauvien");
+
+                }
+            }
+            else {
+                if ($("#SoNgayHoanThanh2").val() <= 0) {
+                    jQuery('#SoNgayHoanThanh1').val("");
+                    $('#SoNgayHoanThanh2').addClass("tomauvien");
+                    return false;
+                } else {
+                    $('#SoNgayHoanThanh2').removeClass("tomauvien");
+                }
+            }
+
+
+            var SoNgay = $("#SoNgayHoanThanh1").val();
+            var ThoiGianKetThuc = $("#SoNgayHoanThanh2").val();
+            $("#SoNgay").val(SoNgay);
+            $("#ThoiGianKetThuc").val(ThoiGianKetThuc);
+
+            var HinhAnh = ValidateFileUpload();
+            if (HinhAnh == "error") {
+                jQuery('.uploadanh').slideDown(); return false;
+            }
+            else { jQuery('.uploadanh').slideUp(); }
+
+
+            return true;
+        }
+    </script>
+}

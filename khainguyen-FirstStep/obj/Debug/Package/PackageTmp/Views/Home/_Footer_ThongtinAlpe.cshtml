@@ -1,0 +1,165 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityGroupFAQ>
+@{
+    ViewBag.Title = "Thông tin cty Alpe";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+ <!-- SLIDE -->
+<div class="slider-fix-300">
+<div id="slides-sm">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+    </ul>
+
+    <div class="faq-intro">
+        <div class="container">
+            <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+            <div class="faq-info">
+                <div class="faq-title">Thông tin Alpe</div>
+                <div class="faq-des"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+@* <!-- SLIDE -->
+        <div class="slider-fix-300">
+            <div id="slides-sm">
+                <ul class="slides-container">
+                     <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+                </ul>
+                <div class="faq-intro">
+                    <div class="container">
+                        <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+                        <div class="faq-info">
+                            <div class="faq-title">FAQ</div>
+                            <div class="faq-des faq-gray">Looking for inspiration, tips, tools, and best practices for making a successful project?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+<!-- FAQ -->
+<div class="container">
+
+    @*<div class="faq-search">
+        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+    </div>*@   
+
+    <div class="faq-list-ask" id="noidung">
+
+       <div>
+	C&ocirc;ng ty TNHH Alpe</div>
+<div>
+	&nbsp;</div>
+<div>
+	Địa chỉ: 74 Ng&ocirc; Đức Kế, Phường Bến Th&agrave;nh, Quận 01, TP.HCM</div>
+<div>
+	&nbsp;</div>
+<div>
+	Điện thoại: &nbsp;08 3821 3926 (ext: 104)&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	Số ĐKKD: 0312919448</div>
+<div>
+	&nbsp;</div>
+<div>
+	T&agrave;i khoản: 1020 10002 138 538 - Viettinbank Chi nh&aacute;nh 1 - TPHCM</div>
+<div>
+	&nbsp;</div>
+<div>
+    Bản đồ đường đi đến Firststep: 
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2330.5518330916866!2d106.70225554082676!3d10.772552547443656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x94ccd905fe444e6b!2sFirstStep!5e0!3m2!1sen!2svn!4v1436847715349" width="1000" height="400" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+    </div>
+
+
+
+
+</div>
+
+<div style="height: 50px;"></div>
+@section jqueryPlugin{
+<script>
+    $(document).ready(function () {
+        var $slides = $('#slides-sm');
+        Hammer($slides[0]).on("swipeleft", function (e) {
+            $slides.data('superslides').animate('next');
+        });
+
+        Hammer($slides[0]).on("swiperight", function (e) {
+            $slides.data('superslides').animate('prev');
+        });
+        $slides.superslides({
+            slide_easing: 'easeInOutCubic',
+            slide_speed: 800,
+            pagination: false,
+            hashchange: false,
+            scrollable: true,
+            play: 5000,
+            animation: 'fade',
+            inherit_height_from: '.slider-fix-300'
+        });
+        group(2);
+    });
+    $('.faq-ans').each(function () {
+        $(this).attr('data-height', $(this).height()).height(0);
+    });
+    $('.faq-ask a:first-child').click(function (e) {
+        e.preventDefault();
+        if ($(this).attr('data-show') == "1") {
+            $(this).attr('data-show', 0);
+            $(this).next().animate({ height: 0 }, 500);
+        }
+        else {
+            $(this).attr('data-show', 1);
+            $n = $(this).next();
+            $n.animate({ height: $n.attr('data-height') }, 500);
+            //$('.faq-ans').animate({ height: 0 }, 300, function () {
+            //    $('.faq-ask a:first-child').attr('data-show', 0);
+            //    $(this).attr('data-show', 1);
+            //    $n.animate({ height: $n.attr('data-height') }, 500);
+            //});
+        }
+    });
+@*    function group(id) {
+        var postURL = '@Url.Action("_IndexFAQ1_NoiDung", "FAQ")';
+        $.post(postURL, { "id": id }, function (data) {
+            if (data == "Error") {
+                alert("Error");
+            } else {
+                $('#noidung').html(data);
+            }
+        });
+        return false;
+    }*@
+    //$(document).ready(function () {
+    //    var $slides = $('#slides');
+    //    Hammer($slides[0]).on("swipeleft", function (e) {
+    //        $slides.data('superslides').animate('next');
+    //    });
+
+    //    Hammer($slides[0]).on("swiperight", function (e) {
+    //        $slides.data('superslides').animate('prev');
+    //    });
+    //    $slides.superslides({
+    //        slide_easing: 'easeInOutCubic',
+    //        slide_speed: 800,
+    //        pagination: false,
+    //        hashchange: false,
+    //        scrollable: true,
+    //        play: 5000,
+    //        animation: 'fade'
+    //    });
+    //});
+</script>
+
+}

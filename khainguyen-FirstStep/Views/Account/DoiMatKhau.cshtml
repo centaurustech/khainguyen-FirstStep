@@ -1,0 +1,223 @@
+﻿@model khainguyen_FirstStep.Models.AccountModel
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            <div class="acc-title">
+                <h1><i class="fa-bookmark"></i>Quản lý tài khoản</h1>
+                <p>Bạn có thể thay đổi mật khẩu của mình.</p>
+            </div>
+            @Html.Action("_MenuTaiKhoan", "Account")
+
+            <div class="col-2">
+                @using (Html.BeginForm("DoiMatKhau", "Account",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post))
+                { 
+                    <form class="form-edit-profile ">
+                        <p class="form-error color-red hide">
+                            <i class="fa-dot-circle-o"></i>you enter the wrong password<br />
+                            <i class="fa-dot-circle-o"></i>message error 2<br />
+                            <i class="fa-dot-circle-o"></i>message error 3<br />
+                        </p>
+                        <p>
+                            <b>Email</b><br />
+                            <input  class="form-txt" type="text" value="@Request.Cookies["ftusername"].Value.ToString()" disabled="disabled" />
+                            <input name="Email" id="Email" value="@Request.Cookies["ftusername"].Value.ToString()" hidden="hidden"/>
+                            <input name="HoTen" id="HoTen" value="nonamegsaggsa" hidden="hidden"/>
+                        </p>
+                        <p>
+                            <b>Mật khẩu</b><br />
+                            @Html.PasswordFor(model => model.Pass, new { @class = "form-txt", @placeholder = "Nhập mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.Pass)
+                        </p>
+                        <p>
+                            <b>Mật khẩu nhập lại</b><br />
+                            @Html.PasswordFor(model => model.RePass, new { @class = "form-txt", @placeholder = "Nhập lại mật khẩu" })
+                            @Html.ValidationMessageFor(model => model.RePass)
+                        </p>
+                        <p>
+                            <button id="btnSave" type="submit" class="btn btn-larger">Thay đổi mật khẩu</button>
+                        </p>
+                    </form>
+                }
+            </div>
+            <div class="col-2">
+               
+                @{
+                    if (@ViewBag.User.IdFacebook != "" && @ViewBag.User.IdFacebook != null)
+                    { 
+                        <p class="facebook">
+                    <b>Facebook</b><br />
+                    <i>Bạn vui lòng đổi password ít nhất một lần trên FirstStep, để thực hiện thao tác này</i><br />
+                    <br />
+                    <a href="#" class="btn btn-danger show-popup-proj" data-id="popup2">Hủy kết nối với facebook</a>
+                </p>
+                    }
+                    else{
+                          <p class="facebook">
+                    <b>Facebook</b><br />
+                    <i></i><br />
+                    <br />
+                    <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb">Kết nối với facebook</a>
+                </p>
+                    }
+                }
+                <p class="TaiKhoan">
+                    <b>Tài khoản</b><br />
+                    <i>Nếu bạn thực hiện thao tác này tài khoản và email của bạn sẽ mất quyền truy cập vĩnh viễn trên FirstStep, XIN HÃY THẬN TRỌNG</i><br />
+                    <br />
+                    <a href="#" class="btn btn-danger show-popup-proj" data-id="popup1">Xóa tài khoản</a>
+                </p>
+            </div>
+
+            <div class="clearfix"></div>
+             <div class="history-login">
+                <h2>Lịch sử đăng nhập</h2>
+                <!-- table Login History -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Hành động</th>
+                            <th>Thời gian</th>
+                            <th>Địa điểm</th>
+                            <th>Địa chỉ IP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in ViewBag.history)
+                            {
+                                string[] mang = item.date.Split(' ');
+                                string ngay = mang[0] +" "+ mang[1] +" "+ mang[2];
+                                
+                                DateTime dd = DateTime.Parse(ngay);
+                                if(dd.DayOfYear== DateTime.Now.DayOfYear)
+                                {
+                                   <tr>
+                            <td data-title="Activity:">@item.hoatdong</td>
+                            <td data-title="Time:">@item.date</td>
+                            <td data-title="Location:">@item.location</td>
+                            <td data-title="IP Address:">@item.Ipaddress</td>
+                        </tr>
+                                }else
+                                {
+                                 <tr style="display:none" class="activeafter">
+                            <td data-title="Activity:">@item.hoatdong</td>
+                            <td data-title="Time:">@item.date</td>
+                            <td data-title="Location:">@item.location</td>
+                            <td data-title="IP Address:">@item.Ipaddress</td>
+                        </tr>
+                                }
+                                    
+                       
+                            }
+                        }
+                    </tbody>
+                </table>
+        </div>
+
+        <div style="height: 50px;"></div>
+            <div class="load-more container text-center" id="loadmoremk">
+        <a href="javascript:void(0)" class="btn">Xem tất cả</a>
+
+        </div>
+    </div>
+</div>
+ <div class="proj-popup nicescroll" data-id="popup1">
+        <div class="proj-popup-panel">
+            <div class="proj-popup-btnclose" id="closepopup1">x</div>
+
+            <div class="proj-popup-content">
+                <h3>THÔNG BÁO</h3>
+                <br />
+                Vui lòng nhập mật khẩu hiện tại và nhấn nút <a href="#">xóa tài khoản</a> để thực hiện việc xóa tài khoản của bạn.  Nếu tài khoản của bạn có liên kết với facebook xin hãy hủy kết nối với facebook trước khi xóa<br /><br />
+                Vui lòng <a href="#">tắt thông báo</a> này nếu bạn suy nghĩ lại
+                <div class="space_20"></div>
+
+                 <div class="">
+                    Nhập mật khẩu: <input type="password" id="Password_remove" />&nbsp;&nbsp;&nbsp;
+                    <button class="btn" onclick="return XoaTaiKhoan()">Xóa tài khoản</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="proj-popup nicescroll" data-id="popup2">
+        <div class="proj-popup-panel">
+            <div class="proj-popup-btnclose" id="closepopup2">x</div>
+
+            <div class="proj-popup-content">
+                <h3>THÔNG BÁO</h3>
+                <br />
+                Vui lòng nhập mật khẩu hiện tại và nhấn nút <a href="#">Ngắt kết nối với facebook</a> để thực hiện việc Ngắt kết nối với facebook của bạn. Để thực hiện thao tác này bạn phải <a href="#">đổi mật khẩu ít nhất một lần trên FirstStep</a><br /><br />
+                Vui lòng <a href="#">tắt thông báo</a> này nếu bạn suy nghĩ lại
+                <div class="space_20"></div>
+
+                 <div class="">
+                    Nhập mật khẩu: <input type="password" id="Password_Disconnect_facebook" /> &nbsp;&nbsp;&nbsp;
+                    <button class="btn" onclick="return Disconnect_facebook()">Ngắt kết nối với facebook</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("CheckLife","Home")
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    
+    <script>
+        $(document).ready(function () {
+            $('#loadmoremk').click(function () {
+                $(".activeafter").show();
+                $(this).hide();
+            })
+        })
+        //
+        function XoaTaiKhoan() {
+            //delete_account
+            var pass = $('#Password_remove').val();
+            if (pass.length < 5) {
+                alert("Mật khẩu không đúng");
+                return false;
+            }
+            var postURL = '@Url.Action("delete_account", "Ajax")';
+            if (pass != "") {
+                $.post(postURL, { "pass": pass }, function (data) {
+                    if (data == "Xóa tài khoản thành công") {
+                        $('#closepopup1').click();
+                        $('.TaiKhoan').fadeOut(500);
+                        window.location = '@Url.Action("Logout", "Account")';
+                    }
+                    alert(data);
+                });
+            }
+        }
+
+        function Disconnect_facebook() {
+            //disconnect_facebook
+            var pass = $('#Password_Disconnect_facebook').val();
+            if (pass.length < 5)
+                return false;
+            var postURL = '@Url.Action("disconnect_facebook", "Ajax")';
+            if (pass != "") {
+                $.post(postURL, { "pass": pass }, function (data) {
+                    if (data == "Hủy kết nối với facebook thành công") {
+                        //$('#closepopup2').click();
+                        //$('.facebook').fadeOut(500);
+                        location.reload();
+                    }
+                });
+            }
+        }
+    </script>
+}

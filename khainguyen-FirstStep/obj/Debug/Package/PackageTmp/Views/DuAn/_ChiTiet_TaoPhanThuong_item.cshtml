@@ -1,0 +1,67 @@
+﻿
+ <div class="proj-plege">
+                        <div class="col-3-7">
+                            <b>Phần thưởng #@ViewBag.vt</b><br />
+                        </div>
+                        <div class="col-7-3">
+                            <div class="col-2">
+                                <h4>Mức giá <i class="fa-info-circle tooltip color-green" title="Tối thiểu 50.000 VNĐ"></i></h4>
+                                <p><input class="form-txt text-right auto" data-p-sign="s" data-v-min="0" data-v-max ="99999999999999" value="" style="width: 40%" /> VNĐ</p>
+                                <h4>Hình thức giao hàng</h4>
+                                <p>
+                                    <select class="form-txt">
+                                        <option value="">Lựa chọn hình thức</option>
+                                        <option value="Giao Hàng Tận Nơi">Giao hàng tận nơi</option>
+                                        <option value="Qua Bưu Điện">Qua bưu điện</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </p>
+                            </div>
+                            <div class="col-2">
+                                <h4>Thời gian giao hàng (ước tính)</h4>
+                                <p> <input class="form-txt text-right datepicker" placeholder="Chọn tháng / năm" style="width: 50%" /></p>
+                                <label><h4><input type="checkbox" /> Giới hạn số lượng </h4></label>
+                                <p style="display:none"><input class="form-txt text-right" type="number" value="" placeholder="0" style="width: 20%;" /> <i class="fa-question-circle tooltip color-green" title="Điền số lượng phần thưởng giới hạn"></i></p>
+                            </div>
+                        </div>
+                        <div class="col-3-7">   
+                                <br/>                             
+                            </div>
+                        <div class="col-7-3">
+                            <div class="col-ful">
+                                <h4>Mô tả</h4>
+                            <p><textarea class="form-txt"></textarea> </p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-delete-reward bg-red" data-phanthuong="0">Xóa</a>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        // datetime picker
+        //   $(".datepicker").datepicker();
+        $('.datepicker').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'mm/yy',
+            onClose: function (dateText, inst) {
+                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, month, 1));
+            }
+        });
+        $("#SoNgayHoanThanh2").datepicker();
+        $("input[type=checkbox]").click(function () {
+
+            $(this).parent().parent().parent().find("input[type=number]").parent().toggle(this.checked);
+        });
+    });
+</script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('.auto').autoNumeric('init');
+    });
+</script>
+    

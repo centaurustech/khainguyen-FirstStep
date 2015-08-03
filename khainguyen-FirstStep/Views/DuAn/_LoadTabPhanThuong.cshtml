@@ -1,0 +1,13 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+
+<p>&nbsp;</p>
+<h3>Mỗi dự án cần phần thưởng tuyệt vời!</h3>
+<p>Hãy sáng tạo !</p>
+<p>&nbsp;</p>
+<input type="hidden" value="@Model.vt_pt_edit" id="vt_pt_edit" name="vt_pt_edit" />
+<div class="box box-plege" id="boxPhanThuong">
+
+    @Html.Action("_ChiTiet_TaoPhanThuong", "DuAn", new { IdDuAn = Model.Id })
+
+</div>
+<a href="#" class="btn btn-big" id="btn-add-reward-mode">Thêm phần thưởng khác</a>

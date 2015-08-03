@@ -1,0 +1,23 @@
+﻿@model  IEnumerable<khainguyen_FirstStep.EntityTinNhan>
+@{
+    foreach (var item in Model)
+    {
+        if (item.IdUserGui == Convert.ToInt16(Request.Cookies["ftid"].Value))
+        {
+            <a href="@Url.Action("TinNhan_Read", "HoatDong", new { Id = item.Id})">
+                <img src="@item.EntityUser1.Avatar" alt="" />
+                <b>@item.EntityUser1.HoTen</b>
+                <i class="fa-check-circle color-green"></i>
+            </a>
+        }
+        else
+        {
+            <a href="@Url.Action("TinNhan_Read", "HoatDong", new { Id = item.Id})">
+                <img src="@item.EntityUser.Avatar" alt="" />
+                <b>@item.EntityUser.HoTen</b>
+                <i class="fa-check-circle color-green"></i>
+            </a>
+        }
+    }
+
+}

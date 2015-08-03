@@ -1,0 +1,29 @@
+﻿@model khainguyen_FirstStep.EntityFAQ1
+@{       
+    <a href="#">@Model.CauHoi</a>
+    <div class="faq-ans">
+        @Html.Raw(Model.CauTraLoi)
+    </div>
+    <h5 class="Feedback">
+      Bạn có thực sự thỏa mãn với câu trả lời này không?
+      <a href="#" onclick="PhanHoi(@Model.Id, 2)">Có</a>
+      |
+      <a href="#" onclick="PhanHoi(@Model.Id, 1)">Một phần</a>
+      |
+      <a href="#" onclick="PhanHoi(@Model.Id, 0)">Không</a>
+    </h5>
+}
+
+<script>
+    function PhanHoi(id, result) {
+        var postURL = '@Url.Action("_IndexFAQ3_PhanHoi", "FAQ")';
+        $.post(postURL, { "id": id , "result": result }, function (data) {
+            if (data == "Error") {
+                alert("Error");
+            } else {
+                $('.Feedback').text("Cảm ơn ý kiến phản hồi của bạn");
+            }
+        });
+        return false;
+    }
+</script>

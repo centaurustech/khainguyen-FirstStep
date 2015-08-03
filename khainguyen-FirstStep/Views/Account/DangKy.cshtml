@@ -1,0 +1,71 @@
+﻿@model khainguyen_FirstStep.Models.AccountModel
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<style>
+        .input-validation-error {
+        border: 2px solid #f00 !important;
+    }
+
+
+    .field-validation-error {
+        color: #fff !important;
+        font-size: 16px !important;
+        float:left;
+    }
+</style>
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            <div class="panel-login">
+                <h4>Đăng ký tài khoản</h4>
+                <div class="form-login">
+                    @using (Html.BeginForm("DangKy", "Account",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post))
+                    { 
+                        <form>
+                            <p>
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-txt", @placeholder = "Email của bạn" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </p>
+                            <p>
+                                @Html.TextBoxFor(model => model.HoTen, new { @class = "form-txt", @placeholder = "Họ và tên" })
+                                @Html.ValidationMessageFor(model => model.HoTen)
+                            </p>
+                            <p>
+                                @Html.PasswordFor(model => model.Pass, new { @class = "form-txt", @placeholder = "Nhập mật khẩu" })
+                                @Html.ValidationMessageFor(model => model.Pass)
+                            </p>
+                            <p>
+                                @Html.PasswordFor(model => model.RePass, new { @class = "form-txt", @placeholder = "Nhập lại mật khẩu" })
+                                @Html.ValidationMessageFor(model => model.RePass)
+                            </p>
+                            <p><button type="submit" class="btn btn-login-fb"><i class="fa-sign-in"></i>&nbsp;Đăng ký</button></p>
+                        </form>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    }
+
+
+

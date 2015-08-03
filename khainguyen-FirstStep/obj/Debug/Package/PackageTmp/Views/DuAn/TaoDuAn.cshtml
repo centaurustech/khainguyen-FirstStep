@@ -1,0 +1,187 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+@{
+    ViewBag.Title = "Tạo dự án";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<style>
+        .input-validation-error {
+        border: 2px solid #f00 !important;
+    }
+
+
+    .field-validation-error {
+        color: #fff !important;
+        font-size: 16px !important;
+    }
+</style>
+
+<div id="slides">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img9.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img10.jpg" /></li>>
+    </ul>
+    <div class="proj-intro">
+        <div class="container">
+            <div class="col-4-6 text-right">
+                <div class="proj-texta">Khởi tạo dự án</div>
+                <p>Hoàn toàn miễn phí và đơn giản.</p>
+                <p>Chúng tôi sẽ luôn sẵn sàng hỗ trợ bất cứ khi nào bạn cần.</p>
+                <p>Bạn đã sẵn sàng để trải nghiệm ?</p>
+            </div>
+            <div class="col-6-4">
+                @using (Html.BeginForm("TaoDuAn", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class="proj-start" }))
+            {
+                
+                    <p>
+                        <b><i class="fa-chevron-circle-right"></i> Tên Dự Án</b><br />
+                        @Html.TextBoxFor(model => model.TenDuAn, new { @class = "form-txt", @placeholder = "Âm nhạc và cuộc sống, ..." })
+                                @Html.ValidationMessageFor(model => model.TenDuAn)
+                        
+                    </p>
+                    <div style="float: left; width: 50%">
+                        <p>
+                            <b><i class="fa-chevron-circle-right"></i> Danh mục</b><br />
+                            <select class="form-txt" style="font-size: 0.85em" id="IdDanhMuc" name="IdDanhMuc">
+                               @{
+                                   foreach (var dm in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityDanhMuc>)
+                                   {
+                                         <option value='@dm.Id' selected>@dm.TenDM</option>
+                                   }
+                               }
+                               
+                            </select>
+                        </p>
+                    </div>
+                    <div style="float: left; width: 50%">
+                    <p>
+                        <b><i class="fa-chevron-circle-right"></i> Tổng kinh phí</b><br />
+                        @*@Html.TextBoxFor(model => model.TienDauTuMucTieu, new { @class = "form-txt auto", @placeholder = "0 VNĐ", data_a_sign = " VNĐ ", data_p_sign = "s" })
+                                @Html.ValidationMessageFor(model => model.TienDauTuMucTieu)*@
+                        <input type="text" class="form-txt auto" id="txTienDauTuMucTieu" data-a-sign=" VNĐ" data-p-sign="s" />
+                        @Html.HiddenFor(Model => Model.TienDauTuMucTieu)
+                     
+                    </p>
+                    </div>
+                    <div class="clearfix"></div>
+                            <p id="whichpreson">
+                                <h3>Bạn kêu gọi vốn với tư cách <i class="fa-question-circle tooltip color-tiny tooltipstered" title="Mỗi đối tượng sẽ có quy định khác nhau"></i></h3>
+                                <label class="form-label"><input type="radio" value="Cá nhân" checked="checked" name="whichpreson">Cá nhân</label>
+                                <label class="form-label"><input type="radio" value="Doanh nghiệp" name="whichpreson">Doanh nghiệp</label>                                
+                                <label class="form-label"><input type="radio" value="Tổ chức từ thiện" name="whichpreson">Tổ chức từ thiện</label>
+                            </p>
+                  
+                    @*<div class="loginerror">Vui lòng điền đầy đủ thông tin dự án.</div>
+                    <div class="loginerror2">Vui lòng nhập đúng tổng kinh phí.</div>*@
+                    <p><button id="btnSave" type="submit" class="btn btn-big" onclick="taoduan();">Tạo dự án</button></p>
+                    @*<p>
+                        <button id="btnSave" onclick="return taoduan();" class="btn btn-big"></button>
+                    </p>*@
+                
+            }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section jqueryPlugin{
+
+     @*@Html.Action("Nhappass","Home")*@
+
+    <!-- JQUERY CUSTOM -->
+    @*<script>
+        function isPositiveInteger(n) {
+            return 0 === n % (!isNaN(parseFloat(n)) && 0 <= ~~n);
+        }
+        function taoduan() {
+            var TenDuAn = $('#TenDuAn').val();
+            var TienDauTuMucTieu = $("#TienDauTuMucTieu").val();
+            if (TenDuAn == "" || TienDauTuMucTieu == "") {
+                alert("Vui lòng điền đầy đủ thông tin");
+                return false;
+            }
+            if (isPositiveInteger(TienDauTuMucTieu) || TienDauTuMucTieu != "0")
+            {
+                alert("Vui lòng nhập đúng Tổng Kinh Phí. Tổng kinh phí không được = 0");
+                return false;
+            }
+            var IdDanhMuc = $("#DiaDiem").val();
+            var mWhichPerson = $("#whichpreson input");
+            var WhichPerson = $('input[name=whichpreson]:checked').val()
+            
+            var postURL = '@Url.Action("TaoDuAn", "DuAn")';
+            if (TenDuAn != "" || TienDauTuMucTieu !="") {
+                $.post(postURL, { "TenDuAn": TenDuAn, "TienDauTuMucTieu": TienDauTuMucTieu, "IdDanhMuc": IdDanhMuc, "WhichPerson": WhichPerson }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        location.href = "/DuAn/TaoDuAn_Buoc2" + "?Id=" + data;
+                    }
+                 });
+            }
+            else {
+                //alert("Vui lòng điền đầy đủ thông tin !")
+                jQuery('.loginerror').slideDown();
+            }
+            return false;
+        }
+    </script>*@
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#username').keypress(function () {
+                jQuery('.loginerror').slideUp();
+            });
+
+            var $slides = $('#slides');
+            Hammer($slides[0]).on("swipeleft", function (e) {
+                $slides.data('superslides').animate('next');
+            });
+
+            Hammer($slides[0]).on("swiperight", function (e) {
+                $slides.data('superslides').animate('prev');
+            });
+            $slides.superslides({
+                slide_easing: 'easeInOutCubic',
+                slide_speed: 3000,
+                pagination: false,
+                hashchange: false,
+                scrollable: true,
+                play: 5000,
+                animation: 'fade'
+            });
+        });
+        jQuery(function ($) {
+            $('.auto').autoNumeric('init');            
+        });
+        function taoduan() {
+            $("#TienDauTuMucTieu").val($("#txTienDauTuMucTieu").autoNumeric('get'));
+        };
+    </script>
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+            d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                z.set.
+                _.push(o)
+            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "//v2.zopim.com/?3CGYmoU6g119BLNefkNxXfDxOKxZp1z0"; z.t = +new Date; $.
+            type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+    
+    <script type="text/javascript" src="~/Content/cssFrontEnd/js/autoNumeric.js"></script>
+}

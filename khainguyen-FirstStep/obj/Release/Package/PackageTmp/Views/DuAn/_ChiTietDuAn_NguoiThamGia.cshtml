@@ -1,0 +1,19 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDauTu>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="supporter-row">
+            <div class="avatar"><img src="@item.EntityUser.Avatar" alt="" /></div>
+            <a href="#"><h3>@item.EntityUser.HoTen</h3></a>
+            <div class="tag">
+                <a href="#"><i class="fa-map-marker"></i>@item.EntityUser.DiaDiem</a>
+                <a href="#"><i class="fa-tag"></i>@item.EntityUser.GioiThieu</a>
+            </div>
+            <div class="project">
+            <span>@Html.Action("_ChiTietDuAn_SoDuAnThamGia", "DuAn", new { Id = item.EntityUser.Id })</span> project
+            </div>
+        </div>
+    }
+}
+

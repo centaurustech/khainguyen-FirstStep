@@ -1,0 +1,63 @@
+﻿
+@{
+    if(ViewBag.TrangThai>-1)
+    {
+        string iddd = "follow" + ViewBag.IdBanBe;
+        
+        if (ViewBag.TrangThai == 1)
+        {
+             <div id="@iddd">
+                                        <a href="#" class="btn bg-red" onclick="return Un_Apply('@ViewBag.IdBanBe')"><i class="fa-minus"></i> Hủy theo dõi</a>
+                                    </div>
+        }
+        if (ViewBag.TrangThai == 2)
+        {
+          <div id="@iddd">
+                                       <a href="#" class="btn" onclick="return Post_Apply('@ViewBag.IdBanBe')"><i class="fa-plus"></i> Theo dõi</a>
+                                    </div>
+    
+        }
+    }
+
+}
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script>
+    
+    function Post_Apply(IdBanBe) {
+        var postURL = '@Url.Action("Follow", "BanBe")';
+       $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+           if (data == "complete") {
+               $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+    function Un_Apply(IdBanBe) {
+        var postURL = '@Url.Action("UnFollow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+            if (data == "complete") {
+                $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+    function Block_Apply(IdBanBe) {
+        var postURL = '@Url.Action("BlockFollow", "BanBe")';
+         $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+             if (data == "complete") {
+                 $("#follow" + IdBanBe).fadeOut(1000);
+             }
+         });
+         return false;
+    }
+    function UnBlockFollow(IdBanBe) {
+        var postURL = '@Url.Action("UnBlockFollow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {;
+            if (data == "complete") {
+                $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+</script>

@@ -1,0 +1,73 @@
+﻿<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="acc-title">
+    <h1><i class="fa-group"></i> Quản lý bạn bè </h1>
+    <p>Bạn có thể tìm kiếm, theo dõi, khóa bạn bè.</p>
+</div>
+<nav class="friend-menu">
+    <a href="@Url.Action("TimBan", "BanBe")">Tìm bạn bè</a>
+    @*<a href="#">Browse Project</a>*@
+    <a href="@Url.Action("DangTheoDoi", "BanBe")">Bạn bè được theo dõi bởi bạn</a>
+    <a href="@Url.Action("BiTheoDoi", "BanBe")">Bạn được theo dõi bởi bạn bè</a>
+    <a href="@Url.Action("KhoaBan", "BanBe")">Mở khóa bạn bè</a>
+</nav>
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".friend-menu a").each(function (index, value) {
+            var url = $(location).attr("pathname");
+            if (url.indexOf("?") > 0) { url = url.substring(0, url.indexOf("?")); }
+            var url_compra = $(this).attr("href") ? $(this).attr("href") : "";
+            if (url_compra.indexOf("?") > 0) { url_compra = url_compra.substring(0, url_compra.indexOf("?")); }
+            var url_data_link = $(this).attr("data-link") ? $(this).attr("data-link") : "";
+            if (url_compra != "/") {
+                if (url.toLowerCase().indexOf(url_compra.toLowerCase()) >= 0 || url.indexOf(url_data_link) > 0) {
+                    $(this).addClass("active");
+                    return;
+                }
+            }
+            else {
+                if (url.toLowerCase() === url_compra.toLowerCase()) {
+                    $(this).addClass("active");
+                    return;
+                }
+            }
+        });
+    });
+    function Post_Apply(IdBanBe) {
+        var postURL = '@Url.Action("Follow", "BanBe")';
+       $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+           if (data == "complete") {
+               $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+    function Un_Apply(IdBanBe) {
+        var postURL = '@Url.Action("UnFollow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+            if (data == "complete") {
+                $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+    function Block_Apply(IdBanBe) {
+        var postURL = '@Url.Action("BlockFollow", "BanBe")';
+         $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+             if (data == "complete") {
+                 $("#follow" + IdBanBe).fadeOut(1000);
+             }
+         });
+         return false;
+    }
+    function UnBlockFollow(IdBanBe) {
+        var postURL = '@Url.Action("UnBlockFollow", "BanBe")';
+        $.post(postURL, { "IdBanBe": IdBanBe }, function (data) {
+            if (data == "complete") {
+                $("#follow" + IdBanBe).fadeOut(1000);
+            }
+        });
+        return false;
+    }
+</script>

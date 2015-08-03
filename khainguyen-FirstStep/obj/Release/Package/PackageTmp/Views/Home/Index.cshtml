@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Trang chủ";
+
+}
+<!-- SLIDE-->
+@Html.Action("_TrangChu_Slide", "Home")
+<!-- /SLIDE-->
+
+<!-- PANEL STAFF PICK -->
+<div class="panel dark panel-staff-pick">
+    @Html.Action("_TrangChu_NoiBat", "Home")
+</div>
+
+ @Html.Action("_TrangChu_Trend_Category", "Home")
+@*<!-- PANEL LIST-ITEM -->
+<div class="panel-list panel1">
+    <div class="container">
+        <div class="category">
+            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án phổ biến</h2>
+            <a href="#" class="btn">View more</a>
+        </div>
+        <div class="list-item">
+       @Html.Action("_TrangChu_NoiBat_Chon1", "Home")
+        </div>
+        <nav class="control-navigation">
+            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+        </nav>
+    </div>
+</div>
+
+<!-- PANEL LIST-ITEM 2 -->
+<div class="panel-list panel2">
+    <div class="background"><img src="~/Content/cssFrontEnd/upload/project/bg1-1600x1200.jpg" alt="" /></div>
+    <div class="container">
+        <div class="category">
+            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án sắp kết thúc</h2>
+            <a href="#" class="btn">View more</a>
+        </div>
+        <div class="list-item">
+         @Html.Action("_TrangChu_NoiBat_Chon2", "Home")
+          
+        </div>
+        <nav class="control-navigation">
+            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+        </nav>
+    </div>
+</div>
+
+<!-- PANEL LIST-ITEM 3 -->
+<div class="panel-list dark panel3">
+    <div class="container">
+        <div class="category">
+            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án nhiều người xem</h2>
+            <a href="#" class="btn">View more</a>
+        </div>
+        <div class="list-item">
+             @Html.Action("_TrangChu_NoiBat_Chon3", "Home")  
+        </div>
+        <nav class="control-navigation">
+            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+        </nav>
+    </div>
+</div>*@
+
+<!-- PANEL QUOTE -->
+<div class="panel">
+    @Html.Action("_TrangChu_YKien", "Home")
+</div>
+
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        // Slide đầu full screen
+        $(document).ready(function () {
+            var $slides = $('#slides');
+            Hammer($slides[0]).on("swipeleft", function (e) {
+                $slides.data('superslides').animate('next');
+            });
+
+            Hammer($slides[0]).on("swiperight", function (e) {
+                $slides.data('superslides').animate('prev');
+            });
+            $slides.superslides({
+                slide_easing: 'easeInOutCubic',
+                slide_speed: 500,
+                pagination: true,
+                hashchange: false,
+                scrollable: true,
+                play: 10000,
+                animation: 'fade'
+            });
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var owl1 = $(".panel1 .list-item");
+
+            owl1.owlCarousel({
+                items: 3, //10 items above 1000px browser width
+                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+                itemsTablet: [768, 2], //2 items between 600 and 0
+                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+                lazyLoad: true,
+                slideSpeed: 500
+            });
+
+            $('.panel1 .prev').click(function (e) {
+                e.preventDefault();
+                owl1.trigger('owl.prev');
+            });
+
+            $('.panel1 .next').click(function (e) {
+                e.preventDefault();
+                owl1.trigger('owl.next');
+            });
+
+            var owl2 = $(".panel2 .list-item");
+
+            owl2.owlCarousel({
+                items: 3, //10 items above 1000px browser width
+                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+                itemsTablet: [768, 2], //2 items between 600 and 0
+                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+                lazyLoad: true,
+                slideSpeed: 500
+            });
+
+            $('.panel2 .prev').click(function (e) {
+                e.preventDefault();
+                owl2.trigger('owl.prev');
+            });
+
+            $('.panel2 .next').click(function (e) {
+                e.preventDefault();
+                owl2.trigger('owl.next');
+            });
+
+            var owl3 = $(".panel3 .list-item");
+
+            owl3.owlCarousel({
+                items: 3, //10 items above 1000px browser width
+                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+                itemsTablet: [768, 2], //2 items between 600 and 0
+                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+                lazyLoad: true,
+                slideSpeed: 500
+            });
+
+            $('.panel3 .prev').click(function (e) {
+                e.preventDefault();
+                owl3.trigger('owl.prev');
+            });
+
+            $('.panel3 .next').click(function (e) {
+                e.preventDefault();
+                owl3.trigger('owl.next');
+            });
+
+            var owl4 = $(".quote-slide .slide");
+
+            owl4.owlCarousel({
+                navigation: false,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                autoPlay: 7000,
+                pagination: false
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // staff pick
+            var owl5 = $(".list-item-tag");
+
+            owl5.owlCarousel({
+                navigation: false,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                pagination: false,
+                touchDrag: false,
+                mouseDrag: false
+            });
+
+            $('.list-tag a').click(function (e) {
+                e.preventDefault();
+                $('.list-tag a').removeClass('active');
+                $(this).addClass('active');
+                owl5.trigger('owl.goTo', $(this).index());
+            });
+
+        });
+    </script>
+}

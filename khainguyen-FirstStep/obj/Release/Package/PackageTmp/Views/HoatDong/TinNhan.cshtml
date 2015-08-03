@@ -1,0 +1,192 @@
+﻿@model IList<khainguyen_FirstStep.Models.SendMessage>
+@{
+    ViewBag.Title = "Tin nhắn";
+}
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page page-message">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            @Html.Action("_MenuHoatDong", "HoatDong")
+
+            <!-- LỌC TIN NHẮN -->
+            <div class="ms-filter">
+                <div class="col-2">
+                    <span class="ms-title"></span>
+                    <div class="cb-filter-v">
+                        <button class="btn btn-larger"><i class="fa-list"></i><span>All</span><i class="fa-angle-down"></i></button>
+                        <nav id="tinnhan">
+                            <a data-link="0" href="@Url.Action("TinNhan", "HoatDong", new { type = 0})">Tất cả thư</a>
+                            <a data-link="1" href="@Url.Action("TinNhan", "HoatDong", new { type = 1})">Hộp thư đến</a>
+                            <a data-link="2" href="@Url.Action("TinNhan", "HoatDong", new { type = 2})">Thư đã gửi</a>
+                            <a data-link="3" href="@Url.Action("TinNhan", "HoatDong", new { type = 3})">Chưa đọc</a>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-2 text-right">
+                    <div class="txt-input">
+                        <input type="type" name="name" id="Search_message" value="" onkeydown="return keyEnter(event);" placeholder="Tìm kiếm tin nhắn..." />
+                        <button class="btn btn-larger" onclick="return SearchMessage();"><i class="fa-search"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG TIN NHẮN -->
+                    <div class="ms-content">
+                        <!-- ms-list-user -->
+                        <nav class="ms-list-user nicescroll" id="ms-list-user">
+                            @{
+                             foreach(var item in Model)
+                                {
+                                <a href="javascript:void(0)" class="@item.IdSendMessge" onclick="return ReadMessage('@item.user.Id','@item.IdDuAn','@item.IdSendMessge');">@* class="active"*@
+                                    <img src="@item.user.Avatar" alt="" />
+                                    <b>@item.user.HoTen</b>
+                                  
+                                    @{
+                                        if(item.TrangThai == 0)
+                                        {
+                                        <i class="fa-circle color-orange"></i>
+                                        }
+                                    }
+                                      <br /><i style="font-size:x-small">@item.TenDuAn</i>
+                                </a>
+                                }   
+                            }
+                           
+                        </nav>
+
+                        <!-- ms-text -->
+                        <div class="ms-text right box-effect8" style="visibility:hidden;" id="ms-text">
+                            <div class="ms-test-ul nicescroll" id="LoadContent">
+                               
+                               
+                            </div>
+                            <div class="ms-text-li">
+                                <textarea class="form-txt" id="noidung_addmessage" placeholder="reply..."></textarea><br /><br />
+                                <button class="btn" id="btn_addmessage" onclick="return AddMessage();">Gửi tin nhắn</button>
+                                <input type="hidden" value="0" id="id_addmessage"/>
+                                <input type="hidden" value="0" id="idDuAn_addmessage"/>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+</div><!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        $(document).ready(function () {
+            $('#btn_addmessage').hide();
+          
+            $('#ms-list-user').click(function () {
+                if ($(this).hasClass('left') == false) {
+                    $(this).addClass('left');
+                }
+            });
+          @*  var htmlcbx = $("#tinnhan a[data-link=" + '@ViewBag.type' + "]");
+          //  alert(htmlcbx);
+            $('#tinnhan').removeChild(htmlcbx);*@
+        //    $('#tinnhan').prepend($("#tinnhan a[data-link=" + '@ViewBag.type' + "]"));
+
+        });
+        function SearchMessage(e) {
+          
+            var danhsach = $('#ms-list-user a b');
+            var noidung = $("#Search_message").val();
+            for (var i = 0; i < danhsach.length; i++) {
+                danhsach[i].parentElement.style.display = '';
+            }
+            for (var i = 0; i < danhsach.length; i++) {
+                if (danhsach[i].innerText.toLowerCase().indexOf(noidung.toLowerCase()) == -1) {
+                   // alert("s");
+                    danhsach[i].parentElement.style.display = 'none';
+                }
+            }
+        }
+        function keyEnter(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode;     //IE 
+            else
+                key = e.which;
+            if (key == 13) { SearchMessage(); return true; }
+            return true;
+        }
+        function ReadMessage(Id,IdDuAn,IdMessage) {
+            $('#id_addmessage').val(Id);
+            $('#idDuAn_addmessage').val(IdDuAn);
+            $('#btn_addmessage').show();
+            $('.ms-list-user a').removeClass('active');
+            $('.' + IdMessage).addClass("active");
+            //$('.ms-list-user').addClass("left");
+            var postURL = '@Url.Action("TinNhan_Read", "HoatDong")';
+            $.post(postURL, { "Id": Id,"IdDuAn":IdDuAn }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadContent').html(data);
+                    $('#ms-text').css("visibility","visible");
+                }
+            });
+        }
+        function AddMessage() {
+            $('#btn_addmessage').hide();
+            var Id = $('#id_addmessage').val();
+            var IdDuAn = $('#idDuAn_addmessage').val();
+            var noidung = $('#noidung_addmessage').val();
+            var postURL = '@Url.Action("TinNhan_Add", "HoatDong")';
+            $.post(postURL, { "Id": Id,"noidung":noidung,"IdDuAn":IdDuAn }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadContent').append(data);
+                    $('#noidung_addmessage').val("");
+                }
+            });
+            $('#btn_addmessage').show();
+        }
+
+        // chat
+        function Chat(e) {
+            var UserName = $("a#FiendChat").text();
+            var Content = $("input#ChatReply").val();
+
+            var Delete = "";
+            var key;
+            if (window.event)
+                key = window.event.keyCode;     //IE 
+            else
+                key = e.which;
+            if (key == 13) {
+                $("input#ChatReply").val("");
+                if (UserName == "" || UserName == null) {
+                }
+                else {
+                    var dem = 0;
+                    var demthoigian = function () {
+                        if (dem > 0) {
+                            Content = "";
+                            Delete = UserName;
+                        }
+                        var getURL = '/Individual/_ContentChat';
+                        $.get(getURL, { "FriendChat": UserName, "Content": Content, "Delete": UserName }, function (data) {
+                            $("div#ContentChat").html(data);
+                            $('#ContentChat').scrollTop($('#ContentChat')[0].scrollHeight);
+                        });
+                        if (UserName == $("a#FiendChat").text())
+                            setTimeout(demthoigian, 5000); //5s
+                        else {
+                            return false;
+                        }
+
+                        dem = dem + 1;
+                    };
+                    demthoigian();
+                }
+
+            }
+        }
+    </script>
+}

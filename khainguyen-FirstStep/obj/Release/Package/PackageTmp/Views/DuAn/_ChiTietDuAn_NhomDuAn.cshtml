@@ -1,0 +1,66 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityNhomChienDich>
+
+<h2>Project Team</h2>
+
+@{
+    foreach (var item in Model)
+    {
+        <div class="proj-team-item">
+            <div class="avatar"><img src="@item.EntityUser.Avatar" alt="" /></div>
+            <a href="#"><h3> @item.EntityUser.HoTen</h3></a>
+            <div class="tag">
+                <a href="#"><i class="fa-map-marker"></i> @item.EntityUser.DiaDiem</a>
+                <a href="#"><i class="fa-comment-o show-popup-proj" data-id="popupnew" onclick="return SetIdUserNhan('@item.IdUser','@item.IdDuAn');"> Gửi tin nhắn</i></a>
+                <a href="#"><i class="fa-support"></i> Đã tham gia @Html.Action("_ChiTietDuAn_SoDuAnThamGia", "DuAn", new { Id = item.EntityUser.Id }) dự án</a>
+            </div>
+            <p> @item.VaiTro</p>
+</div>
+    }
+}
+<div class="proj-popup nicescroll" data-id="popupnew">
+    <div class="proj-popup-panel">
+        <div class="proj-popup-btnclose">x</div>
+
+        <div class="proj-popup-content">
+            <h3>Gửi tin nhắn</h3>
+            
+            <div class="space_20"></div>
+            <div class="">
+                <input  type="hidden"  value="0" id="IdUser"/>
+                <input  type="hidden"  value="0" id="DuAnDuocChon"/>
+                <textarea class="form-txt" id="TinNhan" name="TinNhan" placeholder="Viết bình luận..." rows="5"></textarea><br>
+                <br>
+                <button class="btn" onclick="return SendTinNhan1();">Gửi tin nhắn</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script>
+            //SetIdUserNhan
+            function SetIdUserNhan(Id,IdDuAn) {
+                $('#IdUser').val(Id);
+                $('#DuAnDuocChon').val(IdDuAn);
+                return true;
+            }
+            // viet binh luan
+            function SendTinNhan1() {
+                var NoiDung = $('#TinNhan').val();
+                var IdUser = $('#IdUser').val();
+                var IdDuAn = $('#DuAnDuocChon').val();
+                var postURL = '@Url.Action("_SendTinNhan", "Ajax")';
+             if (NoiDung != "") {
+                 $.post(postURL, { "NoiDung": NoiDung, "IdUser": IdUser, "IdDuAn": IdDuAn }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('.proj-popup-btnclose').click();
+                    }
+                });
+            }
+            }
+          
+    </script>
+
+

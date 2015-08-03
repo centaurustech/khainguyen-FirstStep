@@ -1,0 +1,76 @@
+﻿<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+@model IEnumerable<khainguyen_FirstStep.EntityPhanThuong> 
+@*<div class="proj-plege-html"></div>*@
+
+@{
+    
+    if(Model.Count()==0)
+    {
+        @Html.Action("_ChiTiet_TaoPhanThuong_item", "DuAn", new { vt=1});
+    }
+    
+    int dem = 0;
+    foreach (var item in Model)
+    {
+        dem++;
+        <div class="proj-plege">
+                            <div class="col-3-7">
+                                <b>Phần thưởng #@dem</b><br />
+                            </div>
+                            <div class="col-7-3">
+                                <div class="col-2" data-id="@dem">
+                                    <h4>Mức giá <i class="fa-info-circle tooltip color-green" title="Tối thiểu 50.000 VNĐ"></i></h4>
+                                    <p><input class="form-txt text-right auto"  data-p-sign="s" data-v-min="0" data-v-max ="99999999999999" value="@item.TienHoTro" style="width: 40%" /> VNĐ</p>
+                                    <h4>Hình thức giao hàng</h4>
+                                    <p>
+                                        <select class="form-txt" >
+                                            <option value="">Lựa chọn hình thức</option>
+                                            <option value="Giao Hàng Tận Nơi">Giao hàng tận nơi</option>
+                                            <option value="Qua Bưu Điện">Qua bưu điện</option>
+                                            <option value="Khác">Khác</option>
+                                        </select>
+                                        <script>
+                                            $(document).ready(function () {
+                                                var decoded = $('<div/>').html('@item.HinhThucGiao').text();
+                                              //  $('.proj-plege select').val(decoded);
+                                                $("div[data-id='" + '@dem' + "']").find('select').val(decoded);
+                                            });
+                                        </script>
+                                    </p>
+                                </div>
+                                <div class="col-2">
+                                    <h4>Thời gian giao hàng (ước tính)</h4>
+                                    <p>
+                                        <input class="form-txt text-right datepicker" value="@item.NgayGiao" placeholder="mm/yyyy" style="width: 50%" />
+                                 
+                                    </p>
+                                         @if (item.SoLuong > 0)
+                                         {
+                                            <label><h4><input type="checkbox" checked="checked" /> Giới hạn số lượng </h4></label>
+                                            <p><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-green" title="Điền giới hạn số lượng phần thưởng"></i></p>
+                                         }
+                                         else
+                                         {
+                                            <label><h4><input type="checkbox" /> Giới hạn số lượng </h4></label>
+                                            <p style="display:none"><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-red" title="Điền giới hạn số lượng phần thưởng"></i></p>
+                                         } 
+                                </div>
+                                
+                            </div>         
+                            <div class="col-3-7">   
+                                <br/>                             
+                            </div>
+                            <div class="col-7-3">
+                                <div class="col-ful">
+                                    <h4>Mô tả</h4>
+                                <p><textarea class="form-txt">@item.NoiDung</textarea> </p>
+                                </div>
+                            </div>
+              
+                            @if(item.SoNguoiMua == 0)
+                            {
+                                <a href="#" class="btn btn-delete-reward bg-red" data-phanthuong="@item.Id">Xóa</a>
+                            }
+       </div>
+    }
+}

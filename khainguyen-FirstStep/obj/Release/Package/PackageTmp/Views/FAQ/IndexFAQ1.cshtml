@@ -1,0 +1,117 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ>
+@{
+    ViewBag.Title = "IndexFAQ1";
+}
+ <!-- SLIDE -->
+<div class="slider-fix-300">
+<div id="slides-sm">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+    </ul>
+
+    <div class="faq-intro">
+        <div class="container">
+            <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+            <div class="faq-info">
+                <div class="faq-title">FAQ</div>
+                <div class="faq-des">Looking for inspiration, tips, tools, and best practices for making a successful project?</div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+@* <!-- SLIDE -->
+        <div class="slider-fix-300">
+            <div id="slides-sm">
+                <ul class="slides-container">
+                     <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+                </ul>
+                <div class="faq-intro">
+                    <div class="container">
+                        <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+                        <div class="faq-info">
+                            <div class="faq-title">FAQ</div>
+                            <div class="faq-des faq-gray">Looking for inspiration, tips, tools, and best practices for making a successful project?</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+<!-- FAQ -->
+<div class="container">
+
+    <div class="faq-search">
+        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+    </div>
+
+    <div class="faq-list-ask">
+
+        @{
+            foreach (var item in Model)
+            {
+                 <div class="faq-ask">
+            <a href="#">@item.TieuDe</a>
+            <div class="faq-ans">
+                @Html.Raw(item.NoiDung)
+            </div>
+        </div>
+            }
+        }
+       
+
+
+
+    </div>
+
+
+</div>
+
+<div style="height: 50px;"></div>
+@section jqueryPlugin{
+<script>
+    $(document).ready(function () {
+        var $slides = $('#slides-sm');
+        Hammer($slides[0]).on("swipeleft", function (e) {
+            $slides.data('superslides').animate('next');
+        });
+
+        Hammer($slides[0]).on("swiperight", function (e) {
+            $slides.data('superslides').animate('prev');
+        });
+        $slides.superslides({
+            slide_easing: 'easeInOutCubic',
+            slide_speed: 800,
+            pagination: false,
+            hashchange: false,
+            scrollable: true,
+            play: 5000,
+            animation: 'fade',
+            inherit_height_from: '.slider-fix-300'
+        });
+    });
+    //$(document).ready(function () {
+    //    var $slides = $('#slides');
+    //    Hammer($slides[0]).on("swipeleft", function (e) {
+    //        $slides.data('superslides').animate('next');
+    //    });
+
+    //    Hammer($slides[0]).on("swiperight", function (e) {
+    //        $slides.data('superslides').animate('prev');
+    //    });
+    //    $slides.superslides({
+    //        slide_easing: 'easeInOutCubic',
+    //        slide_speed: 800,
+    //        pagination: false,
+    //        hashchange: false,
+    //        scrollable: true,
+    //        play: 5000,
+    //        animation: 'fade'
+    //    });
+    //});
+</script>
+
+}

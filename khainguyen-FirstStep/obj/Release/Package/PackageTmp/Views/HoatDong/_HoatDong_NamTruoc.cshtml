@@ -1,0 +1,8 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityHoatDong>
+@{
+    if (Model.Count() > 0)
+    {
+        <div class="row-time"><h3>Năm nay</h3></div>
+    @Html.Action("_HoatDong_Item", "HoatDong", new { hoatdong= Model})
+}
+}

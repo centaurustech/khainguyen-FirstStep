@@ -1,0 +1,88 @@
+﻿@model khainguyen_FirstStep.EntityCapNhatDuAn
+@{
+    ViewBag.Title = "Cập nhật dự án";
+}
+
+
+<div style="height: 50px"></div>
+<div class="proj-form container">
+
+    <!-- NAV TAB -->
+    <nav class="proj-tab-nav">
+        <a href="#" id="tabUpdate" class="active">Cập nhật Dự án - @ViewBag.duan.TenDuAn</a>
+    </nav>
+
+    <!-- LIST TAB -->
+    @using (Html.BeginForm("UpdateDuAn", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
+    {
+        <div class="proj-list-tab"> 
+          
+            <!-- tab mô tả -->
+             <div class="proj-tab active">
+                <p>&nbsp;</p>
+                <h3>Dự án đang hoạt động - nếu dự án có thây đổi, bạn vui lòng cập nhật tại đây</h3>
+               
+                <p>&nbsp;</p>
+
+                  <div class="box">
+                    <h4>Tiêu đề cập nhật</h4>
+                    <div class="des">
+                       
+                    </div>
+                    <input class="form-txt" id="TieuDe" name="TieuDe"/>
+                </div>
+
+                <div class="box">
+                    <h4>Nội dung cập nhật dự án</h4>
+                    <div class="des">
+                        <p>Cập nhật thêm những đổi mới dự án của bạn.</p>
+                    </div>
+                    <textarea class="form-txt" id="NoiDung" name="NoiDung" style="height: 700px !important;"></textarea>
+                    <input type="hidden" name="IdDuAn" id="IdDuAn" value="@Model.IdDuAn" />
+                </div>
+            </div>
+         
+            <!-- btnSave -->
+            <div class="box-save">
+                <button class="btn btn-big bg-red" type="submit" onclick="return taoduan();">LƯU DỰ ÁN</button>
+            </div>
+
+        </div>
+    }
+</div>
+
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+
+    <script src="~/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/cssFrontEnd/ckeditor/ckeditor.js"></script>
+
+    <script type="text/javascript">
+        CKEDITOR.replace('NoiDung', {
+            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+    </script>
+    <script>
+
+        $(function () {
+        });
+        function taoduan() {
+
+            var noidung = $("#NoiDung").val();
+            if (noidung == null || noidung != "") {
+                alert("Vui lòng nhập nội dung cập nhật");
+                return false;
+            }
+           
+            return true;
+        }
+    </script>
+}
+

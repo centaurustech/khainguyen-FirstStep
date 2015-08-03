@@ -1,0 +1,9 @@
+﻿@model  List<khainguyen_FirstStep.Models.HoatDongModel>
+@{
+    foreach(var item in Model)
+                    {
+                         @Html.Action("_HoatDong_Item", "HoatDong", new { hoatdong=item})
+                    }
+}
+
+

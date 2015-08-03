@@ -1,0 +1,14 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ1>
+
+@{
+            foreach (var item in Model)
+            {
+                //string a = "ask" + item.Id;
+                 <div class="faq-ask">
+                     <div class="faq-ans">
+            <h5>@item.CauHoi</h5>            
+               @Html.Raw(item.CauTraLoi)
+            </div>
+        </div>
+            }
+        }

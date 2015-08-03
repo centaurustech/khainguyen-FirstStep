@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Nhập lại mật khẩu";
+}
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            <div class="panel-login">
+               @* <div class="social">
+                    <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập với Facebook</a>
+                </div>*@
+                 <a href="javascript:void(0);" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;THÔNG BÁO</a>
+                <div class="form-login">
+                    <br />
+                   <span style="color:white;">Hiện tại FirstStep đang tạm ngưng chức năng Tạo Dự Án.</span>
+                    <br />
+                   <span>Nếu bạn đang rất muốn tạo một dự án cho riêng mình. Hãy liên hệ với chúng tôi qua email info@firststep.vn để có được Code Tạo Dự Án Mới và nhận được sự hỗ trợ tốt nhất. </span> 
+                        <div class="space_20"></div>
+
+                    <div class="">
+                        Nhập Code Tạo Dự Án Mới:
+                        <input type="password" id="Password_life" />
+                        &nbsp;&nbsp;&nbsp;
+                            <button class="btn" id="checklife">Tiếp tục</button>
+                        <br />
+                        <label style="color:red;padding:2px;" id="LifeError"></label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checklife').click(function (e) {
+                var password = $('#Password_life').val();
+                var postURL = '@Url.Action("CheckPassDonGian", "Account")';
+
+                $.post(postURL, { "password": password }, function (data) {
+                if (data == 'True') {
+                    window.location.href = '@ViewBag.link';
+                }
+                else { $("#LifeError").text("Code không đúng, xin vui lòng thứ lại"); }
+            });
+
+          });
+        });
+      
+    </script>
+}
+

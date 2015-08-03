@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Admin Account";
+    Layout = "~/Areas/AdminCP/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" type="text/javascript"></script>
+  <script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#nofSuccess').hide();
+        $('#nofError').hide();
+    });
+    function alertMsg(msg) {
+        $('#nofSuccess').hide();
+        $('#nofError').show();
+        $('#msgNofError').text(msg);
+
+
+    }
+    function changeAccount() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var cpassword = $('#cpassword').val();
+
+        var msg = "";
+
+        if (username.length < 5 || password.length < 5) {
+            msg = "! username / password  minimum is a 6 character";
+            alertMsg(msg);
+            return false;
+        }
+        if (username.length > 20 || password.length > 20) {
+            msg = "! username / password names maximum is a 20 character";
+            alertMsg(msg);
+            return false;
+        }
+        if (password != cpassword) {
+            msg = "password # confirm password!";
+            alertMsg(msg);
+            return false;
+        }
+        var postURL = '@Url.Action("changeAccount", "AdminProfile")';
+
+        $.post(postURL, {"username": username, "password": password },
+         function (data) {
+             if (data.password == "!") //error
+             {
+                 alert("Error server / hosting");
+               
+             }
+             else {
+                 alert("Success !");
+                 $('#password').val(" ");
+                  $('#cpassword').val(" ");
+                            
+             }
+         });
+        return false;
+    }
+</script>
+
+	<div class="maincontentinner">
+            	
+                <ul class="maintabmenu">
+                	<li class="current"><a href="@Url.Content("~/Content/cssAdmin/dashboard.html")" >Admin account</a></li>
+                </ul><!--maintabmenu-->
+                
+                    <div class="contenttitle">
+                    	<h2 class="form"><span>Change password</span></h2>
+                    </div><!--contenttitle-->
+                    
+                    <br />
+
+                    <!-- phan nay la notification -->
+
+                     <div class="notification msginfo" style="display:none" id="nofInfo">
+                        <a class="close"></a>
+                        <p id="msgNofInfo">This is an information message.</p>
+                    </div><!-- notification msginfo -->
+                    
+                    <div class="notification msgsuccess" style="display:none" id="nofSuccess">
+                        <a class="close"></a>
+                        <p id="msgNofSuccess">This is a success message.</p>
+                    </div><!-- notification msgsuccess -->
+                    
+                    <div class="notification msgalert" style="display:none" id="nofAlert">
+                        <a class="close"></a>
+                        <p id="msgNofAlert">This is an alert message.</p>
+                    </div><!-- notification msgalert -->
+                    
+                    <div class="notification msgerror" style="display:none" id="nofError">
+                        <a class="close"></a>
+                        <p id="msgNofError">This is an error message.</p>
+                    </div><!-- notification msgerror -->
+
+                    <!-- -->
+
+                    <form onsubmit="return changeAccount()" id="changeAccount" class="stdform stdform2" method="post" action="#">
+                    	<p>
+                        	<label>Username</label>
+                           
+                             <span class="field"><input type="text" name="username" id="username" class="longinput" value="Admin" disabled="disabled" /></span>
+                           
+                        </p>
+                        
+                        <p>
+                        	<label>Password</label>
+                            <span class="field"><input type="password" name="password" id="password" class="longinput" /></span>
+                        </p>
+                         
+                         <p>
+                        	<label>RePassword</label>
+                            <span class="field"><input type="password" name="cpassword" id="cpassword" class="longinput" /></span>
+                        </p>
+
+                        <p class="stdformbutton">
+                        	<button class="submit radius2" >OK</button>
+                           
+                        </p>
+                    </form>
+       </div><!--maincontentinner-->

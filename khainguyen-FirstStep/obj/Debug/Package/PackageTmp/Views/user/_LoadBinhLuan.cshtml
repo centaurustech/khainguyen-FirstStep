@@ -1,0 +1,27 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityBinhLuan>
+@{
+    foreach (var item in Model)
+    {
+    <div class="supporter-row">
+        <div class="avatar">
+            @if (item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=normal" alt="avatar" title="@item.EntityUser.HoTen.ToString()" />
+            }
+            else
+            {                
+                <img src="@item.EntityUser.Avatar" alt="avatar" title="@item.EntityUser.HoTen.ToString()" />
+            }
+        </div>
+        <a class="color-orange" href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.EntityDuAn.TenDuAn), item.IdDuAn.Value) })">
+           <h3>@item.EntityDuAn.TenDuAn</h3>
+        </a>
+        <p>@item.NoiDung</p>
+         
+        
+       @* <p>  <a><i class="fa-share-alt"></i>&nbsp;@item.ThoiGian</a></p>*@
+    </div>
+    }
+}
+
+

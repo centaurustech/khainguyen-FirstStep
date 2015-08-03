@@ -1,0 +1,122 @@
+﻿@model IList<khainguyen_FirstStep.EntityDauTu>
+@{
+    ViewBag.Title = "Quản lý đầu tư - "+@ViewBag.TenDuAn;
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page page-message">
+    <div class="panel">
+        <div class="container">
+
+          <div class="acc-title">
+    <h1><i class="fa-envelope"></i>Quản lý đầu tư dự án - @ViewBag.TenDuAn</h1>
+    <p>Xem danh sách các đầu tư mà bạn đã nhận được</p>
+</div>
+            <!-- table backet -->
+            <table class="table">
+                <thead>
+                    <tr>
+                         <th>Tên</th>
+                                <th>Số tiền</th>
+                                <th>Phần thưởng tương ứng</th>
+                                <th>Trạng thái</th>
+                                <th>Trao đổi tin nhắn</th>
+                                <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(var item in Model)
+                        {//0: chưa thanh toán 1: đã thanh toán, nhưng chưa giao hàng 2: đã thanh toán đã giao hàng                               
+                        <tr>
+                            <td data-title="Name"><a href="@Url.Action("Index", "user", new { Link=item.EntityUser.VanityURL})"></a> @item.EntityUser.HoTen</td>
+                            <td data-title="Pledged:" class="text-center">@Utilities.FormatCurrent(item.SoTienDauTu.ToString())  VNĐ</td>
+                            @if(item.IdPhanthuong != null)
+                            {
+                                <td data-title="Reward:">@item.EntityPhanThuong.NoiDung</td>
+                            }
+                            else
+                            {
+                                <td data-title="Reward:">Không nhận phần thưởng.</td>
+                            }
+
+                            @if(item.TrangThai == 0)
+                            {
+                                <td data-title="Got it!:"><a href="javascript:void(0)" onclick="return TrangThai_Edit('@item.Id','@item.TrangThai');" class="btn bg-orange">Chưa nhận thanh toán</a></td>
+                            }
+                            else if (item.TrangThai == 1)
+                            {
+                                <td data-title="Got it!:"><a href="javascript:void(0)" onclick="return TrangThai_Edit('@item.Id','@item.TrangThai');" class="btn bg-green">Chờ gửi quà</a></td>
+                            }
+                            else
+                            {
+                                 <td data-title="Got it!:"><a href="javascript:void(0)" onclick="return TrangThai_Edit('@item.Id','@item.TrangThai');" class="btn">Đã hoàn tất</a></td>
+                            }
+                            <td data-title="Messages:" class="text-center"><span class="time"></span></td>
+                            <td class="config"><a href="#" class="show-popup-proj" onclick="return LoadMessage_LichSu('@item.Id')" data-id="popup2"><i class="fa-cog"></i></a></td>
+                        </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div><a class="btn" href="#" onclick="Refund_all(@ViewBag.IdDuAn)">Trả lại tiền cho tất cả nhà đầu tư</a></div>
+            <div>@Html.ActionLink("Xuất file báo cáo", "Quanlyduan_ExportExcel", "DuAn", new { IdDuAn = ViewBag.IdDuAn }, new { @class = "btn" })</div>
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        function LoadMessage_LichSu(Id) {
+            $('.' + Id).addClass("active");
+            var postURL = '@Url.Action("_Message_LichSu", "HoatDong")';
+            $.post(postURL, { "IdDauTu": Id }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadMessage_LichSu').html(data);
+                }
+            });
+        }
+
+        function TrangThai_Edit(IdDauTu, TrangThai) {
+            if (TrangThai < 0) {
+                return false;
+               @* window.location = '@Url.Action("ThanhToan_Lan2","ThanhToan")'+"?Id="+IdDauTu;*@
+            }
+            var postURL = '@Url.Action("TrangThai_Edit", "HoatDong")';
+            $.post(postURL, { "IdDauTu": IdDauTu }, function (data) {
+                if (data == "Fail") {
+                    alert("Fail");
+                } else {
+                    window.location.reload(true);
+                }
+            });
+        }
+
+        function Refund_all(IdDuan) {
+            var postURL = '@Url.Action("RefundAll", "DuAn")';
+            $.post(postURL, { "IdDuan": IdDuan }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    alert("Thành công, tất cả tiền đã được trả ngược");
+                }
+            });
+        }
+    </script>
+}
+
+ <div class="proj-popup nicescroll" data-id="popup2">
+        <div class="proj-popup-panel">
+            <div class="proj-popup-btnclose">x</div>
+            <div class="proj-popup-content" id="LoadMessage_LichSu"></div>
+</div>
+    </div>
+

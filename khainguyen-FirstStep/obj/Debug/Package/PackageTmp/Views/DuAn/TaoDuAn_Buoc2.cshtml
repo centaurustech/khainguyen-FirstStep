@@ -1,0 +1,1288 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+@{
+    ViewBag.Title = "Khởi tạo dự án";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<style>
+    .uploadanh, .uploadanh2 {
+        color: #900;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
+        overflow: hidden;
+        display: none;
+        margin-right: 8px;
+    }
+    .counting_length {
+        text-align:right;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 14px;
+        color: #828587;
+        margin-right:20px;
+    }
+    .tomautab {
+        background: red;
+        color: white;
+    }
+
+    .tomauvien {
+        border: 1px red solid;
+    }
+    .visible {
+        bottom: 0;
+    }
+    
+</style>
+
+<div style="height: 50px"></div>
+<div class="container" id="body-content">
+    @using (Html.BeginForm("TaoDuAn_Buoc2", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data", @id = "form-id" }))
+    {
+    <!-- NAV TAB -->
+    <nav class="proj-tab-nav">
+        @if(Model.TrangThai == 2)
+        {
+            <a href="#" id="tabCapNhat" onclick="kiemtra()">Cập nhật</a>
+        }
+        <a href="#" id="tabThongTin" class="active" data-id="popup1" onclick="return kiemtra()">Thông tin</a>
+        <a href="#" id="tabPhanThuong" data-id="popup1" onclick="return kiemtra()">Phần thưởng</a>
+        <a href="#" id="tabMoTa" onclick="kiemtra()">Mô tả</a>
+        <a href="#" id="tabGioiThieu" onclick="kiemtra()">Giới thiệu</a>
+        <a href="#" id="tabTaiKhoan" onclick="kiemtra()">Tài khoản</a>
+        <a href="#" id="tabTeam" onclick="kiemtra()">Team</a>        
+        @*<a href="#" id="tabCapNhat" onclick="kiemtra(0)">Cập nhật Dự án</a>*@
+       @*@Url.Action("UpdateDuAn", "DuAn", new { IdDuAn=@Model.Id})" id="tabUpdate*@
+        <a href="#" id="tabXemTruoc" onclick="kiemtra()">Xem trước</a>
+        <a href="#" id="tabPublic" onclick="return xuatban();">Xuất bản</a>
+
+    </nav>
+
+    <!-- LIST TAB -->
+    
+        <div class="proj-list-tab">
+            @if(Model.TrangThai == 2)
+            {
+            <!-- tab Cập nhật -->
+            <div class="proj-tab">
+                @Html.Action("_LoadTabCapNhat", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            }
+            <!-- tab thông tin -->
+            <div class="proj-tab" id="proj-ThongTin">
+                @Html.Action("_LoadTabThongTin", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab phần thưởng -->
+            <div class="proj-tab" id="proj-PhanThuong">
+                @Html.Action("_LoadTabPhanThuong", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab mô tả -->
+            <div class="proj-tab" id="proj-MoTa">
+                @Html.Action("_LoadTabMoTa", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab giới thiệu -->
+            <div class="proj-tab" data-hide="@Model.TrangThai" id="proj-GioiThieu">
+                @Html.Action("_LoadTabGioiThieu", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab tài khoản -->
+            <div class="proj-tab" data-hide="@Model.TrangThai" id="proj-TaiKhoan">
+                @Html.Action("_LoadTabTaiKhoan", "DuAn", new { IdDuAn = Model.Id })
+            </div>
+            <!-- tab team -->
+            <div class="proj-tab">
+                @Html.Action("_Team_DuAn", "Ajax", new { IdDuAn = Model.Id })
+            </div>            
+            <!-- tab review -->
+            <div class="proj-tab" id="proj-XemTruoc">
+                @Html.Action("_LoadTabXemTruoc", "DuAn", new { IdDuAn = Model.Id })
+                @*<p>&nbsp;</p>
+                <h3>Bạn có thế sử dụng link dưới đây để xem trước dự án của bạn</h3>
+
+                <p>&nbsp;</p>
+                <div class="box">
+
+                    <div class="des">
+
+                        <p>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.TenDuAn.ToString()), Model.Id.Value) })</p>
+                        <a href="javascript:void(0)" id="IReView" onclick="return xemtruoc(-1)">Hủy chế độ xem trước</a>
+                    </div>
+
+                </div>*@
+            </div>
+
+            <div style="position:fixed;background-color:white; width:100%; margin-bottom:0;" id="btnSave">
+                <button class="btn btn-big bg-red" style="left:185px;" type="submit" onclick="return LuuDuAn();">LƯU DỰ ÁN</button>
+                <a href="#" onclick="return KhongLuuDuAn();">Không save</a>          
+                <input type="hidden" name="flag" id="flag" value="@Model.flag"/>
+                <input type="hidden" name="TrangThai" id="TrangThai" value="@Model.TrangThai"/>
+                @Html.HiddenFor(model => model.CheckGioiThieu)
+                @Html.HiddenFor(model => model.CheckPhanThuong)
+                @Html.HiddenFor(model => model.CheckMoTa)
+                @Html.HiddenFor(model => model.CheckThongTin)
+                @Html.HiddenFor(model => model.CheckTaiKhoan)
+            </div>
+            <div class="proj-popup nicescroll" data-id="popup1">
+                    <div class="proj-popup-panel">
+                        <div class="proj-popup-content" id="LoadPopUp_LuuDuAn">
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div style="line-height:30px;visibility:hidden;"></div>
+    }
+    <!-- btnSave -->
+    
+</div>
+
+
+@section jqueryPlugin{
+    <!-- JQUERY Load -->
+    <script src="~/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/cssFrontEnd/ckeditor/ckeditor.js"></script>
+    <link href="~/Content/cssFrontEnd/js/jqueryui/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <script src="~/Content/cssFrontEnd/js/jqueryui/jquery-ui-1.10.4.min.js"></script>
+    <script type="text/javascript" src="~/Content/cssFrontEnd/js/autoNumeric.js"></script>
+    <script type="text/javascript" src="~/Content/cssFrontEnd/js/MaxLength.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/fitvids/jquery.fitvids.js"></script>
+    <script src="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js"></script>
+    @*<script src="~/Scripts/jquery.confirm.js"></script>*@ 
+    
+    @*<script src="~/Content/cssFrontEnd/js/jquery/jquery.min.js"></script>*@
+    @*<script src="~/Content/cssFrontEnd/js/easing/jquery.easing.1.3.js"></script>*@
+    @*<script src="~/Content/cssFrontEnd/js/nicescroll/jquery.nicescroll.js"></script>*@
+    @*<script src="~/Content/cssFrontEnd/js/letterfx/jquery-letterfx.min.css"></script>*@
+    @*<script src="~/Content/cssFrontEnd/js/tooltipster/jquery.tooltipster.min.js"></script>*@
+    @*<script src="~/Content/cssFrontEnd/js/waypoints/waypoints.min.js"></script>*@
+
+
+    <!-- Start Load CKEditor -->
+    <script type="text/javascript">
+        //$("#NoiDung").ckeditor(function () {
+        //    this.on('blur', function() {if(this.checkDirty()) alert('text changed!');});
+        //});
+        var bodyEditor1 = CKEDITOR.replace('NoiDung', {
+            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+        bodyEditor1.on('change', function () {
+            HienThi_ButtonSave();
+        });
+
+        var bodyEditor2 = CKEDITOR.replace('RuiRo', {
+            filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/ckfinder/ckfinder.html?Type=Flash',
+            filebrowserUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+            filebrowserImageUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+            filebrowserFlashUploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+        });
+        bodyEditor2.on('change', function () {
+            HienThi_ButtonSave();
+        });
+    </script>
+    <!-- End Load CKEditor -->  
+    
+    <!-- Start Datetimepicker chỉ load Tháng/Năm trong Phần Thưởng-->
+    <script>
+        $(function () {
+            $('#years').append($('<option />').val("").html("Years"));
+            for (i = new Date().getFullYear() ; i > 1900; i--) {
+                $('#years').append($('<option />').val(i).html(i));
+            }
+            $('#months').append($('<option />').val("").html("Months"));
+            for (i = 1; i < 13; i++) {
+                $('#months').append($('<option />').val(i).html(i));
+            }
+            updateNumberOfDays();
+
+            $('#years, #months').change(function () {
+
+                updateNumberOfDays();
+
+            });
+
+        });
+
+        function updateNumberOfDays() {
+            $('#days').html('');
+            month = $('#months').val();
+            year = $('#years').val();
+            days = daysInMonth(month, year);
+            $('#days').append($('<option />').val("").html("Days"));
+            for (i = 1; i < days + 1 ; i++) {
+                $('#days').append($('<option />').val(i).html(i));
+            }
+
+        }
+
+        function daysInMonth(month, year) {
+            return new Date(year, month, 0).getDate();
+        }
+
+    </script>
+    <!-- End Datetimepicker chỉ load Tháng/Năm trong Phần Thưởng-->
+
+    <!-- Start Script Max Lenght-->
+    <script>
+        function txtCounters(id, max_length, myelement) {
+            counter = document.getElementById(id);
+            field = document.getElementById(myelement).value;
+            field_length = field.length;
+            if (field_length <= max_length) {
+                //Calculate remaining characters
+                remaining_characters = max_length - field_length;
+                //Update the counter on the page
+                counter.innerHTML = remaining_characters + "/" + max_length;
+            }
+        }
+        //$(function () {
+        //    //Normal Configuration
+        //    $("[id*=TextBox1]").MaxLength({ MaxLength: 10 });
+
+        //    //Specifying the Character Count control explicitly
+        //    $("[id*=ThongTinNgan]").MaxLength(
+        //    {
+        //        MaxLength: 15,
+        //        CharacterCountControl: $('#counter')
+        //    });
+
+        //    //Disable Character Count
+        //    $("[id*=TextBox3]").MaxLength(
+        //    {
+        //        MaxLength: 20,
+        //        DisplayCharacterCount: false
+        //    });
+        //});
+    </script>
+    <!-- End Script Max Lenght-->
+
+    <!-- Start Script Format Money when type-->
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.auto').autoNumeric('init');
+        });
+    </script>
+    <!-- End Script Format Money when type-->
+
+    <!--Start Kiểm Tra và Hiện nội dung Tab Được Chọn-->
+    <script>
+    function kiemtra() {
+            $("#tabThongTin").click(function () {
+                $("#flag").val("ThongTin");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabPhanThuong").click(function () {
+                $("#flag").val("PhanThuong");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabMoTa").click(function () {
+                $("#flag").val("MoTa");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabGioiThieu").click(function () {
+                $("#flag").val("GioiThieu");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabTaiKhoan").click(function () {
+                $("#flag").val("TaiKhoan");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabTeam").click(function () {
+                $("#flag").val("Team");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabCapNhat").click(function () {
+                $("#flag").val("CapNhat");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
+            });
+            $("#tabXemTruoc").click(function () {
+                $("#flag").val("XemTruoc");
+                if ($("#btnSave").hasClass("visible") == true) {
+                    $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
+                    var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
+                        $.post(postURL, function (data) {
+                            if (data == "Error") {
+                                alert("Error");
+                            } else {
+                                $('#LoadPopUp_LuuDuAn').html(data);
+                            }
+                        });
+                    }
+                    else {
+                        HienThi_Tab();
+                    }
+            });
+            return;
+        }
+
+        function HienThi_Tab() {
+            //$('.proj-tab-nav a').click(function (e) {
+            //    alert("vao day ko");
+            //    e.preventDefault();
+            //    $('.proj-tab').removeClass('active');
+            //    $('.proj-tab').eq($(this).index()).addClass('active');
+            //    $('.proj-tab-nav a').removeClass('active');
+            //    $(this).addClass('active');
+            //});
+            var id = '#tab' + $("#flag").val();
+            $('.proj-tab').removeClass('active');
+            $('.proj-tab').eq($(id).index()).addClass('active');
+            $('.proj-tab-nav a').removeClass('active');
+            $(id).addClass('active');
+        }
+    </script>
+     <!--End Kiểm Tra và Hiện nội dung Tab Được Chọn-->
+
+    <!--Start Xử lý Chung-->
+    <script>
+        //xử lý load các dữ liệu ban đầu
+        $(document).ready(function () {
+            $("#btnSave").hide();
+            $("#footer").remove();
+            HienThi_Tab();
+            // phần thiết lập các dữ liệu không được chỉnh sửa khi đã Public dự án
+            if ($("#TrangThai").val() == 1) {
+                $("#DanhMuc").hide();
+                $("#tbTenDuAn").prop('disabled', true);
+                $("#TienDauTuMucTieu").prop('disabled', true);
+            }
+            else {
+                $("#DanhMuc").show();
+            }
+
+            //check hoàn thành
+            check_mucdohoanthanh(1);
+
+            //Active Tab
+            //$('.proj-tab-nav a').click(function (e) {
+            //    e.preventDefault();
+            //    $('.proj-tab').removeClass('active');
+            //    $('.proj-tab').eq($(this).index()).addClass('active');
+            //    $('.proj-tab-nav a').removeClass('active');
+            //    $(this).addClass('active');
+            //});
+
+            //Xử lý "Thông Tin"
+            // datetime picker
+            //   $(".datepicker").datepicker();
+            $('.datepicker').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                showButtonPanel: true,
+                dateFormat: 'mm/yy',
+                onClose: function (dateText, inst) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                }
+            });
+            //$("#SoNgayHoanThanh2").datepicker();
+
+            //Hiển thị Button Save khi các trường dữ liệu được tác động
+            $('#body-content').on('change keyup keydown', 'input, textarea, select', function () {
+                if ($(this).attr("id") != "TKPayoo")
+                    HienThi_ButtonSave();
+            });
+            //$("#HinhAnh").change(function () {
+            //    HienThi_ButtonSave();
+            //});
+            $("a.checkclick").bind('click', function () {
+                HienThi_ButtonSave();
+            });
+            //$("#tbTenDuAn").keypress(function () {
+            //    HienThi_ButtonSave();
+            //});
+            //$("#ThongTinNgan").keypress(function () {
+            //    HienThi_ButtonSave();
+            //});
+            //$("#Avatar").change(function () {
+            //    HienThi_ButtonSave();
+            //});
+            //$("#HoTen").keypress(function () {
+            //    HienThi_ButtonSave();
+            //});
+            //$("#GioiThieu").keypress(function () {
+            //    HienThi_ButtonSave();
+            //});
+
+            $('.proj-list-category a').click(function (e) {
+                e.preventDefault();
+                var idfor = $(this).parent().attr('data-for');
+                $('.proj-list-category a').removeClass('active');
+                $(this).addClass('active');
+                $('#' + idfor).val($(this).attr('data-value'));
+            });
+
+
+
+            //"Giới thiệu"
+            var decoded = $('<div/>').html('@Model.ChoO').text();
+            $('#ChoO').val(decoded);
+
+            @*//"Tài khoản"
+            var whichperson = $('<div/>').html('@Model.whichpreson').text();
+            $("input[value='" + whichperson + "']").attr('checked', 'checked');
+            $('.taikhoan').hide();
+            LoadTaiKhoan();
+            $('.taikhoanphanloai input').click(function (e) {
+                var idpreson = $(this).attr('data-preson');
+                $('.taikhoan').hide();
+                $(".taikhoan[data-preson='" + idpreson + "']").show();
+            });*@  
+
+        });
+
+        function HienThi_ButtonSave() {
+            if ($("#btnSave").hasClass("visible") == false) {
+                $("#btnSave").addClass("visible");
+                $("#btnSave").show(1000);
+            }
+        }
+
+        //ẩn một sô tab
+        $(function () {
+            $("div[data-hide='1']").hide();
+            $("input[type=checkbox]").click(function () {
+
+                $(this).parent().parent().parent().find("input[type=number]").parent().toggle(this.checked);
+            });
+        });        
+
+        
+
+        function check_mucdohoanthanh(show) {            
+            var result = "True";
+            //Thông Tin
+            if ($("#CheckThongTin").val() == "True") {                
+                $("#tabThongTin").find("i").remove();
+                $("#tabThongTin").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+            else if (show == 1) {
+                $("#tabThongTin").find("i").remove();
+                $("#tabThongTin").prepend("<i class=\"fa-circle-o\"></i> ");
+            }
+            else {
+                $("#tabThongTin").find("i").remove();
+                $("#tabThongTin").prepend("<i class=\"fa-exclamation-triangle color-red\"></i> ");
+                result = "Fasle";
+            }
+
+            //Phần Thưởng
+            if ($("#CheckPhanThuong").val() == "True") {
+                $("#tabPhanThuong").find("i").remove();
+                $("#tabPhanThuong").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+            else if (show == 1) {
+                $("#tabPhanThuong").find("i").remove();
+                $("#tabPhanThuong").prepend("<i class=\"fa-circle-o\"></i> ");
+            }
+            else {
+                $("#tabPhanThuong").find("i").remove();
+                $("#tabPhanThuong").prepend("<i class=\"fa-exclamation-triangle color-red\"></i> ");
+                result = "Fasle";
+            }
+
+            //Mô Tả
+            if ($("#CheckMoTa").val() == "True") {
+                $("#tabMoTa").find("i").remove();
+                $("#tabMoTa").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+            else if (show == 1) {
+                $("#tabMoTa").find("i").remove();
+                $("#tabMoTa").prepend("<i class=\"fa-circle-o\"></i> ");
+            }
+            else {
+                $("#tabMoTa").find("i").remove();
+                $("#tabMoTa").prepend("<i class=\"fa-exclamation-triangle color-red\"></i> ");
+                result = "Fasle";
+            }
+
+            //Giới Thiệu
+            if ($("#CheckGioiThieu").val() == "True") {
+                $("#tabGioiThieu").find("i").remove();
+                $("#tabGioiThieu").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+            else if (show == 1) {
+                $("#tabGioiThieu").find("i").remove();
+                $("#tabGioiThieu").prepend("<i class=\"fa-circle-o\"></i> ");
+            }
+            else {
+                $("#tabGioiThieu").find("i").remove();
+                $("#tabGioiThieu").prepend("<i class=\"fa-exclamation-triangle color-red\"></i> ");
+                result = "Fasle";
+            }
+
+            //Tài Khoản
+            if ($("#CheckTaiKhoan").val() == "True") {
+                $("#tabTaiKhoan").find("i").remove();
+                $("#tabTaiKhoan").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+            else if (show == 1) {
+                $("#tabTaiKhoan").find("i").remove();
+                $("#tabTaiKhoan").prepend("<i class=\"fa-circle-o\"></i> ");
+            }
+            else {
+                $("#tabTaiKhoan").find("i").remove();
+                $("#tabTaiKhoan").prepend("<i class=\"fa-exclamation-triangle color-red\"></i> ");
+                result = "Fasle";
+            }
+            return result;
+        }
+
+        function htmlEncode(value) {
+            if (value) {
+                return jQuery('<div />').text(value).html();
+            } else {
+                return '';
+            }
+        }
+
+        function htmlDecode(value) {
+            if (value) {
+                return $('<div />').html(value).text();
+            } else {
+                return '';
+
+            }
+        }
+
+        
+
+        // hinh anh 
+        //function Upload(sender) {
+        //    var iframe = $("<iframe>").hide();
+        //    var newForm = $("<FORM>");
+        //    newForm.attr({ method: "POST", enctype: "multipart/form-data", action: "/ControllerName/Final" });
+        //    var $this = $(sender), $clone = $this.clone();
+        //    $this.after($clone).appendTo($(newForm));
+        //    iframe.appendTo($("html")).contents().find('body').html($(newForm));
+        //    newForm.submit();
+        //}
+
+        function xemtruoc(trangthai) {
+            $("#flag").val("XemTruoc");
+            var postURL = '@Url.Action("CheckTrangThaiDuAn", "ajax")';
+            $.post(postURL, { 'IdDuAn': '@Model.Id', 'TrangThai': trangthai }, function (data) {
+                if (trangthai == 0)
+                { location.reload(); }
+            });
+        }
+        function xuatban() {
+            if (check_mucdohoanthanh(0) == "True") {
+                $("#TrangThai").val("1");
+                var form = document.getElementById("form-id");
+                form.submit();
+                alert("Dự án đã được đưa vào hàng chờ Duyệt");
+            }
+            else {
+                return;
+            }
+
+        }
+        function KhongLuuDuAn() {
+            if ($("#tabThongTin").hasClass("active") == true) {
+                var postURL = '@Url.Action("_LoadTabThongTin", "DuAn")';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-ThongTin').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            if ($("#tabPhanThuong").hasClass("active") == true) {
+                var postURL = '@Url.Action("_LoadTabPhanThuong", "DuAn", new { da = Model })';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-PhanThuong').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            if ($("#tabMoTa").hasClass("active") == true) {
+                var postURL = '@Url.Action("_LoadTabMoTa", "DuAn")';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-MoTa').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            if ($("#tabGioiThieu").hasClass("active") == true) {
+                var postURL = '@Url.Action("_LoadTabGioiThieu", "DuAn")';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-GioiThieu').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            if ($("#tabTaiKhoan").hasClass("active") == true) {
+                var postURL = '@Url.Action("_LoadTabTaiKhoan", "DuAn")';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-TaiKhoan').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            if ($("#tabTeam").hasClass("active") == true) {
+                var postURL = '@Url.Action("_Team_DuAn", "Ajax")';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#proj-Team').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();
+            }
+            //return true;
+        }
+
+        function LuuDuAn() {
+            if ($("#tabThongTin").hasClass("active") == true) {
+                $(".proj-popup").fadeOut();
+                var DanhMuc = $('#proj-category').val();
+                //$("#DanhMuc").val(DanhMuc);
+                $("#IdDanhMuc").val(DanhMuc);
+                if ($('#voncodinh').is(':checked')) {
+                    $("#Loaihinhkeugoivon").val(0);
+                }
+                else {
+                    $("#Loaihinhkeugoivon").val(1);
+                }
+                if ($('#SoNgay1').is(':checked')) {
+                    if ($("#SoNgayHoanThanh1").val() < 0) {
+                        jQuery('#SoNgayHoanThanh2').val("");
+                        $('#SoNgayHoanThanh1').addClass("tomauvien");
+                        return false;
+                    } else {
+                        //$('#SoNgayHoanThanh1').removeClass("tomauvien");
+
+                    }
+                }
+                else {
+                    if ($("#SoNgayHoanThanh2").val() < 0) {
+                        jQuery('#SoNgayHoanThanh1').val("");
+                        $('#SoNgayHoanThanh2').addClass("tomauvien");
+                        return false;
+                    } else {
+                        //$('#SoNgayHoanThanh2').removeClass("tomauvien");
+                    }
+                }
+
+                //alert($("#TienDauTuMucTieu").autoNumeric('get'));
+                $("#TienDauTuMucTieu").val($("#TienDauTuMucTieu").autoNumeric('get'));
+
+                var SoNgay = $("#SoNgayHoanThanh1").val();
+                var ThoiGianKetThuc = $("#SoNgayHoanThanh2").val();
+                $("#SoNgay").val(SoNgay);
+                $("#ThoiGianKetThuc").val(ThoiGianKetThuc);
+
+                var HinhAnh = ValidateFileUpload();
+                if (HinhAnh == "null") {
+                }
+                else if (HinhAnh == "error") {
+                    jQuery('.uploadanh').slideDown(); return false;
+                }
+                else {
+                    jQuery('.uploadanh').slideUp();
+                }
+            }
+
+            if ($("#tabPhanThuong").hasClass("active") == true) {
+               @* var postURL = '@Url.Action("LuuPhanThuong_DuAn", "DuAn", new { da = Model })';
+                $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        $('#PhanThuong').html(data);
+                    }
+                });
+                HienThi_Tab();
+                $(".proj-popup").fadeOut();
+                $("#btnSave").removeClass("visible");
+                $("#btnSave").hide();*@
+                // phan thuong
+                var PhanThuong = trimPhanThuong();
+                $("#PhanThuong").val(PhanThuong);
+                //alert(PhanThuong);
+
+            }
+            if ($("#tabMoTa").hasClass("active") == true) {
+            }
+            if ($("#tabGioiThieu").hasClass("active") == true) {
+            }
+            if ($("#tabCapNhat").hasClass("active") == true) {
+            }
+            if ($("#tabTaiKhoan").hasClass("active") == true) {
+            }
+            HienThi_Tab();
+            return true;
+        }
+
+        //$(document).ready(function () {
+        //    alert("1");
+        //    $("#tabThongTin").click(function () { alert("1"); $('.ui-datepicker-calendar').show(); });
+        //    $("#tabPhanThuong").click(function () { alert("2"); $('.ui-datepicker-calendar').css("display", "none"); });
+
+        //});
+    </script>
+    <!--End Xử lý Chung-->
+
+    <!--Start Xử lý tab "Thông Tin"-->
+    <script>
+        //Xử lý chọn kiểu nhập "Ngày hoàn thành"
+        function ChangeStyle_NgayHoanThanh(id) {
+            HienThi_ButtonSave();
+            var thistextbox = id.replace('Ngay', 'NgayHoanThanh');
+
+            var othertextarea = 'NgayHoanThanh1';
+            if (id.slice(-1) == '1') {
+                $("#SoNgayHoanThanh2").prop('disabled', true);
+                $("#SoNgayHoanThanh1").prop('disabled', false);
+                $("#SoNgayHoanThanh2").prop('value', "")
+            }
+            else {
+                $("#SoNgayHoanThanh1").prop('disabled', true);
+                $("#SoNgayHoanThanh2").prop('disabled', false);
+                $("#SoNgayHoanThanh1").prop('value', "")                
+                $("#SoNgayHoanThanh2").datepicker("setDate", $.now());
+                $("#SoNgayHoanThanh2").datepicker("show");
+            }
+        }
+
+        //Kiểm tra file hình ảnh dự án
+        function ValidateFileUpload() {
+            var fuData = document.getElementById('HinhAnh');
+            var FileUploadPath = fuData.value;
+            if ((FileUploadPath == "" || FileUploadPath == null) && ('@Model.HinhAnh' != null && '@Model.HinhAnh' != "")) {
+                return "complete";
+            }
+
+            //To check if user upload any file
+            if (FileUploadPath == '' || FileUploadPath == null) {
+                return "null";
+
+            } else {
+                var Extension = FileUploadPath.substring(
+                        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+                //The file uploaded is an image
+
+                if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+
+                    // To Display
+                    if (fuData.files && fuData.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(fuData.files[0]);
+                    }
+                    return "complete";
+                }
+
+                    //The file upload is NOT an image
+                else {
+                    return "error";
+
+                }
+            }
+        }
+
+    </script>
+    <!--End Xử lý tab "Thông Tin"-->
+
+    <!--Start Xử lý tab "Phần Thưởng"-->
+    <script>
+        // Nút "Xóa Phần Thưởng"
+        $(document).on('click', '.btn-delete-reward', function (e) {
+            e.preventDefault();
+            var textxoa = $(this).parent().children().first().children().first().text();
+            var demvt = 1;
+            $(".proj-plege b").each(function (index) {
+
+                if ($(this).text() != textxoa) {
+                    $(this).text("Phần thưởng #" + demvt);
+                    demvt++;
+                }
+            });
+            //phần thưởng
+            var IdPhanThuong = $(this).attr("data-phanthuong");
+            if (IdPhanThuong == 0) {
+                $(this).parent().fadeOut(function () { $(this).remove(); });
+            } else {
+                var bien = $(this).parent();
+                var postURL = '@Url.Action("_XoaPhanThuong", "DuAn")';
+                    $.post(postURL, { "IdPhanThuong": IdPhanThuong }, function (data) {
+                        if (data == "error") {
+                            alert("Phần thưởng này không được xóa");
+
+                        }
+                        else { bien.fadeOut(function () { $(this).remove(); }); }
+                    });
+                }
+
+        });
+
+        // Khởi tạo Nút "Thêm Phần Thưởng"
+        $('#btn-add-reward-mode').click(function (e) {
+            e.preventDefault();
+            var vt = $('.box-plege .proj-plege').length + 1;
+
+            var postURL = '@Url.Action("_ChiTiet_TaoPhanThuong_item", "DuAn")';
+                if (NoiDung != "") {
+                    $.post(postURL, { "vt": vt }, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+
+                            $('.box-plege').append(data);
+                            nap_reward();
+                        }
+                    });
+                }
+            });
+
+        var nap_reward = function () {
+            $('.tooltip').tooltipster({ animation: 'grow', contentAsHTML: true });
+        };
+
+        function trimPhanThuong() {
+            var ketqua = "";
+            var input = $("#boxPhanThuong input");
+            var textarea = $("#boxPhanThuong textarea");
+            var checkbox = $("#boxPhanThuong checkbox");
+            var i = 0;
+            var check = true;
+            $("#boxPhanThuong select").each(function () {
+                // o muc gia
+                if ($(input[i * 4]).val() == "") {
+                    //$(input[i * 4]).css({
+                    //    border: "1px red solid"
+                    //});                    
+                    check = false;
+                }
+                else {
+                    $(input[i * 4]).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // o so ngay giao hang
+                if ($(input[i * 4 + 1]).val() == "") {
+
+                    //$(input[i * 4 + 1]).css({
+                    //    border: "1px red solid"
+                    //});
+                    check = false;
+                }
+                else {
+                    $(input[i * 4 + 1]).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // hinh thuc nhan hang
+                if ($(this).val() == 0) {
+                    //$(this).css({
+                    //    border: "1px red solid"
+                    //});
+
+                    check = false;
+                }
+                else {
+                    $(this).css({
+                        border: "1px #F3F3F3 solid"
+                    });
+                }
+
+                // mo ta textarea
+                if ($(textarea[i]).val() == "") {
+
+                    //$(textarea[i]).css({
+                    //    border: "1px red solid"
+                    //});
+                    check = false;
+                }
+                else {
+                    $(textarea[i]).css({
+                        border: "1px #F3F3F3 solid"
+
+                    });
+                }
+                ketqua = ketqua + $(input[i * 4]).autoNumeric('get') + "^";
+                ketqua = ketqua + $(input[i * 4 + 1]).val() + "^";
+                ketqua = ketqua + $(this).val() + "^";
+                ketqua = ketqua + $(input[i * 4 + 3]).val() + "^";
+                ketqua = ketqua + $(textarea[i]).val() + "#";
+               // alert(ketqua);
+                i++;
+            });
+
+            if (check == true) {
+                $("#tabPhanThuong").prepend("<i class=\"fa-check-square\"></i> ");
+                return ketqua;
+            }
+            else {
+                //$("#tabPhanThuong").addClass("tomautab");
+                return "";
+            }
+
+        }
+
+            
+    </script>
+    <!--End Xử lý tab "Phần Thưởng"-->
+
+    <!--Start Xử lý tab "Mô Tả"-->
+    <script>
+        <!--Xử lý check link Youtube-->
+        function vv() {
+            var obj = $('#js_v_txt2');
+            obj.val(obj.val().replace('http://youtu.be/', '').replace('http://www.youtube.com/watch?v=', '').replace('https://www.youtube.com/watch?v=', ''));
+        }
+        function checklinkYoutube() {
+            $('#video_youtube_error').hide();
+            $('.js_editloadbtn').show();
+            var url = '';
+            vv();
+            if ($('#js_v_txt2').val() != '') {
+                url = 'http://www.youtube.com/watch?v=' + $('#js_v_txt2').val();
+            }
+
+            //console.log(url);
+
+            if (url != '') {
+                url.match(/http:\/\/(www.)?(youtu(be\.com|\.be))\/(embed\/|watch\?v=)?([A-Za-z0-9._%-]*)(\&\S+)?/);
+
+                var match = {
+                    provider: null,
+                    url: RegExp.$2,
+                    id: RegExp.$5
+                }
+
+                if (match.url == 'youtube.com' || match.url == 'youtu.be') {
+                    var request = $.ajax({
+                        url: 'http://gdata.youtube.com/feeds/api/videos/' + match.id,
+                        timeout: 5000,
+                        dataType: 'jsonp',
+                        success: function () {
+                            match.provider = 'YouTube';
+                        }
+                    });
+                }
+
+                if (request) {
+                    request.always(function () {
+                        var ret = false;
+                        if (match.provider) {
+                            console.log('\n\nFound valid video:\nProvider: ' + match.provider + '\nVideo ID: ' + match.id);
+                            ret = true;
+                        } else {
+                            console.log('Unable to locate a valid video ID');
+                        }
+                        sbo(ret);
+                    });
+                }
+            } else {
+                issubmit = true;
+                $('#frm').submit();
+            }
+        }
+        function sbo(ret) {
+            console.log(ret);
+            if (ret) {
+                issubmit = true;
+                $('#frm').submit();
+            } else {
+                var video_type = $('input[name="video_type"]:checked').val();
+                if (video_type == 1) {
+                    $('#video_vimeo_error').show();
+                } else if (video_type == 2) {
+                    $('#video_youtube_error').show();
+                }
+                $('.js_editloadbtn').hide();
+                $('.js_edit_btn1').show();
+                //go2a('video_a');
+            }
+        }  
+    </script>
+    <!--End Xử lý tab "Mô Tả"-->
+
+    <!--Start Xử lý tab "Giới Thiệu"-->
+    <script>
+        function ValidateFileUpload2() {
+            var fuData = document.getElementById('Avatar');
+            var FileUploadPath = fuData.value;
+
+            //To check if user upload any file
+            if (FileUploadPath == '') {
+                return "null";
+
+            } else {
+                var Extension = FileUploadPath.substring(
+                        FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+                //The file uploaded is an image
+
+                if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                                    || Extension == "jpeg" || Extension == "jpg") {
+
+                    // To Display
+                    if (fuData.files && fuData.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(fuData.files[0]);
+                    }
+                    return "complete";
+                }
+
+                    //The file upload is NOT an image
+                else {
+                    return "error";
+
+                }
+            }
+        }
+    </script>
+    <!--End Xử lý tab "Giới Thiệu"-->
+
+    <!--Start Xử lý tab "Tài Khoản"-->
+    <script>
+        //Load các loại tài khoản
+        @*function LoadTaiKhoan() {
+            var whichperson = $('<div/>').html('@Model.whichpreson').text();
+            $("input[value='" + whichperson + "']").attr('checked', 'checked');
+            if (whichperson == "Cá nhân") {
+                $(".taikhoan[data-preson='1']").show();
+                $('#years').val('@Model.cnYear');
+                $('#months').val('@Model.cnMonth');
+                $('#days').val('@Model.cnDay');
+
+                if ($("input[name='cnName']").val() && '@Model.cnYear'
+                    && '@Model.cnMonth' && '@Model.cnDay'
+                     && $("input[name='cnHomeaddress1']").val() && $("input[name='cnHomeaddress2']").val()
+                    && '@Model.cnHinhAnh'
+                    ) {
+                    $("#tabTaiKhoan").prepend("<i class=\"fa-check-circle-o\"></i> ");
+                }
+            }
+            else if (whichperson == "Doanh nghiệp") {
+
+                $(".taikhoan[data-preson='2']").show();
+                if ($("input[name='ctTenCongTy']").val() && $("input[name='ctDiaChi']").val()
+                    && $("input[name='ctMST']").val() && $("input[name='ctSDTBan']").val()
+                     && $("input[name='ctTenNguoiDaiDien']").val() && $("input[name='ctChucVu']").val()
+                    && '@Model.ctHinhAnh'
+                    ) {
+                    $("#tabTaiKhoan").prepend("<i class=\"fa-check-circle-o\"></i> ");
+                }
+            }
+            else {
+                $("#tabTaiKhoan").prepend("<i class=\"fa-check-circle-o\"></i> ");
+            }
+        }*@
+        //Kiem tra TKPayoo
+        function kiemtraTKPayoo() {
+            var username = $('#TKPayoo').val();
+            var postURL = '@Url.Action("CheckPayooAccount", "Duan")';
+            $.post(postURL, { "username": username }, function (data) {
+                if (data == "Valid") {
+                    var msg = '\"Tiếp tục\" nếu bạn chắc chắn sử dụng tài khoản này.' + '<br />' + '\"Không\" nếu bạn muốn sử dụng tài khoản khác.' + '<br />' + 'Nên chắc chắn vì bạn sẽ không thể thay đổi thông tin này khi đã lưu.';
+                    var div = $("<div>" + msg + "</div>");
+                    div.dialog({
+                        title: "Tài khoản hợp lệ",
+                        buttons: [
+                                    {
+                                        text: "Tiếp tục",
+                                        click: function () {
+                                            div.dialog("close");
+                                            LuuTKPayoo(username);
+                                            //add ur stuffs here
+
+                                        }
+                                    },
+                                    {
+                                        text: "Không",
+                                        click: function () {
+                                            div.dialog("close");
+                                        }
+                                    }
+                        ]
+                    });
+                }
+                else {
+                    alert("Tài khoản không hợp lệ");
+                }
+            });
+            return false;
+        }
+        function LuuTKPayoo(username) {
+            var postURL = '@Url.Action("SaveAccountPayoo", "Account")';
+            $.post(postURL, { "username": username }, function (data) {
+                if (data == "True") {
+                    alert("Đã lưu thành công");
+                    location.reload();
+                }
+                else {
+                    alert("Đã xảy ra lỗi, vui lòng thử lại sau");
+                    location.reload();
+                }
+            });
+        }
+    </script>
+    <!--End Xử lý tab "Tài Khoản"-->
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+            d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                z.set.
+                _.push(o)
+            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "//v2.zopim.com/?3CGYmoU6g119BLNefkNxXfDxOKxZp1z0"; z.t = +new Date; $.
+            type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+    </script>
+    <!--End of Zopim Live Chat Script-->     
+    
+}

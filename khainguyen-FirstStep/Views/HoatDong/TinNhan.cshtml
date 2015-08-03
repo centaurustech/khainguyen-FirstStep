@@ -1,0 +1,285 @@
+﻿@model IList<khainguyen_FirstStep.Models.SendMessage>
+@{
+    ViewBag.Title = "Tin nhắn";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page page-message">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            @Html.Action("_MenuHoatDong", "HoatDong")
+
+            <!-- LỌC TIN NHẮN -->
+            <div class="ms-filter">
+                <div class="col-2">
+                    <span class="ms-title"></span>
+                    <div class="cb-filter-v">
+                        <button class="btn btn-larger"><i class="fa-list"></i><span>All</span><i class="fa-angle-down"></i></button>
+                        <nav id="tinnhan">
+                            @{
+                                switch ((int)ViewBag.type)
+                                {
+                                    case 0:
+                                <a data-link="0" href="@Url.Action("TinNhan", "HoatDong", new { type = 0 })">Tất cả thư</a>
+                                <a data-link="1" href="@Url.Action("TinNhan", "HoatDong", new { type = 1 })">Hộp thư đến</a>
+                                <a data-link="2" href="@Url.Action("TinNhan", "HoatDong", new { type = 2 })">Thư đã gửi</a>
+                                <a data-link="3" href="@Url.Action("TinNhan", "HoatDong", new { type = 3 })">Chưa đọc</a>
+                                        break;
+                                    case 1:
+                                <a data-link="1" href="@Url.Action("TinNhan", "HoatDong", new { type = 1 })">Hộp thư đến</a>
+                                <a data-link="0" href="@Url.Action("TinNhan", "HoatDong", new { type = 0 })">Tất cả thư</a>
+                                <a data-link="2" href="@Url.Action("TinNhan", "HoatDong", new { type = 2 })">Thư đã gửi</a>
+                                <a data-link="3" href="@Url.Action("TinNhan", "HoatDong", new { type = 3 })">Chưa đọc</a>            
+                                        break;
+                                    case 2:
+                                <a data-link="2" href="@Url.Action("TinNhan", "HoatDong", new { type = 2 })">Thư đã gửi</a>
+                                <a data-link="0" href="@Url.Action("TinNhan", "HoatDong", new { type = 0 })">Tất cả thư</a>
+                                <a data-link="1" href="@Url.Action("TinNhan", "HoatDong", new { type = 1 })">Hộp thư đến</a>
+                            
+                                <a data-link="3" href="@Url.Action("TinNhan", "HoatDong", new { type = 3 })">Chưa đọc</a>
+                                        break;
+                                    case 3:
+                                <a data-link="3" href="@Url.Action("TinNhan", "HoatDong", new { type = 3 })">Chưa đọc</a>
+                                <a data-link="0" href="@Url.Action("TinNhan", "HoatDong", new { type = 0 })">Tất cả thư</a>
+                                <a data-link="1" href="@Url.Action("TinNhan", "HoatDong", new { type = 1 })">Hộp thư đến</a>
+                                <a data-link="2" href="@Url.Action("TinNhan", "HoatDong", new { type = 2 })">Thư đã gửi</a>       
+                                        break;
+
+                                }
+                                
+                                }
+                            
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-2 text-right">
+                    <div class="txt-input">
+                        <input name="name" id="Search_message" value="" onkeydown="return keyEnter(event);" placeholder="Tìm kiếm tin nhắn..." />
+                        <button class="btn btn-larger" onclick="return SearchMessage();"><i class="fa-search"></i> Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NỘI DUNG TIN NHẮN -->
+                    <div class="ms-content">
+                        <!-- ms-list-user -->
+                        <nav class="ms-list-user nicescroll" id="ms-list-user">
+                            @{
+                                foreach (var item in Model)
+                                {
+                                <a href="javascript:void(0)" class="@item.IdSendMessge" onclick="return ReadMessage('@item.user.Id','@item.IdDuAn','@item.IdSendMessge');">@* class="active"*@
+                                    @if(item.user.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                                    {                                        
+                                        <img src="https://graph.facebook.com/@item.user.IdFacebook/picture?type=large" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.user.Avatar" />
+                                    }                                    
+                                    <b>@item.user.HoTen</b> <i style="font-size:x-small;float:right;">@item.ThoiGianNew</i>
+                                  
+                                    @{
+                                    if (item.TrangThai == 0)
+                                    {
+                                        <i class="fa-circle color-orange"></i>
+                                    }
+                                    else{
+                                         <i class="fa-circle color-orange" style="display:none"></i>
+                                    }
+                                    }
+                                      <br /><i style="font-size:x-small">@item.TenDuAn</i> <i style="font-size:small;float:right;border-radius: 3px;background: #0092c8;color: white;padding: 0px 5px;"> @item.SoTinNhan</i>
+                                    <br /><i style="font-size:x-small">@item.NoiDungRutGon</i>
+                                    <br />
+                                    <input type="hidden"  value="@item.NoiDung" class="abcxyz"/>
+                                </a>
+                                }   
+                            }
+                           
+                        </nav>
+
+                        <!-- ms-text -->
+                        <div class="ms-text right box-effect8" style="visibility:hidden;" id="ms-text">
+                            <div class="ms-test-ul nicescroll" id="LoadContent">
+                               
+                               
+                            </div>
+                            <div class="ms-text-li">
+                                <textarea class="form-txt" id="noidung_addmessage" placeholder="reply..."></textarea><br /><br />
+                                <button class="btn" id="btn_addmessage" onclick="return AddMessage();">Gửi tin nhắn</button> <span style="float:right"><a onclick="return checkChuaDoc();" href="javascript:void(0)">Đánh dấu chưa đọc</a></span>
+                                <input type="hidden" value="0" id="id_addmessage"/>
+                                <input type="hidden" value="0" id="idDuAn_addmessage"/>
+                                 <input type="hidden" value="0" id="id__message"/>
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+</div><!-- /.page -->
+    @Html.Action("CheckLife","Home")
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        $(document).ready(function () {
+            $('#btn_addmessage').hide();
+          
+            $('#ms-list-user').click(function () {
+                if ($(this).hasClass('left') == false) {
+                    $(this).addClass('left');
+                }
+            });
+        
+
+        });
+        function checkChuaDoc() {
+            var postURL = '@Url.Action("checkChuaDoc", "HoatDong")';
+            
+            var idduan = $('#idDuAn_addmessage').val();
+            var idmessage = $('#id__message').val();
+           $.post(postURL, { 'IdDuAn': idduan }, function (data) {
+               $('.' + idmessage + ' i.fa-circle').show();
+            });
+        }
+        function CheckSpam(idcheck) {
+            //IdMessage_show
+            var postURL = '@Url.Action("CheckSpam", "HoatDong")';
+            $.post(postURL, { 'idcheck': idcheck }, function (data) {
+                $('#IdMessage_show' + idcheck).find("p").first().html("<p style=\"color:#ffb116\ ;font-style:italic;\">Tin Nhắn này đã bị báo Spam</p>");
+                $('#IdMessage_show' + idcheck).find("a").last().hide();
+            });
+        }
+        function change_alias( alias )
+        {
+            var str = alias;
+            str= str.toLowerCase(); 
+            str= str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ  |ặ|ẳ|ẵ/g,"a"); 
+            str= str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+            str= str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+            str= str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ  |ợ|ở|ỡ/g,"o"); 
+            str= str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+            str= str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+            str= str.replace(/đ/g,"d"); 
+            str= str.replace(/!|@@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'| |\"|\&|\#|\[|\]|~|$|_/g,"-");
+            /* tìm và thay thế các kí tự đặc biệt trong chuỗi sang kí tự - */
+            str= str.replace(/-+-/g,"-"); //thay thế 2- thành 1-
+            str= str.replace(/^\-+|\-+$/g,""); 
+                    //cắt bỏ ký tự - ở đầu và cuối chuỗi 
+            return str;
+        }
+        function SearchMessage(e) {
+          
+            var danhsach = $('#ms-list-user a');
+            var noidung = $("#Search_message").val();
+            noidung = change_alias(noidung);
+            for (var i = 0; i < danhsach.length; i++) {
+                danhsach[i].style.display = '';
+            }
+            for (var i = 0; i < danhsach.length; i++) {
+                var link = danhsach[i].innerText+$("." + danhsach[i].className + " input").val();
+                var noidungkhongdau = change_alias(link);
+                if (noidungkhongdau.toLowerCase().indexOf(noidung.toLowerCase()) == -1) {
+                  //  alert(danhsach[i].nodeValue());
+                    danhsach[i].style.display = 'none';
+                }
+                
+            }
+        }
+        function keyEnter(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode;     //IE 
+            else
+                key = e.which;
+            if (key == 13) { SearchMessage(); return true; }
+            return true;
+        }
+        function ReadMessage(Id,IdDuAn,IdMessage) {
+            $('#id_addmessage').val(Id);
+            $('#idDuAn_addmessage').val(IdDuAn);
+            $('#id__message').val(IdMessage);
+            $('#btn_addmessage').show();
+            $('.ms-list-user a').removeClass('active');
+            $('.' + IdMessage).addClass("active");
+            $('.' + IdMessage + ' i.fa-circle').hide();
+            //$('.ms-list-user').addClass("left");
+            var postURL = '@Url.Action("TinNhan_Read", "HoatDong")';
+            $.post(postURL, { "Id": Id,"IdDuAn":IdDuAn }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadContent').html(data);
+                    $('#ms-text').css("visibility", "visible");
+                    $('#LoadContent').scrollTop($('#LoadContent')[0].scrollHeight);
+                    
+                }
+            });
+        }
+        function AddMessage() {
+            $('#btn_addmessage').hide();
+            var Id = $('#id_addmessage').val();
+            var IdDuAn = $('#idDuAn_addmessage').val();
+            var noidung = $('#noidung_addmessage').val();
+            var postURL = '@Url.Action("TinNhan_Add", "HoatDong")';
+            if (noidung == "")
+                return false;
+            $.post(postURL, { "Id": Id,"noidung":noidung,"IdDuAn":IdDuAn }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadContent').append(data);
+                    $('#noidung_addmessage').val("");
+                  
+                }
+            });
+            $('#btn_addmessage').show();
+        }
+
+        // chat
+        function Chat(e) {
+            var UserName = $("a#FiendChat").text();
+            var Content = $("input#ChatReply").val();
+
+            var Delete = "";
+            var key;
+            if (window.event)
+                key = window.event.keyCode;     //IE 
+            else
+                key = e.which;
+            if (key == 13) {
+                $("input#ChatReply").val("");
+                if (UserName == "" || UserName == null) {
+                }
+                else {
+                    var dem = 0;
+                    var demthoigian = function () {
+                        if (dem > 0) {
+                            Content = "";
+                            Delete = UserName;
+                        }
+                        var getURL = '/Individual/_ContentChat';
+                        $.get(getURL, { "FriendChat": UserName, "Content": Content, "Delete": UserName }, function (data) {
+                            $("div#ContentChat").html(data);
+                            $('#ContentChat').scrollTop($('#ContentChat')[0].scrollHeight);
+                        });
+                        if (UserName == $("a#FiendChat").text())
+                            setTimeout(demthoigian, 5000); //5s
+                        else {
+                            return false;
+                        }
+
+                        dem = dem + 1;
+                    };
+                    demthoigian();
+                }
+
+            }
+        }
+    </script>
+}

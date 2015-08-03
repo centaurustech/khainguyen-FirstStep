@@ -1,0 +1,219 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+
+<style>
+    .newinput{
+        position: absolute;
+        font-size: 60px;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        text-indent: -9999px;
+        cursor: pointer;
+    }
+    .center {
+        display: block;
+        font-size: 13px;
+        padding: 20px;
+        line-height: 18px;
+        color: #00a0ff;
+    } 
+    .character_counter_container {
+      position: absolute;
+      bottom: 13px;
+      right: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 14px;
+      color: #828587;
+    }    
+    body#projects_edit .grey-field label {
+      vertical-align: top;
+      width: 163px;
+      word-wrap: break-word;
+    }
+    body#projects_edit .grey-field .field-wrapper {
+      display: -moz-inline-box;
+      display: -moz-inline-stack;
+      -moz-box-orient: vertical;
+      display: inline-block;
+      vertical-align: middle;
+      zoom: 1;
+      width: 449px; 
+      color: #0f2105;
+      line-height: 18px;
+      font-size: 13px;
+    }
+    body#projects_edit .grey-field .field-wrapper .character_counter_wrapper {
+      position: relative;
+    }
+    .grey-field label, .grey-field .label {
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: bold;
+      display: -moz-inline-box;
+      display: -moz-inline-stack;
+      -moz-box-orient: vertical;
+      display: inline-block;
+      vertical-align: middle;
+      zoom: 1;
+      padding: 10px 5px 10px 10px;
+    }
+    body#projects_edit .short-description textarea {
+      resize: none;
+    }
+    .grey-field textarea {
+      height: 70px;
+      vertical-align: top;
+    }
+    body#projects_edit .grey-field .field-wrapper .character_counter_container {
+      position: absolute;
+      bottom: 13px;
+      right: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 14px;
+      color: #828587;
+      border: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+    }
+</style>
+
+<p>&nbsp;</p>
+<h3>Bắt tay xây dựng dự án của bạn nào !</h3>
+<p>Chọn đúng danh mục, cập nhật hình ảnh, bổ sung và hoàn thiện các thông tin liên quan.</p>
+<p>&nbsp;</p>
+
+<div class="box">
+    @{
+        int kituten_conlai = 60 - Model.TenDuAn.Length;
+    <div class="group-text">
+    <h3>Tên dự án <i class="fa-info-circle tooltip color-green" title="Bạn nên đặt tên đơn giản, dễ nhớ. Tránh các từ như *hỗ trợ*, *giúp đỡ*, *quỹ*"></i></h3>
+    @Html.TextBoxFor(model => model.TenDuAn, new { @class = "form-txt" , @id = "tbTenDuAn", maxlength = "60", onkeyup = "javascript:txtCounters('demTenDuAn',60,'tbTenDuAn')"})
+            <div id="demTenDuAn" class="counting_length">@kituten_conlai/60</div>
+    </div>
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.PhanThuong)
+    @Html.HiddenFor(model => model.IdDanhMuc, new { @id = "IdDanhMuc" })
+    @Html.HiddenFor(model => model.SoNgay)
+    @Html.HiddenFor(model => model.ThoiGianKetThuc)
+
+    @*<div class="des" style="padding-left:168px;">
+        <p>Tên dự án của bạn nên được đơn giản, cụ thể, đáng nhớ, tránh các từ như "hỗ trợ", "giúp đỡ", "quỹ", ...</p>
+    </div>*@
+    }
+</div>
+
+<div class="box" id="DanhMuc" data-hide="@Model.TrangThai">
+    <h3>Chọn loại danh mục phù hợp với dự án của bạn nhất</h3>
+
+    <input type="hidden" id="proj-category" name="proj-category" value="@Model.IdDanhMuc" />
+    <nav class="proj-list-category" data-for="proj-category">
+        @{
+            foreach (var dm in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityDanhMuc>)
+            {
+                if (dm.Id == Model.IdDanhMuc)
+                {
+                    <a href="#" data-value="@dm.Id" class="active">@dm.TenDM</a>
+                }
+                else
+                {
+                    <a href="#" data-value="@dm.Id" class="checkclick">@dm.TenDM</a>
+                }
+            }
+        }
+
+        @*<a href="#"><i class="fa-paw"></i> Animals</a>*@
+    </nav>
+</div>
+
+<div class="box">
+    <h3>Loại hình kêu gọi vốn cộng đồng</h3>       
+    
+    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "Kêu gọi vốn cố định", new { @checked = true })
+    @Html.Label("Kêu gọi vốn cố định") <i class="fa-info-circle tooltip color-green" title="Thành công khi đạt trên 100% mục tiêu huy động vốn"></i>
+    </br>
+    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "Kêu gọi vốn linh hoạt", new { @checked = true })
+    @Html.Label("Kêu gọi vốn linh hoạt") <i class="fa-info-circle tooltip color-green" title="Thành công khi có bất kì ai đầu tư vào dự án của bạn"></i>
+    
+</div>
+
+<div class="box">
+    <div class="group-text">
+    <h3 style="width:168px;">Hình Ảnh</h3>
+    @if (@Model.HinhAnh != null && @Model.HinhAnh != "")
+    { <img width="400px" src="~/Content/Images/DuAn/@Model.HinhAnh" />}
+    <p style="padding-left:168px; width:80%;">
+        <input class="form-txt" id="HinhAnh" name="HinhAnh" type="file"/>
+@*        <strong class="center">
+        Choose an image from your computer
+        <span class="has_file_hide">This is the main image associated with your project. Make it count!</span>
+        <span>JPEG, PNG, GIF, or BMP  •  50MB file limit</span>
+        <span>At least 1024x768 pixels  •  4:3 aspect ratio</span>
+        </strong>*@
+    </p>
+        </div>
+    <div class="des" style="padding-left:168px;">
+        <p>Hình ảnh là ấn tượng đầu tiên với đa số người tài trợ trên FirstStep. Hãy lựa chọn cẩn thận!</p>
+    </div>
+    <div class="uploadanh">Vui lòng upload file hình ảnh.</div>
+</div>
+
+<div class="box">  @*data-hide="@Model.TrangThaiFund"*@
+    @{
+        int kitugioithieu_conlai = 160 - Model.ThongTinNgan.Length;
+    <div class="group-text">
+        <h3 style="width:270px;">Giới thiệu ngắn về dự án</h3>
+        <p style="width:70%;">
+            <textarea class="form-txt" maxlength="160" rows="4" id="ThongTinNgan" name="ThongTinNgan" onkeyup="javascript:txtCounters('demThongTinNgan',160,'ThongTinNgan')">@Model.ThongTinNgan</textarea>
+            <div id="demThongTinNgan" class="counting_length">@kitugioithieu_conlai/160</div> 
+        </p>
+        <div class="des" style="padding-left:270px;">
+        <p>Nếu phải mô tả dự án của bạn trong một câu. Bạn sẽ nói gì với mọi người</p>
+        </div>
+    </div>
+    }
+</div>
+
+<div class="box">
+    <div class="group-text">
+        <h3 style="width:270px;">Tổng kinh phí dự án </h3>@*<i class="fa-info-circle tooltip color-green" title="FirstStep đưa ra 2 hình thức huy động vốn: Huy động vốn cố định và Huy động vốn linh hoạt. Tham khảo sổ tay FirstStep để có được những thông tin bổ ích! (dẫn link) (dẫn link)"></i>*@
+        @Html.TextBoxFor(model => model.TienDauTuMucTieu, "{0:0,0}", new { @class = "form-txt  text-right auto", @data_v_min = "0" , @data_v_max = "99999999999999", style = "width: 20%;" }) VNĐ
+        @Html.ValidationMessageFor(model => model.TienDauTuMucTieu)
+        <span id="spTienDauTu"></span>
+        <div class="des" style="padding-left:270px;">
+            <p>Mục tiêu huy động sẽ là khoản kinh phí dự kiến tối thiểu bạn cần phải đạt được để thực hiện dự án. Hãy làm những bước dưới đây để ước tính chính xác chi phí các chủ dự án sẽ bỏ ra khi thực hiện</p>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <div class="group-text" id="ToMauSoNgay">
+        <h3 style="width:270px;">Số ngày dự định hoàn thành</h3> @*<i class="fa-info-circle tooltip color-green" title="Nếu không cần "></i>*@
+        <p style="width:70%;">
+            <div class="col-2" style="width:27%;">
+                <label>
+                    <input type="radio" name="a1" id="SoNgay1" checked="true" value="SoNgay" onclick="ChangeStyle_NgayHoanThanh(this.id)" />Chọn nhập số ngày sẽ huy động
+                </label>                           
+            </div>
+            <div><input class="form-txt text-right" type="number" style="width: 20%;" placeholder="0" value="@Model.SoNgay" id="SoNgayHoanThanh1" /></div>
+        </p>
+        <h3 style="width:270px;"></h3>
+        <p style="width:70%;">
+        <div class="col-2" style="width:27%;">
+        <label>
+            <input type="radio" name="a1" style="padding-left:270px;" id="SoNgay2" value="ChonNgay" onclick="ChangeStyle_NgayHoanThanh(this.id)" />Chọn hạn chót cho thời gian huy động vốn 
+        </label>
+        </div>
+        <div><input disabled="true" class="form-txt text-right" type="text" style="width: 20%;" value="@Model.ThoiGianKetThuc" id="SoNgayHoanThanh2" /></div>
+            <div class="des" style="padding-left:270px;">
+                <p>Thời gian huy động hợp lý của một dự án thường  từ <b>01 – 60 ngày</b>. Đó là kinh nghiệm mà FirstStep rút ra sau khi thống kê những dự án kêu gọi vốn cộng đồng ở các trang khác. Vì vậy những dự án có thời gian huy động vốn càng dài thì mức độ thành công càng thấp. Thời hạn cho một dự án chỉ nên thiết lập khoảng <b>30 ngày hoặc thấp hơn</b>.</p>
+            </div>
+                        
+        </p>
+    </div>
+</div>

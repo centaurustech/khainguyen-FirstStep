@@ -1,0 +1,26 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityBinhLuan>
+<div class="space_20"></div>
+<a href="#" class="btn btn-big show-popup-proj" data-id="popup1"><i class="fa-comment"></i> Bình luận</a>
+@{
+    foreach (var item in Model)
+    {
+        <div class="supporter-row">
+            <div class="avatar">
+                @if (item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                {
+                    <a href="/user/@item.EntityUser.VanityURL">
+                        <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=normal" />
+                    </a>
+                }
+                else
+                {
+                    <a href="/user/@item.EntityUser.VanityURL">
+                        <img src="@item.EntityUser.Avatar" />
+                    </a> 
+                }
+            </div>
+            <a href="/user/@item.EntityUser.VanityURL"><h3>@item.EntityUser.HoTen</h3></a>
+            <p>@item.NoiDung</p>
+        </div>
+    }
+}

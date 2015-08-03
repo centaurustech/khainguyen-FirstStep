@@ -1,0 +1,116 @@
+﻿@model khainguyen_FirstStep.Models.AccountModel
+@{
+    ViewBag.Title = "Sửa thông tin tài khoản";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+
+<div class="page">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            <div class="acc-title">
+                <h1><i class="fa-cog"></i>Sửa thông tin cá nhân</h1>
+                <p>Tính năng này cung cấp thông tin về việc sử dụng tài khoản của bạn và thay đổi khác liên quan.</p>
+            </div>
+            @Html.Action("_MenuTaiKhoan", "Account")
+
+            @using (Html.BeginForm("SuaThongTin", "Account",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            { 
+                <form class="form-edit-profile">
+                    @* <p class="form-error color-red hide">
+                    <i class="fa-dot-circle-o"></i>you enter the wrong password<br />
+                    <i class="fa-dot-circle-o"></i>message error 2<br />
+                    <i class="fa-dot-circle-o"></i>message error 3<br />
+                </p>*@
+
+                    <div class="col-2">
+                        <p>
+                            <input name="Email" id="Email" value="nonamegsaggsa@gmail.com" hidden="hidden" />
+                            <input name="Pass" id="Pass" value="nonamegsaggsa" hidden="hidden" />
+                            <input name="RePass" id="RePass" value="nonamegsaggsa" hidden="hidden" />
+                            <b>Họ và tên</b><br />
+                            @Html.TextBoxFor(model => model.HoTen, new { @class = "form-txt", @placeholder = "Nhập họ và tên bạn" })
+                            @Html.ValidationMessageFor(model => model.HoTen)
+                            <span class="form-des">Họ và tên hiển thị của bạn.</span>
+                        </p>
+                        <p>
+                            <b>Giới thiệu bản thân</b><br />
+                            <textarea class="form-txt" id="GioiThieu" name="GioiThieu">@Model.GioiThieu</textarea>
+                            <span class="form-des">Những thông tin liên quan tới bản thân như sở thích , khả năng , trình độ, ...</span>
+                        </p>
+                        <p>
+                            <b>Ảnh đại diện</b><br />
+                            <img class="avatar" src="@Model.Avatar" alt="" />
+                            <input type="file" id="Avatar" name="Avatar" class="form-txt" value="" />
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <p>
+                            <b>Địa điểm</b><br />
+                            <input class="form-txt" type="text" id="DiaDiem" name="DiaDiem" placeholder="Hà Nội, Đà Nẵng , TP Hồ Chí Minh, ..."  value="@Model.DiaDiem"/>
+                            <span class="form-des">Nơi bạn đang sinh sống.</span>
+                        </p>
+
+                        <p>
+                            <b>Id Url Profile</b>: <br />   
+                            <input class="form-txt" id="Profile" name="Profile" type="text" value="@Model.Profile"  onkeydown="if(this.value.indexOf('@ViewBag.Link')!=0){this.value='@Model.Profile';}" />
+                            <span class="form-des" id="EProfile" style="color: red; display: none;">Id Url Profile đã tồn tại</span>
+                            <br />
+                            <span class="form-des">Sử dụng tiếng việt không dấu, chữ số và kí tự - _</span>
+                            <br />
+                            <span class="form-des">Ex http://firststep.com/user-abc_x-z123 </span>
+                        </p>
+                        <p>
+                            <b>Website</b><br />
+                            <input class="form-txt" id="Website" name="Website" type="text" value="@Model.Website" placeholder="http://website.com" />
+                            <span class="form-des">Website đại diện của bạn.</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p>
+                        <button id="btnSave" type="submit" class="btn btn-larger" onclick="return checkURL();">Lưu thay đổi</button> 
+                        <span class="form-des">Bạn cần điền đúng và đủ trước khi lưu thông tin.</span>
+                    </p>
+                </form>
+            }
+
+            <div style="height: 50px;"></div>
+
+        </div>
+    </div>
+</div>
+    @Html.Action("CheckLife","Home")
+
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+
+        function checkURL() {
+
+            var link = $('#Profile').val();
+            var postURL = '@Url.Action("checklink", "Ajax")';
+            $.post(postURL, { "link": link }, function (data) {
+                //alert(data);
+                if (data == "f") {
+                    $('#EProfile').show();
+                    return false;
+                } else {
+                    return true;
+                }
+               
+            });
+        }
+    </script>
+
+}
+

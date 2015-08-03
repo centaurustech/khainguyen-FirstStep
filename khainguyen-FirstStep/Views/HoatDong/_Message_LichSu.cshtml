@@ -1,0 +1,144 @@
+﻿@model khainguyen_FirstStep.Models.LichSuModel
+@*@{string fund = "Not fund";
+    if (Model.DauTuModel.EntityDuAn.TienDauTuMucTieu <= Model.DauTuModel.EntityDuAn.TienDauTuHienTai)
+    {
+        fund = "Funded";
+    }
+}*@
+
+<div class="proj-img">
+    <img src="~/Content/Images/DuAn/@Model.DauTuModel.EntityDuAn.HinhAnh" /><span>Đang hoạt động</span>
+</div>
+<div class="proj-info">
+    <div class="proj-title"><a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.DauTuModel.EntityDuAn.TenDuAn), Model.DauTuModel.Id) })">@Model.DauTuModel.EntityDuAn.TenDuAn</a></div>
+    <div class="proj-by">bởi <a href="#">@Model.DauTuModel.EntityDuAn.EntityUser.HoTen</a></div>
+     <div class="proj-update">
+                        Cập nhật mới nhất:<br />
+         @{
+             foreach(var item in Model.CapNhatModel)
+             {
+                 <a href="#">@item.TieuDe</a> <i>@item.ThoiGian.Value.ToShortDateString()</i><br />
+             }
+             if(Model.CapNhatModel.Count()==0){<i>Dự án chưa cập nhật</i>  }
+         }
+     </div>
+</div>
+<div class="clearfix"></div>
+<nav class="tab-nav" data-tab="tab2">
+    <a href="#" class="active">Ghi chú</a>
+    <a href="#">Tin nhắn <span>@Model.TinNhanModel.Count()</span></a>
+</nav>
+<div class="tab-panel" data-tab="tab2">
+    <div class="tab active">
+        <div class="proj-plege-left col-7-3">
+            <p>
+                <b id="Show_EditNote">@ViewBag.ghichu</b><br />
+            </p>
+            @*<p>No reward selected</p>*@
+        </div>
+        @*<div class="proj-plege-right col-3-7">
+                            <p><b>Pledged</b><br />Apr 16 2014</p>
+                            <p><b>Funded</b><br />May 12 2014</p>
+                        </div>*@
+        <div class="clearfix"></div>
+        <div class="ms-text-li">
+            <textarea class="form-txt" id="NoiDungEditNote" placeholder="Nhập nội dung ghi chú mới"></textarea><br>
+            <br>
+            <button class="btn" onclick="return EditNote();">Cập nhật ghi chú</button>
+        </div>
+    </div>
+    <div class="tab">
+        <div class="ms-test-ul nicescroll" tabindex="5001" id="LoadContent" style="overflow: hidden; outline: none;">
+            @{
+                foreach (var item in Model.TinNhanModel)
+                {
+                <div class="ms-text-li">
+                    @if (item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                    {
+                        <a href="/user/@item.EntityUser.VanityURL">
+                            <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=normal" />
+                        </a>
+                    }
+                    else
+                    {                
+                        <a href="/user/@item.EntityUser.VanityURL">
+                            <img src="@item.EntityUser.Avatar" />
+                        </a> 
+                    }
+                    <div class="ms-t">
+                        <b>@item.EntityUser.HoTen</b>
+                        <span class="time">@item.Date</span>
+                        <p>@item.NoiDung</p>
+                    </div>
+                </div>
+                }
+            }
+
+
+        </div>
+        <div class="ms-text-li">
+            <textarea class="form-txt" id="noidung_addmessage" placeholder="Nhập nội dung tin nhắn"></textarea><br />
+            <br />
+            <button class="btn" id="btn_addmessage" onclick="return AddMessage();">Gửi tin nhắn</button>
+           @* <input type="hidden" value="0" id="id_addmessage" />*@
+           
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        tab_panel();
+
+    });
+
+
+    function EditNote() {
+        //var Id = $('#id_addmessage').val();
+        var noidung = $('#NoiDungEditNote').val();
+        var postURL = '@Url.Action("Note_Edit", "HoatDong")';
+        $.post(postURL, { "NoiDung": noidung, "IdDauTu": '@Model.DauTuModel.Id' }, function (data) {
+            if (data == "Error") {
+                alert("Error");
+            } else {
+                $('#Show_EditNote').text(data);
+                $('#NoiDungEditNote').val("");
+            }
+        });
+    }
+
+    function AddMessage() {
+        var Id = '@ViewBag.UserNhan';
+        var IdDuAn = '@Model.DauTuModel.IdDuAn';
+        $('#btn_addmessage').hide();
+        //var Id = $('#id_addmessage').val();
+        var noidung = $('#noidung_addmessage').val();
+        var postURL = '@Url.Action("TinNhan_Add", "HoatDong")';
+        $.post(postURL, { "Id": Id, "noidung": noidung, "IdDuAn": IdDuAn }, function (data) {
+                if (data == "Error") {
+                    alert("Error");
+                } else {
+                    $('#LoadContent').append(data);
+                    $('#noidung_addmessage').val("");
+                }
+            });
+            $('#btn_addmessage').show();
+        }
+    function tab_panel() {
+        var data_tab = null;
+        var index = 0;
+        $tab_panel = null;
+        $('.tab-nav a').click(function (e) {
+            e.preventDefault();
+            index = $(this).index();
+            data_tab = $(this).parent().attr('data-tab');
+            $(this).parent().find('a').removeClass('active');
+            $(this).addClass('active');
+            $tab_panel = $(".tab-panel[data-tab='" + data_tab + "']");
+            $tab_panel.find('.tab').removeClass('active');
+            $tab_panel.find('.tab').eq(index).addClass('active');
+        });
+    }
+
+</script>

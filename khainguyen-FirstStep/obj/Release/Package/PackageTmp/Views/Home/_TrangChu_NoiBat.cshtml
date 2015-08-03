@@ -1,0 +1,27 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDanhMuc>
+
+<div class="container">
+    <div class="category">
+        <h2 class="color-tiny"><i class="fa-image color-tiny"></i> Nổi bật</h2>
+    </div>
+    <div class="list-item-tag">
+        @Html.Action("_TrangChu_NoiBat_DuAn", "Home")
+    </div>
+    <nav class="list-tag">
+        @{
+            int i = 0;
+            foreach( var item in Model)
+            {
+                i = i + 1;
+                if(i == 1)
+                {
+                    <a href="#" class="active"><i class="fa-tag"></i><span>@item.TenDM</span></a>
+                }
+                else
+                {
+                    <a href="#"><i class="fa-tag"></i><span>@item.TenDM</span></a>
+                }
+            }
+        }
+    </nav>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityTheoDoi>
+@{
+    ViewBag.Title = " Tìm Bạn Bè";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<div class="page">
+    <div class="panel">
+        <div class="container">
+            <!-- acc-title -->
+            @Html.Action("_Index", "BanBe")
+
+            <div class="friend-list">
+                @{
+                    if (Model.Count() == 0)
+                    {
+                        <div class="friend-item">
+                                <div class="inf">
+                                    <div class="name">Không tìm thấy kết quả</div>                    
+                                </div>
+                            </div>
+                    }
+                    else
+                    {
+                        foreach (var friend in Model)
+                        {
+                            string idd = "follow" + @friend.IdBanBe.ToString();
+                            <div class="friend-item" id="@idd">
+                                <div class="ava">
+                                    @if (friend.EntityUser1.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+                                    {
+                                        <a href="/user/@friend.EntityUser1.VanityURL">
+                                            <img src="https://graph.facebook.com/@friend.EntityUser1.IdFacebook/picture?type=normal" />
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/user/@friend.EntityUser1.VanityURL">
+                                            <img src="@friend.EntityUser1.Avatar" />
+                                        </a> 
+                                    }
+                                </div>
+                                <div class="inf">
+                                    <div class="name">@friend.EntityUser1.HoTen</div>
+                                    @*<p><i class="fa-codepen tiny"></i> Backed 1 project</p>*@
+                                    <p><i class="fa-map-marker tiny"></i> @friend.EntityUser1.DiaDiem</p>
+                                    <div >
+                                       <a href="#" class="btn" onclick="return Post_Apply('@friend.IdBanBe')"><i class="fa-plus"></i> Theo dõi</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+
+
+            </div>
+            <div style="height: 50px;"></div>
+
+        </div>
+    </div>
+</div>
+ @Html.Action("CheckLife","Home")

@@ -1,0 +1,100 @@
+﻿@model khainguyen_FirstStep.EntityDauTu
+@{
+    ViewBag.Title = "Cảm ơn bạn đã đầu tư cho dự án trên Firststep";
+}
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+
+<div class="page">
+    <div class="panel-list">
+        <div class="background">
+            <img src="~/Content/cssFrontEnd/upload/project/bg3-1366x768.jpg" alt="" />
+        </div>
+        <div class="container">
+
+            <!-- acc-login -->
+            @{
+                string name = "Đầu tư thành công dự án:" + @Model.EntityDuAn.TenDuAn;
+                string image = "http://www.firststep.vn/Content/Images/DuAn/" + @Model.EntityDuAn.HinhAnh;
+                string comment = "Hãy tìm hiểu dự án và cùng tài trợ với tôi để biến các ý tưởng tuyệt vời thành hiện thực";
+                string link = "http://www.firststep.vn/du-an/" + Utilities.Paste_Int64(Utilities.Encode(@Model.EntityDuAn.TenDuAn), @Model.EntityDuAn.Id);
+                <input type="hidden" id="name" value="@name"/>
+                <input type="hidden" id="description" value="@Model.EntityDuAn.ThongTinWhichPerson" />
+                <input type="hidden" id="image" value="@image" />
+                <input type="hidden" id="link" value="@link"/>
+                <input type="hidden" id="comment" value="@comment"/>
+                }
+            <div class="panel-login">
+               @* <div class="social">
+                    <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập với Facebook</a>
+                </div>*@
+                 <a href="javascript:void(0);" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đầu tư thành công</a>
+                
+                <div class="form-login">
+                    <br />
+                    
+                   <span style="color:white;display: block; margin: 0px auto; text-align: left;">Cảm ơn "@Model.EntityUser.HoTen"!!! <br /><br /> Bạn đã đầu tư thành công số tiền: @String.Format("{0:0,0}", Model.SoTienDauTu) VNĐ <br /> <br /> Cho dự án: @Model.EntityDuAn.TenDuAn <br /> </a></span>
+                    
+                    <br />
+                        <p>
+                            <button  class="btn btn-login-fb" onclick="share_prompt()"><i class="fa-sign-in"></i> Chia sẻ lên facebook</button>
+
+                        </p>
+                </div>
+                    
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page -->
+<div id="fb-root"></div>
+@section jqueryPlugin{
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>  *@  
+<script src="http://connect.facebook.net/en_US/all.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    FB.init({
+        appId: '570964363013096',
+        status: true,
+        cookie: true,
+        xfbml: true
+    });
+
+    function share_prompt() {
+        FB.ui({
+            method: 'share_open_graph',
+            action_type: 'firststepbusiness:share',
+            action_properties: JSON.stringify({
+                CUSTOM_OBJECT_TYPE: OBJECT_ID
+            })
+        }, function (response) {
+            console.log('shareDialog', response);
+        });
+        //FB.ui(
+        //    {
+        //        method: 'share_open_graph',
+        //        action_type: 'firststepbusiness:share',    // appNameSpace:myCustomAction
+        //        action_properties: JSON.stringify({
+        //            fund: $('#link').val() // customObjectProperties (found when editing your object in the fb dev portal, looks like `og:quiz`). Note: from what I can tell, every object with name `myObject` will have a `og:myObject` property.
+        //        })
+        //    },
+        //   //{
+        //   //    method: 'firststepbusiness:fund',
+        //   //    name: $('#name').val(),
+        //   //    link: $('#link').val(),
+        //   //    picture: $('#image').val(),
+        //   //    caption: $('#comment').val(),
+        //   //    description: $('#description').val(),
+        //   //}
+        //   function (response) {
+        //       if (response && response.post_id) {
+        //           alert('Đã chia sẻ thành công.');
+        //           location = 'http://www.firststep.vn';
+        //       } else {
+                   
+        //       }
+        //   }
+        // );
+    }
+
+</script>
+    }

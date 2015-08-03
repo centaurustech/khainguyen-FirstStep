@@ -1,0 +1,11 @@
+﻿<div class="acc-title">
+    <h1><i class="fa-envelope"></i>Hoạt động </h1>
+    <p>Gửi tin nhắn , cấu hình thông tin cá nhân, tạo dự án và xem lược sử.</p>
+</div>
+<nav class="menu-activity">
+    <a href="@Url.Action("TinNhan", "HoatDong", new { type = 0})"><i class="fa-envelope"></i> Tin Nhắn</a>
+    <a href="@Url.Action("HoatDong", "HoatDong")"><i class="fa-slack"></i> Nhật ký hoạt động</a>
+    <a href="@Url.Action("Index", "user", new { Link = ViewBag.Link})"><i class="fa-user"></i> Quyền riêng tư</a>
+    <a href="@Url.Action("LichSu", "HoatDong")"><i class="fa-suitcase"></i>Lược sử dự án</a>
+    <a href="@Url.Action("TaoDuAn", "DuAn")"><i class="fa-plus"></i> Tạo dự án</a>
+</nav>

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDauTu>
+
+<div class="countSupport"><span class="tiny countTo" data-from="0" data-to="@ViewBag.tongso" data-speed="3000">@ViewBag.tongso</span> Người đã tham gia</div>
+<div class="list-avatar">
+    @{
+        foreach(var item in Model)
+        { 
+            string temp = item.EntityUser.HoTen + " đã tham gia " + 1 + " dự án";
+            //string temp1 = "&lt;b class=&#39;tiny&#39;&gt;John Abc&lt;/b&gt;&lt;br /&gt;Support &lt;b&gt;1&lt;/b&gt; project";
+            
+            if(item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
+            {
+                <a href="/user/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
+                    <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=square" />
+                </a>
+            }
+            else
+            {
+                <a href="/user/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
+                    <img src="@item.EntityUser.Avatar" />
+                </a> 
+            }
+        }  
+    }
+</div>

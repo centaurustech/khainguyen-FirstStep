@@ -1,0 +1,111 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityFAQ>
+@{
+    ViewBag.Title = "IndexFAQ2";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<!-- SLIDE -->
+<div class="slider-fix-300">
+<div id="slides">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img7.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img8.jpg" /></li>>
+    </ul>
+    <div class="faq-intro">
+        <div class="container">
+            <div class="faq-logo"><i class="fa-support fa-spin"></i></div>
+            <div class="faq-info">
+                <div class="faq-title">Câu hỏi thường gặp</div>
+                <div class="faq-des">Tìm kiếm giải đáp cho những thắc mắc của bạn.</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- FAQ -->
+<div class="container">
+
+    @*<div class="faq-search">
+        <input class="form-txt" type="text" placeholder="Gõ từ khóa cần tìm kiếm" /><i class="fa-search"></i>
+    </div>*@
+
+    <nav class="faq-group">
+        @{
+            foreach (var item in Model)
+            {
+                string a = "#group" + item.Id;
+                <a href="@a">@item.TieuDe</a>
+            }
+
+        }
+
+    </nav>
+
+    <div class="faq-list-ask">
+        @{
+            foreach (var item in Model)
+            {
+                string a = "group" + item.Id;
+                <h3 id="@a">@item.TieuDe</h3>
+               @Html.Action("_IndexFAQ2_NoiDung", "FAQ", new { Id = @item.Id})
+            }
+
+        }
+
+
+
+    </div>
+
+
+</div>
+
+<div style="height: 50px;"></div>
+
+@section jqueryPlugin{
+    <script>
+        $(document).ready(function () {
+            var $slides = $('#slides');
+            Hammer($slides[0]).on("swipeleft", function (e) {
+                $slides.data('superslides').animate('next');
+            });
+
+            Hammer($slides[0]).on("swiperight", function (e) {
+                $slides.data('superslides').animate('prev');
+            });
+            $slides.superslides({
+                slide_easing: 'easeInOutCubic',
+                slide_speed: 800,
+                pagination: false,
+                hashchange: false,
+                scrollable: true,
+                play: 5000,
+                animation: 'fade',
+                inherit_height_from: '.slider-fix-300'
+            });
+            $('.faq-ans').each(function () {
+                $(this).attr('data-height', $(this).height()).height(0);
+            });
+            $('.faq-ask a:first-child').click(function (e) {
+                e.preventDefault();
+                if ($(this).attr('data-show') == "1") {
+                    $(this).attr('data-show', 0);
+                    $(this).next().animate({ height: 0 }, 500);
+                }
+                else {
+                    $(this).attr('data-show', 1);
+                    $n = $(this).next();
+                    $n.animate({ height: $n.attr('data-height') }, 500);
+                    //$('.faq-ans').animate({ height: 0 }, 300, function () {
+                    //    $('.faq-ask a:first-child').attr('data-show', 0);
+                    //    $(this).attr('data-show', 1);
+                    //    $n.animate({ height: $n.attr('data-height') }, 500);
+                    //});
+                }
+            });
+        });
+    </script>
+}

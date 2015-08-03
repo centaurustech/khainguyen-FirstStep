@@ -1,0 +1,84 @@
+﻿<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" ></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        if (window.location.href.indexOf("AdminProfile") > -1) {
+
+            $("#AdminProfile").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("AdminDuAn") > -1) {
+
+            $("#AdminDuAn").addClass('current');
+            return;
+        }
+          
+        if (window.location.href.indexOf("AdminDanhMuc") > -1) {
+
+            $("#AdminDanhMuc").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("AdminGhiChu") > -1) {
+
+            $("#AdminGhiChu").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("AdminUser") > -1) {
+
+            $("#AdminUser").addClass('current');
+            return;
+        }
+       
+        if (window.location.href.indexOf("AdminTinTuc") > -1) {
+
+            $("#AdminTinTuc").addClass('current');
+            return;
+        }
+       
+        if (window.location.href.indexOf("AdminBanner") > -1) {
+
+            $("#AdminBanner").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("AdminFAQ") > -1) {
+
+            $("#AdminFAQ").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("AdminChonDuAn") > -1) {
+
+            $("#AdminChonDuAn").addClass('current');
+            return;
+        }
+        if (window.location.href.indexOf("Manager_Index") > -1) {
+
+            $("#Manager_Index").addClass('current');
+            return;
+        }
+        return;
+
+    });
+</script>
+<div class="mainleftinner">
+    <div class="leftmenu">
+        <ul>
+            <li id="AdminProfile"><a href="@Url.Action("Index", "AdminProfile")"  class="widgets"><span>Info</span></a></li>
+            <li id="AdminDanhMuc"><a href="@Url.Action("Index", "AdminDanhMuc")"  class="elements"><span>Danh Mục Dự Án</span></a></li>
+            <li id="AdminDuAn"><a href="@Url.Action("Index", "AdminDuAn")"  class="tables"><span>Dự Án</span></a></li>          
+            <li id="AdminUser"><a href="@Url.Action("Index", "AdminUser")"  class="tables"><span>User</span></a></li>
+            <li id="AdminBanner"><a href="@Url.Action("Index", "AdminBanner")"  class="editor"><span>Banner</span></a></li>
+            <li id="AdminGhiChu"><a href="@Url.Action("Index", "AdminGhiChu")" class="widgets"><span>Ý kiến</span></a></li>
+            <li id="AdminFAQ"><a href="@Url.Action("Index", "AdminFAQ")"  class="widgets"><span>FAQ</span></a></li>
+            <li id="AdminChonDuAn"><a href="@Url.Action("Index", "AdminChonDuAn")"  class="widgets"><span>Chọn DA trang chủ</span></a></li>
+            <li id="Manager_Index"><a href="@Url.Action("Manager_Index", "AdminDuAn")"  class="buttons"><span>Quản lý hiển thị trang chủ</span></a></li>
+           
+
+        </ul>
+
+    </div>
+    <!--leftmenu-->
+    <div id="togglemenuleft"><a></a></div>
+</div>
+<!--mainleftinner-->

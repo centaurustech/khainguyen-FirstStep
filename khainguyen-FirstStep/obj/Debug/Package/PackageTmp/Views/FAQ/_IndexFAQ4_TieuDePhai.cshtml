@@ -1,0 +1,9 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityGroupFAQ>
+
+@{
+    foreach (var item in Model)
+    {
+        string a = "#ask" + item.Id;
+        <a class="rightmenu" href="@a">@item.TenGroup</a>
+    }
+}

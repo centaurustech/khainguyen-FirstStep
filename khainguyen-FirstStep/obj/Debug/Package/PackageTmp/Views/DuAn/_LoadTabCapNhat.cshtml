@@ -1,0 +1,23 @@
+﻿@model khainguyen_FirstStep.Models.DuAnModel
+
+<p>&nbsp;</p>
+<h3>Thông báo cho người đầu tư các sự kiện quan trọng hoặc trạng thái của dự án.</h3>
+               
+<p>&nbsp;</p>
+
+    <div class="box">
+    <h4>Tiêu đề</h4>
+    <div class="des">
+                       
+    </div>
+    <input class="form-txt" id="TieuDe" name="TieuDe"/>
+</div>
+
+<div class="box">
+    <h4>Nội dung thông báo</h4>
+    <div class="des">
+        <p>Cập nhật cho người dùng những thông tin mới nhất về dự án</p>
+    </div>
+    <textarea class="form-txt" id="NoiDung" name="NoiDung" style="height: 700px !important;"></textarea>
+    <input type="hidden" name="IdDuAn" id="IdDuAn" value="@Model.Id" />
+</div>

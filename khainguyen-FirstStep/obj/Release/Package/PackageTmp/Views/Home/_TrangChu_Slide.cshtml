@@ -1,0 +1,40 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityBanner>
+<div id="slides">
+    <ul class="slides-container">
+        @{
+            foreach (var item in Model)
+            {
+                 <li>
+            <img src="~/Content/Images/Banner/@item.HinhAnh" />
+            <div class="container">
+                <h1>@item.TieuDe</h1>
+                <div class="contrast">
+                    <p>
+                        @Html.Raw(item.NoiDung)
+                    </p>
+                    @if (item.TenNut == null || item.TenNut == "" || item.LinkNut == null || item.LinkNut == "" )
+                    {
+                        
+                    }
+                    else
+                    { 
+                    <p>
+                        <a href="@item.LinkNut" class="btn">@item.TenNut</a>
+                    </p>
+                    }
+                </div>
+            </div>
+        </li>  
+            }
+        }
+       
+    </ul>
+    <nav class="slides-navigation">
+        <a href="#" class="next">
+            <i class="fa-chevron-right"></i>
+        </a>
+        <a href="#" class="prev">
+            <i class="fa-chevron-left"></i>
+        </a>
+    </nav>
+</div>

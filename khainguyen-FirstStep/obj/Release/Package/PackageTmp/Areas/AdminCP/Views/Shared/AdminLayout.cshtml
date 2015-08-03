@@ -1,0 +1,105 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml")" >
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewBag.Title</title>
+
+<link rel="stylesheet" href="@Url.Content("~/Content/cssAdmin/css/style.css")"  type="text/css"  />
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" ></script>
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" ></script>
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery.validate.min.js")" ></script>
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/js/custom/general.js")"></script>
+
+@{
+    //Session["AdminId"] = "Admin"; 
+
+   // PsbCollege.EntityAdmin user = (PsbCollege.EntityAdmin)Session["User"];
+    if (Request.Cookies["Admin"] == null)
+    {
+
+        Response.Redirect(@Url.Action("Index", "AdminLogin"));
+    }
+      
+}
+
+@*[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]*@
+</head>
+<body class="loggedin">
+
+	<!-- START OF HEADER -->
+	<div class="header radius3">
+    	<div class="headerinner">
+        	
+             <a href="@Url.Action("Index", "Home", new { area = "" })">
+            <img src="@Url.Content("~/Content/cssAdmin/images/logo_Khai_Nguyen.png")" alt="" />
+            </a>            
+              
+            <div class="headright">
+            	@*<div class="headercolumn">
+                    <a href="@Url.Action("ChangeLanguage", "Login", new { language = "en" })"  
+                    class="btn btn_flag"><span>English</span></a> &nbsp;
+                   <a href="@Url.Action("ChangeLanguage", "Login", new { language = "vi" })"  
+                    class="btn btn_flag"><span>Vietnames</span></a> &nbsp;
+            	</div>*@
+           
+          
+                <div id="userPanel" class="headercolumn">
+                    <a href="@Url.Content("#")"  class="userinfo radius2">
+                        <img src="@Url.Content("~/Content/cssAdmin/images/avatar.png")" alt="" class="radius2" />
+                        
+                      
+                <span><strong>Admin</strong></span> 
+                     
+                    </a>
+                    <div class="userdrop">
+                        <ul>
+                            <li> <a href="@Url.Action("Logout", "AdminLogin")"> Logout</a></li>
+                        </ul>
+                         <ul>
+                            <li> <a href="@Url.Action("Index", "AdminProfile")"> Change Pass</a></li>
+                        </ul>
+                    </div><!--userdrop-->
+                </div><!--headercolumn-->
+            </div><!--headright-->
+        
+        </div><!--headerinner-->
+	</div><!--header-->
+    <!-- END OF HEADER -->
+        
+    <!-- START OF MAIN CONTENT -->
+    <div class="mainwrapper">
+     	<div class="mainwrapperinner">
+         	
+        <div class="mainleft">
+          	
+            @Html.Partial("PartialLeftMenu")
+
+        </div><!--mainleft-->
+       
+        <div class="maincontent noright">
+
+          <section id="main">
+            @RenderBody()
+          </section>
+        
+            
+            <div class="footer">           	
+               <p>Admin Template &copy; 2012. All Rights Reserved. Designed by: <a href="http://www.khainguyenepco.vn">Khải Nguyên </a></p>
+            </div><!--footer-->
+            
+        </div><!--maincontent-->       
+        
+                
+     	</div><!--mainwrapperinner-->
+    </div><!--mainwrapper-->
+	<!-- END OF MAIN CONTENT -->
+    
+</body>
+
+</html>
+

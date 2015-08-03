@@ -1,0 +1,47 @@
+/* 'Sansita One'*/
+
+@font-face {
+  font-family: 'Sansita One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Sansita One'), local('SansitaOne'), url(../fonts/r0cFg_5MCCA0Wi4i7AgXWIbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+
+/* 'Source Sans Pro' */
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url(../fonts/toadOcfmlt9b38dHJxOBGPp6i7R5xQdyoqQVVjABmmY.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(../fonts/ODelI1aHBYDBqgeIAH2zlDpIEtvHTl23BH_RlN615jc.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(../fonts/toadOcfmlt9b38dHJxOBGCWFTsQ18CyDszVxE5WJjgs.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Source Sans Pro Light Italic'), local('SourceSansPro-LightIt'), url(../fonts/fpTVHK8qsXbIeTHTrnQH6MEJz_ambkIFylb2URvY9Hg.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Source Sans Pro Italic'), local('SourceSansPro-It'), url(../fonts/M2Jd71oPJhLKp0zdtTvoM3jHCZT4U-JDUMcWHiy5s7U.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldIt'), url(../fonts/fpTVHK8qsXbIeTHTrnQH6CEqcvn03X3ReFbYJvcDn7w.woff) format('woff');
+}

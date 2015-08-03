@@ -1,0 +1,16 @@
+﻿@model khainguyen_FirstStep.EntityTheoDoi
+@{
+
+    if (@Model.TrangThai == 0)
+    {
+        string idd1 = "link_apply" + Model.IdBanBe;
+        <a href="#" onclick="return Post_Apply(@Model.IdBanBe);" class="btn " id="@idd1"><i class="fa-plus"></i> <span>Theo dõi</span></a>
+    }
+    else
+    {
+        string idd2 = "link_apply" + Model.IdBanBe;
+        <a href="#" onclick="return Un_Apply(@Model.IdBanBe);" class="btn unapply" style="background-color: rgba(50, 50, 50,1); " id="@idd2"><i class="fa-plus1"></i><span>Đang theo dõi</span></a>
+    }
+
+}
+

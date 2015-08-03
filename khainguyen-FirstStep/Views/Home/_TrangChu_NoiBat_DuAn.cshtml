@@ -1,0 +1,66 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+    
+@{
+    foreach (var item in Model)
+    {
+        int sophutconlai = (int)(item.ThoiGianKetThuc.Value - DateTime.Now).TotalMinutes;
+        int sogioconlai = sophutconlai / 60;
+        int songayconlai = sophutconlai / 1440;
+        var sotien = (0.5f + ((100f * item.TienDauTuHienTai) / item.TienDauTuMucTieu));
+        <div class="item-staff">
+            <div class="img">
+                @if(sophutconlai <= 0)
+                {
+                    <span><b>Kết Thúc</b></span>
+                }
+                <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                    <img src="~/Content/Images/DuAn/@item.HinhAnh" alt="@item.TenDuAn" />
+                </a>
+            </div>
+            <div class="info">
+                <div class="title">
+                    <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">
+                        <h3>@item.TenDuAn</h3>
+                    </a>
+                </div>
+                <div class="des">@item.ThongTinNgan</div>
+                <div class="tag">
+                    @*<a href="#"><i class="fa-map-marker"></i>@item.DiaDiem</a>*@
+                    <a href="#"><i class="fa-tag"></i> Phim Ảnh   </a> <a href="#" style="color:#ffb116;margin-left:15px;"><i class="fa-money"></i> Huy động vốn linh hoạt</a>
+                </div>
+                <div class="tag"></div>
+                @{
+                <div class="pledge">
+                    <div>Đạt được <span class="tiny">@Utilities.FormatCurrent(item.TienDauTuHienTai.ToString()) VNĐ</span></div>
+                    @if(@item.Id == 77)
+                    {
+                        <div>Hoàn thành</div>
+                    }
+                    else
+                    {
+                        <div>Hoàn thành <span class="tiny">@string.Format("{0:0.0}",sotien)% </span></div>
+                    }
+                    
+                    @if(sophutconlai <= 0)
+                    {
+                        @*<div><span style="color:#0092c8;font-size: 17px;">Đã kết thúc</span></div>*@
+                    }
+                    else if( sogioconlai < 3 )
+                    {
+                        <div>Còn lại <span class="tiny">@sophutconlai phút</span></div>
+                    }
+                    else if (sogioconlai < 72)
+                    { 
+                        <div>Còn lại <span class="tiny">@sogioconlai giờ</span></div>
+                    }
+                    else
+                    {
+                        <div>Còn lại <span class="tiny">@songayconlai ngày</span></div>
+                    }
+                    
+                </div>
+                }
+            </div>
+        </div>
+    }
+}

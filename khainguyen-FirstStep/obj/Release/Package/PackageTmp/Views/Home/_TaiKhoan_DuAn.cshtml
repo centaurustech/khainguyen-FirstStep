@@ -1,0 +1,8 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityDuAn>
+           @{
+    foreach (var item in Model)
+    {
+        <a href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.TenDuAn), item.Id) })">@item.TenDuAn</a>
+    }
+    <a href="#" style="color:#ff6a00;">Xem thêm ... </a>
+}

@@ -1,0 +1,35 @@
+﻿
+<nav class="menu-activity">
+    <a href="@Url.Action("DoiMatKhau", "Account")" ><i class="fa-bookmark"></i>Tài khoản</a>
+    <a href="@Url.Action("SuaThongTin", "Account")" ><i class="fa-cog"></i>Thông tin cá nhân</a>
+    @*<a href="#"><i class="fa-bell"></i>Notifications</a>*@
+    <a href="@Url.Action("TimBan", "BanBe")"><i class="fa-group"></i>Tìm Bạn</a>
+    <a href="@Url.Action("Logout", "Account")"><i class="fa-share-square-o"></i>Đăng xuất</a>
+</nav>
+
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".menu-activity a").each(function (index, value) {
+            var url = $(location).attr("pathname");
+            if (url.indexOf("?") > 0) { url = url.substring(0, url.indexOf("?")); }
+            var url_compra = $(this).attr("href") ? $(this).attr("href") : "";
+            if (url_compra.indexOf("?") > 0) { url_compra = url_compra.substring(0, url_compra.indexOf("?")); }
+            var url_data_link = $(this).attr("data-link") ? $(this).attr("data-link") : "";
+            if (url_compra != "/") {
+                if (url.toLowerCase().indexOf(url_compra.toLowerCase()) >= 0 || url.indexOf(url_data_link) > 0) {
+                    $(this).addClass("active");
+                    return;
+                }
+            }
+            else {
+                if (url.toLowerCase() === url_compra.toLowerCase()) {
+                    $(this).addClass("active");
+                    return;
+                }
+            }
+        });
+      
+    });
+    </script>
+

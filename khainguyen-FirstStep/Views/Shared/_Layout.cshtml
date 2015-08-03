@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>    
+    @if(IsSectionDefined("MetaHeader"))
+    {
+        @RenderSection("MetaHeader", required: false)
+    }
+
+    <meta charset="utf-8" />
+
+    <link href="~/Content/Images/favicon.ico" rel="shortcut icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+@*    <meta name="title" content="Title" />
+    <meta name="description" content="description..." />
+    <meta name="keywords" content="keywords1, keywords2, keywords3" />
+    <meta name="ROBOTS" content="index, follow" />
+
+    <meta content="linkabc...." />
+    <meta  content="Title" />
+    <meta content="description..." />
+    <meta  content="Image..." />
+    <meta  content="site_name..." />
+    <meta  content="updated_time..." />*@
+
+    <!-- CSS LIBRARY -->
+    <link href="~/Content/cssFrontEnd/css/resets.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/css/icons.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/css/fonts.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/js/letterfx/jquery-letterfx.min.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/js/tooltipster/tooltipster.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+
+
+
+    <!-- CSS PLUGIN -->
+    <link href="~/Content/cssFrontEnd/js/superslides/superslides.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/js/owlcarousel/owl.carousel.css" rel="stylesheet" />
+
+    <link href="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.css" rel="stylesheet" />
+
+    <!-- CSS CUSTOM -->
+    <link href="~/Content/cssFrontEnd/css/main.css" rel="stylesheet" />
+    <link href="~/Content/cssFrontEnd/css/responsive.css" rel="stylesheet" />
+    
+
+</head>
+<body>
+    <!-- LOADING -->
+    @*<div class="loading-container">
+        <div class="loading-icon">
+            <a class="logo" href="/">FirstStep</a><br />
+            <div class="pulse"></div>
+        </div>
+    </div>*@
+
+    <div class="loading-container">
+        <div class="loading-icon"><a class="logo" href="/"><img src="~/Content/cssFrontEnd/images/logo.png"/></a><br/><div class="pulse"></div></div>
+    </div>
+
+    <header id="header">
+        <div class="menu-fix" style="background:linear-gradient(to bottom, rgba(85,85,85, 1), rgba(85,85,85, 1));">
+            <div class="container">
+                <a class="logo" href="/"><img src="~/Content/cssFrontEnd/images/logo.png" /></a>
+                <div class="menu-mobile">
+                    <nav class="menu-top">
+                        <a href="@Url.Action("Index", "DuAn")">Khám phá</a>
+                        @if (Request.Cookies["ftusername"] != null)
+                        {
+                            <a href="@Url.Action("TaoDuAn", "DuAn")">Khởi tạo</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account")">Khởi tạo</a>
+                        }
+                    </nav>
+                      @using (Html.BeginForm("Index", "DuAn",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
+                      {
+                           <button type="submit"><i class="fa-search"></i></button>
+                        <input type="text" style="color:#0092c8;" id="SearchMain" name="option" placeholder="Tìm kiếm dự án ..." />
+                      }
+                
+                </div>
+                @{
+                    if (Request.Cookies["ftusername"] == null)
+                    {
+                    <nav class="menu-login">
+                        <a href="@Url.Action("DangKy", "Account")" class="tooltip" title="Đăng ký"><i class="fa-sign-in"></i>&nbsp;<span>Đăng ký</span></a>
+                        <a href="@Url.Action("Login", "Account")" class="tooltip" title="Đăng nhập"><i class="fa-user"></i>&nbsp;<span>Đăng nhập</span></a>
+                    </nav>
+                    }
+                    else
+                    {
+                        @Html.Action("_Logined","Home")
+                    }
+                }
+
+
+                
+                <button class="btnMenu"><i class="fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderBody()
+    </div>
+    <footer id="footer">
+        <div class="container">
+            <div class="col-3">
+                <h3>Giới thiệu</h3>
+                <ul>
+                    <li><a href="@Url.Action("_Footer_TimhieuFirststep","Home")">Tìm hiểu FirstStep</a></li>
+                    <li><a href="@Url.Action("_Footer_ThongtinAlpe","Home")">Thông tin về AlPe</a></li>
+                    <li><a href="#" >Góc báo chí</a></li>
+                    <li><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2330.553045607697!2d106.70388228886945!3d10.772395872921713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x94ccd905fe444e6b!2sFirstStep!5e0!3m2!1sen!2svn!4v1436847493570" width="250" height="200" frameborder="1" style="border:2px solid #666;" allowfullscreen></iframe></li>
+             @*       <li><a href="#">Dự án tiêu biểu</a></li>
+                    <li><a href="#">Cơ hội nghề nghiệp</a></li>
+                    <li><a href="#">Tiêu điểm 2014</a></li>*@
+                </ul>
+            </div>
+            <div class="col-3">
+                <h3>Hỗ trợ</h3>
+                <ul>
+                    @*<li><a href="@Url.Action("IndexFAQ4", "FAQ", new { name = "Câu hỏi thường gặp" })">Câu hỏi thường gặp</a></li>*@
+                    <li><a href="@Url.Action("IndexFAQ3", "FAQ")">Câu hỏi thường gặp</a></li>
+                    <li><a href="@Url.Action("IndexFAQ4", "FAQ")">Sổ tay FirstStep </a></li>
+                    <li><a href="@Url.Action("IndexFAQ1", "FAQ")#quy-dinh-chung">Quy định chung</a></li>
+                    <li><a href="@Url.Action("IndexFAQ1", "FAQ")#quy-tac-han-che-rui-ro">Quy tắc hạn chế rủi ro</a></li>
+                    <li><a href="@Url.Action("IndexFAQ1", "FAQ")#chinh-sach-rieng-tu">Chính sách riêng tư</a></li>
+                    <li><a href="@Url.Action("IndexFAQ1", "FAQ")#dieu-khoan-su-dung">Điều khoản sử dụng</a></li>
+                </ul>
+            </div>
+@*            <div class="col-4">
+                <h3>Khám phá</h3>
+               @Html.Action("_Footer_KhamPha", "Home")
+            </div>*@
+            <div class="col-3">
+                <h3>Cộng đồng</h3>
+                <ul>
+                    <li><a href="https://www.facebook.com/firststepvn"><i class="fa-facebook-square"></i> Facebook</a></li>
+                    <li><a href="http://goo.gl/Iv225G"><i class="fa-google-plus-square"></i> Google +</a></li>
+                    <li><a href="#"><i class="fa-youtube-square"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="space_30"></div>
+            <div class="copyright">
+                <div class="float-left">© 2014 <div class="logo">FirstStep</div>, Inc.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JQUERY LIBRARY -->
+    <script src="~/Content/cssFrontEnd/js/jquery/jquery.min.js"></script>
+    <!-- JQUERY CUSTOM -->
+    <script src="~/Content/cssFrontEnd/js/modernizr.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/easing/jquery.easing.1.3.js"></script>
+    <script src="~/Content/cssFrontEnd/js/nicescroll/jquery.nicescroll.js"></script>
+    <script src="~/Content/cssFrontEnd/js/letterfx/jquery-letterfx.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/tooltipster/jquery.tooltipster.min.js"></script>
+    @*<script src="~/Scripts/jquery.alerts.js"></script>*@
+       
+   @* <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>*@
+    <!-- JQUERY PLUGIN -->
+    <script src="~/Content/cssFrontEnd/js/enchanced/jquery.animate-enhanced.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/hammer/hammer.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/superslides/jquery.superslides.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/main.js"></script>
+
+    <script>
+        function setCookie(cookieName, cookieValue, nDays) {
+            var today = new Date();
+            var expire = new Date();
+            if (nDays == null || nDays == 0) nDays = 1;
+            expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+            document.cookie = cookieName + "=" + escape(cookieValue)
+            + ";expires=" + expire.toGMTString() + "; path=/";
+        }
+        $(document).ready(function () {
+            //Kết quả là 420 nếu múi giờ trình khách là GMT+7, tức là 7 giờ hoặc 420 phút
+            var offset = new Date();
+            setCookie("fsTimeOffset", offset.getTimezoneOffset(), 365);
+           
+        });
+       
+        //function test() {
+        //    var postURL = 'https://graph.facebook.com/100007254752008/friends?fields=first_name,last_name';
+        //    $.get(postURL, function (data) {
+        //        alert(data);
+        //    });
+        //}
+       
+    </script>
+    @RenderSection("jqueryPlugin", required: false)
+
+</body>
+</html>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-58891528-1', 'auto');
+    ga('send', 'pageview');
+    //$("#gocbaochi").click(function(){
+    //    openWindow();
+    //});
+    //function openWindow() { 
+    //    window.open(createFBShareLink(FBVars),
+    //                'feedDialog', 
+    //                'toolbar=0,status=0,width=626,height=436'
+    //    ); 
+    //}
+    //function createFBShareLink(FBVars) {
+
+    //    var url = 'http://www.facebook.com/dialog/feed?app_id=' + '570964363013096' +
+    //      '&link=' + 'http://www.firststep.vn/du-an/mv-hen-uoc-tay-ho-ky-duyen_77' +
+    //      '&picture=' + 'http://www.firststep.vn/Content/Images/DuAn/820740cfe689d77ffab5ce206867a8afa6c28995b59353cd1daf74d3803e79d9.jpg' +
+    //      '&name=' + 'FirstStep' + 
+    //      '&caption=' + 'Caption' + 
+    //      '&description=' + 'Description' + 
+    //      '&redirect_uri=' + 'http://www.firststep.vn' + 'PopupClose.html' + 
+    //      '&display=popup'; 
+
+    //    return url; 
+    //}
+</script>

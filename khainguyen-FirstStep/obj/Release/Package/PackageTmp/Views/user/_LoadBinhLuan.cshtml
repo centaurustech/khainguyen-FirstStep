@@ -1,0 +1,19 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityBinhLuan>
+@{
+    foreach (var item in Model)
+    {
+    <div class="supporter-row">
+        <div class="avatar">
+            <img src="@item.EntityUser.Avatar" alt="avatar" title="@item.EntityUser.HoTen.ToString()" />
+        </div>
+        <p><h4>@item.NoiDung</h4></p>
+         <a class="color-orange" href="@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(item.EntityDuAn.TenDuAn), item.IdDuAn.Value) })">
+           @item.EntityDuAn.TenDuAn
+        </a>
+        
+       @* <p>  <a><i class="fa-share-alt"></i>&nbsp;@item.ThoiGian</a></p>*@
+    </div>
+    }
+}
+
+

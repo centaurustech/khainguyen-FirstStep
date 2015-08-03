@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Tạo dự án";
+}
+<style>
+    .loginerror {
+        color: #900;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
+        overflow: hidden;
+        display: none;
+        margin-right: 8px;
+    }
+</style>
+
+<div id="slides">
+    <ul class="slides-container">
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img9.jpg" /></li>
+        <li><img src="~/Content/cssFrontEnd/upload/bigslider/img10.jpg" /></li>>
+    </ul>
+    <div class="proj-intro">
+        <div class="container">
+            <div class="col-4-6 text-right">
+                <div class="proj-texta">Khởi tạo dự án</div>
+                <p>Nó hoàn toàn miễn phí và đơn giản khi tạo. Chúng tôi luôn sẵn sàng hỗ trợ bạn. Bạn đã sẵn sàng ? </p>
+            </div>
+            <div class="col-6-4">
+                <form class="proj-start">
+                    <p>
+                        <b><i class="fa-ticket"></i>Tiêu đề dự án</b><br />
+                        <input class="form-txt" type="text" id="TenDuAn" name="TenDuAn" placeholder="Âm nhạc và cuộc sống, ..." />
+                        
+                    </p>
+                    <div style="float: left; width: 50%">
+                        <p>
+                            <b><i class="fa-ticket"></i> Danh mục</b><br />
+                            <select class="form-txt" style="font-size: 0.85em" id="DiaDiem" name="DiaDiem">
+                               @{
+                                   foreach (var dm in @ViewBag.DanhMuc as IList<khainguyen_FirstStep.EntityDanhMuc>)
+                                   {
+                                         <option value='@dm.Id' selected>@dm.TenDM</option>
+                                   }
+                               }
+                               
+                            </select>
+                        </p>
+                    </div>
+                    <div style="float: left; width: 50%">
+                        <p>
+                            <b><i class="fa-ticket"></i> Tổng kinh phí</b><br />
+                            <input class="form-txt text-right" type="number" id="TienDauTuMucTieu" name="TienDauTuMucTieu" placeholder="0.00" style="width: 40%">
+                        </p>
+                    </div>
+                     <div class="clearfix"></div>
+                            <p id="whichpreson">
+                                <h3>Đối tượng nhận vốn đầu tư <i class="fa-question-circle tooltip color-tiny tooltipstered" title="dnfjsdnfkdsnfk"></i></h3>
+                                <label class="form-label"><input type="radio" value="Doanh nghiệp" name="whichpreson">Doanh nghiệp</label>
+                                <label class="form-label"><input type="radio" value="Cá nhân" checked="checked" name="whichpreson">Cá nhân</label>
+                                <label class="form-label"><input type="radio" value="Tổ chức từ thiện" name="whichpreson">Tổ chức từ thiện</label>
+                            </p>
+                  
+                    <div class="loginerror">Vui lòng điền đầy đủ thông tin dự án.</div>
+                    <p>
+                        <button id="btnSave" onclick="return taoduan();" class="btn btn-big">Tạo dự án</button>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        function taoduan() {
+            var TenDuAn = $('#TenDuAn').val();
+            var TienDauTuMucTieu = $("#TienDauTuMucTieu").val();
+            if (TenDuAn == "" || TienDauTuMucTieu == "") {
+                alert("Vui lòng điền đầy đủ thông tin");
+                return false;
+            }
+            var IdDanhMuc = $("#DiaDiem").val();
+            var mWhichPerson = $("#whichpreson input");
+            var WhichPerson = $('input[name=whichpreson]:checked').val()
+            
+            var postURL = '@Url.Action("_TaoDuAn_Buoc1", "DuAn")';
+            if (TenDuAn != "" || TienDauTuMucTieu !="") {
+                $.post(postURL, { "TenDuAn": TenDuAn, "TienDauTuMucTieu": TienDauTuMucTieu, "IdDanhMuc": IdDanhMuc, "WhichPerson": WhichPerson }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
+                        location.href = "/DuAn/TaoDuAn_Buoc2" + "?Id=" + data;
+                    }
+                 });
+            }
+            else {
+                //alert("Vui lòng điền đầy đủ thông tin !")
+                jQuery('.loginerror').slideDown();
+            }
+            return false;
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#username').keypress(function () {
+                jQuery('.loginerror').slideUp();
+            });
+
+            var $slides = $('#slides');
+            Hammer($slides[0]).on("swipeleft", function (e) {
+                $slides.data('superslides').animate('next');
+            });
+
+            Hammer($slides[0]).on("swiperight", function (e) {
+                $slides.data('superslides').animate('prev');
+            });
+            $slides.superslides({
+                slide_easing: 'easeInOutCubic',
+                slide_speed: 3000,
+                pagination: false,
+                hashchange: false,
+                scrollable: true,
+                play: 5000,
+                animation: 'fade'
+            });
+        });
+    </script>
+}

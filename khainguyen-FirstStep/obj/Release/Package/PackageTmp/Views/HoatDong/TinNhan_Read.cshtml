@@ -1,0 +1,15 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityTinNhan>
+@{
+    foreach(var item in Model)
+    {
+    <div class="ms-text-li">
+        <img src="@item.EntityUser.Avatar" alt="" />
+        <div class="ms-t">
+            <b>@item.EntityUser.HoTen</b>
+            <span class="time">@item.Date</span>
+            <p>@item.NoiDung</p>
+        </div>
+    </div>
+    }
+}
+

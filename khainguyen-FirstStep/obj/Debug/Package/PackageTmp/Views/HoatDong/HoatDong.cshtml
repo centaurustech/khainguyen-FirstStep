@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Hoạt động";
+}
+
+@section MeTaHeader
+{
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
+<div class="page page-message">
+    <div class="panel">
+        <div class="container">
+
+            <!-- acc-title -->
+            @Html.Action("_MenuHoatDong", "HoatDong")
+
+            <div class="list-activity">
+                @{
+                    if (ViewBag.Tin == 0)
+                    {
+                        <div class="row-time"><h3>Hiện tại không có hoạt động</h3></div>
+                    }
+                    else{
+                    @Html.Action("_HoatDong", "HoatDong", new { page=0});
+                    }
+                }
+            </div>
+            <input type="hidden" id="ViewBagpage" value="0">
+           <div class="load-more container text-center ">
+        <a href="#" class="btn">Thêm nữa </a>
+
+        </div>
+
+        </div>
+    </div>
+</div><!-- /.page -->
+    @Html.Action("CheckLife","Home")
+
+@section jqueryPlugin{
+    <!-- JQUERY CUSTOM -->
+    <script>
+        $(document).ready(function () {
+            $('.load-more a').click(function (e) {
+                e.preventDefault();
+                $btn = $(this);
+                $btn.text('đang tải ...');
+                var kk = parseInt($('#ViewBagpage').val());
+                kk = kk + 1;
+                $('#ViewBagpage').val(kk);
+
+                var postURL = '@Url.Action("_HoatDong", "HoatDong")';
+
+            $.post(postURL, { "page": kk }, function (data) {
+                $('.container .list-activity').append(data);
+                $btn.text('Thêm nữa');
+            });
+            setTimeout(reload, 1000);
+            });
+        });
+        </script>
+        }

@@ -1,0 +1,92 @@
+﻿@model khainguyen_FirstStep.EntityGroupFAQ
+@{
+    ViewBag.Title = "Thêm cho Loại FAQ";
+    Layout = "~/Areas/AdminCP/Views/Shared/AdminLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-1.7.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Content/cssAdmin/js/plugins/jquery-ui-1.8.16.custom.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("~/Content/cssAdmin/ckeditor/ckeditor.js")"></script>
+
+<script type="text/javascript">
+    var ckeditor;
+    function create(languageCode, id) {
+        var editor = CKEDITOR.replace(id, { language: languageCode });
+    }
+
+    $(function () { create("vi", "NoiDung") });
+
+    //function change() {
+    //    if ($("#TaoGroup").attr("checked")) {
+    //        $("#ctrNoiDung").show();
+    //    }
+    //    else {
+    //        $("#ctrNoiDung").hide();
+    //    }
+    //}
+</script>
+
+<div class="maincontentinner">
+    <ul class="maintabmenu">
+        <li><a href="@Url.Action("Index", "AdminFAQ")">Index</a></li>
+        <li class="current"><a href="#">Insert</a></li>
+    </ul>
+    <!--maintabmenu-->
+    <div class="notification msgsuccess" style="display: none" id="nofSuccess">
+        <a class="close"></a>
+        <p id="msgNofSuccess">This is a success message.</p>
+    </div>
+    <!-- notification msgsuccess -->
+
+    <div class="notification msgerror" style="display: none" id="nofError">
+        <a class="close"></a>
+        <p id="msgNofError">This is an error message.</p>
+    </div>
+    <!-- notification msgerror -->
+    @using (Html.BeginForm("InsertGroupFAQ", "AdminFAQ",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
+    {
+        <div class="contenttitle radiusbottom0">
+            <h2 class="table"><span>Thêm Group FAQ loại @ViewBag.IdLoaiFAQ</span></h2>
+        </div>
+        <!--contenttitle-->
+        <input hidden="hidden" name="IdLoaiFAQ" id="IdLoaiFAQ" value="@ViewBag.IdLoaiFAQ" />@*            
+        <p>
+            <label>Chọn thao tác</label>
+            <span class="field">
+                Tạo Group <input type="radio" id="TaoGroup" name="radio1" class="rb" checked="checked" onchange="change();" />
+                Tạo Câu Hỏi <input type="radio" id="TaoCauHoi" name="radio1" class="rb" value="Tạo Câu Hỏi" onchange="change();" />
+            </span>
+            
+        </p>*@
+        <p>
+            <label>Tiêu đề</label>
+            <span class="field">
+                <input type="text" id="TenGroup" name="TenGroup" />
+            </span>
+        </p>@*
+       
+        <p id="ctrNoiDung">
+            <label>Nội Dung</label>
+            <span class="field">
+                <textarea id="NoiDung" name="NoiDung"></textarea>
+            </span>
+        </p>        
+        *@<p>
+
+            <label>Vị Trí</label>
+            <span class="field">
+                <input type="number" id="ViTri" name="ViTri" />
+            </span>
+        </p>
+        <p class="stdformbutton">
+            <input type="submit" value="Ok" />
+            <input type="submit" value="Back" onclick="javascript: history.back(); return false" />
+        </p>
+
+    }
+
+    <br clear="all" />
+</div>
+<!--maincontentinner-->

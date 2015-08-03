@@ -1,0 +1,176 @@
+﻿@model IEnumerable<khainguyen_FirstStep.EntityPhanThuong>
+@{
+    ViewBag.Title = "ThanhToan_Lan1";
+}
+<style>
+    .uploadanh, .uploadanh1 {
+        color: #900;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
+        overflow: hidden;
+        display: none;
+        margin-right: 8px;
+    }
+</style>
+<div class="page dark">
+    <div class="container">
+        <div class="title"><h1>@ViewBag.DuAn.TenDuAn</h1></div>
+        <div class="author">Người đăng <a href="#">@ViewBag.DuAn.EntityUser.HoTen</a></div>
+
+        <div class="page-detail">
+            <div class="detail-row">
+                <div class="left-col">
+                    <h1 class="color-tiny">Thanh toán !</h1>
+                    <p><b>Nhập số tiền bạn tham gia : </b></p>
+                    <div class="col-2">
+                        <label class="form-group-icon"><i class="fa-usd"></i><input class="form-txt" placeholder="10000" id="SoTien" name="SoTien" type="text" /> VNĐ</label>
+                        <input hidden="hidden" value="@ViewBag.DuAn.Id" id="IdDuAn" name="IdDuAn" />
+                        <div class="uploadanh">Ghi đúng định dạng số , nếu không tham gia ghi số 0, và thấp nhất là 10 000 VNĐ</div>
+                        <div class="uploadanh1">Nếu không chọn mức tham gia thì điền thấp nhất là 10 000 VNĐ</div>
+                    </div>
+                    <div class="col-2">
+                        Tùy thuộc vào bạn !<br />
+                        Có thể 10 000 VNĐ hoặc nhiều hơn.
+                    </div>
+
+                    <div class="space_20"></div>
+                    <p><b>Chọn mức tham gia :</b></p>
+
+                    <div class="reward-choose-item choosed">
+                        <div class="col-3-7">
+                            <label class="form-label"><input type="radio" id="0" value="0" name="a2" checked><b>Không chọn</b></label>
+                            <div class="des"></div>
+                        </div>
+                        <div class="col-7-3">
+                            <div class="reward-des">Cảm ơn, tôi chỉ muốn giúp đỡ dự án, không cần nhận thưởng.</div>
+                        </div>
+                    </div>
+
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <div class="reward-choose-item">
+                                <div class="col-3-7">
+                                    <label class="form-label"><input type="radio" id="@item.Id" value="@item.Id" name="a2"><b>@item.TienHoTro VNĐ + Mức giá bạn chọn</b></label>
+                                    <div class="des"></div>
+                                </div>
+                                <div class="col-7-3">
+                                    <div class="reward-des"> @item.NoiDung</div>
+                                    <span class="estimated">Hình thức : @item.HinhThucGiao</span>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+
+                    <div class="clearfix"></div>
+                    <hr />
+                    <!-- btnSave -->
+                    <div class="box-save">
+                        <button class="btn btn-big" onclick=" return duan();">Tiếp tục bước tiếp theo</button>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="reward-avide">
+                        <h3>LƯU Ý</h3>
+                        <p>
+                            FirstStep không đảm bảo các dự án hoặc điều tra khả năng của một người sáng tạo để hoàn thành dự án của họ. Đây là trách nhiệm của tác giả dự án để hoàn thành dự án của họ như đã hứa, và những tuyên bố của dự án này là của riêng họ
+                        </p>
+                        <p><a href="#">Tìm hiểu thêm về trách nhiệm</a></p>
+                    </div>
+                    <div class="reward-list-ask">
+                        <h3>CÂU HỎI THƯỜNG GẶP</h3>
+                        <div class="faq-ask">
+                            <a href="#">Điều gì xảy ra nếu thẻ tín dụng của một người ủng hộ bị từ chối?</a>
+                            <div class="faq-ans">
+                                <p>Khi thanh toán của một người ủng hộ không thể được thu thập, cam kết của họ được hiển thị với một tình trạng lỗi trong Báo cáo Backer của bạn. </p>
+                            </div>
+                        </div>
+                        <div class="faq-ask">
+                            <a href="#">Cách sử dụng OnePay như thế nào ?</a>
+                            <div class="faq-ans">
+                                <p>Bạn vui lòng lên trang chủ Onepay.com để tìm hiểu thêm.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="reward-payment"></div>
+                    <img src="~/Content/cssFrontEnd/images/amazon_payments_footer.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section jqueryPlugin{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.reward-choose-item').click(function (e) {
+                $(this).find('input[type=radio]').prop('checked', true);
+                $('.reward-choose-item').removeClass('choosed');
+                $(this).addClass('choosed');
+            });
+
+            $('.faq-ans').each(function () {
+                $(this).attr('data-height', $(this).height()).height(0);
+            });
+            $('.faq-ask a:first-child').click(function (e) {
+                e.preventDefault();
+                if ($(this).attr('data-show') == "1") {
+                    $(this).attr('data-show', 0);
+                    $(this).next().animate({ height: 0 }, 300);
+                }
+                else {
+                    $(this).attr('data-show', 1);
+                    $n = $(this).next();
+                    $n.animate({ height: $n.attr('data-height') }, 300);
+                }
+            });
+
+            $("@ViewBag.pt").prop("checked", true);
+        })
+
+
+        function duan() {
+
+            var rates = document.getElementsByName('a2');
+            var PhanThuong;
+            for (var i = 0; i < rates.length; i++) {
+                if (rates[i].checked) {
+                    PhanThuong = rates[i].value;
+                }
+            }
+            var IdDuAn = $('#IdDuAn').val();
+            var SoTien = $('#SoTien').val();
+            if (!$.isNumeric(SoTien) || (parseInt(SoTien) < 10000 && parseInt(SoTien) != 0 && PhanThuong == "0") || (SoTien == "0" && PhanThuong == "0")) {
+                if (!$.isNumeric(SoTien) || (parseInt(SoTien) < 10000 && parseInt(SoTien) != 0 && PhanThuong == "0")) {
+                    jQuery('.uploadanh').slideDown();
+                    jQuery('.uploadanh1').slideUp();
+                }
+                if (SoTien == "0" && PhanThuong == "0") {
+                    jQuery('.uploadanh1').slideDown();
+                    jQuery('.uploadanh').slideUp();
+                }
+            }
+            else {
+                jQuery('.uploadanh').slideUp();
+                jQuery('.uploadanh1').slideUp();
+                var postURL = '@Url.Action("TiepTuc_Lan1", "ThanhToan")';
+                $.post(postURL, { "IdDuAn": IdDuAn, "PhanThuong": PhanThuong, "SoTien": SoTien }, function (data) {
+                    if (data == "0") {
+                        alert("Có lỗi xảy ra bạn vui lòng thử lại sau. Hoặc bạn đã tham dự án này");
+                    } else {
+                        //location = "/ThanhToan/ThanhToan_Lan2" + "?Id=" + data;
+                        
+                        var link = '@Url.Action("ThanhToan_Lan2", "ThanhToan")'.split('/')[1];
+                        location = link + '/' + data;
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+
+}
