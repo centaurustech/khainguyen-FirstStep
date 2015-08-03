@@ -1,0 +1,3 @@
+﻿User-agent: *
+Disallow: /admin
+Sitemap: http://mp3.zing.vn/sitemap.xml

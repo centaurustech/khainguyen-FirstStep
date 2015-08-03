@@ -1268,6 +1268,7 @@
     <Content Include="App_Data\Certificates\biz_public_cert.pem" />
     <Content Include="App_Data\Certificates\biz_private_key.pem" />
     <None Include="Properties\PublishProfiles\Publish FirstStep.pubxml" />
+    <Content Include="robots.txt" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\autoNumeric.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
