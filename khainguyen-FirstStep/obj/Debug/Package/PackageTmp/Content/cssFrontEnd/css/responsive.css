@@ -26,7 +26,7 @@
     #iphone{display:none}
     body {font-size: 13px;}
     .hideIP {display: none;}  
-    .menu-fix button{float: right; margin-right: 20px;  margin-top: 5px;}
+    .menu-fix button{float: right; margin-right: 10px!important;  margin-top: 5px;}
     .menu-fix input[type="text"]{margin-left: 20px; padding-left:0; width: 80% }
     .menu-top, .menu-fix form{display: block; float: none; clear: both; margin:0;}
     .menu-top a{display: block; padding: 15px 20px;}
