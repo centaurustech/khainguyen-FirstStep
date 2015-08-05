@@ -142,8 +142,6 @@ function Core_ShowHTML() {
         $('#audio-loading').bind('ended', function () { $(this).remove(); });
     }
     // SHOW WHEN DONE!!!
-    //$('.loading-container').fadeOut(500);
-    //var timeWait = 4;
     $(window).load(function () {
         if ($('.loading-container').is(":visible"))
             $('.loading-container').delay(350).fadeOut("slow");
