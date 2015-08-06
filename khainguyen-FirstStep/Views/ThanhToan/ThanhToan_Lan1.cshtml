@@ -1,22 +1,21 @@
 ﻿@model IEnumerable<khainguyen_FirstStep.EntityPhanThuong>
 @{
-    ViewBag.Title = "ThanhToan_Lan1";    
+    ViewBag.Title = "ThanhToan_Lan1";
 }
 
 @section MeTaHeader
 {
     <meta name="robots" content="noindex,nofollow" />
-    <title>Thanh toán - Bước 1</title>
 }
 
 <style>
     .uploadanh, .uploadanh1 {
         color: #900;
-        background: none repeat scroll 0 0 #FBE3E3;
-        padding: 5px 10px;
+        background: none repeat scroll 0% 0% #FBE3E3;
+        padding: 0px 5px;
         overflow: hidden;
         display: none;
-        margin: 8px 0;
+        margin-right: 8px;
     }
 </style>
 <div class="page dark">
@@ -27,66 +26,73 @@
         <div class="page-detail">
             <div class="detail-row">
                 <div class="left-col">
-                    @Html.Hidden("Flag", "0")
-                    @using (Html.BeginForm("ThanhToan_Lan2", "ThanhToan", FormMethod.Post, new { @id = "formThanhToanB1" }))
-                    {
-                        <h1 class="color-tiny">Thanh toán!</h1>
-                        <p><b>Nhập số tiền bạn tham gia : </b></p>
-                        <div class="col-2">
-                            <label class="form-group-icon">
-                                @Html.TextBox("SoTien", (int)ViewBag.SoTien, new { @class = "form-txt auto", @data_p_sign = "s", @data_v_min = "0", @data_v_max = "99999999999999", @name="SoTien" }) VNĐ
-                            </label>
-                            @Html.Hidden("IdDuAn", (int)ViewBag.DuAn.Id)
-                        </div>
-                        <div class="col-2">
-                            <span>
-                                Tùy thuộc vào bạn !<br />
-                                Tối thiểu là 50,000 VNĐ hoặc nhiều hơn.
-                            </span>
-                        </div>
-                        
-                        <div class="clearfix"></div>
+                    <h1 class="color-tiny">Thanh toán !</h1>
+                    <p><b>Nhập số tiền bạn tham gia : </b></p>
+                    <div class="col-2">
+                        <label class="form-group-icon"><input class="form-txt auto" id="SoTien" name="SoTien" value="@ViewBag.SoTien" data-p-sign="s"  data-v-min="0" data-v-max="99999999999999"/> VNĐ</label>
+                        <input hidden="hidden" value="@ViewBag.DuAn.Id" id="IdDuAn" name="IdDuAn" />
+                        <input hidden="hidden" value="0" id="Flag" name="Flag" />
                         <div class="uploadanh" hidden="hidden">Vui lòng nhập số tiền tài trợ từ 50,000 VNĐ trở lên</div>
                         <div class="uploadanh1" hidden="hidden">Vui lòng nhập số tiền lớn hơn hoặc bằng giá trị phần thưởng bạn chọn</div>
+                    </div>
+                    <div class="col-2">
+                        <span>Tùy thuộc vào bạn !<br />
+                        Tối thiểu là 50,000 VNĐ hoặc nhiều hơn.</span>
+                    </div>
 
-                        <div class="space_20"></div>
-                        <p><b>Chọn mức tham gia :</b></p>
+                    <div class="space_20"></div>
+                    <p><b>Chọn mức tham gia :</b></p>
 
-                        <div class="reward-choose-item">
-                            <div class="col-3-7">
-                                <label class="form-label">
-                                    @Html.RadioButton("phanthuong", 0, new { @checked = "true", @data_price = 0 })
-                                    <b>Không chọn</b>
-                                </label>
-                                <div class="des"></div>
-                            </div>
-                            <div class="col-7-3">
-                                <div class="reward-des">Cảm ơn, tôi chỉ muốn giúp đỡ dự án, không cần nhận thưởng.</div>
-                            </div>
+                    <div class="reward-choose-item">
+                        <div class="col-3-7">
+                            <label class="form-label"><input type="radio" id="0" value="0" name="phanthuong" checked><b>Không chọn</b></label>
+                            <div class="des"></div>
                         </div>
+                        <div class="col-7-3">
+                            <div class="reward-des">Cảm ơn, tôi chỉ muốn giúp đỡ dự án, không cần nhận thưởng.</div>
+                        </div>
+                    </div>
+
+                    @{
                         foreach (var item in Model)
                         {
-                            <div class="reward-choose-item @(ViewBag.pt == "#" + item.Id ? "choosed" : "")">
-                                <div class="col-3-7">
-                                    <label class="form-label">
-                                        @if (ViewBag.pt == "#" + item.Id) { @Html.RadioButton("phanthuong", item.Id, new { @data_price = item.TienHoTro, @checked = "true" });}
-                                        else { @Html.RadioButton("phanthuong", item.Id, new { @data_price = item.TienHoTro }); }                                        
-                                        <b>@string.Format("{0:0,0}", item.TienHoTro) VNĐ hoặc hơn</b>
-                                    </label>
-                                    <div class="des"></div>
+                            if (ViewBag.pt == "#" + item.Id)
+                            {
+                                <div class="reward-choose-item choosed">
+                                    <div class="col-3-7">
+                                        <label class="form-label"><input type="radio" id="@item.Id" value="@item.TienHoTro" name="phanthuong"><b>@string.Format("{0:0,0}", item.TienHoTro) VNĐ hoặc hơn</b></label>
+                                        <div class="des"></div>
+                                    </div>
+                                    <div class="col-7-3">
+                                        <div class="reward-des"> @item.NoiDung</div>
+                                        <span class="estimated">Hình thức : @item.HinhThucGiao</span>
+                                    </div>
                                 </div>
-                                <div class="col-7-3">
-                                    <div class="reward-des"> @item.NoiDung</div>
-                                    <span class="estimated">Hình thức : @item.HinhThucGiao</span>
+                            }
+                            else
+                            {
+                                <div class="reward-choose-item">
+                                    <div class="col-3-7">
+                                        <label class="form-label"><input type="radio" id="@item.Id" value="@item.TienHoTro" name="phanthuong"><b>@string.Format("{0:0,0}", item.TienHoTro) VNĐ hoặc hơn</b></label>
+                                        <div class="des"></div>
+                                    </div>
+                                    <div class="col-7-3">
+                                        <div class="reward-des"> @item.NoiDung</div>
+                                        <span class="estimated">Hình thức : @item.HinhThucGiao</span>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         }
-                        <div class="clearfix"></div>
-                        <hr />
-                        <div class="box-save">
-                            <button class="btn btn-big">Tiếp tục bước tiếp theo</button>
-                        </div>
-                    } @* end form *@
+                    }
+
+
+
+                    <div class="clearfix"></div>
+                    <hr />
+                    <!-- btnSave -->
+                    <div class="box-save">
+                        <button class="btn btn-big" onclick=" return duan();">Tiếp tục bước tiếp theo</button>
+                    </div>
                 </div>
                 <div class="right-col">
                     <div class="reward-avide">
@@ -137,7 +143,7 @@
                 }
                 else {
                     //if (parseInt($('#SoTien').autoNumeric('get')) < parseInt($("input[name='phanthuong']:checked").val())) {
-                    $('#SoTien').autoNumeric('set', $("input[name='phanthuong']:checked").data("price"));
+                    $('#SoTien').autoNumeric('set', $("input[name='phanthuong']:checked").val());                    
                 }
             });
 
@@ -167,44 +173,61 @@
             $('.auto').autoNumeric('init');
         });
 
-        $("#SoTien").change(function () {            
-            checkInput();
-        });
+        function duan() {
 
-        $("#formThanhToanB1").submit(function (data) {
-            console.log(data);
-            return checkInput();
-        })
-
-        function checkInput() {
-            var PhanThuong = parseInt($("input[name='phanthuong']:checked").data("price"));
-            var SoTien = parseInt($("#SoTien").autoNumeric("get"));
+            var rates = document.getElementsByName('phanthuong');
+            var PhanThuong;
+            var idPhanThuong;
+            for (var i = 0; i < rates.length; i++) {
+                if (rates[i].checked) {
+                    PhanThuong = rates[i].value;
+                    idPhanThuong = rates[i].id;
+                }
+            }
+            var IdDuAn = $('#IdDuAn').val();
+            //$('#SoTien').val($('#SoTien').autoNumeric('get'));
+            var SoTien = $('#SoTien').autoNumeric('get');
             //Không nhập tiền tài trợ hoặc nhập số 0
-            if ((SoTien == '0' || SoTien < 50000) && PhanThuong == "0") {
-                $('.uploadanh').slideDown();
-                $('.uploadanh1').slideUp();
-                return false;
+            if (SoTien == '0' || SoTien < 5000)
+            {
+                jQuery('.uploadanh').slideDown();
+                jQuery('.uploadanh1').slideUp();
             }
-                //Nhập tiền tài trợ thấp hơn phần thưởng đã chọn
-            else if (SoTien < PhanThuong && PhanThuong != "0") {
-                //alert('vao day');
-                $('.uploadanh1').slideDown();
-                $('.uploadanh').slideUp();
-                return false;
+            //Nhập tiền tài trợ thấp hơn phần thưởng đã chọn
+            else if (parseInt(SoTien) < parseInt(PhanThuong) && PhanThuong != "0")
+            {
+                //alert('vao day');                
+                jQuery('.uploadanh1').slideDown();
+                jQuery('.uploadanh').slideUp();
+                var text = "Vui lòng nhập số tiền tài trợ lớn hơn hoặc bằng " + PhanThuong + " để chọn phần thưởng này";
+                $('div.uploadanh1').text(text);
             }
-                //Nhập tiền tài trợ thấp hơn 50.000 khi bạn không chọn phần thưởng nào
-                //else if(parseInt(SoTien) < 50000 && PhanThuong == 0)
-                //{
-                //    $('.uploadanh').val("Vui lòng nhập số tiền tài trợ lớn hơn hoặc bằng " + PhanThuong.autoNumeric('set') + " để chọn phần thưởng này");
-                //    jQuery('.uploadanh').slideDown();
-                //}
+            //Nhập tiền tài trợ thấp hơn 50.000 khi bạn không chọn phần thưởng nào
+            //else if(parseInt(SoTien) < 50000 && PhanThuong == 0)
+            //{
+            //    $('.uploadanh').val("Vui lòng nhập số tiền tài trợ lớn hơn hoặc bằng " + PhanThuong.autoNumeric('set') + " để chọn phần thưởng này");
+            //    jQuery('.uploadanh').slideDown();
+            //}
             else {
-                $('.uploadanh').slideUp();
-                $('.uploadanh1').slideUp();
-                $("#SoTien").val(SoTien);
-                return true;
-            }            
-        };
+                jQuery('.uploadanh').slideUp();
+                var link = '@Url.Action("ThanhToan_Lan2","ThanhToan")' + '/?IdDuAn=' + IdDuAn + '&PhanThuong=' + idPhanThuong + '&SoTien=' + SoTien;
+                location = link;
+            }
+            return false;
+        }
     </script>
 
 }
+
+@*jQuery('.uploadanh').slideUp();
+                var postURL = '@Url.Action("TiepTuc_Lan1", "ThanhToan")';
+                $.post(postURL, { "IdDuAn": IdDuAn, "PhanThuong": idPhanThuong, "SoTien": SoTien }, function (data) {
+                    if (data == "0") {
+                        alert("Có lỗi xảy ra bạn vui lòng thử lại sau. Hoặc bạn đã tham dự án này");
+                    } else {
+                        //location = "/ThanhToan/ThanhToan_Lan2" + "?Id=" + data;
+                        
+                        var link = '@Url.Action("ThanhToan_Lan2", "ThanhToan")'.split('/')[1];
+                        location = link + '/' + data;
+                    }
+                });*@

@@ -1061,7 +1061,10 @@
     <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pyramidRenderer.min.js" />
     <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.trendline.js" />
     <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.trendline.min.js" />
-    <Content Include="Content\cssFrontEnd\js\jquery-mirage\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Content\cssFrontEnd\js\jquery-mirage\release.js" />
+    <Content Include="Content\cssFrontEnd\js\jquery-mirage\release.min.js">
+      <DependentUpon>release.js</DependentUpon>
+    </Content>
     <Content Include="Content\cssFrontEnd\js\jqueryui\images\animated-overlay.gif" />
     <Content Include="Content\cssFrontEnd\js\jqueryui\images\ui-bg_diagonals-small_40_db4865_40x40.png" />
     <Content Include="Content\cssFrontEnd\js\jqueryui\images\ui-bg_diagonals-small_50_93c3cd_40x40.png" />
@@ -1268,6 +1271,9 @@
     <Content Include="App_Data\Certificates\biz_pkcs12.p12" />
     <Content Include="App_Data\Certificates\biz_public_cert.pem" />
     <Content Include="App_Data\Certificates\biz_private_key.pem" />
+    <Content Include="Content\cssFrontEnd\js\jquery-mirage\release.min.js.map">
+      <DependentUpon>release.min.js</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Publish FirstStep.pubxml" />
     <Content Include="robots.txt" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
