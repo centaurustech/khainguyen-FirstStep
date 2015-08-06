@@ -31,6 +31,7 @@ namespace khainguyen_FirstStep.Controllers
             return View(item);
         }
         
+        [HttpPost]
         public ActionResult ThanhToan_Lan2(int IdDuAn, int PhanThuong, int SoTien)
         {
             var item = db.EntityPhanThuongs.Where(p => p.IdDuAn == IdDuAn).ToList();
