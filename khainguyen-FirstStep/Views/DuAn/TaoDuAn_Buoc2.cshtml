@@ -840,6 +840,21 @@
 
             }
             if ($("#tabMoTa").hasClass("active") == true) {
+                if ('undefined' !== $("#LinkVideo").val())
+                {
+                    var ytID = ytVidId($("#LinkVideo").val());
+                    if (ytID != false) {
+                        $("#LinkVideo").val('http://youtube.com/v?=' + ytID);
+                    }
+                    else {
+                        alert("Vui long nhap dung dinh dang video Youtube");
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
             }
             if ($("#tabGioiThieu").hasClass("active") == true) {
             }
@@ -1071,75 +1086,10 @@
     <!--Start Xử lý tab "Mô Tả"-->
     <script>
         <!--Xử lý check link Youtube-->
-        function vv() {
-            var obj = $('#js_v_txt2');
-            obj.val(obj.val().replace('http://youtu.be/', '').replace('http://www.youtube.com/watch?v=', '').replace('https://www.youtube.com/watch?v=', ''));
+        function ytVidId(url) {
+            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+            return (url.match(p)) ? RegExp.$1 : false;
         }
-        function checklinkYoutube() {
-            $('#video_youtube_error').hide();
-            $('.js_editloadbtn').show();
-            var url = '';
-            vv();
-            if ($('#js_v_txt2').val() != '') {
-                url = 'http://www.youtube.com/watch?v=' + $('#js_v_txt2').val();
-            }
-
-            //console.log(url);
-
-            if (url != '') {
-                url.match(/http:\/\/(www.)?(youtu(be\.com|\.be))\/(embed\/|watch\?v=)?([A-Za-z0-9._%-]*)(\&\S+)?/);
-
-                var match = {
-                    provider: null,
-                    url: RegExp.$2,
-                    id: RegExp.$5
-                }
-
-                if (match.url == 'youtube.com' || match.url == 'youtu.be') {
-                    var request = $.ajax({
-                        url: 'http://gdata.youtube.com/feeds/api/videos/' + match.id,
-                        timeout: 5000,
-                        dataType: 'jsonp',
-                        success: function () {
-                            match.provider = 'YouTube';
-                        }
-                    });
-                }
-
-                if (request) {
-                    request.always(function () {
-                        var ret = false;
-                        if (match.provider) {
-                            console.log('\n\nFound valid video:\nProvider: ' + match.provider + '\nVideo ID: ' + match.id);
-                            ret = true;
-                        } else {
-                            console.log('Unable to locate a valid video ID');
-                        }
-                        sbo(ret);
-                    });
-                }
-            } else {
-                issubmit = true;
-                $('#frm').submit();
-            }
-        }
-        function sbo(ret) {
-            console.log(ret);
-            if (ret) {
-                issubmit = true;
-                $('#frm').submit();
-            } else {
-                var video_type = $('input[name="video_type"]:checked').val();
-                if (video_type == 1) {
-                    $('#video_vimeo_error').show();
-                } else if (video_type == 2) {
-                    $('#video_youtube_error').show();
-                }
-                $('.js_editloadbtn').hide();
-                $('.js_edit_btn1').show();
-                //go2a('video_a');
-            }
-        }  
     </script>
     <!--End Xử lý tab "Mô Tả"-->
 

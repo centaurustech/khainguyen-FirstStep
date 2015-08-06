@@ -65,9 +65,10 @@ namespace khainguyen_FirstStep.Controllers
             int sl = 0;
             foreach (var item in newli)
             {
+                //Lay tin nhan??
                 sl++;
                 SendMessage send = new SendMessage();
-                var danhtinnhan = db.EntityTinNhans.Where(g =>g.IdDuAn == item.IdDuAn && (g.IdUserNhan == item.iduser || g.IdUserGui == item.iduser) && (g.IdUserNhan == Id && g.IdUserGui == Id)).ToList();
+                var danhtinnhan = db.EntityTinNhans.Where(g =>g.IdDuAn == item.IdDuAn && (g.IdUserNhan == item.iduser || g.IdUserGui == item.iduser) && (g.IdUserNhan == Id || g.IdUserGui == Id)).ToList();
                 if (danhtinnhan.Any(g => g.TrangThai == 0 && g.IdUserNhan==Id) == true)
                 {
                     send.TrangThai = 0;
@@ -78,6 +79,7 @@ namespace khainguyen_FirstStep.Controllers
                 send.TenDuAn =duan==null?"không xác định": duan.TenDuAn;
                 send.IdSendMessge = sl;
 
+                //Lay tin nhan moi nhat
                 EntityTinNhan tinhanmoi = danhtinnhan.OrderByDescending(g => g.Date).FirstOrDefault();
                 if (tinhanmoi != null)
                 {
@@ -126,7 +128,7 @@ namespace khainguyen_FirstStep.Controllers
         public ActionResult TinNhan_Read(int Id, int IdDuAn)
         {
                 int IdCook = Convert.ToInt16(Request.Cookies["ftid"].Value);
-                var item1 = db.EntityTinNhans.Where(p => (p.IdUserGui == Id || p.IdUserNhan == Id) && p.IdDuAn == IdDuAn && (p.IdUserGui == IdCook || p.IdUserNhan == IdCook)).OrderBy(p => p.Date).ToList();
+                var item1 = db.EntityTinNhans.Where(p => (p.IdUserGui == Id || p.IdUserNhan == Id) && p.IdDuAn == IdDuAn && (p.IdUserGui == IdCook || p.IdUserNhan == IdCook)).OrderByDescending(p => p.Date).ToList();
                 ViewBag.Idlogin = IdCook;
                 foreach (var item in item1.Where(g=>g.IdUserGui!= IdCook))
                 {

@@ -19,6 +19,7 @@ namespace khainguyen_FirstStep.Models
        public string TenDuAn = "";
        public int IdDuAn = 0;
        public int SoTinNhan = 0;
+       public int SoTinNhanChuaDoc = 0;
        public DateTime ThoiGianNew= DateTime.Now;
        public string NoiDung = "";
        public string NoiDungRutGon = "";
