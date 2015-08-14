@@ -71,7 +71,7 @@ button{cursor: pointer;}
 #slides{ width: 100%;}
 .menu-fix{background: rgba(38, 38, 38,0.9);
           background: -webkit-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1));
-          background: -o-linear-gradient(bottom,rgba(38, 38, 38,0.9)),rgba(50, 50, 50,1));
+          background: -o-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1));
           background: -moz-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1)); 
           background: linear-gradient(to bottom, rgba(38, 38, 38,0.9), rgba(50, 50, 50,1)); 
           position: fixed; top: 0; left: 0; right: 0; height: 50px; z-index:9998; box-shadow: 0 1px 10px rgba(0,0,0,0.5);}
@@ -361,7 +361,7 @@ width:97%;
 #footer a{color: #fff;}
 #footer h3{color: #0092c8; border-bottom: 2px solid #666; margin-right: 25%; font-weight: 400;}
 #footer ul{padding-left:0}
-#footer ul a{display: inline-block; font-size: 0.8em; padding: 3px 0;}
+#footer ul a{display: inline-block; font-size: 0.9em; padding: 3px 0;}
 #footer ul a i{margin-right: 5px;}
 #footer ul li{display: block; list-style: none}
 #footer ul a:hover{color: #ffb116;}
@@ -370,6 +370,10 @@ width:97%;
 
 #scrolltop{border-radius: 100%; position: fixed;z-index: 999; padding: 5px 10px; font-size: 2em; right:5%; bottom: 40px; background-color: #454545; cursor: pointer; color: #fff; -moz-transition: 0.3s 0s all ease; -o-transition: 0.3s 0s all ease; -webkit-transition: 0.3s 0s all ease; transition: 0.3s 0s all ease; box-shadow: 0 0 5px rgba(50, 50, 50,0.5)}
 #scrolltop:hover{background-color: #FF3636;}
+
+.map-google{margin-top:10px; width:100%}
+.map-google iframe{pointer-events:none}
+
 /*
 	================ ORTHER ================
 */

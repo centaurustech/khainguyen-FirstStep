@@ -20,6 +20,8 @@
     .proj-intro p{margin: 5px 0;}
 
     .item-project .img{height: 170px;}
+
+    #footer .col-3{width: 50%}
 }
 
 @media (max-width: 767px) {
@@ -66,9 +68,7 @@
      
     .txt-input{display:block; overflow:hidden;}
     .txt-input input{width: 100%;}
-    .txt-input button{display:none}
-
-    #footer nav a{font-size: 0.9em;}
+    .txt-input button{display:none}    
 
     .form-txt {width: 94%}
 
@@ -93,7 +93,9 @@
     .proj-tab-nav a{padding: 8px 2%; font-size: 1.3em;}
     .box .des{font-size: 1em;}
 
-    #footer ul a{font-size: 0.9em;}
+    #footer ul a{font-size: 1.1em;}
+    #footer h3{font-size: 16px!important;display:block;width:100%}
+    #footer .col-3{width: 100%}
     #footer .col-4:nth-child(2n+1){clear:both;}
     .copyright{font-size: 1em;}
 
@@ -109,13 +111,15 @@
     .supporter-row .project{margin-left: 17%}
 
     .item-project .img{height: 200px;}
+
+    .map-google iframe{min-width:100%}
 }
 
 @media (max-width: 600px) {
 	.row-project.item4 .item-project{width:48%;margin-right:2%}
     .btn-pledge{width: 90%}
 
-    .item-project .img{height: 170px;}
+    .item-project .img{height: 170px;}    
 }
 
 @media (max-width: 480px) {
@@ -144,6 +148,7 @@
     .item-project .img{height: 120px;}
 
     .list-tag a{margin-bottom:0;}
+    #footer .col-3{width: 100%!important}
 
 }
 @media (max-width: 320px) {
