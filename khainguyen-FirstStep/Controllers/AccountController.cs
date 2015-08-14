@@ -246,6 +246,8 @@ namespace khainguyen_FirstStep.Controllers
 
             fb.AccessToken = accessToken;
 
+            var urlreturn = result.AbsoluteUri;
+
 
 
             //var friendListData = fb.Get("/me/friends?fields=first_name,id");
@@ -313,11 +315,12 @@ namespace khainguyen_FirstStep.Controllers
                         }
                         else
                         {
-                            if (Request.UrlReferrer != null)
+                            if (Request.UrlReferrer != null && Request.UrlReferrer.ToString().Contains("facebook") == false)
                             {
                                 if (Request.UrlReferrer.ToString().IndexOf("Dang-Nhap") != -1)
                                     return RedirectToAction("Index", "Home");
-                                else return Redirect(Request.UrlReferrer.ToString());
+                                //else return Redirect(Request.UrlReferrer.ToString());
+                                else return Redirect(result.AbsoluteUri);
                             }
                             else
                             {

@@ -1,6 +1,7 @@
 ﻿@model khainguyen_FirstStep.Models.ErrorModel
 @{
     Layout = null;
+    ViewBag.Title = "Lỗi truy cập";
 }
 
 <!DOCTYPE html>
@@ -16,7 +17,8 @@
                 message = "Trang bạn yêu cầu không tồn tại (404)";        
                 break;
             case 500:
-                message = string.Concat("The following server error was encountered:<br /> ", Model.Exception.Message);
+                //message = string.Concat("The following server error was encountered:<br /> ", Model.Exception.Message);
+                message = "Bạn đang cố truy cập vào đường dẫn không hợp lệ (500)";
                 break;
         }
         <title>@message</title>
@@ -76,7 +78,7 @@
                         {
                             <h1>500</h1>
                             <h2>Oh my goodness</h2>
-                            <p>Bạn đang cố truy cập vào đường dẫn </p>
+                            <p>Bạn đang cố truy cập vào đường dẫn không hợp lệ!!! </p>
                             <p>Bạn vui lòng: <a href="javascript: history.go(-1)">trở ngược lại trang trước</a> hoặc <a href="/">trở về trang chủ</a>?</p>
                             <p><a href="#">Kiểm tra trang blog của chúng tôi để nhận những cập nhật mới nhất</a></p>
                         }

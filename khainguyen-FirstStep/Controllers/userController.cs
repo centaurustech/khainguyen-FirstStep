@@ -15,12 +15,13 @@ namespace khainguyen_FirstStep.Controllers
         public ActionResult Index(string Link)
         {
             var item = db.EntityUsers.Where(p => p.VanityURL == Link).FirstOrDefault();
-            if (item==null)
+            var item1 = db.EntityUsers.Where(p => p.Id == Convert.ToInt16(Link)).FirstOrDefault();
+            if (item==null && item1 == null)
             {
                 item = db.EntityUsers.Where(p => p.Id == Convert.ToInt16(Request.Cookies["ftid"].Value)).FirstOrDefault();
             }
-           
-            if (item != null)
+
+            if (item != null && item1 == null)
             {
                 int iduser = item.Id;
                 int idlogin = 0;
@@ -31,23 +32,52 @@ namespace khainguyen_FirstStep.Controllers
                 if (iduser == idlogin)
                 {
                     ViewBag.idlogin = 0;// k được gởi
-                    ViewBag.DuAn = db.EntityDuAns.Where(p => p.IdUser == iduser && (p.TrangThai == 0|| p.TrangThai==2)).ToList();
+                    ViewBag.DuAn = db.EntityDuAns.Where(p => p.IdUser == iduser && (p.TrangThai == 0 || p.TrangThai == 2)).ToList();
                 }
                 else
                 {
-                   
+
                     ViewBag.DuAn = db.EntityDuAns.Where(p => p.IdUser == iduser && p.TrangThai == 2).ToList();
                 }
-               var query  = (from op in db.EntityDuAns
-                                 join pg in db.EntityDauTus on op.Id equals pg.IdDuAn
-                                 where  op.TrangThai==2
-                                 select  op).Distinct().ToList();
-              
-               ViewBag.DauTu = query;
-               ViewBag.BinhLuan = db.EntityBinhLuans.Where(g => g.IdUser == iduser && g.Public == 0).ToList();// cho hiển thị
+                var query = (from op in db.EntityDuAns
+                             join pg in db.EntityDauTus on op.Id equals pg.IdDuAn
+                             where op.TrangThai == 2
+                             select op).Distinct().ToList();
+
+                ViewBag.DauTu = query;
+                ViewBag.BinhLuan = db.EntityBinhLuans.Where(g => g.IdUser == iduser && g.Public == 0).ToList();// cho hiển thị
+                ViewBag.IdFriend = item.Id;
+                return View(item);
             }
-            ViewBag.IdFriend = item.Id;
-            return View(item);
+            else
+            {
+                int iduser = item1.Id;
+                int idlogin = 0;
+                if (Request.Cookies["ftid"] != null)
+                    idlogin = Convert.ToInt16(Request.Cookies["ftid"].Value);
+                ViewBag.idlogin = idlogin;
+
+                if (iduser == idlogin)
+                {
+                    ViewBag.idlogin = 0;// k được gởi
+                    ViewBag.DuAn = db.EntityDuAns.Where(p => p.IdUser == iduser && (p.TrangThai == 0 || p.TrangThai == 2)).ToList();
+                }
+                else
+                {
+                    ViewBag.DuAn = db.EntityDuAns.Where(p => p.IdUser == iduser && p.TrangThai == 2).ToList();
+                } 
+                 
+                var query = (from op in db.EntityDuAns
+                             join pg in db.EntityDauTus on op.Id equals pg.IdDuAn
+                             where op.TrangThai == 2
+                             select op).Distinct().ToList();
+
+                ViewBag.DauTu = query;
+                ViewBag.BinhLuan = db.EntityBinhLuans.Where(g => g.IdUser == iduser && g.Public == 0).ToList();// cho hiển thị
+                ViewBag.IdFriend = item1.Id;
+                return View(item1);
+            }
+            
         }
 
         public ActionResult _LoadBinhLuan(IEnumerable<EntityBinhLuan> binhluan)
