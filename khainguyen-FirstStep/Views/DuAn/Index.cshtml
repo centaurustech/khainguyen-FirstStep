@@ -2,6 +2,7 @@
 
 @section MeTaHeader
 {
+    <title>Khám phá - Firststep.vn</title>
     <meta property="fb:app_id" content="570964363013096" />
     <meta property="og:title" content="Danh sách dự án hấp dẫn trên FirstStep" />
     <meta property="og:type" content="website" />
@@ -15,138 +16,147 @@
 
 <!-- SLIDE -->
  <div class="slider-fix-400">
-<div id="slides">
-    <ul class="slides-container">
-        <li>
-            <img src="~/Content/cssFrontEnd/upload/bigslider/img4.jpg" /></li>
-        <li>
-            <img src="~/Content/cssFrontEnd/upload/bigslider/img5.jpg" /></li>
-        <li>
-            <img src="~/Content/cssFrontEnd/upload/bigslider/img6.jpg" /></li>
-        >
-    </ul>
+    <div id="slides">
+        <ul class="slides-container">
+            <li>
+                <img src="~/Content/cssFrontEnd/upload/bigslider/img4.jpg" />
+            </li>
+            <li>
+                <img src="~/Content/cssFrontEnd/upload/bigslider/img5.jpg" />
+            </li>
+            <li>
+                <img src="~/Content/cssFrontEnd/upload/bigslider/img6.jpg" />
+            </li>
+        </ul>
     </div>
-
- </div>
-    <div class="control-filter container">
-        <h1>Discover FirstStep</h1>
-        <div class="group-option">
-            <form id="form-filter" method="get" action="">
-                <div class="cb-filter">
-                    <span class="text">Hiển thị</span>
-                    <button class="btnCategory"><i class="fa-list"></i>
-                        <span id="Category">Tất cả</span><i class="fa-angle-down"></i></button>
-                    <input type="hidden" id="IdCategory" />
-                    <nav class="Category">
-                        <a href="#" class="active" data-id="0">Tất cả danh mục</a>
-                        @* <a href="#" data-id="">Music</a>*@
-                        @{
-                            foreach (var item in Model)
-                            {
+</div>
+    
+<div class="control-filter container">
+    <h1>Discover FirstStep</h1>
+    <div class="group-option">
+        <form id="form-filter" method="get" action="">
+            <div class="cb-filter">
+                <span class="text">Hiển thị</span>
+                <button class="btnCategory">
+                    <i class="fa-list"></i>
+                    <span id="Category">Tất cả</span><i class="fa-angle-down"></i>
+                </button>
+                <input type="hidden" id="IdCategory" />
+                <nav class="Category">
+                    <a href="#" class="active" data-id="0">Tất cả danh mục</a>
+                    @* <a href="#" data-id="">Music</a>*@
+                    @{
+                        foreach (var item in Model)
+                        {
                             <a href="#" data-id="@item.Id">@item.TenDM</a>
-                            }
-                            
                         }
-                    </nav>
-                </div>
-                <div class="cb-filter">
-                    <span class="text">sắp xếp theo</span>
-                    <button class="btnXuHuong"><i class="fa-list"></i>
-                      <span id="XuHuong">Xu hướng</span><i class="fa-angle-down"></i></button>
-                      <input type="hidden" id="IdXuHuong" /><nav class="XuHuong">
-                        <a href="#" class="active" data-id="0">Xu hướng</a>
-                        @{
-                            foreach (var item in ViewBag.trend)
-                            {
+
+                    }
+                </nav>
+            </div>
+            <div class="cb-filter">
+                <span class="text">sắp xếp theo</span>
+                <button class="btnXuHuong">
+                    <i class="fa-list"></i>
+                    <span id="XuHuong">Xu hướng</span><i class="fa-angle-down"></i>
+                </button>
+                <input type="hidden" id="IdXuHuong" /><nav class="XuHuong">
+                    <a href="#" class="active" data-id="0">Xu hướng</a>
+                    @{
+                        foreach (var item in ViewBag.trend)
+                        {
                             <a href="#" data-id="@item.Id">@item.TenDM</a>
-                            }
-                            
                         }
-                    </nav>
-                </div>
-                <span class="inline-block" id="syou">
-                    <span class="text">với</span>
-                    <span class="cb-select">
-                        <span class="title">Đã đầu tư</span>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
-                <span class="inline-block" id="sfriend">
-                    <span class="text">và</span>
-                    <span class="cb-select">
-                        <span class="title">Bạn bè đã đầu tư</span>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
-                <span class="inline-block">
-                    <span class="text">đã được tài trợ</span>
-                    <span class="cb-select">
-                        <span class="title">Đã được tài trợ</span>
-                        <select class="normal_type" name="social">
-                            <option value="0">Tất cả</option>
-                            <option value="1">< 5 triệu</option>
-                            <option value="2">5 triệu -> 20 triệu</option>
-                            <option value="3">20 triệu -> 100 triệu</option>
-                            <option value="4">100 triệu -> 500 triệu</option>
-                            <option value="5">> 500 triệu</option>
-                        </select>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
-                <span class="inline-block">
-                    <span class="text">trạng thái</span>
-                    <span class="cb-select">
-                        <span class="title">Trạng thái</span>
-                        <select class="normal_type" name="starred">
-                            <option value="0">Trạng thái</option>
-                            <option value="1">Đã thành công</option>
-                            <option value="2">Chưa thành công</option>
-                        </select>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
-                <span class="inline-block">
-                    <span class="text">mục tiêu</span>
-                    <span class="cb-select">
-                        <span class="title">Mục tiêu</span>
-                        <select class="normal_type" name="backed">
-                            <option value="0">Tất cả</option>
-                            <option value="1">< 5 triệu</option>
-                            <option value="2">5 triệu -> 20 triệu</option>
-                            <option value="3">20 triệu -> 100 triệu</option>
-                            <option value="4">100 triệu -> 500 triệu</option>
-                            <option value="5">> 500 triệu</option>
-                        </select>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
-                <span class="inline-block">
-                    <span class="text">đã hoàn thành</span>
-                    <span class="cb-select">
-                        <span class="title">Hoàn thành</span>
-                        <select class="normal_type select" name="tag_id">
-                            <option value="0">Tiến độ</option>
-                            <option value="1">< 75 %</option>
-                            <option value="2">75 % -> 100 %</option>
-                            <option value="3">> 100 %</option>
-                        </select>
-                        <i class="fa-minus-circle"></i>
-                    </span>
-                </span>
 
-                <a href="#" class="btn-show-panel-filter"><i class="fa-plus-circle"></i></a>
-            </form>
-            <div class="panel-filter">
-                <span class="close color-red"><i class="fa-minus-circle"></i></span>
-                <p>
-                    <b>Tìm kiếm nâng cao</b>
-
-                    <input type="text" class="form-txt" id="Search1" value="@ViewBag.seach" placeholder="Từ khóa tìm kiếm..." />
-                </p>
-
-                <span class="inline-block show">
-                    <a href="#" data-id="syou">Dự án bạn đã đầu tư</a>
+                    }
+                </nav>
+            </div>
+            <span class="inline-block" id="syou">
+                <span class="text">với</span>
+                <span class="cb-select">
+                    <span class="title">Đã đầu tư</span>
+                    <i class="fa-minus-circle"></i>
                 </span>
+            </span>
+            <span class="inline-block" id="sfriend">
+                <span class="text">và</span>
+                <span class="cb-select">
+                    <span class="title">Bạn bè đã đầu tư</span>
+                    <i class="fa-minus-circle"></i>
+                </span>
+            </span>
+            <span class="inline-block">
+                <span class="text">đã được tài trợ</span>
+                <span class="cb-select">
+                    <span class="title">Đã được tài trợ</span>
+                    <select class="normal_type" name="social">
+                        <option value="0">Tất cả</option>
+                        <option value="1">< 5 triệu</option>
+                        <option value="2">5 triệu -> 20 triệu</option>
+                        <option value="3">20 triệu -> 100 triệu</option>
+                        <option value="4">100 triệu -> 500 triệu</option>
+                        <option value="5">> 500 triệu</option>
+                    </select>
+                    <i class="fa-minus-circle"></i>
+                </span>
+            </span>
+            <span class="inline-block">
+                <span class="text">trạng thái</span>
+                <span class="cb-select">
+                    <span class="title">Trạng thái</span>
+                    <select class="normal_type" name="starred">
+                        <option value="0">Trạng thái</option>
+                        <option value="1">Đã thành công</option>
+                        <option value="2">Chưa thành công</option>
+                    </select>
+                    <i class="fa-minus-circle"></i>
+                </span>
+            </span>
+            <span class="inline-block">
+                <span class="text">mục tiêu</span>
+                <span class="cb-select">
+                    <span class="title">Mục tiêu</span>
+                    <select class="normal_type" name="backed">
+                        <option value="0">Tất cả</option>
+                        <option value="1">< 5 triệu</option>
+                        <option value="2">5 triệu -> 20 triệu</option>
+                        <option value="3">20 triệu -> 100 triệu</option>
+                        <option value="4">100 triệu -> 500 triệu</option>
+                        <option value="5">> 500 triệu</option>
+                    </select>
+                    <i class="fa-minus-circle"></i>
+                </span>
+            </span>
+            <span class="inline-block">
+                <span class="text">đã hoàn thành</span>
+                <span class="cb-select">
+                    <span class="title">Hoàn thành</span>
+                    <select class="normal_type select" name="tag_id">
+                        <option value="0">Tiến độ</option>
+                        <option value="1">< 75 %</option>
+                        <option value="2">75 % -> 100 %</option>
+                        <option value="3">> 100 %</option>
+                    </select>
+                    <i class="fa-minus-circle"></i>
+                </span>
+            </span>
+            <a href="#" class="btn-show-panel-filter"><i class="fa-plus-circle"></i></a>
+        </form>
+
+        <div class="panel-filter">
+            <span class="close color-red"><i class="fa-minus-circle"></i></span>
+            <p>
+                <b>Tìm kiếm nâng cao</b>
+
+                <input type="text" class="form-txt" id="Search1" value="@ViewBag.seach" placeholder="Từ khóa tìm kiếm..." />
+            </p>
+
+            <div class="clearfix"></div>
+            <div class="col-3-7 alink">
+                <a href="#" data-id="syou">Dự án bạn đã đầu tư</a>
+                <a href="#" data-id="sfriend">Dự án bạn bè đã đầu tư</a>
+            </div>            
+            <div class="col-7-3">
 
                 <span class="inline-block show">
                     <span class="cb-select">
@@ -173,9 +183,7 @@
                         <i class="fa-angle-down"></i>
                     </span>
                 </span>
-                <span class="inline-block show">
-                    <a href="#" data-id="sfriend">Dự án bạn bè đã đầu tư</a>
-                </span>
+
                 <span class="inline-block show">
                     <span class="cb-select">
                         <span class="title">Mục tiêu</span>
@@ -205,7 +213,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 <!-- LIST ITEM -->
 <div class="row-project">

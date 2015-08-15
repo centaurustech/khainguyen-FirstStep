@@ -105,8 +105,10 @@
     .cb-filter button span{margin: 0 5px;}
     .control-filter h1{font-size:2.5em;}
     .slider-fix-400{height:300px;}
-    .inline-block, .inline-block.show, .btn-show-panel-filter{display:none}
-    .panel-filter, .panel-filter.show{display: none}
+    .inline-block, .inline-block.show{}
+    .panel-filter{}
+    .panel-filter.show{display:block}
+    .btn-show-panel-filter{}
 
     .supporter-row .project{margin-left: 17%}
 
@@ -149,7 +151,8 @@
 
     .list-tag a{margin-bottom:0;}
     #footer .col-3{width: 100%!important}
-
+    .panel-filter .cb-select {padding: 5px 30px 5px 5px;height:30px; display:block}
+    .panel-filter .cb-select i{top:7px}
 }
 @media (max-width: 320px) {
     .logo img{margin-top: 7px; max-width: 150px;}
