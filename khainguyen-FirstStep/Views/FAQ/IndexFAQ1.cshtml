@@ -51,8 +51,8 @@
 <div class="container">
 
     @*<div class="faq-search">
-        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
-    </div>*@
+            <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+        </div>*@
 
     <nav class="faq-group">
         @{
@@ -61,15 +61,10 @@
                 string a = "#group" + item.Id;
                 <a href="@a" class="group" data-idgroup="@item.Id" data-tengroup="@Utilities.Encode(item.TenGroup)">@item.TenGroup</a>
             }
-
         }
-
     </nav>
 
-    <div class="faq-list-ask" id="noidung">
-
-    </div>
-
+    <div class="faq-list-ask" id="noidung"></div>
 
 </div>
 
@@ -95,12 +90,24 @@
             animation: 'fade',
             inherit_height_from: '.slider-fix-300'
         });
-        group(@ViewBag.idgroup);
-        
+
         //28/07/2015 edit : them actived
         $(".faq-group").on("click", "a.group", function (e) {
             e.preventDefault();
-            group($(this).data("idgroup"));           
+            group($(this).data("tengroup"));
+        });
+
+        var xhash = window.location.hash;
+        xhash = xhash.replace('#', '');
+        if (xhash != '') { group(xhash); } else { group('@ViewBag.idgrouptitle'); }
+        
+        $("#footer").on("click", "a", function (e) {
+            var href = $(this).attr('href');            
+            if (href.indexOf('/noi-dung-ho-tro') == -1) { return; }
+            e.preventDefault();
+            href = href.substr(href.indexOf('#') + 1, href.length - href.indexOf('#') - 1);
+            group(href);
+            $('html, body').animate({ scrollTop: $('.faq-group').offset().top-55 }, 500);
         });
 
     });
@@ -117,22 +124,17 @@
             $(this).attr('data-show', 1);
             $n = $(this).next();
             $n.animate({ height: $n.attr('data-height') }, 500);
-            //$('.faq-ans').animate({ height: 0 }, 300, function () {
-            //    $('.faq-ask a:first-child').attr('data-show', 0);
-            //    $(this).attr('data-show', 1);
-            //    $n.animate({ height: $n.attr('data-height') }, 500);
-            //});
         }
     });
     function group(id) {
         var postURL = '@Url.Action("_IndexFAQ1_NoiDung", "FAQ")';
-        $.post(postURL, { "id": id }, function (data) {
+        $.post(postURL, { "idgrouptitle": id }, function (data) {
             if (data == "Error") {
                 alert("Error");
             } else {
-                //document.location.hash = "show_picture";
                 $('#noidung').html(data);
-                $this = $("a.group[data-idgroup=" + id + "]");
+                $this = $("a.group[data-tengroup='" + id + "']");
+                console.log($this);
                 $("a.group").removeClass("actived");
                 $this.addClass("actived");
                 window.location.hash = $this.data("tengroup");

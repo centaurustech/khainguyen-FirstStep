@@ -15,16 +15,30 @@ namespace khainguyen_FirstStep.Controllers
         {
             var item = db.EntityGroupFAQs.Where(p => p.IdLoaiFAQ == 1).OrderBy(p => p.ViTri).ToList();
             if (string.IsNullOrEmpty(name))
-                ViewBag.idgroup = item.FirstOrDefault().Id;
+                ViewBag.idgrouptitle = Utilities.Encode(item.FirstOrDefault().TenGroup);
             else
-                ViewBag.idgroup = item.Single(p => Utilities.Encode(p.TenGroup) == name).Id;
+                ViewBag.idgrouptitle = Utilities.Encode(item.Single(p => Utilities.Encode(p.TenGroup) == name).TenGroup);
             
             return View(item);
         }
-        public ActionResult _IndexFAQ1_NoiDung(int Id)
+        public ActionResult _IndexFAQ1_NoiDung(string idgrouptitle)
         {
-            var item = db.EntityFAQ1s.Where(p => p.IdGroupFAQ == Id).OrderBy(p => p.ViTri).ToList();
-            return PartialView(item);
+            int idgroup;
+            var item = db.EntityGroupFAQs.Where(p => p.IdLoaiFAQ == 1).OrderBy(p => p.ViTri).ToList();
+            try
+            {
+                if (string.IsNullOrEmpty(idgrouptitle))
+                    idgroup = item.FirstOrDefault().Id;
+                else
+                    idgroup = item.Single(p => Utilities.Encode(p.TenGroup) == idgrouptitle).Id;
+            }
+            catch
+            {
+                return HttpNotFound();
+            }          
+
+            var item_ask = db.EntityFAQ1s.Where(p => p.IdGroupFAQ == idgroup).OrderBy(p => p.ViTri).ToList();
+            return PartialView(item_ask);
         }
         public ActionResult IndexFAQ2()
         {
