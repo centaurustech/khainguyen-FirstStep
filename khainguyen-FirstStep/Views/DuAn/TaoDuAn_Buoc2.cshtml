@@ -5,7 +5,7 @@
 
 @section MeTaHeader
 {
-    <meta name="robots" content="noindex,nofollow" />
+    <title>Điều chỉnh thông tin dự án</title>
 }
 
 <style>
@@ -17,14 +17,16 @@
         display: none;
         margin-right: 8px;
     }
+
     .counting_length {
-        text-align:right;
+        text-align: right;
         font-size: 12px;
         font-weight: bold;
         line-height: 14px;
         color: #828587;
-        margin-right:20px;
+        margin-right: 20px;
     }
+
     .tomautab {
         background: red;
         color: white;
@@ -33,10 +35,10 @@
     .tomauvien {
         border: 1px red solid;
     }
+
     .visible {
         bottom: 0;
     }
-    
 </style>
 
 <div style="height: 50px"></div>
@@ -46,33 +48,33 @@
             FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data", @id = "form-id" }))
     {
     <!-- NAV TAB -->
-    <nav class="proj-tab-nav">
-        @if(Model.TrangThai == 2)
-        {
-            <a href="#" id="tabCapNhat" onclick="kiemtra()">Cập nhật</a>
-        }
-        <a href="#" id="tabThongTin" class="active" data-id="popup1" onclick="return kiemtra()">Thông tin</a>
-        <a href="#" id="tabPhanThuong" data-id="popup1" onclick="return kiemtra()">Phần thưởng</a>
-        <a href="#" id="tabMoTa" onclick="kiemtra()">Mô tả</a>
-        <a href="#" id="tabGioiThieu" onclick="kiemtra()">Giới thiệu</a>
-        <a href="#" id="tabTaiKhoan" onclick="kiemtra()">Tài khoản</a>
-        <a href="#" id="tabTeam" onclick="kiemtra()">Team</a>        
-        @*<a href="#" id="tabCapNhat" onclick="kiemtra(0)">Cập nhật Dự án</a>*@
-       @*@Url.Action("UpdateDuAn", "DuAn", new { IdDuAn=@Model.Id})" id="tabUpdate*@
-        <a href="#" id="tabXemTruoc" onclick="kiemtra()">Xem trước</a>
-        <a href="#" id="tabPublic" onclick="return xuatban();">Xuất bản</a>
+        <nav class="proj-tab-nav">
+            @if (Model.TrangThai == 2)
+            {
+                <a href="#" id="tabCapNhat" onclick="kiemtra()">Cập nhật</a>
+            }
+            <a href="#" id="tabThongTin" class="active" data-id="popup1" onclick="return kiemtra()">Thông tin</a>
+            <a href="#" id="tabPhanThuong" data-id="popup1" onclick="return kiemtra()">Phần thưởng</a>
+            <a href="#" id="tabMoTa" onclick="kiemtra()">Mô tả</a>
+            <a href="#" id="tabGioiThieu" onclick="kiemtra()">Giới thiệu</a>
+            <a href="#" id="tabTaiKhoan" onclick="kiemtra()">Tài khoản</a>
+            <a href="#" id="tabTeam" onclick="kiemtra()">Team</a>
+            @*<a href="#" id="tabCapNhat" onclick="kiemtra(0)">Cập nhật Dự án</a>*@
+            @*@Url.Action("UpdateDuAn", "DuAn", new { IdDuAn=@Model.Id})" id="tabUpdate*@
+            <a href="#" id="tabXemTruoc" onclick="kiemtra()">Xem trước</a>
+            <a href="#" id="tabPublic" onclick="return xuatban();">Xuất bản</a>
 
-    </nav>
+        </nav>
 
     <!-- LIST TAB -->
-    
+
         <div class="proj-list-tab">
-            @if(Model.TrangThai == 2)
+            @if (Model.TrangThai == 2)
             {
             <!-- tab Cập nhật -->
-            <div class="proj-tab">
-                @Html.Action("_LoadTabCapNhat", "DuAn", new { IdDuAn = Model.Id })
-            </div>
+                <div class="proj-tab">
+                    @Html.Action("_LoadTabCapNhat", "DuAn", new { IdDuAn = Model.Id })
+                </div>
             }
             <!-- tab thông tin -->
             <div class="proj-tab" id="proj-ThongTin">
@@ -97,48 +99,54 @@
             <!-- tab team -->
             <div class="proj-tab">
                 @Html.Action("_Team_DuAn", "Ajax", new { IdDuAn = Model.Id })
-            </div>            
+            </div>
             <!-- tab review -->
             <div class="proj-tab" id="proj-XemTruoc">
                 @Html.Action("_LoadTabXemTruoc", "DuAn", new { IdDuAn = Model.Id })
                 @*<p>&nbsp;</p>
-                <h3>Bạn có thế sử dụng link dưới đây để xem trước dự án của bạn</h3>
+                    <h3>Bạn có thế sử dụng link dưới đây để xem trước dự án của bạn</h3>
 
-                <p>&nbsp;</p>
-                <div class="box">
+                    <p>&nbsp;</p>
+                    <div class="box">
 
-                    <div class="des">
+                        <div class="des">
 
-                        <p>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.TenDuAn.ToString()), Model.Id.Value) })</p>
-                        <a href="javascript:void(0)" id="IReView" onclick="return xemtruoc(-1)">Hủy chế độ xem trước</a>
-                    </div>
+                            <p>@HttpContext.Current.Request.Url.AbsoluteUri.Split('/')[2]@Url.Action("ChiTietDuAn", "DuAn", new { Title = Utilities.Paste_Int64(Utilities.Encode(Model.TenDuAn.ToString()), Model.Id.Value) })</p>
+                            <a href="javascript:void(0)" id="IReView" onclick="return xemtruoc(-1)">Hủy chế độ xem trước</a>
+                        </div>
 
-                </div>*@
+                    </div>*@
             </div>
 
-            <div style="position:fixed;background-color:white; width:100%; margin-bottom:0;" id="btnSave">
-                <button class="btn btn-big bg-red" style="left:185px;" type="submit" onclick="return LuuDuAn();">LƯU DỰ ÁN</button>
-                <a href="#" onclick="return KhongLuuDuAn();">Không save</a>          
-                <input type="hidden" name="flag" id="flag" value="@Model.flag"/>
-                <input type="hidden" name="TrangThai" id="TrangThai" value="@Model.TrangThai"/>
-                @Html.HiddenFor(model => model.CheckGioiThieu)
-                @Html.HiddenFor(model => model.CheckPhanThuong)
-                @Html.HiddenFor(model => model.CheckMoTa)
-                @Html.HiddenFor(model => model.CheckThongTin)
-                @Html.HiddenFor(model => model.CheckTaiKhoan)
+            <div id="btnSave">
+                <div class="container">
+                    <button class="btn btn-big bg-red btnSaveProject" type="submit" onclick="return LuuDuAn();">
+                        <i class="fa fa-save"></i> LƯU DỰ ÁN
+                    </button>
+                    <button class="btn btn-big bg-dark btnDontSaveProject" onclick="return KhongLuuDuAn();">
+                        <i class="fa fa-undo"></i> KHÔNG LƯU
+                    </button>
+                    <input type="hidden" name="flag" id="flag" value="@Model.flag" />
+                    <input type="hidden" name="TrangThai" id="TrangThai" value="@Model.TrangThai" />
+                    @Html.HiddenFor(model => model.CheckGioiThieu)
+                    @Html.HiddenFor(model => model.CheckPhanThuong)
+                    @Html.HiddenFor(model => model.CheckMoTa)
+                    @Html.HiddenFor(model => model.CheckThongTin)
+                    @Html.HiddenFor(model => model.CheckTaiKhoan)
+                </div>
             </div>
             <div class="proj-popup nicescroll" data-id="popup1">
-                    <div class="proj-popup-panel">
-                        <div class="proj-popup-content" id="LoadPopUp_LuuDuAn">
-                        </div>
+                <div class="proj-popup-panel">
+                    <div class="proj-popup-content" id="LoadPopUp_LuuDuAn">
                     </div>
+                </div>
             </div>
         </div>
-        
+
         <div style="line-height:30px;visibility:hidden;"></div>
     }
     <!-- btnSave -->
-    
+
 </div>
 
 
@@ -152,8 +160,8 @@
     <script type="text/javascript" src="~/Content/cssFrontEnd/js/MaxLength.min.js"></script>
     <script src="~/Content/cssFrontEnd/js/fitvids/jquery.fitvids.js"></script>
     <script src="~/Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js"></script>
-    @*<script src="~/Scripts/jquery.confirm.js"></script>*@ 
-    
+    @*<script src="~/Scripts/jquery.confirm.js"></script>*@
+
     @*<script src="~/Content/cssFrontEnd/js/jquery/jquery.min.js"></script>*@
     @*<script src="~/Content/cssFrontEnd/js/easing/jquery.easing.1.3.js"></script>*@
     @*<script src="~/Content/cssFrontEnd/js/nicescroll/jquery.nicescroll.js"></script>*@
@@ -191,8 +199,7 @@
             HienThi_ButtonSave();
         });
     </script>
-    <!-- End Load CKEditor -->  
-    
+    <!-- End Load CKEditor -->
     <!-- Start Datetimepicker chỉ load Tháng/Năm trong Phần Thưởng-->
     <script>
         $(function () {
@@ -232,7 +239,6 @@
 
     </script>
     <!-- End Datetimepicker chỉ load Tháng/Năm trong Phần Thưởng-->
-
     <!-- Start Script Max Lenght-->
     <script>
         function txtCounters(id, max_length, myelement) {
@@ -266,7 +272,6 @@
         //});
     </script>
     <!-- End Script Max Lenght-->
-
     <!-- Start Script Format Money when type-->
     <script type="text/javascript">
         jQuery(function ($) {
@@ -274,10 +279,9 @@
         });
     </script>
     <!-- End Script Format Money when type-->
-
     <!--Start Kiểm Tra và Hiện nội dung Tab Được Chọn-->
     <script>
-    function kiemtra() {
+        function kiemtra() {
             $("#tabThongTin").click(function () {
                 $("#flag").val("ThongTin");
                 if ($("#btnSave").hasClass("visible") == true) {
@@ -402,17 +406,17 @@
                 if ($("#btnSave").hasClass("visible") == true) {
                     $('.proj-popup[data-id=' + "popup1" + ']').fadeIn(500);
                     var postURL = '@Url.Action("_PopupLuuDuAn", "DuAn")';
-                        $.post(postURL, function (data) {
-                            if (data == "Error") {
-                                alert("Error");
-                            } else {
-                                $('#LoadPopUp_LuuDuAn').html(data);
-                            }
-                        });
-                    }
-                    else {
-                        HienThi_Tab();
-                    }
+                    $.post(postURL, function (data) {
+                        if (data == "Error") {
+                            alert("Error");
+                        } else {
+                            $('#LoadPopUp_LuuDuAn').html(data);
+                        }
+                    });
+                }
+                else {
+                    HienThi_Tab();
+                }
             });
             return;
         }
@@ -433,8 +437,7 @@
             $(id).addClass('active');
         }
     </script>
-     <!--End Kiểm Tra và Hiện nội dung Tab Được Chọn-->
-
+    <!--End Kiểm Tra và Hiện nội dung Tab Được Chọn-->
     <!--Start Xử lý Chung-->
     <script>
         //xử lý load các dữ liệu ban đầu
@@ -530,7 +533,7 @@
                 var idpreson = $(this).attr('data-preson');
                 $('.taikhoan').hide();
                 $(".taikhoan[data-preson='" + idpreson + "']").show();
-            });*@  
+            });*@
 
         });
 
@@ -548,14 +551,14 @@
 
                 $(this).parent().parent().parent().find("input[type=number]").parent().toggle(this.checked);
             });
-        });        
+        });
 
-        
 
-        function check_mucdohoanthanh(show) {            
+
+        function check_mucdohoanthanh(show) {
             var result = "True";
             //Thông Tin
-            if ($("#CheckThongTin").val() == "True") {                
+            if ($("#CheckThongTin").val() == "True") {
                 $("#tabThongTin").find("i").remove();
                 $("#tabThongTin").prepend("<i class=\"fa-check-circle-o\"></i> ");
             }
@@ -648,9 +651,9 @@
             }
         }
 
-        
 
-        // hinh anh 
+
+        // hinh anh
         //function Upload(sender) {
         //    var iframe = $("<iframe>").hide();
         //    var newForm = $("<FORM>");
@@ -821,7 +824,7 @@
             }
 
             if ($("#tabPhanThuong").hasClass("active") == true) {
-               @* var postURL = '@Url.Action("LuuPhanThuong_DuAn", "DuAn", new { da = Model })';
+                @* var postURL = '@Url.Action("LuuPhanThuong_DuAn", "DuAn", new { da = Model })';
                 $.post(postURL, { "IdDuAn": '@Model.Id' }, function (data) {
                     if (data == "Error") {
                         alert("Error");
@@ -874,7 +877,6 @@
         //});
     </script>
     <!--End Xử lý Chung-->
-
     <!--Start Xử lý tab "Thông Tin"-->
     <script>
         //Xử lý chọn kiểu nhập "Ngày hoàn thành"
@@ -891,7 +893,7 @@
             else {
                 $("#SoNgayHoanThanh1").prop('disabled', true);
                 $("#SoNgayHoanThanh2").prop('disabled', false);
-                $("#SoNgayHoanThanh1").prop('value', "")                
+                $("#SoNgayHoanThanh1").prop('value', "")
                 $("#SoNgayHoanThanh2").datepicker("setDate", $.now());
                 $("#SoNgayHoanThanh2").datepicker("show");
             }
@@ -940,7 +942,6 @@
 
     </script>
     <!--End Xử lý tab "Thông Tin"-->
-
     <!--Start Xử lý tab "Phần Thưởng"-->
     <script>
         // Nút "Xóa Phần Thưởng"
@@ -962,14 +963,14 @@
             } else {
                 var bien = $(this).parent();
                 var postURL = '@Url.Action("_XoaPhanThuong", "DuAn")';
-                    $.post(postURL, { "IdPhanThuong": IdPhanThuong }, function (data) {
-                        if (data == "error") {
-                            alert("Phần thưởng này không được xóa");
+                $.post(postURL, { "IdPhanThuong": IdPhanThuong }, function (data) {
+                    if (data == "error") {
+                        alert("Phần thưởng này không được xóa");
 
-                        }
-                        else { bien.fadeOut(function () { $(this).remove(); }); }
-                    });
-                }
+                    }
+                    else { bien.fadeOut(function () { $(this).remove(); }); }
+                });
+            }
 
         });
 
@@ -979,18 +980,18 @@
             var vt = $('.box-plege .proj-plege').length + 1;
 
             var postURL = '@Url.Action("_ChiTiet_TaoPhanThuong_item", "DuAn")';
-                if (NoiDung != "") {
-                    $.post(postURL, { "vt": vt }, function (data) {
-                        if (data == "Error") {
-                            alert("Error");
-                        } else {
+            if (NoiDung != "") {
+                $.post(postURL, { "vt": vt }, function (data) {
+                    if (data == "Error") {
+                        alert("Error");
+                    } else {
 
-                            $('.box-plege').append(data);
-                            nap_reward();
-                        }
-                    });
-                }
-            });
+                        $('.box-plege').append(data);
+                        nap_reward();
+                    }
+                });
+            }
+        });
 
         var nap_reward = function () {
             $('.tooltip').tooltipster({ animation: 'grow', contentAsHTML: true });
@@ -1008,7 +1009,7 @@
                 if ($(input[i * 4]).val() == "") {
                     //$(input[i * 4]).css({
                     //    border: "1px red solid"
-                    //});                    
+                    //});
                     check = false;
                 }
                 else {
@@ -1064,7 +1065,7 @@
                 ketqua = ketqua + $(this).val() + "^";
                 ketqua = ketqua + $(input[i * 4 + 3]).val() + "^";
                 ketqua = ketqua + $(textarea[i]).val() + "#";
-               // alert(ketqua);
+                // alert(ketqua);
                 i++;
             });
 
@@ -1079,10 +1080,9 @@
 
         }
 
-            
+
     </script>
     <!--End Xử lý tab "Phần Thưởng"-->
-
     <!--Start Xử lý tab "Mô Tả"-->
     <script>
         <!--Xử lý check link Youtube-->
@@ -1092,7 +1092,6 @@
         }
     </script>
     <!--End Xử lý tab "Mô Tả"-->
-
     <!--Start Xử lý tab "Giới Thiệu"-->
     <script>
         function ValidateFileUpload2() {
@@ -1134,7 +1133,6 @@
         }
     </script>
     <!--End Xử lý tab "Giới Thiệu"-->
-
     <!--Start Xử lý tab "Tài Khoản"-->
     <script>
         //Load các loại tài khoản
@@ -1220,7 +1218,6 @@
         }
     </script>
     <!--End Xử lý tab "Tài Khoản"-->
-
     <!--Start of Zopim Live Chat Script-->
     <script type="text/javascript">
         window.$zopim || (function (d, s) {
@@ -1233,6 +1230,5 @@
             type = "text/javascript"; e.parentNode.insertBefore($, e)
         })(document, "script");
     </script>
-    <!--End of Zopim Live Chat Script-->     
-    
+    <!--End of Zopim Live Chat Script-->
 }

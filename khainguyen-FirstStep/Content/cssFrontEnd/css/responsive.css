@@ -121,7 +121,9 @@
 	.row-project.item4 .item-project{width:48%;margin-right:2%}
     .btn-pledge{width: 90%}
 
-    .item-project .img{height: 170px;}    
+    .item-project .img{height: 170px;}   
+    #btnSave .btnSaveProject{width:50%}
+    #btnSave .btnDontSaveProject{width:50%} 
 }
 
 @media (max-width: 480px) {
@@ -153,6 +155,9 @@
     #footer .col-3{width: 100%!important}
     .panel-filter .cb-select {padding: 5px 30px 5px 5px;height:30px; display:block}
     .panel-filter .cb-select i{top:7px}
+
+    #btnSave .btnSaveProject{width:100%}
+    #btnSave .btnDontSaveProject{width:100%}
 }
 @media (max-width: 320px) {
     .logo img{margin-top: 7px; max-width: 150px;}
