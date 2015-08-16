@@ -63,27 +63,59 @@ namespace khainguyen_FirstStep.Controllers
             var item = db.EntityFAQ1s.Where(p => p.IdGroupFAQ == Id).OrderBy(p => p.ViTri).ToList();
             return PartialView(item);
         }
-        public ActionResult _IndexFAQ3_GroupClick(int id)
+        public ActionResult _IndexFAQ3_GroupClick(string hashtag)
         {
-            var item = db.EntityGroupFAQs.Where(p => p.IdGroupFAQ == id).OrderBy(p => p.ViTri).ToList();
+            int idgroup;
+            var xitem = db.EntityGroupFAQs.OrderBy(p => p.ViTri).ToList();
+            try
+            {
+                if (string.IsNullOrEmpty(hashtag))
+                    idgroup = xitem.FirstOrDefault().Id;
+                else
+                    idgroup = xitem.Single(p => Utilities.Encode(p.TenGroup) == hashtag).Id;
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+            var item = db.EntityGroupFAQs.Where(p => p.IdGroupFAQ == idgroup).OrderBy(p => p.ViTri).ToList();
             return PartialView(item);
         }
-        public ActionResult _IndexFAQ3_TieuDeClick(int id)
+        public ActionResult _IndexFAQ3_TieuDeClick(string hashtag)
         {
-            var item = db.EntityFAQ1s.Where(p => p.IdGroupFAQ == id).OrderBy(p => p.ViTri).ToList();
+            int idgroup;
+            var xitem = db.EntityGroupFAQs.OrderBy(p => p.ViTri).ToList();
+            try
+            {
+                if (string.IsNullOrEmpty(hashtag))
+                    idgroup = xitem.FirstOrDefault().Id;
+                else
+                    idgroup = xitem.Single(p => Utilities.Encode(p.TenGroup) == hashtag).Id;
+            }
+            catch
+            {
+                return HttpNotFound();
+            }
+            var item = db.EntityFAQ1s.Where(p => p.IdGroupFAQ == idgroup).OrderBy(p => p.ViTri).ToList();
             return PartialView(item);
         }
-        public ActionResult _IndexFAQ3_NoiDungClick(int id)
+
+        public ActionResult _IndexFAQ3_NoiDungClick(string hashtag)
         {
-            if (id != 0)
+            var xitem = db.EntityFAQ1s.OrderBy(p => p.ViTri).ToList();
+            EntityFAQ1 item;
+            try
             {
-                var item = db.EntityFAQ1s.Where(p => p.Id == id).First();
-                return PartialView(item);
+                if (string.IsNullOrEmpty(hashtag))
+                    item = xitem.FirstOrDefault();
+                else
+                    item = xitem.Single(p => Utilities.Encode(p.CauHoi) == hashtag);
             }
-            else
+            catch
             {
-                return PartialView();
+                return HttpNotFound();
             }
+            return PartialView(item);
         }
         public Boolean _IndexFAQ3_PhanHoi(int Id, int result)
         {
