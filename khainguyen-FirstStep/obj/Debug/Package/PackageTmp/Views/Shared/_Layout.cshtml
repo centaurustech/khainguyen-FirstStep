@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>    
-    @if(IsSectionDefined("MetaHeader"))
+<head>
+    @if (IsSectionDefined("MetaHeader"))
     {
         @RenderSection("MetaHeader", required: false)
     }
@@ -11,18 +11,6 @@
     <link href="~/Content/Images/favicon.ico" rel="shortcut icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-@*    <meta name="title" content="Title" />
-    <meta name="description" content="description..." />
-    <meta name="keywords" content="keywords1, keywords2, keywords3" />
-    <meta name="ROBOTS" content="index, follow" />
-
-    <meta content="linkabc...." />
-    <meta  content="Title" />
-    <meta content="description..." />
-    <meta  content="Image..." />
-    <meta  content="site_name..." />
-    <meta  content="updated_time..." />*@
 
     <!-- CSS LIBRARY -->
     <link href="~/Content/cssFrontEnd/css/resets.css" rel="stylesheet" />
@@ -41,7 +29,7 @@
     <!-- CSS CUSTOM -->
     <link href="~/Content/cssFrontEnd/css/main.css" rel="stylesheet" />
     <link href="~/Content/cssFrontEnd/css/responsive.css" rel="stylesheet" />
-    
+
 
 </head>
 <body>
@@ -116,7 +104,9 @@
                     <li><a href="@Url.Action("_Footer_TimhieuFirststep","Home")">Tìm hiểu FirstStep</a></li>
                     <li><a href="@Url.Action("_Footer_ThongtinAlpe","Home")">Thông tin về AlPe</a></li>
                     <li><a href="#">Góc báo chí</a></li>
-                    <li><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2330.553045607697!2d106.70388228886945!3d10.772395872921713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x94ccd905fe444e6b!2sFirstStep!5e0!3m2!1sen!2svn!4v1436847493570" width="250" height="200" frameborder="1" style="border:2px solid #666;" allowfullscreen></iframe></li>
+                    <li>
+                        <div class="map-google"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2330.553045607697!2d106.70388228886945!3d10.772395872921713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x94ccd905fe444e6b!2sFirstStep!5e0!3m2!1sen!2svn!4v1436847493570" width="250" height="200" frameborder="1" style="border:2px solid #666" allowfullscreen></iframe></div>
+                    </li>
                     @*       <li><a href="#">Dự án tiêu biểu</a></li>
                         <li><a href="#">Cơ hội nghề nghiệp</a></li>
                         <li><a href="#">Tiêu điểm 2014</a></li>*@
@@ -156,10 +146,9 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
     <!-- JQUERY LIBRARY -->
     <script src="~/Content/cssFrontEnd/js/jquery/jquery.min.js"></script>
-    <script src="~/Content/cssFrontEnd/js/jquery-mirage/release.min.js"></script>
+    <script src="~/Content/cssFrontEnd/js/jquery-mirage/jquery-migrate-1.2.1.min.js"></script>
 
     <!-- JQUERY CUSTOM -->
     <script src="~/Content/cssFrontEnd/js/modernizr.min.js"></script>

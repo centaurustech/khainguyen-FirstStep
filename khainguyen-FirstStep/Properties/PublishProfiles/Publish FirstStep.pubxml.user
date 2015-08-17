@@ -150,10 +150,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:18</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.dll">
-      <publishTime>08/05/2015 11:36:56</publishTime>
+      <publishTime>08/14/2015 22:46:42</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.pdb">
-      <publishTime>08/05/2015 11:36:55</publishTime>
+      <publishTime>08/14/2015 22:46:42</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/04/2014 17:03:21</publishTime>
@@ -2577,7 +2577,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/09/2014 22:28:30</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/main.css">
-      <publishTime>08/05/2015 11:34:16</publishTime>
+      <publishTime>08/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/page-account.css">
       <publishTime>09/22/2014 15:42:25</publishTime>
@@ -2586,7 +2586,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/22/2014 15:42:25</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/responsive.css">
-      <publishTime>08/05/2015 11:34:16</publishTime>
+      <publishTime>08/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/fonts/fontawesome-webfont.eot">
       <publishTime>08/26/2014 11:46:50</publishTime>
@@ -2876,6 +2876,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.trendline.min.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
+    <File Include="Content/cssFrontEnd/js/jquery-mirage/jquery-migrate-1.2.1.min.js">
+      <publishTime>08/06/2015 23:25:13</publishTime>
+    </File>
     <File Include="Content/cssFrontEnd/js/jquery-mirage/release.js">
       <publishTime>08/05/2015 11:34:16</publishTime>
     </File>
@@ -2958,7 +2961,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/main.js">
-      <publishTime>08/05/2015 11:34:16</publishTime>
+      <publishTime>08/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/MaxLength.min.js">
       <publishTime>08/06/2012 16:47:06</publishTime>
@@ -3459,7 +3462,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/27/2015 17:19:18</publishTime>
     </File>
     <File Include="Views/DuAn/TaoDuAn_Buoc2.cshtml">
-      <publishTime>08/05/2015 11:34:07</publishTime>
+      <publishTime>08/06/2015 19:31:14</publishTime>
     </File>
     <File Include="Views/DuAn/Test.cshtml">
       <publishTime>04/10/2015 16:45:00</publishTime>
@@ -3531,7 +3534,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/11/2014 14:30:36</publishTime>
     </File>
     <File Include="Views/Error/Index.cshtml">
-      <publishTime>05/25/2015 16:59:06</publishTime>
+      <publishTime>08/14/2015 22:46:42</publishTime>
     </File>
     <File Include="Views/Error/Oops.cshtml">
       <publishTime>05/18/2015 17:07:17</publishTime>
@@ -3582,7 +3585,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2015 15:39:37</publishTime>
     </File>
     <File Include="Views/HoatDong/TinNhan.cshtml">
-      <publishTime>06/17/2015 17:43:45</publishTime>
+      <publishTime>08/06/2015 19:31:14</publishTime>
     </File>
     <File Include="Views/HoatDong/TinNhan_Add.cshtml">
       <publishTime>06/17/2015 18:54:55</publishTime>
@@ -3621,7 +3624,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2014 13:44:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/29/2015 11:38:30</publishTime>
+      <publishTime>08/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Views/Home/Nhappass.cshtml">
       <publishTime>01/25/2015 02:54:58</publishTime>
@@ -3633,7 +3636,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/14/2014 16:42:58</publishTime>
     </File>
     <File Include="Views/Home/_Footer_ThongtinAlpe.cshtml">
-      <publishTime>07/14/2015 11:41:18</publishTime>
+      <publishTime>08/14/2015 22:46:42</publishTime>
     </File>
     <File Include="Views/Home/_Footer_TimhieuFirststep.cshtml">
       <publishTime>04/13/2015 10:57:39</publishTime>
@@ -3678,7 +3681,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:02:52</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/05/2015 11:34:16</publishTime>
+      <publishTime>08/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Views/ThanhToan/HoanTatThanhToan.cshtml">
       <publishTime>05/28/2015 17:21:05</publishTime>
@@ -3687,10 +3690,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/26/2015 15:17:11</publishTime>
     </File>
     <File Include="Views/ThanhToan/ThanhToan_Lan1.cshtml">
-      <publishTime>07/28/2015 17:22:21</publishTime>
+      <publishTime>08/06/2015 23:25:13</publishTime>
     </File>
     <File Include="Views/ThanhToan/ThanhToan_Lan2.cshtml">
-      <publishTime>06/12/2015 14:48:09</publishTime>
+      <publishTime>08/06/2015 23:25:14</publishTime>
     </File>
     <File Include="Views/user/Index.cshtml">
       <publishTime>06/17/2015 17:59:23</publishTime>

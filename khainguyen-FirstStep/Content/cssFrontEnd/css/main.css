@@ -503,13 +503,13 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
     position:absolute;
     background-color:#0092c8;
     color:#fff;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate-(45deg); /* Chrome, Safari, Opera */
+    transform: rotate(-45deg);
     padding:5px 15px;
     text-transform:uppercase;
-    top: 47px;
-    right: -45px;
+    top: 22px;
+    left: -72px;
     text-align:center;
     min-width: 189px;
 }

@@ -248,6 +248,7 @@ function ScrollHTML() {
 }
 
 $(document).ready(function () {
+    
     $('body').append('<div class="overlay hide"></div>');
     $('.menu-login.loged').click(function () {
         $('.overlay').toggleClass('hide');
@@ -258,6 +259,7 @@ $(document).ready(function () {
     });
     $('.list-item').each(function () {
         var id = $(this).attr('id');
+        console.log('OK');
         create_number('#' + id);
     });
     function create_number(id) {

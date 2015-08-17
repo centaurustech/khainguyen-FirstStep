@@ -108,10 +108,11 @@ namespace khainguyen_FirstStep.Controllers
             var cate = db.EntityHomePages.First();
             return PartialView(cate);
         }
-        public ActionResult _TrangChu_Item_Trend_Category(EntityDanhMuc idtrend, int hinhnen,string loai)
+        public ActionResult _TrangChu_Item_Trend_Category(EntityDanhMuc idtrend, int hinhnen, string loai, int catnumber)
         {
             ViewBag.loai = loai;
             ViewBag.hinhnen = hinhnen;
+            ViewBag.catnumber = catnumber;
             if (idtrend.IdRoot==1)
             {
                 ViewBag.Ten ="Dự án của "+ idtrend.TenDM.ToString();
@@ -120,6 +121,7 @@ namespace khainguyen_FirstStep.Controllers
             }
             else
             {
+                
                 ViewBag.LinkViewMore = "/du-an?option=-category=0-blend="+ idtrend.Id + "-";
                 ViewBag.Ten = idtrend.TenDM;
                 return PartialView(DuAnModel.GetDuAn_TrangChu(2, idtrend.Id));
