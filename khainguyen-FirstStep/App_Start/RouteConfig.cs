@@ -32,7 +32,7 @@ namespace khainguyen_FirstStep
               defaults: new { controller = "Home", action = "_Footer_FileDownload" },
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
             );
-            #endregion            
+            #endregion
 
             #region Dự Án
             routes.MapRoute(
@@ -116,25 +116,25 @@ namespace khainguyen_FirstStep
             routes.MapRoute(
            name: "tuy-chinh-tai-khoan",
            url: "tuy-chinh-khac/tai-khoan",
-           defaults: new { controller = "Account", action = "DoiMatKhau"},
+           defaults: new { controller = "Account", action = "DoiMatKhau" },
            namespaces: new[] { "khainguyen-FirstStep.Controllers" }
             );
             routes.MapRoute(
               name: "thongtincanhan-taikhoan",
               url: "tuy-chinh-khac/thong-tin-ca-nhan",
-              defaults: new { controller = "Account", action = "SuaThongTin"},
+              defaults: new { controller = "Account", action = "SuaThongTin" },
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
                 name: "Dang nhap",
               url: "tai-khoan/dang-nhap",
-              defaults: new { controller = "Account", action = "Login"},
+              defaults: new { controller = "Account", action = "Login" },
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
                 name: "Dang xuat",
               url: "tai-khoan/dang-xuat",
-              defaults: new { controller = "Account", action = "Logout"},
+              defaults: new { controller = "Account", action = "Logout" },
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
@@ -173,7 +173,7 @@ namespace khainguyen_FirstStep
             routes.MapRoute(
           name: "faq4",
           url: "so-tay-firststep/{name}",
-          defaults: new { controller = "FAQ", action = "IndexFAQ4", name = UrlParameter.Optional},
+          defaults: new { controller = "FAQ", action = "IndexFAQ4", name = UrlParameter.Optional },
           namespaces: new[] { "khainguyen-FirstStep.Controllers" }
            );
             #endregion
@@ -186,7 +186,7 @@ namespace khainguyen_FirstStep
            defaults: new { controller = "ThanhToan", action = "ThanhToan_Lan1", Id = UrlParameter.Optional, pt = UrlParameter.Optional },
            namespaces: new[] { "khainguyen-FirstStep.Controllers" }
             );
-           
+
             #endregion
 
             routes.MapRoute(

@@ -3,7 +3,7 @@
 @{
     foreach (var item in Model)
     {
-        <a data-hashtag2="@Utilities.Encode(item.TenGroup)" href="#" class="tieude" data-idtieude="@item.Id">@item.TenGroup</a>
+        <a data-hashtag="@Utilities.Encode(item.TenGroup)" href="#" class="tieude" data-idtieude="@item.Id">@item.TenGroup</a>
     }
 }
       

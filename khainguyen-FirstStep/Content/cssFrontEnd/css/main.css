@@ -556,7 +556,10 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 }
 
 
-
+#btnSave{position:fixed;background-color: rgba(50, 50, 50,0.5); left:0; right:0; margin-bottom:0;z-index:16000003}
+#btnSave button{margin:0;float:left;border-radius:0}
+#btnSave .btnSaveProject{width:70%}
+#btnSave .btnDontSaveProject{width:30%}
 
 
 /* RESPONSIVE HOMEPAGE Iphone */
