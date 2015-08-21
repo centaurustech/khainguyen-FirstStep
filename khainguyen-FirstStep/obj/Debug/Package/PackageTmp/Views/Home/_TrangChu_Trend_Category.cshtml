@@ -1,8 +1,8 @@
 ﻿@model khainguyen_FirstStep.EntityHomePage
 
 @{
-    @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc,hinhnen=1,loai="panel-list panel1"})
-     @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc1,hinhnen=0,loai="panel-list panel2"})
-      @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc2,hinhnen=1,loai="panel-list dark panel3"})
+    @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc,hinhnen=1,loai="panel-list panel1",catnumber=1})
+     @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc1,hinhnen=0,loai="panel-list panel2",catnumber=2})
+      @Html.Action("_TrangChu_Item_Trend_Category", "Home", new { idtrend=@Model.EntityDanhMuc2,hinhnen=1,loai="panel-list dark panel3",catnumber=3})
 }
 

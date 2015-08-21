@@ -259,7 +259,6 @@ $(document).ready(function () {
     });
     $('.list-item').each(function () {
         var id = $(this).attr('id');
-        console.log('OK');
         create_number('#' + id);
     });
     function create_number(id) {

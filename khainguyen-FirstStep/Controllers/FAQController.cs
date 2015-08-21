@@ -15,10 +15,18 @@ namespace khainguyen_FirstStep.Controllers
         {
             var item = db.EntityGroupFAQs.Where(p => p.IdLoaiFAQ == 1).OrderBy(p => p.ViTri).ToList();
             if (string.IsNullOrEmpty(name))
-                ViewBag.idgrouptitle = Utilities.Encode(item.FirstOrDefault().TenGroup);
+            {
+                string title = item.FirstOrDefault().TenGroup;
+                ViewBag.Title = title + " » Nội dung hỗ trợ - Firststep";
+                ViewBag.idgrouptitle = Utilities.Encode(title); 
+
+            }
             else
-                ViewBag.idgrouptitle = Utilities.Encode(item.Single(p => Utilities.Encode(p.TenGroup) == name).TenGroup);
-            
+            {
+                string title = item.Single(p => Utilities.Encode(p.TenGroup) == name).TenGroup;
+                ViewBag.Title = title + " » Nội dung hỗ trợ - Firststep";
+                ViewBag.idgrouptitle = Utilities.Encode(title);
+            }
             return View(item);
         }
         public ActionResult _IndexFAQ1_NoiDung(string idgrouptitle)

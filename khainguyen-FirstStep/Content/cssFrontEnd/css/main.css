@@ -111,7 +111,7 @@ button{cursor: pointer;}
 .item-project{float: left; width: 31%; margin-right: 2.33%; z-index:0; position: relative}
 .item-project:before,.item-project:after{z-index:-1;position:absolute;content:"";bottom:15px;left:10px;width:50%;top:80%;max-width:300px;background:#777;box-shadow:0 15px 10px #777;-webkit-transform:rotate(-3deg);-moz-transform:rotate(-3deg);-o-transform:rotate(-3deg);-ms-transform:rotate(-3deg);transform:rotate(-3deg)}
 .item-project:after{-webkit-transform:rotate(3deg);-moz-transform:rotate(3deg);-o-transform:rotate(3deg);-ms-transform:rotate(3deg);transform:rotate(3deg);right:10px;left:auto}
-.item-project .img{height: 200px; overflow:hidden}
+.item-project .img{height: 200px; overflow:hidden;  :relative;}
 .item-project .img img{width: 100%; -moz-transition: 0.5s 0s all ease; -o-transition: 0.5s 0s all ease; -webkit-transition: 0.5s 0s all ease; transition: 0.5s 0s all ease; display: block; float: left;}
 .item-project .title{clear:both; padding-top:7px; height:50px; overflow:hidden}
 .item-project .title h4{margin:0; padding: 7px 0; position: relative;}
@@ -556,7 +556,7 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 }
 
 
-#btnSave{position:fixed;background-color: rgba(50, 50, 50,0.5); left:0; right:0; margin-bottom:0;z-index:16000003}
+#btnSave{position:fixed;background-color: rgba(50, 50, 50,0.5); left:0; right:0; margin-bottom:0;z-index:16000003; display:none;}
 #btnSave button{margin:0;float:left;border-radius:0}
 #btnSave .btnSaveProject{width:70%}
 #btnSave .btnDontSaveProject{width:30%}

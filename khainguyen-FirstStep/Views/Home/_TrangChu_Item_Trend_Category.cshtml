@@ -11,9 +11,10 @@
     <div class="container">
         <div class="category">
             <h2 class="color-tiny"><i class="fa-check-circle-o"></i>&nbsp;@ViewBag.Ten</h2>
-            <a href="@ViewBag.LinkViewMore" class="btn">Xem thêm</a>
+            @*<a href="@ViewBag.LinkViewMore" class="btn">Xem thêm</a>*@
         </div>
         <div class="list-item" id="cat-@ViewBag.catnumber">
+        @*<div class="list-item">*@
             @{
                 int iduser = 0;
                 foreach (var item in Model)

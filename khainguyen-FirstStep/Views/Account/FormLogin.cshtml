@@ -3,7 +3,7 @@
     <!-- acc-login -->
     <div class="panel-login">
         <div class="social">
-            <a href="@Url.Action("Facebook", "Account")" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập bằng Facebook</a>
+            <a href="@Url.Action("Facebook", "Account", new { trolai = ViewBag.UrlReferrer })" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;Đăng nhập bằng Facebook</a>
         </div>
         <div class="form-login">
             <h3>hoặc tài khoản FirstStep</h3>

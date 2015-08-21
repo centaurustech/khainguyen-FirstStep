@@ -31,7 +31,7 @@ namespace khainguyen_FirstStep
         }
 
         //Xử lý page 500 và 404
-        protected void Application_Error(object sender, EventArgs e)
+        /* protected void Application_Error(object sender, EventArgs e)
         {
             Exception lastError = Server.GetLastError();
             Server.ClearError();
@@ -65,6 +65,6 @@ namespace khainguyen_FirstStep
 
             Response.TrySkipIisCustomErrors = true;
             Response.End();
-        }        
+        }     */   
     }
 }

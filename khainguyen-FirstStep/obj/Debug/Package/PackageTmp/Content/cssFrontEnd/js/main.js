@@ -51,6 +51,7 @@ function tab_panel() {
 }
 
 function Core_AllPage() {
+
     // text fly
     $('.menu-login:not(.loged) a span').letterfx({ fx: "swirl", timing: 200, letter_end: "stay" });
 
@@ -103,6 +104,13 @@ function Core_AllPage() {
         var dataid = $(this).attr('data-id');
         if (dataid.length < 1) { return; }
         $('.proj-popup[data-id=' + dataid + ']').fadeIn(300);
+    });
+
+    // map-google
+    $('.map-google').click(function () {
+        $('.map-google iframe').css("pointer-events", "auto");
+    }).mouseleave(function () {
+        $('.map-google iframe').css("pointer-events", "none");
     });
 }
 
@@ -240,6 +248,7 @@ function ScrollHTML() {
 }
 
 $(document).ready(function () {
+    
     $('body').append('<div class="overlay hide"></div>');
     $('.menu-login.loged').click(function () {
         $('.overlay').toggleClass('hide');

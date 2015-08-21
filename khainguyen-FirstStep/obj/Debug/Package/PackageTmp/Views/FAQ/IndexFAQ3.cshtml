@@ -5,7 +5,7 @@
 
 @section MeTaHeader
 {
-    <meta name="robots" content="noindex,nofollow" />
+    <title>Câu hỏi thường gặp (FAQ) - Firststep</title>
 }
 
 <!-- SLIDE -->
@@ -30,14 +30,14 @@
 <div class="container">
 
     @*<div class="faq-search">
-        <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
-    </div>*@
+            <input class="form-txt" type="text" placeholder="search anything, you need help :)" /><i class="fa-search"></i>
+        </div>*@
 
     <nav class="faq-category">
         @{
-            foreach(var item in Model)
+            foreach (var item in Model)
             {
-                <a data-hashtag1="@Utilities.Encode(item.TenGroup)" href="#link" class="group" data-idgroup="@item.Id">@item.TenGroup</a>
+                <a data-hashtag="@Utilities.Encode(item.TenGroup)" href="#" class="group" data-idgroup="@item.Id">@item.TenGroup</a>
             }
         }
     </nav>
@@ -47,17 +47,19 @@
             @*@Html.Action("_IndexFAQ3_GroupClick", "FAQ", new { id = @Model.ElementAt(0).Id })*@
         </nav>
         <nav class="faq-gright nicescroll" id="tieude">
-           @*@Html.Action("_IndexFAQ3_TieuDeClick", "FAQ", new { id = @Model.ElementAt(0).Id })*@
+            @*@Html.Action("_IndexFAQ3_TieuDeClick", "FAQ", new { id = @Model.ElementAt(0).Id })*@
         </nav>
     </div>
 
     <div class="faq-ask" id="noidung">
+        <h3>Vui lòng chọn mục bạn cần hỏi đáp!</h3>
         @*@Html.Action("_IndexFAQ3_TieuDeClick", "FAQ", new { id = 0 })*@
     </div>
 
 </div>
 
 <div style="height: 50px;"></div> 
+
 @section jqueryPlugin{
 
     <script>
@@ -80,121 +82,79 @@
                 animation: 'fade',
                 inherit_height_from: '.slider-fix-300'
             });
-            
-            var HashTagForGroup = function () {
-                $(".faq-category a.group").click(function () {
-                    var hasha = $(this).data("hashtag1");
-                    document.location.hash = hasha;
-                });
-            };
-            HashTagForGroup();
 
-            var HashTagForTitle = function () {
-                $(".faq-show-key .faq-gleft").on("click","a.tieude", function () {
-                    var hasha = $(this).data("hashtag2");
-                    document.location.hash = window.location.hash + "&" + hasha;
-                });
-            }; 
-            HashTagForTitle();
+            var hGroup='', hTieuDeT='', hTieuDeP='', lhash='', hAuto=1;
 
-            var HashTagForContent = function () {
-                $(".faq-show-key .faq-gright").on("click", "a.noidung", function () {
-                    var hasha = $(this).data("hashtag3");
-                    document.location.hash = window.location.hash + "&" + hasha;
-                });
-            };
-            HashTagForContent();
-
-            var AutoGroup = function () {
-                var hashw = window.location.hash;
-                if (hashw.length > 0) {
-                    hashw = hashw.replace('#', '');
-                    $hashtarget = $("a.group[data-hashtag1=" + hashw + "]");                    
-                    if ($hashtarget.length > 0) {
-                        //alert($hashtarget.offset().top);
-                        //e.preventDefault();
-                        $("a.group").removeClass("actived");
-                        $hashtarget.addClass("actived");
-                        var id = $hashtarget.data("idgroup");
-                        var postURL = '@Url.Action("_IndexFAQ3_GroupClick", "FAQ")';
-                        $.post(postURL, { "id": id }, function (data) {
-                            if (data == "Error") {
-                                alert("Error");
-                            } else {
-                                $('#group').html(data);
-                            }
-                        });
-                    }
-                }
-            };
-            AutoGroup();
-
-            group();
-            tieude();
-            noidung();
-
-            //var HashTagForTieuDe = function () {
-            //    $(".faq-category a").click(function () {
-            //        var hasha = $(this).data("hashtag2");
-            //        document.location.hash = hasha;
-            //    });
-            //}
-            //HashTagForTieuDe();
-        });
-
-        function group() {
             $("a.group").click(function (e) {
-                e.preventDefault();
-                $("a.group").removeClass("actived");
-                $(this).addClass("actived");
-                var id = $(this).data("idgroup");
-                var postURL = '@Url.Action("_IndexFAQ3_GroupClick", "FAQ")';
-                $.post(postURL, { "id": id }, function (data) {
-                    if (data == "Error") {
-                        alert("Error");
-                    } else {
-                        $('#group').html(data);
-                        $('#tieude').html("");
-                    }
-                });
+                e.preventDefault(); hAuto = 0;                
+                hGroup = $(this).data("hashtag");
+                group(hGroup);
             });
-        }
 
-        function tieude() {
             $(".faq-gleft").on("click", "a.tieude", function (e) {
-                e.preventDefault();
-                $("a.tieude").removeClass("actived");
-                $(this).addClass("actived");
-                var id = $(this).data("idtieude");
-                var postURL = '@Url.Action("_IndexFAQ3_TieuDeClick", "FAQ")';
-                $.post(postURL, { "id": id }, function (data) {
-                    if (data == "Error") {
-                        alert("Error");
-                    } else {
-                        $('#tieude').html(data);
-                    }
-                });
+                e.preventDefault(); hAuto = 0;                
+                hTieuDeT = $(this).data("hashtag");
+                tieude(hTieuDeT);
             });
-        }
-        function noidung() {
+
             $(".faq-gright").on("click", "a.noidung", function (e) {
-                e.preventDefault();
-                $("a.noidung").removeClass("actived");
-                $(this).addClass("actived");
-                var id = $(this).data("idnoidung");
-                var postURL = '@Url.Action("_IndexFAQ3_NoiDungClick", "FAQ")';
-                $.post(postURL, { "id": id }, function (data) {
-                    if (data == "Error") {
-                        alert("Error");
-                    } else {
-                        $('#noidung').html(data);
-                        //var target_offfset = $("#noidung").offset();
-                        //var target_top = target_offfset.top;
-                        //$('html, body').animate({ scrollTop: target_top }, 1500, 'easeInsine');
+                e.preventDefault(); hAuto = 0;                
+                hTieuDeP = $(this).data("hashtag");
+                noidung(hTieuDeP);
+            });
+
+            var calhashtag = function () {
+                if (hAuto) { return;}
+                var xhash = '';
+                if (hGroup.length > 0) { xhash = hGroup; }
+                if (hTieuDeT.length > 0) { xhash = hGroup + '&' + hTieuDeT; }
+                if (hTieuDeP.length > 0) { xhash = hGroup + '&' + hTieuDeT + '&' + hTieuDeP; }
+                if (xhash.length > 0) { window.location.hash = xhash; }
+            };
+
+            var group = function (hashtag) {
+                $.post('@Url.Action("_IndexFAQ3_GroupClick", "FAQ")', { "hashtag": hashtag }, function (data) {
+                    if (data == "Error") { alert("Error"); }
+                    else {
+                        $("a.group").removeClass("actived");
+                        $('a.group[data-hashtag=' + hashtag + ']').addClass("actived");
+                        $('#group').html(data); $('#tieude').html(""); $('#noidung').html(""); hTieuDeT = ''; hTieuDeP = ''; calhashtag();
+                        if (hAuto & lhash.length > 1) { tieude(lhash[1]); hTieuDeT = lhash[1]; }
+                    };
+                });
+            };
+
+            var tieude = function (hashtag) {
+                $.post('@Url.Action("_IndexFAQ3_TieuDeClick", "FAQ")', { "hashtag": hashtag }, function (data) {
+                    if (data == "Error") { alert("Error"); }
+                    else {
+                        $("a.tieude").removeClass("actived");
+                        $('a.tieude[data-hashtag=' + hashtag + ']').addClass("actived");
+                        $('#tieude').html(data); $('#noidung').html(""); hTieuDeP = ''; calhashtag();
+                        if (hAuto & lhash.length > 2) { noidung(lhash[2]); hTieuDeP = lhash[2];}
                     }
                 });
-            });
-        }
+            };
+
+            var noidung = function (hashtag) {
+                $.post('@Url.Action("_IndexFAQ3_NoiDungClick", "FAQ")', { "hashtag": hashtag }, function (data) {
+                    if (data == "Error") { alert("Error"); }
+                    else {
+                        $("a.noidung").removeClass("actived");
+                        $('a.noidung[data-hashtag=' + hashtag + ']').addClass("actived");
+                        $('#noidung').html(data); calhashtag();
+                    }
+                });
+            };
+
+            var autoReadhashtag = function () {
+                var xhash = window.location.hash;
+                xhash = xhash.replace('#', '');
+                lhash = xhash.split('&');
+                if (lhash.length > 0 && lhash[0].length>0) { group(lhash[0]); hGroup = lhash[0]; }
+            }; autoReadhashtag();
+
+        });
     </script>
     <style>
         a.group.actived{color: #fff; background-color: #ffb116}

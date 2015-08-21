@@ -37,7 +37,7 @@ namespace khainguyen_FirstStep.Controllers
             ViewBag.link = link;
             return View();
         }
-        public ActionResult Login()
+        public ActionResult Login(string trolai)
         {
             if (Request.Cookies["ftid"] != null)
             {
@@ -46,10 +46,18 @@ namespace khainguyen_FirstStep.Controllers
             }
             else
             {
-                if (Request.UrlReferrer != null)
-                    ViewBag.UrlReferrer = Request.UrlReferrer.ToString();
+                if (trolai != null)
+                {
+                    string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                    ViewBag.UrlReferrer = mang[0] + "//" + mang[2] + "/" + trolai;
+                }
                 else
-                    ViewBag.UrlReferrer = "http://firststep.vn";
+                {
+                    if (Request.UrlReferrer != null)
+                        ViewBag.UrlReferrer = Request.UrlReferrer.ToString();
+                    else
+                        ViewBag.UrlReferrer = "http://firststep.vn";
+                }
                 return View();
             }
         }
@@ -196,6 +204,18 @@ namespace khainguyen_FirstStep.Controllers
         [AllowAnonymous]
         public ActionResult Facebook()
         {
+            //if (trolai != null)
+            //{
+            //    string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+            //    ViewBag.UrlReferrer = mang[0] + "//" + mang[2] + "/" + trolai;
+            //}
+            //else
+            //{
+            //    if (Request.UrlReferrer != null)
+            //        ViewBag.UrlReferrer = Request.UrlReferrer.ToString();
+            //    else
+            //        ViewBag.UrlReferrer = "http://firststep.vn";
+            //}
             var fb = new FacebookClient();
             var loginUrl = fb.GetLoginUrl(new
             {
@@ -319,8 +339,8 @@ namespace khainguyen_FirstStep.Controllers
                             {
                                 if (Request.UrlReferrer.ToString().IndexOf("Dang-Nhap") != -1)
                                     return RedirectToAction("Index", "Home");
-                                //else return Redirect(Request.UrlReferrer.ToString());
-                                else return Redirect(result.AbsoluteUri);
+                                else return Redirect(Request.UrlReferrer.ToString());
+                                //else return Redirect(result.AbsoluteUri);
                             }
                             else
                             {
@@ -399,7 +419,6 @@ namespace khainguyen_FirstStep.Controllers
         [HttpPost]
         public ActionResult DangKy(AccountModel Mtnew)
         {
-
             try
             {
                 if (ModelState.IsValid)
@@ -633,16 +652,21 @@ namespace khainguyen_FirstStep.Controllers
         #endregion 
 
         public ActionResult DoiMatKhau()
-        {
-           
+        {           
            int idlogin = 0;
            if (Request.Cookies["ftid"] != null)
+           {
                idlogin = Convert.ToInt16(Request.Cookies["ftid"].Value);
-           EntityUser user = db.EntityUsers.Where(g=>g.Id == idlogin).FirstOrDefault();
-           ViewBag.history = getAccount(user);
-           ViewBag.User = user;
-            AccountModel tnew = new AccountModel();
-            return View(tnew);
+               EntityUser user = db.EntityUsers.Where(g => g.Id == idlogin).FirstOrDefault();
+               ViewBag.history = getAccount(user);
+               ViewBag.User = user;
+               AccountModel tnew = new AccountModel();
+               return View(tnew);
+           }
+           else
+           {
+               return RedirectToAction("Login", "Account", new { trolai = "tuy-chinh-khac/tai-khoan"});
+           }
         }
         [ValidateInput(false)]
         [HttpPost]
@@ -708,20 +732,26 @@ namespace khainguyen_FirstStep.Controllers
         // sua thong tin ca nhan
         public ActionResult SuaThongTin()
         {
-
-            AccountModel sua = new AccountModel();
-            dbFirstStepDataContext db = new dbFirstStepDataContext();
-            var item = db.EntityUsers.Where(p => p.Email == Request.Cookies["ftusername"].Value).First();
-            sua.HoTen = item.HoTen;
-            sua.GioiThieu = item.GioiThieu;
-            sua.Avatar = item.Avatar;
-            sua.DiaDiem = item.DiaDiem;
-            sua.Website = item.Website;
-            string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
-            string url = mang[0] + "//" + mang[2];
-            ViewBag.Link = url + "/user/";
-            sua.Profile = url + "/user/"+item.VanityURL;
-            return View(sua);
+            if(Request.Cookies["ftusername"] != null)
+            {
+                AccountModel sua = new AccountModel();
+                dbFirstStepDataContext db = new dbFirstStepDataContext();
+                var item = db.EntityUsers.Where(p => p.Email == Request.Cookies["ftusername"].Value).First();
+                sua.HoTen = item.HoTen;
+                sua.GioiThieu = item.GioiThieu;
+                sua.Avatar = item.Avatar;
+                sua.DiaDiem = item.DiaDiem;
+                sua.Website = item.Website;
+                string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                string url = mang[0] + "//" + mang[2];
+                ViewBag.Link = url + "/user/";
+                sua.Profile = url + "/user/"+item.VanityURL;
+                return View(sua);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account", new { trolai = "tuy-chinh-khac/thong-tin-ca-nhan" });
+            }
         }
         [ValidateInput(false)]
         [HttpPost]

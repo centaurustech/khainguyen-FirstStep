@@ -174,9 +174,16 @@ namespace khainguyen_FirstStep.Controllers
         #region tạo dự án
         public ActionResult TaoDuAn()
         {
-            ViewBag.DanhMuc = db.EntityDanhMucs.Where(g => g.IdRoot == 1).ToList();
-            DuAnModel daModel = new DuAnModel();
-            return View(daModel);
+            if (Request.Cookies["ftid"] != null)
+            {
+                ViewBag.DanhMuc = db.EntityDanhMucs.Where(g => g.IdRoot == 1).ToList();
+                DuAnModel daModel = new DuAnModel();
+                return View(daModel);
+            }
+            else
+            {
+                return RedirectToAction("Login","Account", new { trolai = "tao-du-an"});
+            }
         }
 
         [ValidateInput(false)]

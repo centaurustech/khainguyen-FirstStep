@@ -126,9 +126,27 @@ namespace khainguyen_FirstStep
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
+                name: "Dang ky",
+              url: "tai-khoan/dang-ky",
+              defaults: new { controller = "Account", action = "DangKy" },
+              namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+               );
+            routes.MapRoute(
                 name: "Dang nhap",
               url: "tai-khoan/dang-nhap",
               defaults: new { controller = "Account", action = "Login" },
+              namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+               );
+            routes.MapRoute(
+                name: "Quen mat khau",
+              url: "tai-khoan/quen-mat-khau",
+              defaults: new { controller = "Account", action = "QuenMatKhau" },
+              namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+               );
+            routes.MapRoute(
+                name: "Email da dang ky",
+              url: "tai-khoan/email-da-dang-ky",
+              defaults: new { controller = "Account", action = "TrungEmail" },
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
