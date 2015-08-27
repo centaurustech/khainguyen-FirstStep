@@ -167,6 +167,12 @@ namespace khainguyen_FirstStep
            defaults: new { controller = "Account", action = "Facebookcallback" },
            namespaces: new[] { "khainguyen-FirstStep.Controllers" }
             );
+            routes.MapRoute(
+           name: "dang-ky-thanh-cong",
+           url: "tai-khoan/dang-ky-thanh-cong",
+           defaults: new { controller = "Account", action = "DangKyThanhCong" },
+           namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+            );
             #endregion
 
             #region"FAQController"

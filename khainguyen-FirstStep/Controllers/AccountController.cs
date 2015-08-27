@@ -438,7 +438,10 @@ namespace khainguyen_FirstStep.Controllers
                         string Email = Mtnew.Email;
                         Security ser = new Security();
                         string HasCode = ser.GetHashPassword(Mtnew.Email); 
-                        GuiMailDangKy(HoTen,Email,HasCode);
+                        string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                        string url = mang[0] + "//" + mang[2];
+                        //GuiMailDangKy(HoTen,Email,HasCode);
+                        MailHelper.SendMail_DangKy(HoTen, Email, url + "/account/kichhoat?HasCode=" + HasCode);
                         return RedirectToAction("DangKyThanhCong", "Account");
                     }
                 }
@@ -461,21 +464,25 @@ namespace khainguyen_FirstStep.Controllers
         }
         public ActionResult KichHoatThanhCong()
         {
+            if (Request.Cookies["ftid"] != null)
+            {
+                RedirectToAction("Index", "Home");
+            }
             return View();
         }
         public void GuiMailDangKy(string HoTen, string Email, string HasCode)
         {
-                StringBuilder mailBody = new StringBuilder();
-                mailBody.AppendFormat("<h1>[FirstStep]-Kích hoạt tài khoản</h1>");
-                mailBody.AppendFormat("<br />");
-                mailBody.AppendFormat("<p> Chào : " + " " + HoTen + "   !  " + "</p>");
-                mailBody.AppendFormat("<p>Email đăng ký tài khoản :  " + " " + Email + " " + "</p>");
-                string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
-                string url = mang[0] + "//" + mang[2];
-                mailBody.AppendFormat("<p>Link kích hoạt tài khoản:  " +url+ "/account/kichhoat?HasCode="+HasCode+ " " + "</p>");
-                mailBody.AppendFormat("<br></br>");
-                mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
-                MailHelper.SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "[FirstStep]-Kích hoạt tài khoản", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");                           
+                //StringBuilder mailBody = new StringBuilder();
+                //mailBody.AppendFormat("<h1>[FirstStep]-Kích hoạt tài khoản</h1>");
+                //mailBody.AppendFormat("<br />");
+                //mailBody.AppendFormat("<p> Chào : " + " " + HoTen + "   !  " + "</p>");
+                //mailBody.AppendFormat("<p>Email đăng ký tài khoản :  " + " " + Email + " " + "</p>");
+                //string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                //string url = mang[0] + "//" + mang[2];
+                //mailBody.AppendFormat("<p>Link kích hoạt tài khoản:  " +url+ "/account/kichhoat?HasCode="+HasCode+ " " + "</p>");
+                //mailBody.AppendFormat("<br></br>");
+                //mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
+                //MailHelper.SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "[FirstStep]-Kích hoạt tài khoản", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");                           
         }
         public ActionResult kichhoat(string HasCode)
         {

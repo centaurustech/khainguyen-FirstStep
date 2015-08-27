@@ -111,7 +111,7 @@ button{cursor: pointer;}
 .item-project{float: left; width: 31%; margin-right: 2.33%; z-index:0; position: relative}
 .item-project:before,.item-project:after{z-index:-1;position:absolute;content:"";bottom:15px;left:10px;width:50%;top:80%;max-width:300px;background:#777;box-shadow:0 15px 10px #777;-webkit-transform:rotate(-3deg);-moz-transform:rotate(-3deg);-o-transform:rotate(-3deg);-ms-transform:rotate(-3deg);transform:rotate(-3deg)}
 .item-project:after{-webkit-transform:rotate(3deg);-moz-transform:rotate(3deg);-o-transform:rotate(3deg);-ms-transform:rotate(3deg);transform:rotate(3deg);right:10px;left:auto}
-.item-project .img{height: 200px; overflow:hidden;  :relative;}
+.item-project .img{height: 200px; overflow:hidden;}
 .item-project .img img{width: 100%; -moz-transition: 0.5s 0s all ease; -o-transition: 0.5s 0s all ease; -webkit-transition: 0.5s 0s all ease; transition: 0.5s 0s all ease; display: block; float: left;}
 .item-project .title{clear:both; padding-top:7px; height:50px; overflow:hidden}
 .item-project .title h4{margin:0; padding: 7px 0; position: relative;}
@@ -129,7 +129,7 @@ button{cursor: pointer;}
 .percent{background-color: #eee; height: 15px; margin: 7px 0; overflow: hidden;}
 .value{background: #0092c8; height: 15px;}
 .status{height: 15px; font-size: 0.8em; text-align:center; line-height: 1.1em; background: #0092c8; color: #fff; letter-spacing: 2px;}
-.item-project .border{border: 1px solid #e5e5e5;overflow: hidden; padding: 7px; background-color:#fff; border-radius: 3px; }
+.item-project .border{border: 1px solid #e5e5e5;overflow: hidden;position:relative; padding: 7px; background-color:#fff; border-radius: 3px; }
 .item-project:hover .img img { -webkit-transform: scale(1.07,1.07); -moz-transform: scale(1.07,1.07);-ms-transform: scale(1.07,1.07); -o-transform: scale(1.07,1.07); transform: scale(1.07,1.07); }
 .owl-item .item-project {width: 96%; margin: 5px 2% 15px 2%; }
 
@@ -504,7 +504,7 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
     background-color:#0092c8;
     color:#fff;
     -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate-(45deg); /* Chrome, Safari, Opera */
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
     transform: rotate(-45deg);
     padding:5px 15px;
     text-transform:uppercase;
