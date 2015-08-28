@@ -433,23 +433,34 @@ namespace khainguyen_FirstStep.Controllers
                     }
                     else
                     {
-                        AccountModel.DangKy(Mtnew);
-                        string HoTen = Mtnew.HoTen;
-                        string Email = Mtnew.Email;
+                        #region "Add new user"
                         Security ser = new Security();
-                        string HasCode = ser.GetHashPassword(Mtnew.Email); 
+                        string passHex = ser.GetHashPassword(Mtnew.Pass);
+                        string mailHex = ser.GetHashPassword(Mtnew.Email);
+                        EntityUser ban = new EntityUser();
+                        ban.TrangThai = 0;
+                        ban.HasCode = mailHex;
+                        ban.HoTen = Mtnew.HoTen;
+                        ban.Email = Mtnew.Email;
+                        ban.Pass = passHex;
                         string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
                         string url = mang[0] + "//" + mang[2];
+                        ban.Avatar = url + "/Content/Images/Avatar/ava0.jpg";
+                        ban.VanityURL = mailHex;//
+                        #endregion
+
+                        string HoTen = Mtnew.HoTen;
+                        string Email = Mtnew.Email;                        
                         //GuiMailDangKy(HoTen,Email,HasCode);
-                        MailHelper.SendMail_DangKy(HoTen, Email, url + "/account/kichhoat?HasCode=" + HasCode);
+                        MailHelper.SendMail_DangKy(HoTen, Email, url + "/account/kichhoat?HasCode=" + ban.HasCode);                        
+                        db.EntityUsers.InsertOnSubmit(ban);
+                        db.SubmitChanges();
                         return RedirectToAction("DangKyThanhCong", "Account");
                     }
                 }
             }
             catch
-            {
-
-                return RedirectToAction("Oops", "Error", new { id = 500 });
+            {                
             }
             return View(Mtnew);
         }

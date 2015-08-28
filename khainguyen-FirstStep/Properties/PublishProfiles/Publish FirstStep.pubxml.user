@@ -150,10 +150,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:18</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.dll">
-      <publishTime>08/21/2015 23:35:34</publishTime>
+      <publishTime>08/28/2015 17:26:46</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.pdb">
-      <publishTime>08/21/2015 23:35:34</publishTime>
+      <publishTime>08/28/2015 17:26:46</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/04/2014 17:03:21</publishTime>
@@ -2577,7 +2577,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/09/2014 22:28:30</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/main.css">
-      <publishTime>08/18/2015 11:26:17</publishTime>
+      <publishTime>08/28/2015 15:17:08</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/page-account.css">
       <publishTime>09/22/2014 15:42:25</publishTime>
@@ -2961,7 +2961,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/main.js">
-      <publishTime>08/17/2015 09:38:18</publishTime>
+      <publishTime>08/24/2015 19:31:02</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/MaxLength.min.js">
       <publishTime>08/06/2012 16:47:06</publishTime>
@@ -3390,7 +3390,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2015 17:55:54</publishTime>
     </File>
     <File Include="Views/Account/DangKyThanhCong.cshtml">
-      <publishTime>08/21/2015 17:12:30</publishTime>
+      <publishTime>08/28/2015 17:26:25</publishTime>
     </File>
     <File Include="Views/Account/DoiMatKhau.cshtml">
       <publishTime>08/21/2015 17:57:38</publishTime>
@@ -3402,7 +3402,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/03/2014 13:23:38</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>08/21/2015 22:27:31</publishTime>
+      <publishTime>08/28/2015 17:08:04</publishTime>
     </File>
     <File Include="Views/Account/LoginLife.cshtml">
       <publishTime>11/04/2014 14:39:48</publishTime>
