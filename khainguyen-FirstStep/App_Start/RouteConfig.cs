@@ -173,6 +173,18 @@ namespace khainguyen_FirstStep
            defaults: new { controller = "Account", action = "DangKyThanhCong" },
            namespaces: new[] { "khainguyen-FirstStep.Controllers" }
             );
+            routes.MapRoute(
+           name: "kich-hoat-tai-khoan",
+           url: "tai-khoan/kich-hoat",
+           defaults: new { controller = "Account", action = "kichhoat" },
+           namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+            );
+            routes.MapRoute(
+           name: "kich-hoat-tai-khoan-thanh-cong",
+           url: "tai-khoan/kich-hoat-thanh-cong",
+           defaults: new { controller = "Account", action = "KichHoatThanhCong" },
+           namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+            );
             #endregion
 
             #region"FAQController"

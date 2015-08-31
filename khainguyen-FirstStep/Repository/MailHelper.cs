@@ -26,14 +26,14 @@ namespace MvcLibrary.Repository
 
             string msg = string.Empty;
 
-            MailAddress fromAddress = new MailAddress(fromEmail);
+            MailAddress fromAddress = new MailAddress(fromEmail, "Firststep VN");
             message.From = fromAddress;
             message.To.Add(toEmail);
             if (bcc != null)
                 message.Bcc.Add(bcc);
             if (cc != null)
                 message.CC.Add(cc);
-
+            
             message.Subject = subject;
             message.IsBodyHtml = true;
             message.Body = body;
@@ -61,7 +61,7 @@ namespace MvcLibrary.Repository
             //mailBody.AppendFormat("<br></br>");
             //mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
             SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "Xác nhận email", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");                           
-        }
+        }        
 
         #region Template Email
         public static string ExportHTML_Basic(string tieude, string noidung, string UrlVerify)
@@ -77,19 +77,21 @@ namespace MvcLibrary.Repository
             #region "header"
             html += "<div rev='header' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr this-module' style='border: none; cursor: move; padding: 0px; position: relative;' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_3522' title=''><div mc:repeatable='header'><layout label='header'><table align='center' border='0' cellpadding='0' cellspacing='0' class='wrap header' style='border-collapse: collapse;background: linear-gradient(to bottom, rgba(85,85,85, 1), rgba(85,85,85, 1))' width='640'><tbody><tr><td align='center' class='module-td' valign='top'><table align='center' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;' width='580'><tbody><tr><td valign='top'><!--{cke_protected}{C}%3C!%2D%2Dcol2%20left%20in%20header%2D%2D%3E--><table align='left' border='0' cellpadding='0' cellspacing='0' class='logo-box' style='border-collapse: collapse;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td style='padding: 15px 0;'><a data-cke-saved-href='#' href='http://firststep.vn/Content/Email-template/Basic_1.html#' style='color: #474747;text-decoration: none;outline: none;'>";
             html += "<img alt='logo' class='logo' editable='true' label='logo' mc:edit='logo' data-cke-saved-src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' style='border: 0px; display: block; max-height: 40px;'>";
-			html += "</a></td></tr></tbody></table><!--{cke_protected}{C}%3C!%2D%2Dcol2%20right%20in%20header%2D%2D%3E--><table align='right' border='0' cellpadding='0' cellspacing='0' class='menu-box' style='border-collapse: collapse;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content valign' height='50' mc:edit='menu1' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
+			html += "</a></td></tr></tbody></table><!--{cke_protected}{C}%3C!%2D%2Dcol2%20right%20in%20header%2D%2D%3E-->";
 
-            html += "<singleline label='menu1'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "HOME" + "</a></singleline></td>";
+            //html += "<table align='right' border='0' cellpadding='0' cellspacing='0' class='menu-box' style='border-collapse: collapse;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content valign' height='50' mc:edit='menu1' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
+                
+            //html += "<singleline label='menu1'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "HOME" + "</a></singleline></td>";
 
-			html += "<td class='content valign in' height='70' mc:edit='menu2' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;padding: 0 30px;'>";
+            //html += "<td class='content valign in' height='70' mc:edit='menu2' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;padding: 0 30px;'>";
 
-			html += "<singleline label='menu2'><a data-cke-saved-href='#' href=" + "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "SERVICE" + "</a></singleline></td>";
+            //html += "<singleline label='menu2'><a data-cke-saved-href='#' href=" + "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "SERVICE" + "</a></singleline></td>";
 
-			html += "<td class='content valign' height='70' mc:edit='menu3' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";	
+            //html += "<td class='content valign' height='70' mc:edit='menu3' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";	
+
+            //html +=	"<singleline label='menu3'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "CONTACT" + "</a></singleline></td></tr></tbody></table>";
 				
-			html +=	"<singleline label='menu3'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "CONTACT" + "</a></singleline></td>";
-				
-			html +=	"</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table> </layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86header%E2%97%86%20%2D%2D%3E--></div>";
+			html +=	"</td></tr></tbody></table></td></tr></tbody></table> </layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86header%E2%97%86%20%2D%2D%3E--></div>";
             #endregion
 
             #region "full title"

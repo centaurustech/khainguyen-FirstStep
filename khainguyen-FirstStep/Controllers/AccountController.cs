@@ -472,15 +472,7 @@ namespace khainguyen_FirstStep.Controllers
         public ActionResult DangKyThanhCong()
         {
             return View();
-        }
-        public ActionResult KichHoatThanhCong()
-        {
-            if (Request.Cookies["ftid"] != null)
-            {
-                RedirectToAction("Index", "Home");
-            }
-            return View();
-        }
+        }        
         public void GuiMailDangKy(string HoTen, string Email, string HasCode)
         {
                 //StringBuilder mailBody = new StringBuilder();
@@ -497,14 +489,37 @@ namespace khainguyen_FirstStep.Controllers
         }
         public ActionResult kichhoat(string HasCode)
         {
-            dbFirstStepDataContext db = new dbFirstStepDataContext();
-            var item = db.EntityUsers.Where(p => p.HasCode == HasCode).First();
-            if (item.TrangThai == 0)
-            {
-                item.TrangThai = 1;
-                db.SubmitChanges();
+            try
+            { 
+                if (HasCode != null)
+                {
+                    dbFirstStepDataContext db = new dbFirstStepDataContext();
+                    var item = db.EntityUsers.Where(p => p.HasCode == HasCode).First();
+                    if (item.TrangThai == 0)
+                    {
+                        item.TrangThai = 1;
+                        db.SubmitChanges();
+                    }
+                    return RedirectToAction("SuaThongTin", "Account");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            return RedirectToAction("KichHoatThanhCong", "Account");
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public ActionResult KichHoatThanhCong()
+        {
+            if (Request.Cookies["ftid"] != null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            return View();
         }
         public ActionResult kichhoat_team(string HasCode)
         {

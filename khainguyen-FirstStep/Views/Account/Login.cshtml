@@ -73,6 +73,11 @@
             //jQuery('.loginerror2').slideUp();
             //jQuery('.loginerror3').sliceUp();
         });
+        $(document).keypress(function (e) {
+            if (e.which == 13) {
+                checkID();
+            }
+        });
         function checkId() {            
             var username = $('#username').val();
             var password = $('#password').val();

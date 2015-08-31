@@ -150,10 +150,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:18</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.dll">
-      <publishTime>08/28/2015 17:26:46</publishTime>
+      <publishTime>08/29/2015 18:22:00</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.pdb">
-      <publishTime>08/28/2015 17:26:46</publishTime>
+      <publishTime>08/29/2015 18:22:00</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/04/2014 17:03:21</publishTime>
@@ -3399,10 +3399,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2015 22:23:57</publishTime>
     </File>
     <File Include="Views/Account/KichHoatThanhCong.cshtml">
-      <publishTime>10/03/2014 13:23:38</publishTime>
+      <publishTime>08/29/2015 16:57:29</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
-      <publishTime>08/28/2015 17:08:04</publishTime>
+      <publishTime>08/29/2015 17:56:37</publishTime>
     </File>
     <File Include="Views/Account/LoginLife.cshtml">
       <publishTime>11/04/2014 14:39:48</publishTime>
@@ -3411,13 +3411,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/21/2015 17:22:22</publishTime>
     </File>
     <File Include="Views/Account/SuaThongTin.cshtml">
-      <publishTime>08/21/2015 22:28:17</publishTime>
+      <publishTime>08/29/2015 18:23:03</publishTime>
     </File>
     <File Include="Views/Account/TrungEmail.cshtml">
       <publishTime>08/21/2015 17:46:42</publishTime>
     </File>
     <File Include="Views/Account/_MenuTaiKhoan.cshtml">
-      <publishTime>10/23/2014 13:44:21</publishTime>
+      <publishTime>08/29/2015 18:18:07</publishTime>
     </File>
     <File Include="Views/Ajax/_Team_DuAn.cshtml">
       <publishTime>09/08/2014 13:48:34</publishTime>
@@ -3648,7 +3648,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/10/2015 11:36:53</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_Item_Trend_Category.cshtml">
-      <publishTime>08/21/2015 17:03:57</publishTime>
+      <publishTime>08/29/2015 18:07:56</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_NoiBat.cshtml">
       <publishTime>08/04/2014 17:02:52</publishTime>
