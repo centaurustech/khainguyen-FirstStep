@@ -661,6 +661,10 @@ namespace khainguyen_FirstStep.Controllers
                         //duan.ThoiGianBatDau = 
                         duan.TrangThai = DA.TrangThai;
                         duan.ThoigianSummit = DateTime.Now;
+                        string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                        string url = mang[0] + "//" + mang[2];
+                        string linkdanhmucduan = url + "/du-an?option=-category=" + duan.IdDanhMuc + "-blend=0-";
+                        MailHelper.SendMail_DangKyDuAn(duan.EntityUser.HoTen, duan.EntityUser.Email, linkdanhmucduan);
                         db.SubmitChanges();
                     }
                 }

@@ -126,7 +126,7 @@ namespace khainguyen_FirstStep
     #endregion
 		
 		public dbFirstStepDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Firststep_dbConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Firststep_dbConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

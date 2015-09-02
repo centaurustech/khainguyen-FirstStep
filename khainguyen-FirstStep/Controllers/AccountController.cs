@@ -404,6 +404,7 @@ namespace khainguyen_FirstStep.Controllers
                 Response.Cookies["fthoten"].Expires = DateTime.Now.AddDays(30);
                 Response.Cookies["ftavatar"].Expires = DateTime.Now.AddDays(30);
                 //Response.Cookies["TTBUserType"].Expires = DateTime.Now.AddDays(30);
+                Session["fsduytrihoatdong"] = "1";
 
             }
         }
@@ -499,8 +500,16 @@ namespace khainguyen_FirstStep.Controllers
                     {
                         item.TrangThai = 1;
                         db.SubmitChanges();
+                        createnew_LoginHistory("Đã đăng nhập ", item.Id);
+                        Response.Cookies["ftid"].Value = item.Id.ToString();
+                        Response.Cookies["ftusername"].Value = item.Email;
+                        Response.Cookies["fthoten"].Value = HttpUtility.UrlEncode(item.HoTen); //admin.HoTen;
+                        Response.Cookies["ftavatar"].Value = item.Avatar;
+                        Response.Cookies["ftidFacebook"].Value = item.IdFacebook;
+                        Session["fsduytrihoatdong"] = "1";
+                        return RedirectToAction("SuaThongTin", "Account");
                     }
-                    return RedirectToAction("SuaThongTin", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

@@ -13,7 +13,14 @@
             <h2 class="color-tiny"><i class="fa-check-circle-o"></i>&nbsp;@ViewBag.Ten</h2>
             @*<a href="@ViewBag.LinkViewMore" class="btn">Xem thêm</a>*@
         </div>
-        <div class="list-item">
+        @{
+            string class_listitem = "list-item";
+            if(Model.Count() == 2)
+            {
+                class_listitem += " relative-item";
+            }
+        
+        <div class="@class_listitem" id="cat-@ViewBag.catnumber">
         @*<div class="list-item">*@
             @{
                 int iduser = 0;
@@ -103,6 +110,7 @@
             }
 
         </div>
+        }
         @if(@Model.Count() > 3)
         {
         <nav class="control-navigation">

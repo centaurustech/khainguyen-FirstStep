@@ -1,7 +1,7 @@
 ﻿@model khainguyen_FirstStep.Models.AccountModel
 @section MeTaHeader
 {
-    <title>Điều thông tin cá nhân - Firststep</title>
+    <title>Điều chỉnh thông tin cá nhân - Firststep</title>
 }
 
 <link href="~/Content/cssFrontEnd/css/page-account.css" rel="stylesheet" />
@@ -62,9 +62,9 @@
                             <input class="form-txt" id="Profile" name="Profile" type="text" value="@Model.Profile"  onkeydown="if(this.value.indexOf('@ViewBag.Link')!=0){this.value='@Model.Profile';}" />
                             <span class="form-des" id="EProfile" style="color: red; display: none;">Id Url Profile đã tồn tại</span>
                             <br />
-                            <span class="form-des">Sử dụng tiếng việt không dấu, chữ số và kí tự - _</span>
+                            <span class="form-des">Sử dụng tiếng việt không dấu, chữ số và kí tự '-' hoặc '_'</span>
                             <br />
-                            <span class="form-des">Ex http://firststep.com/user-abc_x-z123 </span>
+                            <span class="form-des">Ex http://firststep.com/user/abc_x-z123 </span>
                         </p>
                         <p>
                             <b>Website</b><br />
@@ -74,9 +74,20 @@
                     </div>
                     <div class="clearfix"></div>
                     <p>
-                        <button id="btnSave" type="submit" class="btn btn-larger" onclick="return checkURL();">Lưu thay đổi</button> 
+                        <button type="submit" class="btn btn-big" onclick="return checkURL();">Lưu thay đổi</button> 
                         <span class="form-des">Bạn cần điền đúng và đủ trước khi lưu thông tin.</span>
                     </p>
+                    @*<div id="btnSave" style="display: block;" class="visible">
+                        <div class="container">
+                            <button class="btn btn-big bg-red btnSaveProject" type="submit" onclick="return checkURL();">
+                                <i class="fa fa-save"></i>LƯU DỰ ÁN
+                            </button>
+                            <button class="btn btn-big bg-dark btnDontSaveProject" onclick="return KhongLuuDuAn();">
+                                <i class="fa fa-undo"></i>KHÔNG LƯU
+                            </button>
+
+                        </div>
+                    </div>*@
                 </form>
             }
 

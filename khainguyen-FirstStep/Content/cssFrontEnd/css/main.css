@@ -581,3 +581,5 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 
 /* Web Essentials 2013 */
 .box-preview-project .container{max-width:none!important; width:96%}
+
+.relative-item .owl-item .item-project .border{ position:relative; }

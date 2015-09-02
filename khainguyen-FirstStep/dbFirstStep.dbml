@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Firststep_db" Class="dbFirstStepDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=125.253.125.82;Initial Catalog=Firststep_db;Persist Security Info=True;User ID=firststep" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Firststep_dbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=125.253.125.82;Initial Catalog=Firststep_db;Persist Security Info=True;User ID=firststep_user" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Firststep_dbConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.EntityAdmin" Member="EntityAdmins">
     <Type Name="EntityAdmin">
       <Column Name="Username" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
