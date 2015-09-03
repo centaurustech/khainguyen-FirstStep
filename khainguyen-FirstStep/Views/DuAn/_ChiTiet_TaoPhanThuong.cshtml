@@ -20,7 +20,7 @@
                             <div class="col-7-3">
                                 <div class="col-2" data-id="@dem">
                                     <h4>Mức giá <i class="fa-info-circle tooltip color-green" title="Tối thiểu 50.000 VNĐ"></i></h4>
-                                    <p><input class="form-txt text-right auto"  data-p-sign="s" data-v-min="0" data-v-max ="99999999999999" value="@item.TienHoTro" style="width: 40%" /> VNĐ</p>
+                                    <p><input class="form-txt text-right auto"  data-p-sign="s" data-v-min="0" data-v-max ="99999999999999" value="@item.TienHoTro" style="width: 40%" /> VNĐ<br /> <span style="color:red;display:none;"></span></p>
                                     <h4>Hình thức giao hàng</h4>
                                     <p>
                                         <select class="form-txt" >
@@ -29,6 +29,7 @@
                                             <option value="Qua Bưu Điện">Qua bưu điện</option>
                                             <option value="Khác">Khác</option>
                                         </select>
+                                        <span style="color:red;display:none;"></span>
                                         <script>
                                             $(document).ready(function () {
                                                 var decoded = $('<div/>').html('@item.HinhThucGiao').text();
@@ -41,18 +42,18 @@
                                 <div class="col-2">
                                     <h4>Thời gian giao hàng (ước tính)</h4>
                                     <p>
-                                        <input class="form-txt text-right datepicker" value="@item.NgayGiao" placeholder="mm/yyyy" style="width: 50%" />
-                                 
+                                        <input class="form-txt text-right datepicker" value="@item.NgayGiao" placeholder="mm/yyyy" style="width: 50%" /><br />
+                                        <span style="color:red;display:none;"></span>
                                     </p>
                                          @if (item.SoLuong > 0)
                                          {
                                             <label><h4><input type="checkbox" checked="checked" /> Giới hạn số lượng </h4></label>
-                                            <p><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-green" title="Điền giới hạn số lượng phần thưởng"></i></p>
+                                            <p><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-green" title="Điền giới hạn số lượng phần thưởng"></i><span style="color:red;display:none;"></span></p>
                                          }
                                          else
                                          {
                                             <label><h4><input type="checkbox" /> Giới hạn số lượng </h4></label>
-                                            <p style="display:none"><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-red" title="Điền giới hạn số lượng phần thưởng"></i></p>
+                                            <p style="display:none"><input class="form-txt text-right" type="number" value="@item.SoLuong" placeholder="0" style="width: 20%" /> <i class="fa-question-circle tooltip color-red" title="Điền giới hạn số lượng phần thưởng"></i><span style="color:red;display:none;"></span></p>
                                          } 
                                 </div>
                                 
@@ -63,11 +64,11 @@
                             <div class="col-7-3">
                                 <div class="col-ful">
                                     <h4>Mô tả</h4>
-                                <p><textarea class="form-txt">@item.NoiDung</textarea> </p>
+                                <p><textarea class="form-txt">@item.NoiDung</textarea><span style="color:red;display:none;"></span></p>
                                 </div>
                             </div>
               
-                            @if(item.SoNguoiMua == 0)
+                            @if(item.SoNguoiMua == 0 || item.SoNguoiMua == null)
                             {
                                 <a href="#" class="btn btn-delete-reward bg-red" data-phanthuong="@item.Id">Xóa</a>
                             }

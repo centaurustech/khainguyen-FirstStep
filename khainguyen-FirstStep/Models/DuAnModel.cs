@@ -149,11 +149,15 @@ namespace khainguyen_FirstStep.Models
             #region Phần thưởng
             var phanthuong = db.EntityPhanThuongs.Where(g=>g.IdDuAn== tnew.Id).ToList();
             Ban.vt_pt_edit = phanthuong.Count();
-            Ban.CheckPhanThuong = false;
+            Ban.CheckPhanThuong = true;
 
-            if (Ban.vt_pt_edit > 0)
+            foreach(var item_phanthuong in phanthuong)
             {
-                Ban.CheckPhanThuong = true;
+                if (item_phanthuong.TienHoTro == 0 || item_phanthuong.NoiDung == "" || item_phanthuong.NgayGiao == "" || item_phanthuong.HinhThucGiao == "")
+                {
+                    Ban.CheckPhanThuong = false;
+                    break;
+                }
             }
             #endregion
 

@@ -946,7 +946,7 @@
     <script>
         // Nút "Xóa Phần Thưởng"
         $(document).on('click', '.btn-delete-reward', function (e) {
-            e.preventDefault();
+            //e.preventDefault();
             var textxoa = $(this).parent().children().first().children().first().text();
             var demvt = 1;
             $(".proj-plege b").each(function (index) {
@@ -1014,7 +1014,7 @@
                 }
                 else {
                     $(input[i * 4]).css({
-                        border: "1px #F3F3F3 solid"
+                        border: "1px #F3F3F3 solid"                        
                     });
                 }
 
@@ -1075,7 +1075,7 @@
             }
             else {
                 //$("#tabPhanThuong").addClass("tomautab");
-                return "";
+                return ketqua;
             }
 
         }

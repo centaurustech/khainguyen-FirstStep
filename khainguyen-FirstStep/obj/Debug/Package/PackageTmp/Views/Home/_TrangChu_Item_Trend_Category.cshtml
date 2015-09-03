@@ -14,14 +14,13 @@
             @*<a href="@ViewBag.LinkViewMore" class="btn">Xem thêm</a>*@
         </div>
         @{
-            string class_relative = "";
+            string class_listitem = "list-item";
             if(Model.Count() == 2)
             {
-                class_relative = "relative-item";
+                class_listitem += " relative-item";
             }
         
-        
-        <div class="list-item @class_relative">
+        <div class="@class_listitem" id="cat-@ViewBag.catnumber">
         @*<div class="list-item">*@
             @{
                 int iduser = 0;

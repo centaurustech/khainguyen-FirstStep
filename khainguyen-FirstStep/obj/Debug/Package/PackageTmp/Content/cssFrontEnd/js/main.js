@@ -247,6 +247,7 @@ function ScrollHTML() {
     });
 }
 
+
 $(document).ready(function () {
     
     $('body').append('<div class="overlay hide"></div>');
@@ -257,17 +258,20 @@ $(document).ready(function () {
         $(this).toggleClass('hide');
         $('.menu-user').hide();
     });
-    //$('.list-item').each(function () {
-    //    var id = $(this).attr('id');
-    //    create_number('#' + id);
-    //});
-    //function create_number(id) {
-    //    count = 0;
-    //    $(id + ' .item-project').each(function () {
-    //        count++;
-    //    });
-    //    if (count < 3) {
-    //        $(id).addClass('soitem-' + count);
-    //    }
-    //}
+
+    $('.list-item').each(function () {
+        var id = $(this).attr('id');
+        if ($(window).width() >= 768) {
+            create_number('#' + id);
+        }
+    });
+    function create_number(id) {
+        count = 0;
+        $(id + ' .item-project').each(function () {
+            count++;
+        });
+        if (count < 3) {
+            $(id).addClass('soitem-' + count);
+        }
+    }
 });
