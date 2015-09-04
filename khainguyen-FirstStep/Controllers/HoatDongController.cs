@@ -1,11 +1,10 @@
-﻿using System;
+﻿using khainguyen_FirstStep.Models;
+using MvcLibrary.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using khainguyen_FirstStep.Models;
 using System.Text;
-using MvcLibrary.Repository;
+using System.Web.Mvc;
 namespace khainguyen_FirstStep.Controllers
 {
     public class HoatDongController : Controller

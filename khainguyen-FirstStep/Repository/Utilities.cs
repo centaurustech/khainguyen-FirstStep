@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Drawing.Drawing2D;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Web;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Globalization;
-using System.Web.Mvc;
+using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using khainguyen_FirstStep;
+using System.Text.RegularExpressions;
+using System.Web;
 public class Utilities
 {
 

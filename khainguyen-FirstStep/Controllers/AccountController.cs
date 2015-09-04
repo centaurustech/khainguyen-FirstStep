@@ -1,7 +1,6 @@
 ﻿using Facebook;
 using khainguyen_FirstStep.Models;
 using MvcLibrary.Repository;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -803,68 +802,68 @@ namespace khainguyen_FirstStep.Controllers
             {
                 //if (ModelState.IsValid)
                 //{
-                    dbFirstStepDataContext db = new dbFirstStepDataContext();
-                    for (int i = 0; i < Request.Files.Count; i++)
+                dbFirstStepDataContext db = new dbFirstStepDataContext();
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFileBase hpf = Request.Files[i];
+                    if (hpf.FileName != "")
                     {
-                        HttpPostedFileBase hpf = Request.Files[i];
-                        if (hpf.FileName != "")
+                        var ava = db.EntityUsers.Where(p => p.Email == Request.Cookies["ftusername"].Value).First();
+
+                        if (ava.Avatar != null && ava.Avatar.IndexOf("ava0.jpg") == -1)
                         {
-                            var ava = db.EntityUsers.Where(p => p.Email == Request.Cookies["ftusername"].Value).First();
-
-                            if (ava.Avatar != null && ava.Avatar.IndexOf("ava0.jpg") == -1)
-                            {
-                                string[] link = ava.Avatar.Split('/');
-                                string fileToDelete = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), link[link.Count() - 1]); // file hinh cu
-                                System.IO.File.Delete(fileToDelete);
-                            }
-
-                            ImageHelper imgHelper = new ImageHelper();
-                            string encodestring = imgHelper.encodeImageFile(hpf);
-                            string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
-                            string url = mang[0] + "//" + mang[2];
-                            ava.Avatar = url + "/Content/Images/Avatar/" + encodestring;
-                            imgHelper.ResizeStream(180, hpf.InputStream, Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Content\\Images\\Avatar\\", encodestring));
-                            //  ava.Avatar = "http://localhost:41372/Content/Images/Avatar/" + encodestring;
-                            db.SubmitChanges();
-                            //var path = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), encodestring);
-                            //hpf.SaveAs(path);
-                            Response.Cookies["ftavatar"].Value = ava.Avatar;
-
-                            //ImageHelper imgHelper = new ImageHelper();
-                            //string encodestring = imgHelper.encodeImageFile(hpf);
-                            //ava.Avatar = "/Content/Images/Avatar/" + encodestring;
-                            //db.SubmitChanges();
-                            //if (encodestring == "!")
-                            //    return RedirectToAction("Error", "Home", new { errorMsg = "Can't upload Images" });
-                            //var path = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), encodestring);
-                            //hpf.SaveAs(path);
-                            //Response.Cookies["ftavatar"].Value = ava.Avatar;
+                            string[] link = ava.Avatar.Split('/');
+                            string fileToDelete = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), link[link.Count() - 1]); // file hinh cu
+                            System.IO.File.Delete(fileToDelete);
                         }
-                    }
 
-                    var query = from p in db.EntityUsers
-                                where p.Email == Request.Cookies["ftusername"].Value
-                                select p;
-                    if (query.Count() == 0)
-                    {
-                        return RedirectToAction("Logout", "Account");
-                    }
-                    else
-                    {
-                        query.First().HoTen = Mtnew.HoTen;
-                        query.First().GioiThieu = Mtnew.GioiThieu;
-                        query.First().DiaDiem = Mtnew.DiaDiem;
-                        query.First().Website = Mtnew.Website;
-                        string[] mang = Mtnew.Profile.Split('/');
-                        string kt = mang[mang.Count() - 1].ToString().Replace("user/", "");
-                        kt = Utilities.Encode(kt);
-                        if (db.EntityUsers.Any(g => g.VanityURL == kt) == false)
-                            query.First().VanityURL = kt;
-                       
+                        ImageHelper imgHelper = new ImageHelper();
+                        string encodestring = imgHelper.encodeImageFile(hpf);
+                        string[] mang = Request.Url.AbsoluteUri.ToString().Split('/');
+                        string url = mang[0] + "//" + mang[2];
+                        ava.Avatar = url + "/Content/Images/Avatar/" + encodestring;
+                        imgHelper.ResizeStream(180, hpf.InputStream, Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Content\\Images\\Avatar\\", encodestring));
+                        //  ava.Avatar = "http://localhost:41372/Content/Images/Avatar/" + encodestring;
                         db.SubmitChanges();
-                        return RedirectToAction("SuaThongTin", "Account");
-                      //  View(Mtnew);
+                        //var path = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), encodestring);
+                        //hpf.SaveAs(path);
+                        Response.Cookies["ftavatar"].Value = ava.Avatar;
+
+                        //ImageHelper imgHelper = new ImageHelper();
+                        //string encodestring = imgHelper.encodeImageFile(hpf);
+                        //ava.Avatar = "/Content/Images/Avatar/" + encodestring;
+                        //db.SubmitChanges();
+                        //if (encodestring == "!")
+                        //    return RedirectToAction("Error", "Home", new { errorMsg = "Can't upload Images" });
+                        //var path = Path.Combine(Server.MapPath("~/Content/Images/Avatar"), encodestring);
+                        //hpf.SaveAs(path);
+                        //Response.Cookies["ftavatar"].Value = ava.Avatar;
                     }
+                }
+
+                var query = from p in db.EntityUsers
+                            where p.Email == Request.Cookies["ftusername"].Value
+                            select p;
+                if (query.Count() == 0)
+                {
+                    return RedirectToAction("Logout", "Account");
+                }
+                else
+                {
+                    query.First().HoTen = Mtnew.HoTen;
+                    query.First().GioiThieu = Mtnew.GioiThieu;
+                    query.First().DiaDiem = Mtnew.DiaDiem;
+                    query.First().Website = Mtnew.Website;
+                    string[] mang = Mtnew.Profile.Split('/');
+                    string kt = mang[mang.Count() - 1].ToString().Replace("user/", "");
+                    kt = Utilities.Encode(kt);
+                    if (db.EntityUsers.Any(g => g.VanityURL == kt) == false)
+                        query.First().VanityURL = kt;
+
+                    db.SubmitChanges();
+                    return RedirectToAction("SuaThongTin", "Account");
+                    //  View(Mtnew);
+                }
                 //}
             }
             catch
@@ -872,11 +871,11 @@ namespace khainguyen_FirstStep.Controllers
                 return RedirectToAction("Index", "Error", new { errorMsg = "Lỗi SQL hosting / server" });
             }
 
-            string[] mang1 = Request.Url.AbsoluteUri.ToString().Split('/');
-            string url1 = mang1[0] + "//" + mang1[2];
-            ViewBag.Link = url1 + "/user/";
+            //string[] mang1 = Request.Url.AbsoluteUri.ToString().Split('/');
+            //string url1 = mang1[0] + "//" + mang1[2];
+            //ViewBag.Link = url1 + "/user/";
 
-             return View(Mtnew);
+            //return View(Mtnew);
         }
 
       

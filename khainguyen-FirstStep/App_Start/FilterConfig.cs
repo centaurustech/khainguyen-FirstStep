@@ -1,7 +1,4 @@
-﻿using System.Data.Common;
-using System.Web;
-using System.Web.Mvc;
-
+﻿
 namespace khainguyen_FirstStep
 {
     public class FilterConfig

@@ -1,8 +1,6 @@
-﻿using khainguyen_FirstStep.Models;
-using MvcLibrary.Repository;
+﻿using MvcLibrary.Repository;
 using Payoo.Lib;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;

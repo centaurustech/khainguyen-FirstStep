@@ -1,7 +1,6 @@
-﻿using MvcLibrary.Repository;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -127,7 +126,7 @@ namespace khainguyen_FirstStep.Models
             Ban.flag = tnew.Flag == null ? "ThongTin": tnew.Flag;       
 
             Ban.TrangThai = tnew.TrangThai == null ? 0 : tnew.TrangThai.Value;
-            Ban.Id = tnew.Id == null ? 0 : tnew.Id;
+            Ban.Id = tnew == null ? 0 : tnew.Id;
 
             #region Thông Tin
             Ban.IdDanhMuc = tnew.IdDanhMuc == null ? 0 : tnew.IdDanhMuc;

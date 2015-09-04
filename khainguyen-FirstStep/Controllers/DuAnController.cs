@@ -1,17 +1,16 @@
 ﻿using khainguyen_FirstStep.Models;
 using MvcLibrary.Repository;
+using Payoo.Lib;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Payoo.Lib;
-using System.Configuration;
-using System.ComponentModel.DataAnnotations;
-using System.Web.UI.WebControls;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace khainguyen_FirstStep.Controllers
 {
@@ -352,7 +351,7 @@ namespace khainguyen_FirstStep.Controllers
             //}
             if (item.TrangThai == -2)
             {
-                int i = 0;// xử lý link tới trang Block
+                //int i = 0;// xử lý link tới trang Block
             }
             return View(DuAnModel.LayModel(Id));
         }
@@ -371,7 +370,7 @@ namespace khainguyen_FirstStep.Controllers
             //}
             if (item.TrangThai == 2)
             {
-                int i = 0;// xử lý link tới trang Block
+                //int i = 0;// xử lý link tới trang Block
             }
             return View(DuAnModel.LayModel(Id));
 

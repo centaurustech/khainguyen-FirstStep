@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using khainguyen_FirstStep.Models;
+using System;
 using System.Web.Mvc;
-using khainguyen_FirstStep.Models;
 
 namespace khainguyen_FirstStep.Controllers
 {
