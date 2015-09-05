@@ -132,9 +132,7 @@ button{cursor: pointer;}
 .item-project .border{border: 1px solid #e5e5e5;overflow: hidden; padding: 7px; background-color:#fff; border-radius: 3px; }
 .item-project:hover .img img { -webkit-transform: scale(1.07,1.07); -moz-transform: scale(1.07,1.07);-ms-transform: scale(1.07,1.07); -o-transform: scale(1.07,1.07); transform: scale(1.07,1.07); }
 .owl-item .item-project {
-    /*width: 96%; margin: 5px 2% 15px 2%;*/
-    width: 100%!important;
-    margin: 0!important;
+    width: 96%; margin: 5px 2% 15px 2%;
 }
 
 .panel-list{background-color: #fff; overflow: hidden; padding: 30px 0; position: relative;}
@@ -525,10 +523,6 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 {
     width:100%!important;
     margin:0!important;
-}
-.soitem-2 div
-{
-    width:50%!important;
 }
 .soitem-1 .item-project .img
 {

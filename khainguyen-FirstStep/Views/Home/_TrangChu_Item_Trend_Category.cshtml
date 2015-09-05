@@ -16,13 +16,13 @@
         </div>
         @{
             string class_listitem = "list-item";
-            if (Model.Count() == 2)
+            if (Model.Count() >= 2)
             {
                 class_listitem += " relative-item";
             }
 
             <div class="@class_listitem" id="cat-@ViewBag.catnumber">
-                @*<div class="list-item">*@
+                @*<div class="list-item" >*@
                 @{
                     int iduser = 0;
                     foreach (var item in Model)

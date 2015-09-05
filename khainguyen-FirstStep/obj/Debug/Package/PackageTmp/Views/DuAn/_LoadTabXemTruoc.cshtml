@@ -23,16 +23,16 @@
             <div class="detail-row">
                 <div class="left-col">
                     <ul class="bxslider">
-                            
-                            @{if (ViewBag.video != "")
+                            <li>
+                                <img src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>
+                            @*@{if (ViewBag.video != "")
                               {
                             <li>
                                 <div class="fluid-width-video-wrapper" style="padding-top: 56.25%;"><iframe width="560" height="335" src="@ViewBag.video" frameborder="0"></iframe></div>
                             </li>
                               }
-                              <li>
-                                <img src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>
-                            }
+                              
+                            }*@
                         </ul>
 @*                    <img style="float: left; list-style: none; position: relative; width: 100%" src="~/Content/Images/DuAn/@Model.HinhAnh" title="@Model.ThongTinNgan" /></li>*@
                 </div>
