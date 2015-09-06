@@ -2,16 +2,22 @@
 
 namespace khainguyen_FirstStep.Areas.AdminCP.Models
 {
+    public enum LoaiBanner
+    {
+        Image,
+        Video
+    }
+
     public class AdminBannerModel
     {
-
         public int? Id { get; set; }
         public string Anh { get; set; }
         public int? ViTri { get; set; }
         public string TenNut { get; set; }
-        public string NoiDung { get; set;}
+        public string NoiDung { get; set; }
         public string LinkNut { get; set; }
         public string TieuDe { get; set; }
+        public LoaiBanner LoaiBanner { get; set; }
 
         public static AdminBannerModel LayModel(int Id)
         {
@@ -25,6 +31,7 @@ namespace khainguyen_FirstStep.Areas.AdminCP.Models
             Ban.NoiDung = tnew.NoiDung;
             Ban.LinkNut = tnew.LinkNut;
             Ban.TieuDe = tnew.TieuDe;
+            Ban.LoaiBanner = tnew.LoaiBanner;
             return Ban;
 
         }
@@ -43,6 +50,7 @@ namespace khainguyen_FirstStep.Areas.AdminCP.Models
             Faq.NoiDung = Banner.NoiDung;
             Faq.LinkNut = Banner.LinkNut;
             Faq.TieuDe = Banner.TieuDe;
+            Faq.LoaiBanner = Banner.LoaiBanner;
             db.SubmitChanges();
             return image;
 

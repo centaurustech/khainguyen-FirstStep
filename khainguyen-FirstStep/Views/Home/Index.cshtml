@@ -1,16 +1,16 @@
 ﻿@section MeTaHeader
 {
-    <meta property="fb:app_id" content="570964363013096" />
-    <meta property="og:title" content="Trang chủ Firststep - Nơi bắt đầu của những ý tưởng" />
-    <meta property="og:type" content="website" />
-    <meta property="og:img" content="http://www.firststep.vn/Content/Images/Banner/13996b2980437090ff606124226369eb950afcfb9398a72798eb0d6740c62fde.jpg" />
-    <meta property="og:url" content="http://www.firststep.vn/" />
-    <meta property="og:site_name" content="FirstStep" />
-    <meta name="title" content="Firststep" />
-    <meta name="description" content="Firststep là công cụ huy động vốn cộng đồng thân thiện và hiệu quả cho thị trường Việt Nam. Không quan trọng bạn là ai, có ý tưởng - hãy tìm tới Firststep." />
+	<meta property="fb:app_id" content="570964363013096" />
+	<meta property="og:title" content="Trang chủ Firststep - Nơi bắt đầu của những ý tưởng" />
+	<meta property="og:type" content="website" />
+	<meta property="og:img" content="http://www.firststep.vn/Content/Images/Banner/13996b2980437090ff606124226369eb950afcfb9398a72798eb0d6740c62fde.jpg" />
+	<meta property="og:url" content="http://www.firststep.vn/" />
+	<meta property="og:site_name" content="FirstStep" />
+	<meta name="title" content="Firststep" />
+	<meta name="description" content="Firststep là công cụ huy động vốn cộng đồng thân thiện và hiệu quả cho thị trường Việt Nam. Không quan trọng bạn là ai, có ý tưởng - hãy tìm tới Firststep." />
 
-    <link rel="canonical" href="http://www.firststep.vn/" />   
-    <title>Trang chủ - Firststep.vn</title>
+	<link rel="canonical" href="http://www.firststep.vn/" />   
+	<title>Trang chủ - Firststep.vn</title>
 }
 
 <!-- SLIDE-->
@@ -19,224 +19,290 @@
 
 <!-- PANEL STAFF PICK -->
 <div class="panel dark panel-staff-pick">
-    @Html.Action("_TrangChu_NoiBat", "Home")
+	@Html.Action("_TrangChu_NoiBat", "Home")
 </div>
 
  @Html.Action("_TrangChu_Trend_Category", "Home")
 @*<!-- PANEL LIST-ITEM -->
 <div class="panel-list panel1">
-    <div class="container">
-        <div class="category">
-            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án phổ biến</h2>
-            <a href="#" class="btn">View more</a>
-        </div>
-        <div class="list-item">
-       @Html.Action("_TrangChu_NoiBat_Chon1", "Home")
-        </div>
-        <nav class="control-navigation">
-            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
-            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
-        </nav>
-    </div>
+	<div class="container">
+		<div class="category">
+			<h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án phổ biến</h2>
+			<a href="#" class="btn">View more</a>
+		</div>
+		<div class="list-item">
+	   @Html.Action("_TrangChu_NoiBat_Chon1", "Home")
+		</div>
+		<nav class="control-navigation">
+			<button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+			<button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+		</nav>
+	</div>
 </div>
 
 <!-- PANEL LIST-ITEM 2 -->
 <div class="panel-list panel2">
-    <div class="background"><img src="~/Content/cssFrontEnd/upload/project/bg1-1600x1200.jpg" alt="" /></div>
-    <div class="container">
-        <div class="category">
-            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án sắp kết thúc</h2>
-            <a href="#" class="btn">View more</a>
-        </div>
-        <div class="list-item">
-         @Html.Action("_TrangChu_NoiBat_Chon2", "Home")
-          
-        </div>
-        <nav class="control-navigation">
-            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
-            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
-        </nav>
-    </div>
+	<div class="background"><img src="~/Content/cssFrontEnd/upload/project/bg1-1600x1200.jpg" alt="" /></div>
+	<div class="container">
+		<div class="category">
+			<h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án sắp kết thúc</h2>
+			<a href="#" class="btn">View more</a>
+		</div>
+		<div class="list-item">
+		 @Html.Action("_TrangChu_NoiBat_Chon2", "Home")
+		  
+		</div>
+		<nav class="control-navigation">
+			<button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+			<button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+		</nav>
+	</div>
 </div>
 
 <!-- PANEL LIST-ITEM 3 -->
 <div class="panel-list dark panel3">
-    <div class="container">
-        <div class="category">
-            <h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án nhiều người xem</h2>
-            <a href="#" class="btn">View more</a>
-        </div>
-        <div class="list-item">
-             @Html.Action("_TrangChu_NoiBat_Chon3", "Home")  
-        </div>
-        <nav class="control-navigation">
-            <button class="next"><i class="fa-chevron-right color-tiny"></i></button>
-            <button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
-        </nav>
-    </div>
+	<div class="container">
+		<div class="category">
+			<h2 class="color-tiny"><i class="fa-check-circle-o"></i> Dự án nhiều người xem</h2>
+			<a href="#" class="btn">View more</a>
+		</div>
+		<div class="list-item">
+			 @Html.Action("_TrangChu_NoiBat_Chon3", "Home")  
+		</div>
+		<nav class="control-navigation">
+			<button class="next"><i class="fa-chevron-right color-tiny"></i></button>
+			<button class="prev"><i class="fa-chevron-left color-tiny"></i></button>
+		</nav>
+	</div>
 </div>*@
 
 <!-- PANEL QUOTE -->
 @*<div class="panel">
-    @Html.Action("_TrangChu_YKien", "Home")
+	@Html.Action("_TrangChu_YKien", "Home")
 
-    
+	
 
 </div>*@
 
 @*<form enctype ="application/x-www-form-urlencoded" name="frmPayByPayoo" action="@Url.Action("KetQuaThanhToan","ThanhToan")" method="POST" target="_blank" >
-        <input name = "imageField" type = "image" id = "imageField" alt = "Test thử nghiệm gửi gói Post" src = 
-        "https://www.payoo.com.vn/img/button/PayNow.jpg"/> 
-        <input type="hidden" value='<?xml version="1.0"?><PayooConnectionPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Data>PFBheW1lbnROb3RpZmljYXRpb24+PHNob3BzPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c2Vzc2lvbj45NjA0MTUwMTA8L3Nlc3Npb24+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1c2VybmFtZT5wYXlvb2J1c2luZXNzNTwvdXNlcm5hbWU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wX2lkPjQ4NTwvc2hvcF9pZD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNob3BfdGl0bGU+dm5iYXJ0ZXI8L3Nob3BfdGl0bGU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wX2RvbWFpbj5odHRwOi8vdm5iYXJ0ZXIuY29tLnZuPC9zaG9wX2RvbWFpbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNob3BfYmFja191cmw+aHR0cDovL3ZuYmFydGVyLmNvbS52bi9UaGFua1lvdS5hc3B4PC9zaG9wX2JhY2tfdXJsPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8b3JkZXJfbm8+OTYwNDE1MDEwPC9vcmRlcl9ubz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPG9yZGVyX2Nhc2hfYW1vdW50PjQzMDAwPC9vcmRlcl9jYXNoX2Ftb3VudD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPG9yZGVyX3NoaXBfZGF0ZT4wNi8wNi8yMDE1PC9vcmRlcl9zaGlwX2RhdGU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxvcmRlcl9zaGlwX2RheXM+MTwvb3JkZXJfc2hpcF9kYXlzPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8b3JkZXJfZGVzY3JpcHRpb24+JTNjdGFibGUrd2lkdGglM2QlMjcxMDAlMjUlMjcrYm9yZGVyJTNkJTI3MSUyNytjZWxsc3BhY2luZyUzZCUyNzAlMjclM2UlM2N0aGVhZCUzZSUzY3RyJTNlJTNjdGQrd2lkdGglM2QlMjc0MCUyNSUyNythbGlnbiUzZCUyN2NlbnRlciUyNyUzZSUzY2IlM2VUJWMzJWFhbitoJWMzJWEwbmclM2MlMmZiJTNlJTNjJTJmdGQlM2UlM2N0ZCt3aWR0aCUzZCUyNzIwJTI1JTI3K2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlJTNjYiUzZSVjNCU5MCVjNiVhMW4rZ2klYzMlYTElM2MlMmZiJTNlJTNjJTJmdGQlM2UlM2N0ZCt3aWR0aCUzZCUyNzE1JTI1JTI3K2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlJTNjYiUzZVMlZTElYmIlOTErbCVjNiViMCVlMSViYiVhM25nJTNjJTJmYiUzZSUzYyUyZnRkJTNlJTNjdGQrd2lkdGglM2QlMjcyNSUyNSUyNythbGlnbiUzZCUyN2NlbnRlciUyNyUzZSUzY2IlM2VUaCVjMyVhMG5oK3RpJWUxJWJiJTgxbiUzYyUyZmIlM2UlM2MlMmZ0ZCUzZSUzYyUyZnRyJTNlJTNjJTJmdGhlYWQlM2UlM2N0Ym9keSUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdsZWZ0JTI3JTNlSFArUGF2aWxpb24rRFYzLTM1MDJUWCUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTIzJTJjMDAwJTNjJTJmdGQlM2UlM2N0ZCthbGlnbiUzZCUyN2NlbnRlciUyNyUzZTElM2MlMmZ0ZCUzZSUzY3RkK2FsaWduJTNkJTI3cmlnaHQlMjclM2UyMyUyYzAwMCUzYyUyZnRkJTNlJTNjJTJmdHIlM2UlM2N0ciUzZSUzY3RkK2FsaWduJTNkJTI3bGVmdCUyNyUzZUZBTitOb3RlYm9vaysoQjQpJTNjJTJmdGQlM2UlM2N0ZCthbGlnbiUzZCUyN3JpZ2h0JTI3JTNlMTAlMmMwMDAlM2MlMmZ0ZCUzZSUzY3RkK2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlMSUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTEwJTJjMDAwJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNytjb2xzcGFuJTNkJTI3MyUyNyUzZSUzY2IlM2VUJWUxJWJiJTk1bmcrdGklZTElYmIlODFuJTNhJTNjJTJmYiUzZSUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTQzJTJjMDAwJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdsZWZ0JTI3K2NvbHNwYW4lM2QlMjc0JTI3JTNlU29tZStub3Rlcytmb3IrdGhlK29yZGVyJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzYyUyZnRib2R5JTNlJTNjJTJmdGFibGUlM2U8L29yZGVyX2Rlc2NyaXB0aW9uPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bm90aWZ5X3VybD5odHRwOi8vMTkyLjE2OC4xMS4zMTo4MzMzL05vdGlmeUxpc3RlbmVyLmFzcHg8L25vdGlmeV91cmw+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zaG9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zaG9wcz48U3RhdGU+UEFZTUVOVF9SRUNFSVZFRDwvU3RhdGU+PC9QYXltZW50Tm90aWZpY2F0aW9uPg==</Data><Signature>MIIBfwYJKoZIhvcNAQcCoIIBcDCCAWwCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAUswggFHAgEBMIGkMIGWMQswCQYDVQQGEwJWTjEQMA4GA1UECBMHTWllbk5hbTEOMAwGA1UEBxMFVFBIQ00xEjAQBgNVBAoTCVNhaWdvblRlbDESMBAGA1UECxMJVmlldFVuaW9uMRIwEAYDVQQDEwlWaWV0VW5pb24xKTAnBgkqhkiG9w0BCQEWGnR1YW4ucGhhbkB2aWV0dWlub24uY29tLnZuAgkApXFVkJfVjMUwCQYFKw4DAhoFADANBgkqhkiG9w0BAQEFAASBgGeiysq2/hlNg4PcJd+KLX0nIZohXN2v54Qo2uMY2Czf5c53ZTbCBHC6xP/uG5TaGo1U0Nabg4lS6OiimseVsZPtDxixrZF8OgEfXXIaxFsDeV/fpU6xR3kSwvpstceGxZQMpVAnm0lG6xLNNCRPw8hlYMZqzbUfMFfdvE1OuYzX</Signature><PayooSessionID>1t4zWypbLAfN+aFit0nPMswqMtgsP2LMidJHCZx1bWxp2CScSVb/JWPby88TfH+8m7SXoJFuC7iWsHZ7k/QIiA==</PayooSessionID></PayooConnectionPackage>' name="NotifyData" />
-        </form>*@
+		<input name = "imageField" type = "image" id = "imageField" alt = "Test thử nghiệm gửi gói Post" src = 
+		"https://www.payoo.com.vn/img/button/PayNow.jpg"/> 
+		<input type="hidden" value='<?xml version="1.0"?><PayooConnectionPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Data>PFBheW1lbnROb3RpZmljYXRpb24+PHNob3BzPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8c2Vzc2lvbj45NjA0MTUwMTA8L3Nlc3Npb24+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDx1c2VybmFtZT5wYXlvb2J1c2luZXNzNTwvdXNlcm5hbWU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wX2lkPjQ4NTwvc2hvcF9pZD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNob3BfdGl0bGU+dm5iYXJ0ZXI8L3Nob3BfdGl0bGU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxzaG9wX2RvbWFpbj5odHRwOi8vdm5iYXJ0ZXIuY29tLnZuPC9zaG9wX2RvbWFpbj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHNob3BfYmFja191cmw+aHR0cDovL3ZuYmFydGVyLmNvbS52bi9UaGFua1lvdS5hc3B4PC9zaG9wX2JhY2tfdXJsPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8b3JkZXJfbm8+OTYwNDE1MDEwPC9vcmRlcl9ubz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPG9yZGVyX2Nhc2hfYW1vdW50PjQzMDAwPC9vcmRlcl9jYXNoX2Ftb3VudD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPG9yZGVyX3NoaXBfZGF0ZT4wNi8wNi8yMDE1PC9vcmRlcl9zaGlwX2RhdGU+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxvcmRlcl9zaGlwX2RheXM+MTwvb3JkZXJfc2hpcF9kYXlzPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8b3JkZXJfZGVzY3JpcHRpb24+JTNjdGFibGUrd2lkdGglM2QlMjcxMDAlMjUlMjcrYm9yZGVyJTNkJTI3MSUyNytjZWxsc3BhY2luZyUzZCUyNzAlMjclM2UlM2N0aGVhZCUzZSUzY3RyJTNlJTNjdGQrd2lkdGglM2QlMjc0MCUyNSUyNythbGlnbiUzZCUyN2NlbnRlciUyNyUzZSUzY2IlM2VUJWMzJWFhbitoJWMzJWEwbmclM2MlMmZiJTNlJTNjJTJmdGQlM2UlM2N0ZCt3aWR0aCUzZCUyNzIwJTI1JTI3K2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlJTNjYiUzZSVjNCU5MCVjNiVhMW4rZ2klYzMlYTElM2MlMmZiJTNlJTNjJTJmdGQlM2UlM2N0ZCt3aWR0aCUzZCUyNzE1JTI1JTI3K2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlJTNjYiUzZVMlZTElYmIlOTErbCVjNiViMCVlMSViYiVhM25nJTNjJTJmYiUzZSUzYyUyZnRkJTNlJTNjdGQrd2lkdGglM2QlMjcyNSUyNSUyNythbGlnbiUzZCUyN2NlbnRlciUyNyUzZSUzY2IlM2VUaCVjMyVhMG5oK3RpJWUxJWJiJTgxbiUzYyUyZmIlM2UlM2MlMmZ0ZCUzZSUzYyUyZnRyJTNlJTNjJTJmdGhlYWQlM2UlM2N0Ym9keSUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdsZWZ0JTI3JTNlSFArUGF2aWxpb24rRFYzLTM1MDJUWCUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTIzJTJjMDAwJTNjJTJmdGQlM2UlM2N0ZCthbGlnbiUzZCUyN2NlbnRlciUyNyUzZTElM2MlMmZ0ZCUzZSUzY3RkK2FsaWduJTNkJTI3cmlnaHQlMjclM2UyMyUyYzAwMCUzYyUyZnRkJTNlJTNjJTJmdHIlM2UlM2N0ciUzZSUzY3RkK2FsaWduJTNkJTI3bGVmdCUyNyUzZUZBTitOb3RlYm9vaysoQjQpJTNjJTJmdGQlM2UlM2N0ZCthbGlnbiUzZCUyN3JpZ2h0JTI3JTNlMTAlMmMwMDAlM2MlMmZ0ZCUzZSUzY3RkK2FsaWduJTNkJTI3Y2VudGVyJTI3JTNlMSUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTEwJTJjMDAwJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNytjb2xzcGFuJTNkJTI3MyUyNyUzZSUzY2IlM2VUJWUxJWJiJTk1bmcrdGklZTElYmIlODFuJTNhJTNjJTJmYiUzZSUzYyUyZnRkJTNlJTNjdGQrYWxpZ24lM2QlMjdyaWdodCUyNyUzZTQzJTJjMDAwJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzY3RyJTNlJTNjdGQrYWxpZ24lM2QlMjdsZWZ0JTI3K2NvbHNwYW4lM2QlMjc0JTI3JTNlU29tZStub3Rlcytmb3IrdGhlK29yZGVyJTNjJTJmdGQlM2UlM2MlMmZ0ciUzZSUzYyUyZnRib2R5JTNlJTNjJTJmdGFibGUlM2U8L29yZGVyX2Rlc2NyaXB0aW9uPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bm90aWZ5X3VybD5odHRwOi8vMTkyLjE2OC4xMS4zMTo4MzMzL05vdGlmeUxpc3RlbmVyLmFzcHg8L25vdGlmeV91cmw+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zaG9wPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9zaG9wcz48U3RhdGU+UEFZTUVOVF9SRUNFSVZFRDwvU3RhdGU+PC9QYXltZW50Tm90aWZpY2F0aW9uPg==</Data><Signature>MIIBfwYJKoZIhvcNAQcCoIIBcDCCAWwCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHATGCAUswggFHAgEBMIGkMIGWMQswCQYDVQQGEwJWTjEQMA4GA1UECBMHTWllbk5hbTEOMAwGA1UEBxMFVFBIQ00xEjAQBgNVBAoTCVNhaWdvblRlbDESMBAGA1UECxMJVmlldFVuaW9uMRIwEAYDVQQDEwlWaWV0VW5pb24xKTAnBgkqhkiG9w0BCQEWGnR1YW4ucGhhbkB2aWV0dWlub24uY29tLnZuAgkApXFVkJfVjMUwCQYFKw4DAhoFADANBgkqhkiG9w0BAQEFAASBgGeiysq2/hlNg4PcJd+KLX0nIZohXN2v54Qo2uMY2Czf5c53ZTbCBHC6xP/uG5TaGo1U0Nabg4lS6OiimseVsZPtDxixrZF8OgEfXXIaxFsDeV/fpU6xR3kSwvpstceGxZQMpVAnm0lG6xLNNCRPw8hlYMZqzbUfMFfdvE1OuYzX</Signature><PayooSessionID>1t4zWypbLAfN+aFit0nPMswqMtgsP2LMidJHCZx1bWxp2CScSVb/JWPby88TfH+8m7SXoJFuC7iWsHZ7k/QIiA==</PayooSessionID></PayooConnectionPackage>' name="NotifyData" />
+		</form>*@
 @section jqueryPlugin{
-    <!-- JQUERY CUSTOM -->
-    <script>
-        // Slide đầu full screen
-        $(document).ready(function () {
-            var $slides = $('#slides');
-            Hammer($slides[0]).on("swipeleft", function (e) {
-                $slides.data('superslides').animate('next');
-            });
+	<!-- JQUERY CUSTOM -->
+	<script type="text/javascript">
 
-            Hammer($slides[0]).on("swiperight", function (e) {
-                $slides.data('superslides').animate('prev');
-            });
-            $slides.superslides({
-                slide_easing: 'easeInOutCubic',
-                slide_speed: 500,
-                pagination: true,
-                hashchange: false,
-                scrollable: true,
-                play: 10000,
-                animation: 'fade'
-            });
-        });
+				$(document).ready(function() {	
 
-    </script>
-    <script type="text/javascript">
-        if (window.location.hash == '#_=_') {
-            window.location.hash = ''; // for older browsers, leaves a # behind
-            history.pushState('', document.title, window.location.pathname); // nice and clean
-            e.preventDefault(); // no page reload
-        }
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var owl1 = $(".panel1 .list-item");
+					$('.tp-banner').show().revolution(
+					{
+						dottedOverlay:"none",
+						delay:5000,
+						startwidth:1400,
+						startheight:690,
+						hideThumbs:200,
+						
+						thumbWidth:100,
+						thumbHeight:50,
+						thumbAmount:5,
+						
+						navigationType:"bullet",
+						navigationArrows:"solo",
+						navigationStyle:"preview1",
+						
+						touchenabled:"on",
+						onHoverStop:"off",
+						
+						swipe_velocity: 0.7,
+						swipe_min_touches: 1,
+						swipe_max_touches: 1,
+						drag_block_vertical: false,
+												
+												parallax:"mouse",
+						parallaxBgFreeze:"on",
+						parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+												
+						keyboardNavigation:"off",
+						
+						navigationHAlign:"center",
+						navigationVAlign:"bottom",
+						navigationHOffset:0,
+						navigationVOffset:20,
 
-            owl1.owlCarousel({
-                items: 3, //10 items above 1000px browser width
-                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
-                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
-                itemsTablet: [768, 2], //2 items between 600 and 0
-                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
-                lazyLoad: true,
-                slideSpeed: 500
-            });
+						soloArrowLeftHalign:"left",
+						soloArrowLeftValign:"center",
+						soloArrowLeftHOffset:20,
+						soloArrowLeftVOffset:0,
 
-            $('.panel1 .prev').click(function (e) {
-                e.preventDefault();
-                owl1.trigger('owl.prev');
-            });
+						soloArrowRightHalign:"right",
+						soloArrowRightValign:"center",
+						soloArrowRightHOffset:20,
+						soloArrowRightVOffset:0,
+								
+						shadow:0,
+						fullWidth:"on",
+						fullScreen:"off",
 
-            $('.panel1 .next').click(function (e) {
-                e.preventDefault();
-                owl1.trigger('owl.next');
-            });
+						spinner:"spinner4",
+						
+						stopLoop:"off",
+						stopAfterLoops:-1,
+						stopAtSlide:-1,
 
-            var owl2 = $(".panel2 .list-item");
+						shuffle:"off",
+						
+						autoHeight:"off",						
+						forceFullWidth:"off",						
+												
+												
+												
+						hideThumbsOnMobile:"off",
+						hideNavDelayOnMobile:1500,						
+						hideBulletsOnMobile:"off",
+						hideArrowsOnMobile:"off",
+						hideThumbsUnderResolution:0,
+						
+						hideSliderAtLimit:0,
+						hideCaptionAtLimit:0,
+						hideAllCaptionAtLilmit:0,
+						startWithSlide:0,
+						videoJsPath:"rs-plugin/videojs/",
+						fullScreenOffsetContainer: ""	
+					});
+					
+					
+					
+									
+				});	//ready
+				
+			</script>   
+	<script type="text/javascript">
+		if (window.location.hash == '#_=_') {
+			window.location.hash = ''; // for older browsers, leaves a # behind
+			history.pushState('', document.title, window.location.pathname); // nice and clean
+			e.preventDefault(); // no page reload
+		}
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var owl1 = $(".panel1 .list-item");
 
-            owl2.owlCarousel({
-                items: 3, //10 items above 1000px browser width
-                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
-                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
-                itemsTablet: [768, 2], //2 items between 600 and 0
-                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
-                lazyLoad: true,
-                slideSpeed: 500
-            });
+			owl1.owlCarousel({
+				items: 3, //10 items above 1000px browser width
+				itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+				itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+				itemsTablet: [768, 2], //2 items between 600 and 0
+				itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+				lazyLoad: true,
+				slideSpeed: 500
+			});
 
-            $('.panel2 .prev').click(function (e) {
-                e.preventDefault();
-                owl2.trigger('owl.prev');
-            });
+			$('.panel1 .prev').click(function (e) {
+				e.preventDefault();
+				owl1.trigger('owl.prev');
+			});
 
-            $('.panel2 .next').click(function (e) {
-                e.preventDefault();
-                owl2.trigger('owl.next');
-            });
+			$('.panel1 .next').click(function (e) {
+				e.preventDefault();
+				owl1.trigger('owl.next');
+			});
 
-            var owl3 = $(".panel3 .list-item");
+			var owl2 = $(".panel2 .list-item");
 
-            owl3.owlCarousel({
-                items: 3, //10 items above 1000px browser width
-                itemsDesktop: [4030, 3], //5 items between 1000px and 901px
-                itemsDesktopSmall: [900, 3], // betweem 900px and 601px
-                itemsTablet: [768, 2], //2 items between 600 and 0
-                itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
-                lazyLoad: true,
-                slideSpeed: 500
-            });
+			owl2.owlCarousel({
+				items: 3, //10 items above 1000px browser width
+				itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+				itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+				itemsTablet: [768, 2], //2 items between 600 and 0
+				itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+				lazyLoad: true,
+				slideSpeed: 500
+			});
 
-            $('.panel3 .prev').click(function (e) {
-                e.preventDefault();
-                owl3.trigger('owl.prev');
-            });
+			$('.panel2 .prev').click(function (e) {
+				e.preventDefault();
+				owl2.trigger('owl.prev');
+			});
 
-            $('.panel3 .next').click(function (e) {
-                e.preventDefault();
-                owl3.trigger('owl.next');
-            });
+			$('.panel2 .next').click(function (e) {
+				e.preventDefault();
+				owl2.trigger('owl.next');
+			});
 
-            var owl4 = $(".quote-slide .slide");
+			var owl3 = $(".panel3 .list-item");
 
-            owl4.owlCarousel({
-                navigation: false,
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true,
-                autoPlay: 7000,
-                pagination: false
-            });
+			owl3.owlCarousel({
+				items: 3, //10 items above 1000px browser width
+				itemsDesktop: [4030, 3], //5 items between 1000px and 901px
+				itemsDesktopSmall: [900, 3], // betweem 900px and 601px
+				itemsTablet: [768, 2], //2 items between 600 and 0
+				itemsMobile: [320, 1], // itemsMobile disabled - inherit from itemsTablet option
+				lazyLoad: true,
+				slideSpeed: 500
+			});
 
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // staff pick
-            var owl5 = $(".list-item-tag");
+			$('.panel3 .prev').click(function (e) {
+				e.preventDefault();
+				owl3.trigger('owl.prev');
+			});
 
-            owl5.owlCarousel({
-                navigation: false,
-                slideSpeed: 300,
-                paginationSpeed: 400,
-                singleItem: true,
-                pagination: false,
-                touchDrag: false,
-                mouseDrag: false
-            });
+			$('.panel3 .next').click(function (e) {
+				e.preventDefault();
+				owl3.trigger('owl.next');
+			});
 
-            $('.list-tag a').click(function (e) {
-                e.preventDefault();
-                $('.list-tag a').removeClass('active');
-                $(this).addClass('active');
-                owl5.trigger('owl.goTo', $(this).index());
-            });
+			var owl4 = $(".quote-slide .slide");
 
-        });
-    </script>
-    <!--Start of Zopim Live Chat Script-->
-    <script type="text/javascript">
-        window.$zopim || (function (d, s) {
-            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
-                z.set.
-                _.push(o)
-            }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
-            $.src = "//v2.zopim.com/?3CGYmoU6g119BLNefkNxXfDxOKxZp1z0"; z.t = +new Date; $.
-            type = "text/javascript"; e.parentNode.insertBefore($, e)
-        })(document, "script");
-    </script>
-    <!--End of Zopim Live Chat Script-->
+			owl4.owlCarousel({
+				navigation: false,
+				slideSpeed: 300,
+				paginationSpeed: 400,
+				singleItem: true,
+				autoPlay: 7000,
+				pagination: false
+			});
+			
+			
+
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// staff pick
+			var owl5 = $(".list-item-tag");
+
+			owl5.owlCarousel({
+				navigation: false,
+				slideSpeed: 300,
+				paginationSpeed: 400,
+				singleItem: true,
+				pagination: false,
+				touchDrag: false,
+				mouseDrag: false
+			});
+
+			$('.list-tag a').click(function (e) {
+				e.preventDefault();
+				$('.list-tag a').removeClass('active');
+				$(this).addClass('active');
+				owl5.trigger('owl.goTo', $(this).index());
+			});       
+			
+
+		});
+	</script>
+	<!--Start of Zopim Live Chat Script-->
+	<script type="text/javascript">
+		window.$zopim || (function (d, s) {
+			var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+			d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+				z.set.
+				_.push(o)
+			}; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+			$.src = "//v2.zopim.com/?3CGYmoU6g119BLNefkNxXfDxOKxZp1z0"; z.t = +new Date; $.
+			type = "text/javascript"; e.parentNode.insertBefore($, e)
+		})(document, "script");
+	</script>
+	<!--End of Zopim Live Chat Script-->
 }

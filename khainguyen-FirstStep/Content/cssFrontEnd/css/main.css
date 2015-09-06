@@ -1,9 +1,9 @@
 /* MAIN */     /* font-family: Helvetica, Arial, sans-serif; */
 
 body{
-    font-family: 'Source Sans Pro', sans-serif;
-    line-height: 1.3;
-    font-size: 16px;
+	font-family: 'Source Sans Pro', sans-serif;
+	line-height: 1.3;
+	font-size: 16px;
 }
 #body{background-color: #fff;}
 
@@ -69,16 +69,12 @@ button{cursor: pointer;}
 	================ <header> ================
 */
 #slides{ width: 100%;}
-.menu-fix{background: rgba(38, 38, 38,0.9);
-          background: -webkit-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1));
-          background: -o-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1));
-          background: -moz-linear-gradient(bottom,rgba(38, 38, 38,0.9),rgba(50, 50, 50,1)); 
-          background: linear-gradient(to bottom, rgba(38, 38, 38,0.9), rgba(50, 50, 50,1)); 
-          position: fixed; top: 0; left: 0; right: 0; height: 50px; z-index:9998; box-shadow: 0 1px 10px rgba(0,0,0,0.5);}
-    .logo{font-family: 'Sansita One', cursive; font-size: 36px; color: #0092c8; float: left; }
-    .menu-top{float:left; margin: 15px 0 0 20px;}
-    .menu-top a{color: #fff; padding: 15px 20px; font-weight: 300;}
-    .menu-top a:hover{color: #ffb116;}
+.menu-fix{background: rgba(20, 20, 20,0.9);
+		  position: fixed; top: 0; left: 0; right: 0; height: 50px; z-index:9998; box-shadow: 0 1px 10px rgba(0,0,0,0.5);}
+	.logo{font-family: 'Sansita One', cursive; font-size: 36px; color: #0092c8; float: left; margin-top:-3px; }
+	.menu-top{float:left; margin: 15px 0 0 20px;}
+	.menu-top a{color: #fff; padding: 15px 20px; font-weight: 300;}
+	.menu-top a:hover{color: #ffb116;}
 
 .menu-fix form{float: left; margin: 13px 0 0 30px;}
 .menu-fix button{background-color: transparent; border: 0; color: #fff; float: left; outline: 0; font-size: 1.3em; margin-top: -1px;}
@@ -90,7 +86,7 @@ button{cursor: pointer;}
 .menu-login a{color: #fff; padding: 15px 20px; font-weight: 300;}
 .menu-login a:hover{color: #ffb116;}
 .btnUser{padding: 15px 10px!important;}
-.btnUser img{width: 30px; height: 30px; border-radius: 3px; float:left; margin-top: -8px;}
+.btnUser img{width: 30px; height: 30px; border-radius: 3px; float:left; margin-top: -4px;}
 
 .menu-user{position: absolute; right: 0; background: rgba(38, 38, 38,0.9); top: 35px; padding: 10px; min-width: 400px; box-shadow: 2px 2px 5px rgba(0,0,0,0.5); border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; display: none;}
 .menu-user a{display: block; padding: 5px 10px; font-size: 0.9em; font-weight: 400;}
@@ -132,7 +128,7 @@ button{cursor: pointer;}
 .item-project .border{border: 1px solid #e5e5e5;overflow: hidden; padding: 7px; background-color:#fff; border-radius: 3px; }
 .item-project:hover .img img { -webkit-transform: scale(1.07,1.07); -moz-transform: scale(1.07,1.07);-ms-transform: scale(1.07,1.07); -o-transform: scale(1.07,1.07); transform: scale(1.07,1.07); }
 .owl-item .item-project {
-    width: 96%; margin: 5px 2% 15px 2%;
+	width: 96%; margin: 5px 2% 15px 2%;
 }
 
 .panel-list{background-color: #fff; overflow: hidden; padding: 30px 0; position: relative;}
@@ -482,7 +478,7 @@ textarea{outline: 0}
 a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 
 @media (max-width: 767px) {
-    .slider-fix-300 .faq-logo{font-size:4em;}
+	.slider-fix-300 .faq-logo{font-size:4em;}
 }
 
 /* MANH QUYEN TA ADD CSS 24/06/2015 */
@@ -502,55 +498,55 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 }
 .img span
 {
-    position:absolute;
-    background-color:#0092c8;
-    color:#fff;
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
-    transform: rotate(-45deg);
-    padding:5px 15px;
-    text-transform:uppercase;
-    top: 22px;
-    left: -72px;
-    text-align:center;
-    min-width: 189px;
+	position:absolute;
+	background-color:#0092c8;
+	color:#fff;
+	-ms-transform: rotate(-45deg); /* IE 9 */
+	-webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+	transform: rotate(-45deg);
+	padding:5px 15px;
+	text-transform:uppercase;
+	top: 22px;
+	left: -72px;
+	text-align:center;
+	min-width: 189px;
 }
 .img span.small-tag
 {
-    z-index:99;
+	z-index:99;
 }
 .soitem-1 div
 {
-    width:100%!important;
-    margin:0!important;
+	width:100%!important;
+	margin:0!important;
 }
 .soitem-1 .item-project .img
 {
-    width:30%!important;
-    float:left;
-    margin-right:1%!important;
+	width:30%!important;
+	float:left;
+	margin-right:1%!important;
 }
 .soitem-1 .item-project .title,.soitem-1 .item-project .des,.soitem-1 .item-project .tag,.soitem-1 .item-project .pledge,.soitem-1 .item-project .percent
 {
-    float:left;
-    width:67%!important;
-    clear:inherit;
+	float:left;
+	width:67%!important;
+	clear:inherit;
 }
 .soitem-1 .item-project .title
 {
-    margin:0;
-    padding:0;
+	margin:0;
+	padding:0;
 }
 .soitem-1 .item-project .percent
 {
-    border-radius:3px;
-    margin-top:10px!important;
+	border-radius:3px;
+	margin-top:10px!important;
 }
 .soitem-1 .item-project .pledge>div
 {
-    float:left;
-    width:120px!important;
-    margin-top:10px!important;
+	float:left;
+	width:120px!important;
+	margin-top:10px!important;
 }
 
 
@@ -562,15 +558,15 @@ a.proj-tab-nav-special{float:right;border-top-right-radius:0; color: #fff;}
 
 /* RESPONSIVE HOMEPAGE Iphone */
 @media only screen and (min-width:320px) and (max-width:480px){
-    .soitem-1 .item-project .img,.soitem-1 .item-project .title, .soitem-1 .item-project .des, .soitem-1 .item-project .tag, .soitem-1 .item-project .pledge, .soitem-1 .item-project .percent
-    {
-        width:100%!important;
-    }
-    .col-3
-    {
-        width:50%!important;
-    }
-    .hidden-xs{display:none!important;}
+	.soitem-1 .item-project .img,.soitem-1 .item-project .title, .soitem-1 .item-project .des, .soitem-1 .item-project .tag, .soitem-1 .item-project .pledge, .soitem-1 .item-project .percent
+	{
+		width:100%!important;
+	}
+	.col-3
+	{
+		width:50%!important;
+	}
+	.hidden-xs{display:none!important;}
 }
 
 /* Web Essentials 2013 */

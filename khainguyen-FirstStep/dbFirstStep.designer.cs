@@ -11,10 +11,16 @@
 
 namespace khainguyen_FirstStep
 {
-    using System;
-    using System.ComponentModel;
-    using System.Data.Linq;
-    using System.Data.Linq.Mapping;
+	using System.Data.Linq;
+	using System.Data.Linq.Mapping;
+	using System.Data;
+	using System.Collections.Generic;
+	using System.Reflection;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.ComponentModel;
+	using System;
+    using khainguyen_FirstStep.Areas.AdminCP.Models;
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Firststep_db")]
@@ -23,102 +29,102 @@ namespace khainguyen_FirstStep
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
-    #region Extensibility Method Definitions
-    partial void OnCreated();
-    partial void InsertEntityTrend(EntityTrend instance);
-    partial void UpdateEntityTrend(EntityTrend instance);
-    partial void DeleteEntityTrend(EntityTrend instance);
-    partial void InsertEntityBanner(EntityBanner instance);
-    partial void UpdateEntityBanner(EntityBanner instance);
-    partial void DeleteEntityBanner(EntityBanner instance);
-    partial void InsertEntityBaoCao(EntityBaoCao instance);
-    partial void UpdateEntityBaoCao(EntityBaoCao instance);
-    partial void DeleteEntityBaoCao(EntityBaoCao instance);
-    partial void InsertEntityBinhLuan(EntityBinhLuan instance);
-    partial void UpdateEntityBinhLuan(EntityBinhLuan instance);
-    partial void DeleteEntityBinhLuan(EntityBinhLuan instance);
-    partial void InsertEntityDanhMuc(EntityDanhMuc instance);
-    partial void UpdateEntityDanhMuc(EntityDanhMuc instance);
-    partial void DeleteEntityDanhMuc(EntityDanhMuc instance);
-    partial void InsertEntityDuAn(EntityDuAn instance);
-    partial void UpdateEntityDuAn(EntityDuAn instance);
-    partial void DeleteEntityDuAn(EntityDuAn instance);
-    partial void InsertEntityHoatDong(EntityHoatDong instance);
-    partial void UpdateEntityHoatDong(EntityHoatDong instance);
-    partial void DeleteEntityHoatDong(EntityHoatDong instance);
-    partial void InsertEntityPhanThuong(EntityPhanThuong instance);
-    partial void UpdateEntityPhanThuong(EntityPhanThuong instance);
-    partial void DeleteEntityPhanThuong(EntityPhanThuong instance);
-    partial void InsertEntityQuote(EntityQuote instance);
-    partial void UpdateEntityQuote(EntityQuote instance);
-    partial void DeleteEntityQuote(EntityQuote instance);
-    partial void InsertEntityTheoDoi(EntityTheoDoi instance);
-    partial void UpdateEntityTheoDoi(EntityTheoDoi instance);
-    partial void DeleteEntityTheoDoi(EntityTheoDoi instance);
-    partial void InsertEntityTimBan(EntityTimBan instance);
-    partial void UpdateEntityTimBan(EntityTimBan instance);
-    partial void DeleteEntityTimBan(EntityTimBan instance);
-    partial void InsertEntityUser(EntityUser instance);
-    partial void UpdateEntityUser(EntityUser instance);
-    partial void DeleteEntityUser(EntityUser instance);
-    partial void InsertEntityCapNhatDuAn(EntityCapNhatDuAn instance);
-    partial void UpdateEntityCapNhatDuAn(EntityCapNhatDuAn instance);
-    partial void DeleteEntityCapNhatDuAn(EntityCapNhatDuAn instance);
-    partial void InsertEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
-    partial void UpdateEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
-    partial void DeleteEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
-    partial void InsertEntityChiTietDuAn(EntityChiTietDuAn instance);
-    partial void UpdateEntityChiTietDuAn(EntityChiTietDuAn instance);
-    partial void DeleteEntityChiTietDuAn(EntityChiTietDuAn instance);
-    partial void InsertEntityDauTu(EntityDauTu instance);
-    partial void UpdateEntityDauTu(EntityDauTu instance);
-    partial void DeleteEntityDauTu(EntityDauTu instance);
-    partial void InsertEntityDuAnFeature(EntityDuAnFeature instance);
-    partial void UpdateEntityDuAnFeature(EntityDuAnFeature instance);
-    partial void DeleteEntityDuAnFeature(EntityDuAnFeature instance);
-    partial void InsertEntityDuAnTag(EntityDuAnTag instance);
-    partial void UpdateEntityDuAnTag(EntityDuAnTag instance);
-    partial void DeleteEntityDuAnTag(EntityDuAnTag instance);
-    partial void InsertEntityFAQ(EntityFAQ instance);
-    partial void UpdateEntityFAQ(EntityFAQ instance);
-    partial void DeleteEntityFAQ(EntityFAQ instance);
-    partial void InsertEntityFAQ1(EntityFAQ1 instance);
-    partial void UpdateEntityFAQ1(EntityFAQ1 instance);
-    partial void DeleteEntityFAQ1(EntityFAQ1 instance);
-    partial void InsertEntityFeedbackFAQ(EntityFeedbackFAQ instance);
-    partial void UpdateEntityFeedbackFAQ(EntityFeedbackFAQ instance);
-    partial void DeleteEntityFeedbackFAQ(EntityFeedbackFAQ instance);
-    partial void InsertEntityGroupFAQ(EntityGroupFAQ instance);
-    partial void UpdateEntityGroupFAQ(EntityGroupFAQ instance);
-    partial void DeleteEntityGroupFAQ(EntityGroupFAQ instance);
-    partial void InsertEntityHomePage(EntityHomePage instance);
-    partial void UpdateEntityHomePage(EntityHomePage instance);
-    partial void DeleteEntityHomePage(EntityHomePage instance);
-    partial void InsertEntityLoaiFAQ(EntityLoaiFAQ instance);
-    partial void UpdateEntityLoaiFAQ(EntityLoaiFAQ instance);
-    partial void DeleteEntityLoaiFAQ(EntityLoaiFAQ instance);
-    partial void InsertEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
-    partial void UpdateEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
-    partial void DeleteEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
-    partial void InsertEntityNhomChienDich(EntityNhomChienDich instance);
-    partial void UpdateEntityNhomChienDich(EntityNhomChienDich instance);
-    partial void DeleteEntityNhomChienDich(EntityNhomChienDich instance);
-    partial void InsertEntityNoiDungLink(EntityNoiDungLink instance);
-    partial void UpdateEntityNoiDungLink(EntityNoiDungLink instance);
-    partial void DeleteEntityNoiDungLink(EntityNoiDungLink instance);
-    partial void InsertEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
-    partial void UpdateEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
-    partial void DeleteEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
-    partial void InsertEntityThongTinDuAn(EntityThongTinDuAn instance);
-    partial void UpdateEntityThongTinDuAn(EntityThongTinDuAn instance);
-    partial void DeleteEntityThongTinDuAn(EntityThongTinDuAn instance);
-    partial void InsertEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
-    partial void UpdateEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
-    partial void DeleteEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
-    partial void InsertEntityTinNhan(EntityTinNhan instance);
-    partial void UpdateEntityTinNhan(EntityTinNhan instance);
-    partial void DeleteEntityTinNhan(EntityTinNhan instance);
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnCreated();
+	partial void InsertEntityTrend(EntityTrend instance);
+	partial void UpdateEntityTrend(EntityTrend instance);
+	partial void DeleteEntityTrend(EntityTrend instance);
+	partial void InsertEntityBanner(EntityBanner instance);
+	partial void UpdateEntityBanner(EntityBanner instance);
+	partial void DeleteEntityBanner(EntityBanner instance);
+	partial void InsertEntityBaoCao(EntityBaoCao instance);
+	partial void UpdateEntityBaoCao(EntityBaoCao instance);
+	partial void DeleteEntityBaoCao(EntityBaoCao instance);
+	partial void InsertEntityBinhLuan(EntityBinhLuan instance);
+	partial void UpdateEntityBinhLuan(EntityBinhLuan instance);
+	partial void DeleteEntityBinhLuan(EntityBinhLuan instance);
+	partial void InsertEntityDanhMuc(EntityDanhMuc instance);
+	partial void UpdateEntityDanhMuc(EntityDanhMuc instance);
+	partial void DeleteEntityDanhMuc(EntityDanhMuc instance);
+	partial void InsertEntityDuAn(EntityDuAn instance);
+	partial void UpdateEntityDuAn(EntityDuAn instance);
+	partial void DeleteEntityDuAn(EntityDuAn instance);
+	partial void InsertEntityHoatDong(EntityHoatDong instance);
+	partial void UpdateEntityHoatDong(EntityHoatDong instance);
+	partial void DeleteEntityHoatDong(EntityHoatDong instance);
+	partial void InsertEntityPhanThuong(EntityPhanThuong instance);
+	partial void UpdateEntityPhanThuong(EntityPhanThuong instance);
+	partial void DeleteEntityPhanThuong(EntityPhanThuong instance);
+	partial void InsertEntityQuote(EntityQuote instance);
+	partial void UpdateEntityQuote(EntityQuote instance);
+	partial void DeleteEntityQuote(EntityQuote instance);
+	partial void InsertEntityTheoDoi(EntityTheoDoi instance);
+	partial void UpdateEntityTheoDoi(EntityTheoDoi instance);
+	partial void DeleteEntityTheoDoi(EntityTheoDoi instance);
+	partial void InsertEntityTimBan(EntityTimBan instance);
+	partial void UpdateEntityTimBan(EntityTimBan instance);
+	partial void DeleteEntityTimBan(EntityTimBan instance);
+	partial void InsertEntityUser(EntityUser instance);
+	partial void UpdateEntityUser(EntityUser instance);
+	partial void DeleteEntityUser(EntityUser instance);
+	partial void InsertEntityCapNhatDuAn(EntityCapNhatDuAn instance);
+	partial void UpdateEntityCapNhatDuAn(EntityCapNhatDuAn instance);
+	partial void DeleteEntityCapNhatDuAn(EntityCapNhatDuAn instance);
+	partial void InsertEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
+	partial void UpdateEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
+	partial void DeleteEntityChiTietDanhMuc(EntityChiTietDanhMuc instance);
+	partial void InsertEntityChiTietDuAn(EntityChiTietDuAn instance);
+	partial void UpdateEntityChiTietDuAn(EntityChiTietDuAn instance);
+	partial void DeleteEntityChiTietDuAn(EntityChiTietDuAn instance);
+	partial void InsertEntityDauTu(EntityDauTu instance);
+	partial void UpdateEntityDauTu(EntityDauTu instance);
+	partial void DeleteEntityDauTu(EntityDauTu instance);
+	partial void InsertEntityDuAnFeature(EntityDuAnFeature instance);
+	partial void UpdateEntityDuAnFeature(EntityDuAnFeature instance);
+	partial void DeleteEntityDuAnFeature(EntityDuAnFeature instance);
+	partial void InsertEntityDuAnTag(EntityDuAnTag instance);
+	partial void UpdateEntityDuAnTag(EntityDuAnTag instance);
+	partial void DeleteEntityDuAnTag(EntityDuAnTag instance);
+	partial void InsertEntityFAQ(EntityFAQ instance);
+	partial void UpdateEntityFAQ(EntityFAQ instance);
+	partial void DeleteEntityFAQ(EntityFAQ instance);
+	partial void InsertEntityFAQ1(EntityFAQ1 instance);
+	partial void UpdateEntityFAQ1(EntityFAQ1 instance);
+	partial void DeleteEntityFAQ1(EntityFAQ1 instance);
+	partial void InsertEntityFeedbackFAQ(EntityFeedbackFAQ instance);
+	partial void UpdateEntityFeedbackFAQ(EntityFeedbackFAQ instance);
+	partial void DeleteEntityFeedbackFAQ(EntityFeedbackFAQ instance);
+	partial void InsertEntityGroupFAQ(EntityGroupFAQ instance);
+	partial void UpdateEntityGroupFAQ(EntityGroupFAQ instance);
+	partial void DeleteEntityGroupFAQ(EntityGroupFAQ instance);
+	partial void InsertEntityHomePage(EntityHomePage instance);
+	partial void UpdateEntityHomePage(EntityHomePage instance);
+	partial void DeleteEntityHomePage(EntityHomePage instance);
+	partial void InsertEntityLoaiFAQ(EntityLoaiFAQ instance);
+	partial void UpdateEntityLoaiFAQ(EntityLoaiFAQ instance);
+	partial void DeleteEntityLoaiFAQ(EntityLoaiFAQ instance);
+	partial void InsertEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
+	partial void UpdateEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
+	partial void DeleteEntityLoaiTaiKhoan(EntityLoaiTaiKhoan instance);
+	partial void InsertEntityNhomChienDich(EntityNhomChienDich instance);
+	partial void UpdateEntityNhomChienDich(EntityNhomChienDich instance);
+	partial void DeleteEntityNhomChienDich(EntityNhomChienDich instance);
+	partial void InsertEntityNoiDungLink(EntityNoiDungLink instance);
+	partial void UpdateEntityNoiDungLink(EntityNoiDungLink instance);
+	partial void DeleteEntityNoiDungLink(EntityNoiDungLink instance);
+	partial void InsertEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
+	partial void UpdateEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
+	partial void DeleteEntityTheoDoiDuAn(EntityTheoDoiDuAn instance);
+	partial void InsertEntityThongTinDuAn(EntityThongTinDuAn instance);
+	partial void UpdateEntityThongTinDuAn(EntityThongTinDuAn instance);
+	partial void DeleteEntityThongTinDuAn(EntityThongTinDuAn instance);
+	partial void InsertEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
+	partial void UpdateEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
+	partial void DeleteEntityThongTinTaiKhoan(EntityThongTinTaiKhoan instance);
+	partial void InsertEntityTinNhan(EntityTinNhan instance);
+	partial void UpdateEntityTinNhan(EntityTinNhan instance);
+	partial void DeleteEntityTinNhan(EntityTinNhan instance);
+	#endregion
 		
 		public dbFirstStepDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["Firststep_dbConnectionString1"].ConnectionString, mappingSource)
@@ -468,19 +474,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDanhMuc> _EntityDanhMuc;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTrendNameChanging(string value);
-    partial void OnTrendNameChanged();
-    partial void OnIdCategoryChanging(System.Nullable<int> value);
-    partial void OnIdCategoryChanged();
-    partial void OnTrangThaiChanging(System.Nullable<bool> value);
-    partial void OnTrangThaiChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTrendNameChanging(string value);
+	partial void OnTrendNameChanged();
+	partial void OnIdCategoryChanging(System.Nullable<int> value);
+	partial void OnIdCategoryChanged();
+	partial void OnTrangThaiChanging(System.Nullable<bool> value);
+	partial void OnTrangThaiChanged();
+	#endregion
 		
 		public EntityTrend()
 		{
@@ -647,25 +653,29 @@ namespace khainguyen_FirstStep
 		
 		private System.Nullable<int> _ViTri;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnHinhAnhChanging(string value);
-    partial void OnHinhAnhChanged();
-    partial void OnTieuDeChanging(string value);
-    partial void OnTieuDeChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnTenNutChanging(string value);
-    partial void OnTenNutChanged();
-    partial void OnLinkNutChanging(string value);
-    partial void OnLinkNutChanged();
-    partial void OnViTriChanging(System.Nullable<int> value);
-    partial void OnViTriChanged();
-    #endregion
+		private LoaiBanner _LoaiBanner;
+		
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnHinhAnhChanging(string value);
+	partial void OnHinhAnhChanged();
+	partial void OnTieuDeChanging(string value);
+	partial void OnTieuDeChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnTenNutChanging(string value);
+	partial void OnTenNutChanged();
+	partial void OnLinkNutChanging(string value);
+	partial void OnLinkNutChanged();
+	partial void OnViTriChanging(System.Nullable<int> value);
+	partial void OnViTriChanged();
+	partial void OnLoaiBannerChanging(LoaiBanner value);
+	partial void OnLoaiBannerChanged();
+	#endregion
 		
 		public EntityBanner()
 		{
@@ -812,6 +822,26 @@ namespace khainguyen_FirstStep
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiBanner", CanBeNull=false)]
+		public LoaiBanner LoaiBanner
+		{
+			get
+			{
+				return this._LoaiBanner;
+			}
+			set
+			{
+				if ((this._LoaiBanner != value))
+				{
+					this.OnLoaiBannerChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiBanner = value;
+					this.SendPropertyChanged("LoaiBanner");
+					this.OnLoaiBannerChanged();
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -857,25 +887,25 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnTenChanging(string value);
-    partial void OnTenChanged();
-    partial void OnDienThoaiChanging(string value);
-    partial void OnDienThoaiChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnTenChanging(string value);
+	partial void OnTenChanged();
+	partial void OnDienThoaiChanging(string value);
+	partial void OnDienThoaiChanged();
+	partial void OnEmailChanging(string value);
+	partial void OnEmailChanged();
+	#endregion
 		
 		public EntityBaoCao()
 		{
@@ -1139,23 +1169,23 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoiGianChanged();
-    partial void OnPublicChanging(System.Nullable<int> value);
-    partial void OnPublicChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoiGianChanged();
+	partial void OnPublicChanging(System.Nullable<int> value);
+	partial void OnPublicChanged();
+	#endregion
 		
 		public EntityBinhLuan()
 		{
@@ -1415,19 +1445,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDanhMuc> _EntityDanhMuc1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTenDMChanging(string value);
-    partial void OnTenDMChanged();
-    partial void OnIdRootChanging(System.Nullable<int> value);
-    partial void OnIdRootChanged();
-    partial void OnHienThiChanging(System.Nullable<int> value);
-    partial void OnHienThiChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTenDMChanging(string value);
+	partial void OnTenDMChanged();
+	partial void OnIdRootChanging(System.Nullable<int> value);
+	partial void OnIdRootChanged();
+	partial void OnHienThiChanging(System.Nullable<int> value);
+	partial void OnHienThiChanged();
+	#endregion
 		
 		public EntityDanhMuc()
 		{
@@ -1902,69 +1932,69 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTenDuAnChanging(string value);
-    partial void OnTenDuAnChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    partial void OnTrangThaiFundChanging(System.Nullable<int> value);
-    partial void OnTrangThaiFundChanged();
-    partial void OnLyDoBlockChanging(string value);
-    partial void OnLyDoBlockChanged();
-    partial void OnTienDauTuMucTieuChanging(System.Nullable<int> value);
-    partial void OnTienDauTuMucTieuChanged();
-    partial void OnTienDauTuHienTaiChanging(System.Nullable<int> value);
-    partial void OnTienDauTuHienTaiChanged();
-    partial void OnSoNguoiDaDauTuChanging(System.Nullable<int> value);
-    partial void OnSoNguoiDaDauTuChanged();
-    partial void OnThoiGianBatDauChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoiGianBatDauChanged();
-    partial void OnThoiGianKetThucChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoiGianKetThucChanged();
-    partial void OnDiaDiemChanging(string value);
-    partial void OnDiaDiemChanged();
-    partial void OnThongTinNganChanging(string value);
-    partial void OnThongTinNganChanged();
-    partial void OnHinhAnhChanging(string value);
-    partial void OnHinhAnhChanged();
-    partial void OnLinkVideoChanging(string value);
-    partial void OnLinkVideoChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnRuiRoChanging(string value);
-    partial void OnRuiRoChanged();
-    partial void OnSoNgayChanging(System.Nullable<int> value);
-    partial void OnSoNgayChanged();
-    partial void OnIdDanhMucChanging(System.Nullable<int> value);
-    partial void OnIdDanhMucChanged();
-    partial void OnDuAnDuocChonChanging(System.Nullable<int> value);
-    partial void OnDuAnDuocChonChanged();
-    partial void OnChon1Changing(System.Nullable<int> value);
-    partial void OnChon1Changed();
-    partial void OnChon2Changing(System.Nullable<int> value);
-    partial void OnChon2Changed();
-    partial void OnChon3Changing(System.Nullable<int> value);
-    partial void OnChon3Changed();
-    partial void OnSoLuotViewChanging(System.Nullable<int> value);
-    partial void OnSoLuotViewChanged();
-    partial void OnThongTinWhichPersonChanging(string value);
-    partial void OnThongTinWhichPersonChanged();
-    partial void OnIdThongTinTaiKhoanChanging(System.Nullable<int> value);
-    partial void OnIdThongTinTaiKhoanChanged();
-    partial void OnFlagChanging(string value);
-    partial void OnFlagChanged();
-    partial void OnLoaiHinhGoiVonChanging(System.Nullable<int> value);
-    partial void OnLoaiHinhGoiVonChanged();
-    partial void OnThoigianSummitChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoigianSummitChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTenDuAnChanging(string value);
+	partial void OnTenDuAnChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	partial void OnTrangThaiFundChanging(System.Nullable<int> value);
+	partial void OnTrangThaiFundChanged();
+	partial void OnLyDoBlockChanging(string value);
+	partial void OnLyDoBlockChanged();
+	partial void OnTienDauTuMucTieuChanging(System.Nullable<int> value);
+	partial void OnTienDauTuMucTieuChanged();
+	partial void OnTienDauTuHienTaiChanging(System.Nullable<int> value);
+	partial void OnTienDauTuHienTaiChanged();
+	partial void OnSoNguoiDaDauTuChanging(System.Nullable<int> value);
+	partial void OnSoNguoiDaDauTuChanged();
+	partial void OnThoiGianBatDauChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoiGianBatDauChanged();
+	partial void OnThoiGianKetThucChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoiGianKetThucChanged();
+	partial void OnDiaDiemChanging(string value);
+	partial void OnDiaDiemChanged();
+	partial void OnThongTinNganChanging(string value);
+	partial void OnThongTinNganChanged();
+	partial void OnHinhAnhChanging(string value);
+	partial void OnHinhAnhChanged();
+	partial void OnLinkVideoChanging(string value);
+	partial void OnLinkVideoChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnRuiRoChanging(string value);
+	partial void OnRuiRoChanged();
+	partial void OnSoNgayChanging(System.Nullable<int> value);
+	partial void OnSoNgayChanged();
+	partial void OnIdDanhMucChanging(System.Nullable<int> value);
+	partial void OnIdDanhMucChanged();
+	partial void OnDuAnDuocChonChanging(System.Nullable<int> value);
+	partial void OnDuAnDuocChonChanged();
+	partial void OnChon1Changing(System.Nullable<int> value);
+	partial void OnChon1Changed();
+	partial void OnChon2Changing(System.Nullable<int> value);
+	partial void OnChon2Changed();
+	partial void OnChon3Changing(System.Nullable<int> value);
+	partial void OnChon3Changed();
+	partial void OnSoLuotViewChanging(System.Nullable<int> value);
+	partial void OnSoLuotViewChanged();
+	partial void OnThongTinWhichPersonChanging(string value);
+	partial void OnThongTinWhichPersonChanged();
+	partial void OnIdThongTinTaiKhoanChanging(System.Nullable<int> value);
+	partial void OnIdThongTinTaiKhoanChanged();
+	partial void OnFlagChanging(string value);
+	partial void OnFlagChanged();
+	partial void OnLoaiHinhGoiVonChanging(System.Nullable<int> value);
+	partial void OnLoaiHinhGoiVonChanged();
+	partial void OnThoigianSummitChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoigianSummitChanged();
+	#endregion
 		
 		public EntityDuAn()
 		{
@@ -2997,21 +3027,21 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdUserChanging(int value);
-    partial void OnIdUserChanged();
-    partial void OnIdBanBeChanging(int value);
-    partial void OnIdBanBeChanged();
-    partial void OnLoaiChanging(int value);
-    partial void OnLoaiChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnIdDuAnChanging(int value);
-    partial void OnIdDuAnChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdUserChanging(int value);
+	partial void OnIdUserChanged();
+	partial void OnIdBanBeChanging(int value);
+	partial void OnIdBanBeChanged();
+	partial void OnLoaiChanging(int value);
+	partial void OnLoaiChanged();
+	partial void OnDateChanging(System.DateTime value);
+	partial void OnDateChanged();
+	partial void OnIdDuAnChanging(int value);
+	partial void OnIdDuAnChanged();
+	#endregion
 		
 		public EntityHoatDong()
 		{
@@ -3284,29 +3314,29 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnTienHoTroChanging(System.Nullable<int> value);
-    partial void OnTienHoTroChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnNgayGiaoChanging(string value);
-    partial void OnNgayGiaoChanged();
-    partial void OnHinhThucGiaoChanging(string value);
-    partial void OnHinhThucGiaoChanged();
-    partial void OnSoLuongChanging(System.Nullable<int> value);
-    partial void OnSoLuongChanged();
-    partial void OnSoNgayChanging(System.Nullable<int> value);
-    partial void OnSoNgayChanged();
-    partial void OnSoNguoiMuaChanging(System.Nullable<int> value);
-    partial void OnSoNguoiMuaChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnTienHoTroChanging(System.Nullable<int> value);
+	partial void OnTienHoTroChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnNgayGiaoChanging(string value);
+	partial void OnNgayGiaoChanged();
+	partial void OnHinhThucGiaoChanging(string value);
+	partial void OnHinhThucGiaoChanged();
+	partial void OnSoLuongChanging(System.Nullable<int> value);
+	partial void OnSoLuongChanged();
+	partial void OnSoNgayChanging(System.Nullable<int> value);
+	partial void OnSoNgayChanged();
+	partial void OnSoNguoiMuaChanging(System.Nullable<int> value);
+	partial void OnSoNguoiMuaChanged();
+	#endregion
 		
 		public EntityPhanThuong()
 		{
@@ -3595,19 +3625,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnImageChanging(string value);
-    partial void OnImageChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnImageChanging(string value);
+	partial void OnImageChanged();
+	#endregion
 		
 		public EntityQuote()
 		{
@@ -3774,21 +3804,21 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdUserChanging(int value);
-    partial void OnIdUserChanged();
-    partial void OnIdBanBeChanging(int value);
-    partial void OnIdBanBeChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    partial void OnLoaifbChanging(System.Nullable<int> value);
-    partial void OnLoaifbChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdUserChanging(int value);
+	partial void OnIdUserChanged();
+	partial void OnIdBanBeChanging(int value);
+	partial void OnIdBanBeChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	partial void OnLoaifbChanging(System.Nullable<int> value);
+	partial void OnLoaifbChanged();
+	partial void OnDateChanging(System.Nullable<System.DateTime> value);
+	partial void OnDateChanged();
+	#endregion
 		
 		public EntityTheoDoi()
 		{
@@ -4008,15 +4038,15 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdUserChanging(int value);
-    partial void OnIdUserChanged();
-    partial void OnIdFriendChanging(int value);
-    partial void OnIdFriendChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdUserChanging(int value);
+	partial void OnIdUserChanged();
+	partial void OnIdFriendChanging(int value);
+	partial void OnIdFriendChanged();
+	#endregion
 		
 		public EntityTimBan()
 		{
@@ -4234,47 +4264,47 @@ namespace khainguyen_FirstStep
 		
 		private EntitySet<EntityTinNhan> _EntityTinNhans1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPassChanging(string value);
-    partial void OnPassChanged();
-    partial void OnHoTenChanging(string value);
-    partial void OnHoTenChanged();
-    partial void OnAvatarChanging(string value);
-    partial void OnAvatarChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    partial void OnHasCodeChanging(string value);
-    partial void OnHasCodeChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    partial void OnDiaDiemChanging(string value);
-    partial void OnDiaDiemChanged();
-    partial void OnWebsiteChanging(string value);
-    partial void OnWebsiteChanged();
-    partial void OnGioiThieuChanging(string value);
-    partial void OnGioiThieuChanged();
-    partial void OnIdFacebookChanging(string value);
-    partial void OnIdFacebookChanged();
-    partial void OnVanityURLChanging(string value);
-    partial void OnVanityURLChanged();
-    partial void OnLogin_HistoryChanging(string value);
-    partial void OnLogin_HistoryChanged();
-    partial void OnNhatKyHoatDongChanging(string value);
-    partial void OnNhatKyHoatDongChanged();
-    partial void OnSoLuongHoatDongChanging(System.Nullable<int> value);
-    partial void OnSoLuongHoatDongChanged();
-    partial void OnTKPayooChanging(string value);
-    partial void OnTKPayooChanged();
-    partial void OnSDTChanging(string value);
-    partial void OnSDTChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnEmailChanging(string value);
+	partial void OnEmailChanged();
+	partial void OnPassChanging(string value);
+	partial void OnPassChanged();
+	partial void OnHoTenChanging(string value);
+	partial void OnHoTenChanged();
+	partial void OnAvatarChanging(string value);
+	partial void OnAvatarChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	partial void OnHasCodeChanging(string value);
+	partial void OnHasCodeChanged();
+	partial void OnDateChanging(System.Nullable<System.DateTime> value);
+	partial void OnDateChanged();
+	partial void OnDiaDiemChanging(string value);
+	partial void OnDiaDiemChanged();
+	partial void OnWebsiteChanging(string value);
+	partial void OnWebsiteChanged();
+	partial void OnGioiThieuChanging(string value);
+	partial void OnGioiThieuChanged();
+	partial void OnIdFacebookChanging(string value);
+	partial void OnIdFacebookChanged();
+	partial void OnVanityURLChanging(string value);
+	partial void OnVanityURLChanged();
+	partial void OnLogin_HistoryChanging(string value);
+	partial void OnLogin_HistoryChanged();
+	partial void OnNhatKyHoatDongChanging(string value);
+	partial void OnNhatKyHoatDongChanged();
+	partial void OnSoLuongHoatDongChanging(System.Nullable<int> value);
+	partial void OnSoLuongHoatDongChanged();
+	partial void OnTKPayooChanging(string value);
+	partial void OnTKPayooChanged();
+	partial void OnSDTChanging(string value);
+	partial void OnSDTChanged();
+	#endregion
 		
 		public EntityUser()
 		{
@@ -5074,25 +5104,25 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnTieuDeChanging(string value);
-    partial void OnTieuDeChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoiGianChanged();
-    partial void OnSoLuotThichChanging(System.Nullable<int> value);
-    partial void OnSoLuotThichChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnTieuDeChanging(string value);
+	partial void OnTieuDeChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoiGianChanged();
+	partial void OnSoLuotThichChanging(System.Nullable<int> value);
+	partial void OnSoLuotThichChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	#endregion
 		
 		public EntityCapNhatDuAn()
 		{
@@ -5317,19 +5347,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdDanhMucChanging(System.Nullable<int> value);
-    partial void OnIdDanhMucChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdDanhMucChanging(System.Nullable<int> value);
+	partial void OnIdDanhMucChanged();
+	partial void OnDateChanging(System.Nullable<System.DateTime> value);
+	partial void OnDateChanged();
+	#endregion
 		
 		public EntityChiTietDanhMuc()
 		{
@@ -5529,17 +5559,17 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	#endregion
 		
 		public EntityChiTietDuAn()
 		{
@@ -5698,31 +5728,31 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnSoTienDauTuChanging(System.Nullable<int> value);
-    partial void OnSoTienDauTuChanged();
-    partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
-    partial void OnThoiGianChanged();
-    partial void OnIdPhanthuongChanging(System.Nullable<int> value);
-    partial void OnIdPhanthuongChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    partial void OnNoteChanging(string value);
-    partial void OnNoteChanged();
-    partial void OnNoteOwnerChanging(string value);
-    partial void OnNoteOwnerChanged();
-    partial void OnOrderID_PayooChanging(string value);
-    partial void OnOrderID_PayooChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnSoTienDauTuChanging(System.Nullable<int> value);
+	partial void OnSoTienDauTuChanged();
+	partial void OnThoiGianChanging(System.Nullable<System.DateTime> value);
+	partial void OnThoiGianChanged();
+	partial void OnIdPhanthuongChanging(System.Nullable<int> value);
+	partial void OnIdPhanthuongChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	partial void OnNoteChanging(string value);
+	partial void OnNoteChanged();
+	partial void OnNoteOwnerChanging(string value);
+	partial void OnNoteOwnerChanged();
+	partial void OnOrderID_PayooChanging(string value);
+	partial void OnOrderID_PayooChanged();
+	#endregion
 		
 		public EntityDauTu()
 		{
@@ -6083,17 +6113,17 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdFeatureChanging(System.Nullable<int> value);
-    partial void OnIdFeatureChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdFeatureChanging(System.Nullable<int> value);
+	partial void OnIdFeatureChanged();
+	#endregion
 		
 		public EntityDuAnFeature()
 		{
@@ -6275,17 +6305,17 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdTagChanging(System.Nullable<int> value);
-    partial void OnIdTagChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdTagChanging(System.Nullable<int> value);
+	partial void OnIdTagChanged();
+	#endregion
 		
 		public EntityDuAnTag()
 		{
@@ -6473,23 +6503,23 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityFAQ> _EntityFAQ1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnLoaiChanging(System.Nullable<int> value);
-    partial void OnLoaiChanged();
-    partial void OnTieuDeChanging(string value);
-    partial void OnTieuDeChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnViTriChanging(System.Nullable<int> value);
-    partial void OnViTriChanged();
-    partial void OnIdRootChanging(System.Nullable<int> value);
-    partial void OnIdRootChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnLoaiChanging(System.Nullable<int> value);
+	partial void OnLoaiChanged();
+	partial void OnTieuDeChanging(string value);
+	partial void OnTieuDeChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnViTriChanging(System.Nullable<int> value);
+	partial void OnViTriChanged();
+	partial void OnIdRootChanging(System.Nullable<int> value);
+	partial void OnIdRootChanged();
+	#endregion
 		
 		public EntityFAQ()
 		{
@@ -6722,21 +6752,21 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityGroupFAQ> _EntityGroupFAQ;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCauHoiChanging(string value);
-    partial void OnCauHoiChanged();
-    partial void OnCauTraLoiChanging(string value);
-    partial void OnCauTraLoiChanged();
-    partial void OnIdGroupFAQChanging(System.Nullable<int> value);
-    partial void OnIdGroupFAQChanged();
-    partial void OnViTriChanging(System.Nullable<int> value);
-    partial void OnViTriChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnCauHoiChanging(string value);
+	partial void OnCauHoiChanged();
+	partial void OnCauTraLoiChanging(string value);
+	partial void OnCauTraLoiChanged();
+	partial void OnIdGroupFAQChanging(System.Nullable<int> value);
+	partial void OnIdGroupFAQChanged();
+	partial void OnViTriChanging(System.Nullable<int> value);
+	partial void OnViTriChanged();
+	#endregion
 		
 		public EntityFAQ1()
 		{
@@ -6945,19 +6975,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityFAQ1> _EntityFAQ1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdCauHoiChanging(System.Nullable<int> value);
-    partial void OnIdCauHoiChanged();
-    partial void OnFeedbackChanging(System.Nullable<int> value);
-    partial void OnFeedbackChanged();
-    partial void OnTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnTimeChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdCauHoiChanging(System.Nullable<int> value);
+	partial void OnIdCauHoiChanged();
+	partial void OnFeedbackChanging(System.Nullable<int> value);
+	partial void OnFeedbackChanged();
+	partial void OnTimeChanging(System.Nullable<System.DateTime> value);
+	partial void OnTimeChanged();
+	#endregion
 		
 		public EntityFeedbackFAQ()
 		{
@@ -7124,21 +7154,21 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityLoaiFAQ> _EntityLoaiFAQ;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTenGroupChanging(string value);
-    partial void OnTenGroupChanged();
-    partial void OnIdGroupFAQChanging(System.Nullable<int> value);
-    partial void OnIdGroupFAQChanged();
-    partial void OnIdLoaiFAQChanging(System.Nullable<int> value);
-    partial void OnIdLoaiFAQChanged();
-    partial void OnViTriChanging(System.Nullable<int> value);
-    partial void OnViTriChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTenGroupChanging(string value);
+	partial void OnTenGroupChanged();
+	partial void OnIdGroupFAQChanging(System.Nullable<int> value);
+	partial void OnIdGroupFAQChanged();
+	partial void OnIdLoaiFAQChanging(System.Nullable<int> value);
+	partial void OnIdLoaiFAQChanged();
+	partial void OnViTriChanging(System.Nullable<int> value);
+	partial void OnViTriChanged();
+	#endregion
 		
 		public EntityGroupFAQ()
 		{
@@ -7351,19 +7381,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDanhMuc> _EntityDanhMuc2;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdModuleDanhMuc1Changing(System.Nullable<int> value);
-    partial void OnIdModuleDanhMuc1Changed();
-    partial void OnIdModuleDanhMuc2Changing(System.Nullable<int> value);
-    partial void OnIdModuleDanhMuc2Changed();
-    partial void OnIdModuleDanhMuc3Changing(System.Nullable<int> value);
-    partial void OnIdModuleDanhMuc3Changed();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdModuleDanhMuc1Changing(System.Nullable<int> value);
+	partial void OnIdModuleDanhMuc1Changed();
+	partial void OnIdModuleDanhMuc2Changing(System.Nullable<int> value);
+	partial void OnIdModuleDanhMuc2Changed();
+	partial void OnIdModuleDanhMuc3Changing(System.Nullable<int> value);
+	partial void OnIdModuleDanhMuc3Changed();
+	#endregion
 		
 		public EntityHomePage()
 		{
@@ -7600,15 +7630,15 @@ namespace khainguyen_FirstStep
 		
 		private EntitySet<EntityGroupFAQ> _EntityGroupFAQs;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTenFAQChanging(string value);
-    partial void OnTenFAQChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTenFAQChanging(string value);
+	partial void OnTenFAQChanged();
+	#endregion
 		
 		public EntityLoaiFAQ()
 		{
@@ -7712,15 +7742,15 @@ namespace khainguyen_FirstStep
 		
 		private string _TenLoaiTaiKhoan;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnTenLoaiTaiKhoanChanging(string value);
-    partial void OnTenLoaiTaiKhoanChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnTenLoaiTaiKhoanChanging(string value);
+	partial void OnTenLoaiTaiKhoanChanged();
+	#endregion
 		
 		public EntityLoaiTaiKhoan()
 		{
@@ -7808,21 +7838,21 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdUserChanging(System.Nullable<int> value);
-    partial void OnIdUserChanged();
-    partial void OnVaiTroChanging(string value);
-    partial void OnVaiTroChanged();
-    partial void OnTrangThaiChanging(System.Nullable<bool> value);
-    partial void OnTrangThaiChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdUserChanging(System.Nullable<int> value);
+	partial void OnIdUserChanged();
+	partial void OnVaiTroChanging(string value);
+	partial void OnVaiTroChanged();
+	partial void OnTrangThaiChanging(System.Nullable<bool> value);
+	partial void OnTrangThaiChanged();
+	#endregion
 		
 		public EntityNhomChienDich()
 		{
@@ -8044,19 +8074,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnLinkChanging(string value);
-    partial void OnLinkChanged();
-    partial void OnTypeChanging(System.Nullable<int> value);
-    partial void OnTypeChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnLinkChanging(string value);
+	partial void OnLinkChanged();
+	partial void OnTypeChanging(System.Nullable<int> value);
+	partial void OnTypeChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	#endregion
 		
 		public EntityNoiDungLink()
 		{
@@ -8221,19 +8251,19 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(int value);
-    partial void OnIdDuAnChanged();
-    partial void OnIdUserChanging(int value);
-    partial void OnIdUserChanged();
-    partial void OnWatchChanging(int value);
-    partial void OnWatchChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(int value);
+	partial void OnIdDuAnChanged();
+	partial void OnIdUserChanging(int value);
+	partial void OnIdUserChanged();
+	partial void OnWatchChanging(int value);
+	partial void OnWatchChanged();
+	#endregion
 		
 		public EntityTheoDoiDuAn()
 		{
@@ -8443,25 +8473,25 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityDuAn> _EntityDuAn;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    partial void OnTieuDeChanging(string value);
-    partial void OnTieuDeChanged();
-    partial void OnThongTinWhichPersonChanging(string value);
-    partial void OnThongTinWhichPersonChanged();
-    partial void OnIdDanhMucChanging(System.Nullable<int> value);
-    partial void OnIdDanhMucChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnIdLocationChanging(System.Nullable<int> value);
-    partial void OnIdLocationChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	partial void OnTieuDeChanging(string value);
+	partial void OnTieuDeChanged();
+	partial void OnThongTinWhichPersonChanging(string value);
+	partial void OnThongTinWhichPersonChanged();
+	partial void OnIdDanhMucChanging(System.Nullable<int> value);
+	partial void OnIdDanhMucChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnIdLocationChanging(System.Nullable<int> value);
+	partial void OnIdLocationChanged();
+	#endregion
 		
 		public EntityThongTinDuAn()
 		{
@@ -8729,27 +8759,27 @@ namespace khainguyen_FirstStep
 		
 		private string _Col7;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCol1Changing(string value);
-    partial void OnCol1Changed();
-    partial void OnCol2Changing(string value);
-    partial void OnCol2Changed();
-    partial void OnCol3Changing(string value);
-    partial void OnCol3Changed();
-    partial void OnCol4Changing(string value);
-    partial void OnCol4Changed();
-    partial void OnCol5Changing(string value);
-    partial void OnCol5Changed();
-    partial void OnCol6Changing(string value);
-    partial void OnCol6Changed();
-    partial void OnCol7Changing(string value);
-    partial void OnCol7Changed();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnCol1Changing(string value);
+	partial void OnCol1Changed();
+	partial void OnCol2Changing(string value);
+	partial void OnCol2Changed();
+	partial void OnCol3Changing(string value);
+	partial void OnCol3Changed();
+	partial void OnCol4Changing(string value);
+	partial void OnCol4Changed();
+	partial void OnCol5Changing(string value);
+	partial void OnCol5Changed();
+	partial void OnCol6Changing(string value);
+	partial void OnCol6Changed();
+	partial void OnCol7Changing(string value);
+	partial void OnCol7Changed();
+	#endregion
 		
 		public EntityThongTinTaiKhoan()
 		{
@@ -8961,25 +8991,25 @@ namespace khainguyen_FirstStep
 		
 		private EntityRef<EntityUser> _EntityUser1;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnIdUserGuiChanging(System.Nullable<int> value);
-    partial void OnIdUserGuiChanged();
-    partial void OnIdUserNhanChanging(System.Nullable<int> value);
-    partial void OnIdUserNhanChanged();
-    partial void OnNoiDungChanging(string value);
-    partial void OnNoiDungChanged();
-    partial void OnTrangThaiChanging(System.Nullable<int> value);
-    partial void OnTrangThaiChanged();
-    partial void OnDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDateChanged();
-    partial void OnIdDuAnChanging(System.Nullable<int> value);
-    partial void OnIdDuAnChanged();
-    #endregion
+	#region Extensibility Method Definitions
+	partial void OnLoaded();
+	partial void OnValidate(System.Data.Linq.ChangeAction action);
+	partial void OnCreated();
+	partial void OnIdChanging(int value);
+	partial void OnIdChanged();
+	partial void OnIdUserGuiChanging(System.Nullable<int> value);
+	partial void OnIdUserGuiChanged();
+	partial void OnIdUserNhanChanging(System.Nullable<int> value);
+	partial void OnIdUserNhanChanged();
+	partial void OnNoiDungChanging(string value);
+	partial void OnNoiDungChanged();
+	partial void OnTrangThaiChanging(System.Nullable<int> value);
+	partial void OnTrangThaiChanged();
+	partial void OnDateChanging(System.Nullable<System.DateTime> value);
+	partial void OnDateChanged();
+	partial void OnIdDuAnChanging(System.Nullable<int> value);
+	partial void OnIdDuAnChanged();
+	#endregion
 		
 		public EntityTinNhan()
 		{

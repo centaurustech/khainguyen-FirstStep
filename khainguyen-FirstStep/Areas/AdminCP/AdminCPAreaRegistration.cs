@@ -17,7 +17,7 @@ namespace khainguyen_FirstStep.Areas.AdminCP
             context.MapRoute(
                 "AdminCP_default",
                 "AdminCP/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="AdminLogin", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

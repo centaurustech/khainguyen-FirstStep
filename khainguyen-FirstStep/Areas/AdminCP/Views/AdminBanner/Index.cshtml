@@ -67,11 +67,13 @@
             <col class="con1" />
             <col class="con0" />
             <col class="con1" />
+            <col class="con0" />
         </colgroup>
         <thead>
             <tr>
                 <th class="head1">STT</th>
                 <th class="head0">ID</th>
+                <th class="head0">Loại banner</th>
                 <th class="head1">Ảnh</th>
              <th></th>
             </tr>
@@ -80,6 +82,7 @@
             <tr>
                  <th class="head1">STT</th>
                 <th class="head0">ID</th>
+                <th class="head0">Loại banner</th>
                 <th class="head1">Ảnh</th>
                 <th></th>
 
@@ -92,8 +95,13 @@
                 <tr class="gradeX">
                     <td>@i</td>
                     <td>@item.Id</td>
+                    <td align="center">@item.LoaiBanner</td>
                     <td>
-                        <img src="~/Content/Images/Banner/@item.HinhAnh" width="200" height="50" /></td>
+                        @if (item.LoaiBanner == khainguyen_FirstStep.Areas.AdminCP.Models.LoaiBanner.Image)
+                        { <img src="~/Content/Images/Banner/@item.HinhAnh" width="200" height="50" />}
+                        else
+                        { <p><a href="@item.LinkNut">@item.LinkNut</a></p>}
+                    </td> 
                    <td>
                         <a href="@Url.Action("Edit", "AdminBanner", new { id = item.Id })">Sửa</a>&nbsp;&nbsp;                      
                          &nbsp;&nbsp;<a href="#" class="delete" title="Delete" , onclick='DeleteRecord("@item.Id")' >Xóa</a>&nbsp;&nbsp;      

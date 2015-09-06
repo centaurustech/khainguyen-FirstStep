@@ -20,7 +20,7 @@
 
 <div class="maincontentinner">
     <ul class="maintabmenu">
-        <li ><a href="@Url.Action("Index", "AdminBanner")">Index</a></li>
+        <li><a href="@Url.Action("Index", "AdminBanner")">Index</a></li>
         <li class="current"><a href="#">Edit</a></li>
     </ul>
     <!--maintabmenu-->
@@ -35,60 +35,68 @@
         <p id="msgNofError">This is an error message.</p>
     </div>
     <!-- notification msgerror -->
-
     @using (Html.BeginForm("Edit", "AdminBanner",
             new { ReturnUrl = ViewBag.ReturnUrl },
             FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
-    {     
+    {
         <div class="contenttitle radiusbottom0">
             <h2 class="table"><span>Edit</span></h2>
         </div>
-          <!--contenttitle-->
+        <!--contenttitle-->
         <p>
-            <label>Hình Ảnh</label>
+            <label>Loại banner</label>
             <span class="field">
-                <img src="~/Content/Images/Banner/@Model.Anh" width="600" height="100" />
+                @Html.EnumDropDownListFor(model => model.LoaiBanner, new { @class = "loaibanner" })
+                <span class="des">Video clip: Vui lòng copy ......</span>
             </span>
         </p>
-         <p>
-            <label>Hình Ảnh</label>
-            <span class="field">
-                <input type="file" id="Anh" name="Anh" />
-            </span>
-        </p>
-         <p>
-            <label>Vị Ảnh</label>
-            <span class="field">
-                @Html.EditorFor(model => model.ViTri)
-            </span>
-        </p>
-         <p>
-            <label>Tiêu Đề</label>
-            <span class="field">
-                @Html.EditorFor(model => model.TieuDe)
-            </span>
-        </p>
-         <p>
-            <label>Nội Dung</label>
-            <span class="field">
-                <textarea id="NoiDung" name="NoiDung">@Model.NoiDung</textarea>
-            </span>
-        </p>
-         <p>
-            <label>Tên Nút</label>
-            <span class="field">
-                @Html.EditorFor(model => model.TenNut)
-            </span>
-        </p>
-         <p>
+        <div class="typeimage">
+            <p>
+                <label>Hình Ảnh</label>
+                <span class="field">
+                    <img src="~/Content/Images/Banner/@Model.Anh" width="600" height="100" />
+                </span>
+            </p>
+            <p>
+                <label>Hình Ảnh</label>
+                <span class="field">
+                    <input type="file" id="Anh" name="Anh" />
+                </span>
+            </p>
+            <p>
+                <label>Vị Ảnh</label>
+                <span class="field">
+                    @Html.EditorFor(model => model.ViTri)
+                </span>
+            </p>
+            <p>
+                <label>Tiêu Đề</label>
+                <span class="field">
+                    @Html.EditorFor(model => model.TieuDe)
+                </span>
+            </p>
+            <p>
+                <label>Nội Dung</label>
+                <span class="field">
+                    <textarea id="NoiDung" name="NoiDung">@Model.NoiDung</textarea>
+                </span>
+            </p>
+            <p>
+                <label>Tên Nút</label>
+                <span class="field">
+                    @Html.EditorFor(model => model.TenNut)
+                </span>
+            </p>
+        </div>
+        <p>
             <label>Link Nút</label>
             <span class="field">
                 @Html.EditorFor(model => model.LinkNut)
             </span>
-        </p>  
-        
-            @Html.HiddenFor(model => model.Id)
-           
+        </p>
+
+        @Html.HiddenFor(model => model.Id)
+
         <p class="stdformbutton">
             <input type="submit" value="Ok" />
             <input type="submit" value="Back" onclick="javascript: history.back(); return false" />
@@ -96,7 +104,20 @@
 
     }
 
-  
+
 </div>
 <!--maincontentinner-->
 
+<script>
+    $(document).ready(function () {
+        var typeimagechange = function () {
+            if ($('.loaibanner').val() == '0') {
+                $('.typeimage').show();
+            } else {
+                $('.typeimage').hide();
+            }
+        }
+        $('.loaibanner').change(function () { typeimagechange(); });
+        typeimagechange();
+    });
+</script>

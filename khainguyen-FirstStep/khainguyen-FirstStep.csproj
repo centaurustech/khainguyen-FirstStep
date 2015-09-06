@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6D413DFF-0234-4BF1-BCA6-7FAFE7F00ABC}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>khainguyen_FirstStep</RootNamespace>
@@ -1101,6 +1101,61 @@
     <Content Include="Content\cssFrontEnd\js\owlcarousel\owl.carousel.min.js" />
     <Content Include="Content\cssFrontEnd\js\owlcarousel\owl.theme.css" />
     <Content Include="Content\cssFrontEnd\js\owlcarousel\owl.transitions.css" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrowleft.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrowright.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_left.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_right.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\black50.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\bullet.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\bullets.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\bullets2.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\grain.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\gridtile.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\large_left.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\large_right.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\loader.gif" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\loader2.gif" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\navigdots.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\shadow1.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\shadow2.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\shadow3.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\small_left.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\small_right.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\timer.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\timerdot.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\transparent.jpg" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\white50.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\css\settings-ie8.css" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\css\settings.css" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\font\revicons.svg" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\decor_inside.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\dummy.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\gradient\g30.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\gradient\g40.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video-js.css" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video-js.min.css" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video-js.png" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video-js.swf" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video.dev.js" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\video.js" />
     <Content Include="Content\cssFrontEnd\js\scrolltofixed\jquery-scrolltofixed-min.js" />
     <Content Include="Content\cssFrontEnd\js\superslides\jquery.superslides.js" />
     <Content Include="Content\cssFrontEnd\js\superslides\jquery.superslides.min.js" />
@@ -1244,6 +1299,126 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Areas\AdminCP\Views\AdminUser\Sendmail_AllUser.cshtml" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\arrows.psd" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\bullets.psd" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\small_arrows.psd" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\assets\Thumbs.db" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\font\revicons.eot" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\font\revicons.ttf" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\font\revicons.woff" />
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\images\gradient\Thumbs.db" />
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.barRenderer.min.js.map">
+      <DependentUpon>jqplot.barRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.highlighter.min.js.map">
+      <DependentUpon>jqplot.highlighter.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.categoryAxisRenderer.min.js.map">
+      <DependentUpon>jqplot.categoryAxisRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\bxslider\jquery.bxslider.min.js.map">
+      <DependentUpon>jquery.bxslider.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.BezierCurveRenderer.min.js.map">
+      <DependentUpon>jqplot.BezierCurveRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.ciParser.min.js.map">
+      <DependentUpon>jqplot.ciParser.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.mekkoRenderer.min.js.map">
+      <DependentUpon>jqplot.mekkoRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.blockRenderer.min.js.map">
+      <DependentUpon>jqplot.blockRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.cursor.min.js.map">
+      <DependentUpon>jqplot.cursor.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.json2.min.js.map">
+      <DependentUpon>jqplot.json2.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.logAxisRenderer.min.js.map">
+      <DependentUpon>jqplot.logAxisRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.meterGaugeRenderer.min.js.map">
+      <DependentUpon>jqplot.meterGaugeRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.mobile.min.js.map">
+      <DependentUpon>jqplot.mobile.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.bubbleRenderer.min.js.map">
+      <DependentUpon>jqplot.bubbleRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.mekkoAxisRenderer.min.js.map">
+      <DependentUpon>jqplot.mekkoAxisRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.dateAxisRenderer.min.js.map">
+      <DependentUpon>jqplot.dateAxisRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.ohlcRenderer.min.js.map">
+      <DependentUpon>jqplot.ohlcRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.donutRenderer.min.js.map">
+      <DependentUpon>jqplot.donutRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.canvasAxisLabelRenderer.min.js.map">
+      <DependentUpon>jqplot.canvasAxisLabelRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.dragable.min.js.map">
+      <DependentUpon>jqplot.dragable.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pieRenderer.min.js.map">
+      <DependentUpon>jqplot.pieRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.canvasAxisTickRenderer.min.js.map">
+      <DependentUpon>jqplot.canvasAxisTickRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.enhancedLegendRenderer.min.js.map">
+      <DependentUpon>jqplot.enhancedLegendRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pointLabels.min.js.map">
+      <DependentUpon>jqplot.pointLabels.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\owlcarousel\owl.carousel.min.js.map">
+      <DependentUpon>owl.carousel.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.funnelRenderer.min.js.map">
+      <DependentUpon>jqplot.funnelRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.canvasOverlay.min.js.map">
+      <DependentUpon>jqplot.canvasOverlay.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pyramidAxisRenderer.min.js.map">
+      <DependentUpon>jqplot.pyramidAxisRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\js\jquery.themepunch.revolution.min.js.map">
+      <DependentUpon>jquery.themepunch.revolution.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\superslides\jquery.superslides.min.js.map">
+      <DependentUpon>jquery.superslides.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\tooltipster\jquery.tooltipster.min.js.map">
+      <DependentUpon>jquery.tooltipster.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pyramidGridRenderer.min.js.map">
+      <DependentUpon>jqplot.pyramidGridRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.canvasTextRenderer.min.js.map">
+      <DependentUpon>jqplot.canvasTextRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.pyramidRenderer.min.js.map">
+      <DependentUpon>jqplot.pyramidRenderer.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\waypoints\waypoints.min.js.map">
+      <DependentUpon>waypoints.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\jqplot\plugins\jqplot.trendline.min.js.map">
+      <DependentUpon>jqplot.trendline.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\letterfx\jquery-letterfx.min.js.map">
+      <DependentUpon>jquery-letterfx.min.js</DependentUpon>
+    </Content>
+    <Content Include="Content\cssFrontEnd\js\rs-plugin\videojs\demo.captions.vtt" />
     <None Include="Properties\PublishProfiles\Publish FirstStep.pubxml" />
     <Content Include="robots.txt" />
     <Content Include="Scripts\autoNumeric.js" />
@@ -1257,6 +1432,15 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\jquery-2.1.4.min.js.map">
+      <DependentUpon>jquery-2.1.4.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.confirm.min.js.map">
+      <DependentUpon>jquery.confirm.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js.map">
+      <DependentUpon>jquery.unobtrusive-ajax.min.js</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1381,6 +1565,12 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\DuAn\_LoadTabXemTruoc.cshtml" />
     <Content Include="Views\ThanhToan\KetQuaThanhToan.cshtml" />
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js.map">
+      <DependentUpon>jquery.validate.unobtrusive.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Banner\" />

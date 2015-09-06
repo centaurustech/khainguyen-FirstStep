@@ -35,40 +35,54 @@ namespace khainguyen_FirstStep.Areas.AdminCP.Controllers
                 dbFirstStepDataContext db = new dbFirstStepDataContext();
                 // IList<EntityAnhChiTietSP> list = new List<EntityAnhChiTietSP>();
                 //var idsp = db.EntitySanPhams.Where(t => t.TenSanPham == DM.TenSanPham && t.Date == ban.Date && t.MaSanPham == DM.MaSanPham).First();
-                int tt = 0;
-                for (int i = 0; i < Request.Files.Count; i++)
+
+                if (DM.LoaiBanner == LoaiBanner.Image)
                 {
-
-                    HttpPostedFileBase hpf = Request.Files[i];
-                    if (hpf.FileName == "")
+                    int tt = 0;
+                    for (int i = 0; i < Request.Files.Count; i++)
                     {
-                        tt = -1; // k co hinh anh
-                        break;
+
+                        HttpPostedFileBase hpf = Request.Files[i];
+                        if (hpf.FileName == "")
+                        {
+                            tt = -1; // k co hinh anh
+                            break;
+                        }
+                        tt++;
+
+
+                        ImageHelper imgHelper = new ImageHelper();
+                        string encodestring = imgHelper.encodeImageFile(hpf);
+                        //var anh = db.EntitySanPhams.Where(t => t.MaSanPham == DM.MaSanPham && t.Date == DM.Date).First();
+                        DM.Anh = encodestring;
+                        db.SubmitChanges();
+                        if (encodestring == "!")
+                            return RedirectToAction("Error", "Home", new { errorMsg = "Can't upload Images" });
+                        var path = Path.Combine(Server.MapPath("~/Content/Images/Banner"), encodestring);
+                        hpf.SaveAs(path);
+
+                        EntityBanner ban = new EntityBanner();
+                        ban.HinhAnh = encodestring;
+                        ban.ViTri = DM.ViTri;
+                        ban.TenNut = DM.TenNut;
+                        ban.NoiDung = DM.NoiDung;
+                        ban.LinkNut = DM.LinkNut;
+                        ban.TieuDe = DM.TieuDe;
+                        ban.LoaiBanner = DM.LoaiBanner;
+                        db.EntityBanners.InsertOnSubmit(ban);
+                        db.SubmitChanges();
+
                     }
-                    tt++;
-
-
-                    ImageHelper imgHelper = new ImageHelper();
-                    string encodestring = imgHelper.encodeImageFile(hpf);
-                    //var anh = db.EntitySanPhams.Where(t => t.MaSanPham == DM.MaSanPham && t.Date == DM.Date).First();
-                    DM.Anh = encodestring;
-                    db.SubmitChanges();
-                    if (encodestring == "!")
-                        return RedirectToAction("Error", "Home", new { errorMsg = "Can't upload Images" });
-                    var path = Path.Combine(Server.MapPath("~/Content/Images/Banner"), encodestring);
-                    hpf.SaveAs(path);
-
+                }
+                else
+                {
                     EntityBanner ban = new EntityBanner();
-                    ban.HinhAnh = encodestring;
-                    ban.ViTri = DM.ViTri;
-                    ban.TenNut = DM.TenNut;
-                    ban.NoiDung = DM.NoiDung;
                     ban.LinkNut = DM.LinkNut;
-                    ban.TieuDe = DM.TieuDe;
+                    ban.LoaiBanner = DM.LoaiBanner;
                     db.EntityBanners.InsertOnSubmit(ban);
                     db.SubmitChanges();
-
                 }
+                
                 return RedirectToAction("Index", "AdminBanner");
             }
             catch
@@ -91,31 +105,40 @@ namespace khainguyen_FirstStep.Areas.AdminCP.Controllers
 
             try
             {
-                if (Anh != null && Anh.ContentLength > 0)
+                if (DM.LoaiBanner != LoaiBanner.Video)
                 {
-                    int kb = Anh.ContentLength / 1024; //file size kb
-                    if (kb >= 2048) // file qua lon
+
+
+                    if (Anh != null && Anh.ContentLength > 0)
                     {
-                        return RedirectToAction("Index", "Error", new { errorMsg = "Hình ảnh phải bé hơn 2MB." });
+                        int kb = Anh.ContentLength / 1024; //file size kb
+                        if (kb >= 2048) // file qua lon
+                        {
+                            return RedirectToAction("Index", "Error", new { errorMsg = "Hình ảnh phải bé hơn 2MB." });
+                        }
+
+                        ImageHelper imgHelper = new ImageHelper();
+                        string encodestring = imgHelper.encodeImageFile(Anh);
+
+                        if (encodestring == "!")
+                            return RedirectToAction("Index", "Error", new { errorMsg = "Không thể Upload hình" });
+
+                        var path = Path.Combine(Server.MapPath("~/Content/Images/Banner"), encodestring);
+                        Anh.SaveAs(path);
+
+                        DM.Anh = encodestring;
                     }
 
-                    ImageHelper imgHelper = new ImageHelper();
-                    string encodestring = imgHelper.encodeImageFile(Anh);
-
-                    if (encodestring == "!")
-                        return RedirectToAction("Index", "Error", new { errorMsg = "Không thể Upload hình" });
-
-                    var path = Path.Combine(Server.MapPath("~/Content/Images/Banner"), encodestring);
-                    Anh.SaveAs(path);
-
-                    DM.Anh = encodestring;
+                    string image = AdminBannerModel.Edit(DM);
+                    if (image != null)
+                    {
+                        string fileToDelete = Path.Combine(Server.MapPath("~/Content/Images/Banner"), image); // file hinh cu
+                        System.IO.File.Delete(fileToDelete);
+                    }
                 }
-
-                string image = AdminBannerModel.Edit(DM);
-                if (image != null)
+                else
                 {
-                    string fileToDelete = Path.Combine(Server.MapPath("~/Content/Images/Banner"), image); // file hinh cu
-                    System.IO.File.Delete(fileToDelete);
+                    AdminBannerModel.Edit(DM);
                 }
                 return RedirectToAction("Index", "AdminBanner");
             }

@@ -13,14 +13,14 @@
 @import url('plugins/jquery.alerts.css');
 
 @font-face {
-    font-family: 'BebasNeueRegular';
-    src: url('../font/BebasNeue-webfont.eot');
-    src: url('../font/BebasNeue-webfontd41d.eot?#iefix') format('embedded-opentype'),
-         url('../font/BebasNeue-webfont.woff') format('woff'),
-         url('../font/BebasNeue-webfont.ttf') format('truetype'),
-         url('../font/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'BebasNeueRegular';
+	src: url('../font/BebasNeue-webfont.eot');
+	src: url('../font/BebasNeue-webfontd41d.eot?#iefix') format('embedded-opentype'),
+		 url('../font/BebasNeue-webfont.woff') format('woff'),
+		 url('../font/BebasNeue-webfont.ttf') format('truetype'),
+		 url('../font/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 
 }
 
@@ -88,11 +88,11 @@ button,input,select,textarea { font-size: 12px; font-family: Arial, Helvetica, s
 }
 .loginbox select {
 
-    padding: 12px 10px; background: #282828 url(../images/loginputbg.png) repeat-x top left; color: #CCC;
-    font-family: Arial, Helvetica, sans-serif; margin-top: 8px; font-size: 15px; border: 0;
-     -moz-box-shadow: 0 1px 0 #444; -webkit-box-shadow: 0 1px 0 #444; box-shadow: 0 1px 0 #444; outline: none;
-    width: 100%; box-sizing: border-box;
-    -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+	padding: 12px 10px; background: #282828 url(../images/loginputbg.png) repeat-x top left; color: #CCC;
+	font-family: Arial, Helvetica, sans-serif; margin-top: 8px; font-size: 15px; border: 0;
+	 -moz-box-shadow: 0 1px 0 #444; -webkit-box-shadow: 0 1px 0 #444; box-shadow: 0 1px 0 #444; outline: none;
+	width: 100%; box-sizing: border-box;
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box;
 
 }
 .loginbox button { 
@@ -1170,14 +1170,12 @@ a.btn_table { background-position: -82px -480px; }
 	.errorWrapper a { display: block; margin-top: 0; padding: 20px 0; font-size: 12px; }
 	.errorWrapper span { display: block; margin-bottom: 20px; }
 	.footer { font-size: 10px; }
-	
+	.field input[type=text], .field input[type=number], .field input[type=file]{width:95%;}
 }
 
 
 /** theme **/
-.theme { display: inline-block; position: fixed; bottom: 10px; left: 0; background: #fff; border: 1px solid #ccc; border-left: 0; }
-.theme { -moz-box-shadow: 0 0 5px #ddd; -webkit-box-shadow: 0 0 5px #ddd; box-shadow: 0 0 5px #ddd; overflow: hidden; }
-.theme { -moz-border-radius: 0 3px 3px 0; -webkit-border-radius: 0 3px 3px 0; border-radius: 0 3px 3px 0; }
+.theme{display:inline-block;position:fixed;bottom:10px;left:0;background:#fff;border:1px solid #ccc;border-left:0;-moz-box-shadow:0 0 5px #ddd;-webkit-box-shadow:0 0 5px #ddd;box-shadow:0 0 5px #ddd;overflow:hidden;-moz-border-radius:0 3px 3px 0;-webkit-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0}
 .theme h4 { font-size: 10px; text-transform: uppercase; font-weight: normal; background: #333; padding: 5px; color: #ccc; }
 .theme a { display: inline-block; width: 16px; height: 16px; margin: 5px; }
 .theme a.darkblue { background: #001F3E; }
@@ -1185,27 +1183,29 @@ a.btn_table { background-position: -82px -480px; }
 
 .field-validation-error
 {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 .field-validation-valid
 {
-    display: none;
+	display: none;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000 !important;
-    background-color: #ffeeee;
+	border: 1px solid #ff0000 !important;
+	background-color: #ffeeee;
 }
 
 .validation-summary-errors
 {
-    font-weight: bold;
-    color: #ff0000;
+	font-weight: bold;
+	color: #ff0000;
 }
 
 .validation-summary-valid
 {
-    display: none;
+	display: none;
 }
+
+.field .des{display:block;margin-top:10px;font-style:italic}
