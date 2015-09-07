@@ -89,7 +89,7 @@ namespace khainguyen_FirstStep.Controllers
         public ActionResult _TrangChu_Slide()
         {
             var db = new dbFirstStepDataContext();
-            var item = db.EntityBanners.ToList();
+            var item = db.EntityBanners.OrderBy(p => p.ViTri).ToList();
            
             return PartialView(item);
         }

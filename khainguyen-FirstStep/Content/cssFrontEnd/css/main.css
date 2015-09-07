@@ -68,7 +68,7 @@ button{cursor: pointer;}
 /*
 	================ <header> ================
 */
-#slides{ width: 100%;}
+#slides{ width: 100%; margin-top:50px;}
 .menu-fix{background: rgba(20, 20, 20,0.9);
 		  position: fixed; top: 0; left: 0; right: 0; height: 50px; z-index:9998; box-shadow: 0 1px 10px rgba(0,0,0,0.5);}
 	.logo{font-family: 'Sansita One', cursive; font-size: 36px; color: #0092c8; float: left; margin-top:-3px; }
