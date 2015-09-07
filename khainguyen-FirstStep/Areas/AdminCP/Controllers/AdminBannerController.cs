@@ -79,6 +79,7 @@ namespace khainguyen_FirstStep.Areas.AdminCP.Controllers
                     EntityBanner ban = new EntityBanner();
                     ban.LinkNut = DM.LinkNut;
                     ban.LoaiBanner = DM.LoaiBanner;
+                    ban.ViTri = DM.ViTri;
                     db.EntityBanners.InsertOnSubmit(ban);
                     db.SubmitChanges();
                 }
