@@ -64,12 +64,6 @@
                 </span>
             </p>
             <p>
-                <label>Vị Ảnh</label>
-                <span class="field">
-                    @Html.EditorFor(model => model.ViTri)
-                </span>
-            </p>
-            <p>
                 <label>Tiêu Đề</label>
                 <span class="field">
                     @Html.EditorFor(model => model.TieuDe)
@@ -88,6 +82,12 @@
                 </span>
             </p>
         </div>
+        <p>
+            <label>Vị trí</label>
+            <span class="field">
+                <input type="number" id="ViTri" name="ViTri" />
+            </span>
+        </p>
         <p>
             <label>Link Nút</label>
             <span class="field">
