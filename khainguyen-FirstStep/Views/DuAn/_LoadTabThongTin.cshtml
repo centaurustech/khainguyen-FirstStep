@@ -134,10 +134,10 @@
 <div class="box">
     <h3>Loại hình kêu gọi vốn cộng đồng</h3>       
     
-    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "Kêu gọi vốn cố định", new { @checked = true })
+    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "0", new { @checked = true })
     @Html.Label("Kêu gọi vốn cố định") <i class="fa-info-circle tooltip color-green" title="Thành công khi đạt trên 100% mục tiêu huy động vốn"></i>
     </br>
-    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "Kêu gọi vốn linh hoạt", new { @checked = true })
+    @Html.RadioButtonFor(model => model.Loaihinhkeugoivon, "1", new { @checked = true })
     @Html.Label("Kêu gọi vốn linh hoạt") <i class="fa-info-circle tooltip color-green" title="Thành công khi có bất kì ai đầu tư vào dự án của bạn"></i>
     
 </div>

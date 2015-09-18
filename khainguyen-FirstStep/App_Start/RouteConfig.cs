@@ -141,6 +141,12 @@ namespace khainguyen_FirstStep
               namespaces: new[] { "khainguyen-FirstStep.Controllers" }
                );
             routes.MapRoute(
+                name: "Lay lai mat khau",
+              url: "tai-khoan/lay-lai-mat-khau",
+              defaults: new { controller = "Account", action = "DaGuiEmailQuenMK" },
+              namespaces: new[] { "khainguyen-FirstStep.Controllers" }
+               );
+            routes.MapRoute(
                 name: "Email da dang ky",
               url: "tai-khoan/email-da-dang-ky",
               defaults: new { controller = "Account", action = "TrungEmail" },

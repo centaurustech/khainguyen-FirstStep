@@ -44,52 +44,57 @@ namespace MvcLibrary.Repository
 
         public static void SendMail_DangKy(string HoTen, string Email, string LinkKichHoat)
         {
-            string noidung = "Chào bạn <b>" + HoTen + "</b> ," + "<br/>";
-            noidung += "Cám ơn bạn đã tạo tài khoản tại Firststep, bạn có thể đề xuất một dự án sáng tạo có ích cho cộng đồng hoặc ủng hộ các dự án để các ý tưởng sớm thành hiện thực, mang lại lợi ích cho cộng đồng. Để hoàn tất đăng ký, bạn vui lòng click vào link dưới đây:";
-            string mailBody = ExportHTML_Basic("Xác nhận email", noidung, LinkKichHoat);
-            //StringBuilder mailBody = new StringBuilder();
-            //mailBody.AppendFormat("<h1>[FirstStep]-Kích hoạt tài khoản</h1>");
-            //mailBody.AppendFormat("<br />");
-            //mailBody.AppendFormat("<p> Chào : " + " " + HoTen + "   !  " + "</p>");
-            //mailBody.AppendFormat("<p>Email đăng ký tài khoản :  " + " " + Email + " " + "</p>");
-            //mailBody.AppendFormat("<p>Link kích hoạt tài khoản:  " + LinkKichHoat + " </p>");
-            //mailBody.AppendFormat("<br></br>");
-            //mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
+            string noidung = "Xin chào <b>" + HoTen + "</b> ," + "<br/>";
+            noidung += "Cám ơn bạn đã tạo tài khoản tại Firststep, bạn có thể đề xuất một dự án sáng tạo có ích cho cộng đồng hoặc ủng hộ các dự án để các ý tưởng sớm thành hiện thực, mang lại lợi ích cho cộng đồng. Để hoàn tất đăng ký, bạn vui lòng nhấn vào nút \"Xác nhận Email\" dưới đây:";
+
+            string htmlcontent = "<div rev='full_text' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_4390' title='' style='position: relative; border: none; cursor: move; padding: 0px;'><div mc:repeatable='full_text'><layout label='full_text'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='wrap' style='border-collapse: collapse;background-color: #fff;'><tbody><tr><td align='center' valign='top' class='module-td'><table align='center' width='580' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;'><tbody><tr><td align='left' class='content' mc:edit='content' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
+            htmlcontent += "<singleline label='content'>" + noidung + "</singleline>";
+            htmlcontent += "</td></tr><tr><td align='center'><!--{cke_protected}{C}%3C!%2D%2Dsmall%20button%2D%2D%3E--><table align='center' border='0' cellpadding='0' cellspacing='0' class='button s' style='border-collapse: collapse;display: inline-block;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content' mc:edit='button' style='font-family: Roboto, Tahoma, Arial; font-size: 16px; line-height: 16px; font-weight: 400; color: rgb(255, 255, 255); -webkit-font-smoothing: antialiased; display: inline-block; padding: 15px 25px; background-color: rgb(0, 146, 200);text-align: center;'>";
+            htmlcontent += "<singleline label='button'><a data-cke-saved-href='#' href='" + LinkKichHoat + "' style='color: #fff;text-decoration: none;outline: none;'>" + "Xác nhận email" + "</singleline>";
+            htmlcontent += "</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86full_text%E2%97%86%20%2D%2D%3E--></div>";
+
+            string mailBody = ExportHTML_Basic("Xác nhận email", htmlcontent);
             SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "Xác nhận email", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");                           
         }
 
         public static void SendMail_DangKyDuAn(string HoTen, string Email, string DuAnCungChuDe)
         {
-            string noidung = "Chào bạn <b>" + HoTen + "</b> ," + "<br/>";
+            string noidung = "Xin chào <b>" + HoTen + "</b> ," + "<br/>";
             noidung += "Firststep đã nhận được bản kế hoạch hoàn chỉnh của bạn. Trong vòng 07 ngày, Ban Cố Vấn của Firststep sẽ đưa ra kết luận về nội dung. <br/>Trong thời gian chờ đợi, bạn hãy xem qua các dự án tương tự để tham khảo hoặc ủng hộ nếu thấy dự án có ích cho cộng đồng. <br/>";
-            string mailBody = ExportHTML_Basic("Xác nhận đăng ký dự án", noidung, DuAnCungChuDe);
-            //StringBuilder mailBody = new StringBuilder();
-            //mailBody.AppendFormat("<h1>[FirstStep]-Kích hoạt tài khoản</h1>");
-            //mailBody.AppendFormat("<br />");
-            //mailBody.AppendFormat("<p> Chào : " + " " + HoTen + "   !  " + "</p>");
-            //mailBody.AppendFormat("<p>Email đăng ký tài khoản :  " + " " + Email + " " + "</p>");
-            //mailBody.AppendFormat("<p>Link kích hoạt tài khoản:  " + LinkKichHoat + " </p>");
-            //mailBody.AppendFormat("<br></br>");
-            //mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
+
+            string htmlcontent = "<div rev='full_text' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_4390' title='' style='position: relative; border: none; cursor: move; padding: 0px;'><div mc:repeatable='full_text'><layout label='full_text'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='wrap' style='border-collapse: collapse;background-color: #fff;'><tbody><tr><td align='center' valign='top' class='module-td'><table align='center' width='580' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;'><tbody><tr><td align='left' class='content' mc:edit='content' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
+            htmlcontent += "<singleline label='content'>" + noidung + "</singleline>";
+            htmlcontent += "</td></tr><tr><td align='center'><!--{cke_protected}{C}%3C!%2D%2Dsmall%20button%2D%2D%3E--><table align='center' border='0' cellpadding='0' cellspacing='0' class='button s' style='border-collapse: collapse;display: inline-block;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content' mc:edit='button' style='font-family: Roboto, Tahoma, Arial; font-size: 16px; line-height: 16px; font-weight: 400; color: rgb(255, 255, 255); -webkit-font-smoothing: antialiased; display: inline-block; padding: 15px 25px; background-color: rgb(0, 146, 200);text-align: center;'>";
+            htmlcontent += "<singleline label='button'><a data-cke-saved-href='#' href='" + DuAnCungChuDe + "' style='color: #fff;text-decoration: none;outline: none;'>" + "Tham khảo các dự án cùng chủ để" + "</singleline>";
+            htmlcontent += "</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86full_text%E2%97%86%20%2D%2D%3E--></div>";
+
+
+            string mailBody = ExportHTML_Basic("Xác nhận đăng ký dự án", htmlcontent);
             SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "Xác nhận đăng ký dự án", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");
         }
 
         public static void SendMailtoUser(string HoTen, string Email, string noidung)
         {
-            string mailBody = ExportHTML_Basic("Thông báo mới từ FirstStep", noidung, "");
-            //StringBuilder mailBody = new StringBuilder();
-            //mailBody.AppendFormat("<h1>[FirstStep]-Kích hoạt tài khoản</h1>");
-            //mailBody.AppendFormat("<br />");
-            //mailBody.AppendFormat("<p> Chào : " + " " + HoTen + "   !  " + "</p>");
-            //mailBody.AppendFormat("<p>Email đăng ký tài khoản :  " + " " + Email + " " + "</p>");
-            //mailBody.AppendFormat("<p>Link kích hoạt tài khoản:  " + LinkKichHoat + " </p>");
-            //mailBody.AppendFormat("<br></br>");
-            //mailBody.AppendFormat("<p>Không trả lời thư vào email này ! Xin cảm ơn.</p>");
+            string mailBody = ExportHTML_Basic("Thông báo mới từ FirstStep", noidung);
+
             SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "Thông báo mới từ FirstStep", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");
         }
 
+        public static void SendMail_Laylaimatkhau(string HoTen, string Email, string newpass)
+        {
+            string htmlcontent = "<div rev='full_text' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_4390' title='' style='position: relative; border: none; cursor: move; padding: 0px;'><div mc:repeatable='full_text'><layout label='full_text'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='wrap' style='border-collapse: collapse;background-color: #fff;'><tbody><tr><td align='center' valign='top' class='module-td'><table align='center' width='580' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;'><tbody><tr><td align='left' class='content' mc:edit='content' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
+
+            htmlcontent += "<singleline label='content'>" + "Chào <b>" + HoTen + "</b> ," + "<br/>";
+            htmlcontent += "Chúng tôi nhận được yêu cầu đổi mật khẩu của bạn tại FirstStep.vn<br/>Mật khẩu mới của bạn là: <b>" + newpass + "</b><br/> Nếu bạn có bất kỳ thắc mắc gì, xin vui lòng liên hệ với chúng tôi theo email: <b> info@firststep.vn </b> <br/><br/>Trân trọng,<br/>FirstStep";
+            htmlcontent += "</singleline>";
+            htmlcontent += "</td></tr></tbody></table></td></tr></tbody></table></layout></div>";
+
+            string mailBody = ExportHTML_Basic("Mật khẩu mới cho tài khoản FirstStep của bạn", htmlcontent);
+            SendMailMessage("firststep.system.info@gmail.com", Email, null, null, "Mật khẩu mới cho tài khoản FirstStep của bạn", mailBody.ToString(), "smtp.gmail.com", true, "firststep.system.info@gmail.com", "!@#Hien4567");
+        }
+
         #region Template Email
-        public static string ExportHTML_Basic(string tieude, string noidung, string UrlContent)
+        public static string ExportHTML_Basic(string tieude, string htmlContent)
         {
             string html = "<!-- saved from url=(0055)http://firststep.vn/Content/Email-template/Basic_1.html --><html><head><meta http-equiv='Content-Type' content='text/html; charset=windows-1258'><link href='./Basic_1_files/css' rel='stylesheet' type='text/css'><title>Firststep</title><style type='text/css'>/**Project:	Firststep - Responsive Email Template*Version:	1.0*Creat:		08/20/14*Designer:	*coder:		Duc Hoang*Copyright: Digith Studio*Website: 	http://firststep.vn*//* Client-specific Styles */#outlook a { padding: 0; }.ReadMsgBody { width: 100%; }.ExternalClass { width: 100%; }body {-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;-webkit-font-smoothing: antialiased;}.yshortcuts, .yshortcuts a, .yshortcuts a:link, .yshortcuts a:visited, .yshortcuts a:hover, .yshortcuts a span {text-decoration: none !important;border-bottom: none !important;background: none !important;}.ExternalClass * {line-height: 100%}/*link style*/a {color: #00aeff;text-decoration: none;outline: none;}.topbar a { text-decoration: underline !important; }a:hover { text-decoration: underline !important; }.header a:hover,.button a:hover,.footer a:hover,.bottom a:hover { text-decoration:none !important;}/*startMedia@media only screen and (max-width: 639px) {/*endMedia*//*start480MediaNeiStarttable[class~=wrap],table[class~=nobg-wrap] { width:100% !important; }/*MediaNeiEnd*//*startMedia}/*endMedia*//*startMedia@media only screen and (max-width: 619px) {/*endMedia*//*start480MediaNeiStarttable[class~=wrap],table[class~=nobg-wrap] { width:440px !important; }table[class~=row] { width:93% !important; }table[class~=wrap][class~=map] table[class~=row] { width:100% !important; }img[class~=img] { width:100% !important; max-width:100% !important; height:auto !important; }table[class~=col2],table[class~=col3],table[class~=logo-box],table[class~=menu-box] { float:none !important; margin:0 auto !important; }table[class~=logo-box] { margin-top:20px !important; }table[class~=headerbanner] td[class~=h5] { padding:0 !important; }table[class~=col2] { width:100% !important; }table[class~=col2][class~=a] { width:70% !important; }table[class~=col3] { width:100% !important; }table[class~=col3][class~=a] { width:70% !important; }table[class~=hide],td[class~=hide] { display:none !important; }td[class~=media-h20] { height:20px !important; }table[class~=col2][class~=list] { width:80% !important; }table[class~=col3][class~=list] { width:70% !important; }td[class~=td-block] { display:block !important; width:100% !important; float:none !important; }td[class~=td-block] table[class~=col4] { float:left !important; }td[class~=td-block] table[class~=col4][class~=a],td[class~=td-block] table[class~=col4][class~=b] { float:right !important; }table[class~=col4] { width:48% !important; }table[class~=col4][class~=a] { float:right !important; }td[class~=dot-padding] { width:18% !important; padding:40px 0 0 0 !important; }td[class~=col5] { padding:0 2px !important; }table[class~=menu-box] td[class~=content][class~=in] { padding:0 60px !important; }table[class~=mid20] { margin-bottom:20px !important; }table[class~=mid40] { margin-bottom:40px !important; }/*MediaNeiEnd*//*startMedia}/*endMedia*//*startMedia@media only screen and (max-width: 439px) {/*endMedia*//*start360MediaNeiStarttable[class~=wrap],table[class~=nobg-wrap] { width:100% !important; }table[class~=menu-box] td[class~=content][class~=in] { padding:0 50px !important; }table[class~=col4],table[class~=col4][class~=a],td[class~=td-block] table[class~=col4],td[class~=td-block] table[class~=col4][class~=a],td[class~=td-block] table[class~=col4][class~=b] { width:80% !important; float:none !important; margin:0 auto !important; }table[class~=topbar] table[class~=row] table { float:none !important; margin:0 auto !important; }table[class~=topbar] table[class~=row] table td { height:25px !important; line-height:18px !important; text-align:center !important; }td[class~=col5] { display:block !important; width:100% !important; padding:0 !important; float:left !important; margin:5px auto !important; text-align:center !important; }td[class~=col5] img { width:110px !important; height:auto !important; display:inline !important; }td[class~=h1],h1[class~=h1] { font-size:38px !important; line-height:42px !important; }table[class~=headerbanner] span[class~=h1][class~=b] { font-size:40px !important; line-height:45px !important; }table[class~=mid20] { margin-bottom:20px !important; }table[class~=mid40],table[class~=mid-40],table[class~=col4][class~=a][class~=mid40],td[class~=td-block] table[class~=col4][class~=mid40],td[class~=td-block] table[class~=col4][class~=mid-40] { margin-bottom:40px !important; }/*MediaNeiEnd*//*startMedia}/*endMedia*//*startMedia@media only screen and (max-width: 339px) {/*endMedia*//*start320MediaNeiStarttable[class~=menu-box] td[class~=content][class~=in] { padding:0 25px !important; }table[class~=col2],table[class~=col3],table[class~=col4],table[class~=col2][class~=list],table[class~=col3][class~=list],table[class~=col2][class~=a],table[class~=col3][class~=a] { width:100% !important; }table[class~=col2][class~=list] td[class~=content][class~=large] { font-size:48px !important; line-height:48px !important; }table[class~=footer] td[class~=content] { font-size:12px !important; }table[class~=bottom] img[class~=icon] { width:100% !important; height:auto !important; }table[class~=headerbanner] table[class~=button] td[class~=content] { font-size:18px !important; line-height:18px !important; }table[class~=button][class~=m] { font-size:16px !important; line-height:16px !important; }table[class~=mid20] { margin-bottom:20px !important; }table[class~=mid40],table[class~=mid-40],table[class~=col4][class~=a][class~=mid40],td[class~=td-block] table[class~=col4][class~=mid40],td[class~=td-block] table[class~=col4][class~=mid-40] { margin-bottom:40px !important; }/*MediaNeiEnd*//*startMedia}/*endMedia*/</style></head><body><table width='100%' border='0' cellpadding='0' cellspacing='0' class='BGtable' style='border-collapse: collapse;margin: 0;padding: 0;table-layout: fixed;background-color: #ecedf1;width: 100% !important;height: 100% !important;'><tbody><tr><td align='center' valign='top' class='BGtable-inner'>";
 
@@ -102,10 +107,10 @@ namespace MvcLibrary.Repository
             #region "header"
             html += "<div rev='header' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr this-module' style='border: none; cursor: move; padding: 0px; position: relative;' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_3522' title=''><div mc:repeatable='header'><layout label='header'><table align='center' border='0' cellpadding='0' cellspacing='0' class='wrap header' style='border-collapse: collapse;background: linear-gradient(to bottom, rgba(85,85,85, 1), rgba(85,85,85, 1))' width='640'><tbody><tr><td align='center' class='module-td' valign='top'><table align='center' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;' width='580'><tbody><tr><td valign='top'><!--{cke_protected}{C}%3C!%2D%2Dcol2%20left%20in%20header%2D%2D%3E--><table align='left' border='0' cellpadding='0' cellspacing='0' class='logo-box' style='border-collapse: collapse;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td style='padding: 15px 0;'><a data-cke-saved-href='#' href='http://firststep.vn/Content/Email-template/Basic_1.html#' style='color: #474747;text-decoration: none;outline: none;'>";
             html += "<img alt='logo' class='logo' editable='true' label='logo' mc:edit='logo' data-cke-saved-src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' style='border: 0px; display: block; max-height: 40px;'>";
-			html += "</a></td></tr></tbody></table><!--{cke_protected}{C}%3C!%2D%2Dcol2%20right%20in%20header%2D%2D%3E-->";
+            html += "</a></td></tr></tbody></table><!--{cke_protected}{C}%3C!%2D%2Dcol2%20right%20in%20header%2D%2D%3E-->";
 
             //html += "<table align='right' border='0' cellpadding='0' cellspacing='0' class='menu-box' style='border-collapse: collapse;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content valign' height='50' mc:edit='menu1' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
-                
+
             //html += "<singleline label='menu1'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "HOME" + "</a></singleline></td>";
 
             //html += "<td class='content valign in' height='70' mc:edit='menu2' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;padding: 0 30px;'>";
@@ -115,39 +120,19 @@ namespace MvcLibrary.Repository
             //html += "<td class='content valign' height='70' mc:edit='menu3' style='vertical-align: middle;font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";	
 
             //html +=	"<singleline label='menu3'><a data-cke-saved-href='#' href="+ "'#'" + " style='color: #fff;text-decoration: none;outline: none;'>" + "CONTACT" + "</a></singleline></td></tr></tbody></table>";
-				
-			html +=	"</td></tr></tbody></table></td></tr></tbody></table> </layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86header%E2%97%86%20%2D%2D%3E--></div>";
+
+            html += "</td></tr></tbody></table></td></tr></tbody></table> </layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86header%E2%97%86%20%2D%2D%3E--></div>";
             #endregion
 
             #region "full title"
             html += "<div rev='full_title_2s' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_5196' title='' style='position: relative; border: none; cursor: move; padding: 0px; opacity: 1;'><div mc:repeatable='full_title_2s'><layout label='full_title_2s'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='wrap' style='border-collapse: collapse;background-color: #fff;'><tbody><tr>";
-			html += "<td align='center' valign='top' class='module-td'><font color='#495161' face='Roboto, Tahoma, Arial'><span style='font-size: 36px; line-height: 38px;padding: 20px 20px;display: block;'><b>" + tieude + "</b></span></font></td></tr></tbody></table></layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86full_title_2s%E2%97%86%20%2D%2D%3E--></div>";
+            html += "<td align='center' valign='top' class='module-td'><font color='#495161' face='Roboto, Tahoma, Arial'><span style='font-size: 25px; line-height: 38px;padding: 20px 20px;display: block;'><b>" + tieude + "</b></span></font></td></tr></tbody></table></layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86full_title_2s%E2%97%86%20%2D%2D%3E--></div>";
             #endregion
 
             #region "full text"
-            if (UrlContent == "")
-            {
-                html += noidung;
-            }
-            else
-            {
-                html += "<div rev='full_text' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_4390' title='' style='position: relative; border: none; cursor: move; padding: 0px;'><div mc:repeatable='full_text'><layout label='full_text'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='wrap' style='border-collapse: collapse;background-color: #fff;'><tbody><tr><td align='center' valign='top' class='module-td'><table align='center' width='580' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;'><tbody><tr><td align='left' class='content' mc:edit='content' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'>";
-                html += "<singleline label='content'>" + noidung + "</singleline>";
-                html += "</td></tr><tr><td height='15' class='small-img' style='font-size: 0px;line-height: 0px;border-collapse: collapse;'><img data-cke-saved-src='http://chuyenbanle.com/Email-template-corporate/newsletter/html/blue/images/spacer.gif' src='./Basic_1_files/spacer.gif' width='1' height='1' style='border: 0;display: block;-ms-interpolation-mode: bicubic;'></td></tr><tr><td align='center'><!--{cke_protected}{C}%3C!%2D%2Dsmall%20button%2D%2D%3E--><table align='center' border='0' cellpadding='0' cellspacing='0' class='button s' style='border-collapse: collapse;display: inline-block;border: none;mso-table-lspace: 0pt;mso-table-rspace: 0pt;'><tbody><tr><td class='content' mc:edit='button' style='font-family: Roboto, Tahoma, Arial; font-size: 16px; line-height: 16px; font-weight: 400; color: rgb(255, 255, 255); -webkit-font-smoothing: antialiased; display: inline-block; padding: 15px 25px; background-color: rgb(0, 146, 200);text-align: center;'>";
-                // Send mail khi người đăng ký user mới
-                if (UrlContent.Contains("kichhoat") == true)
-                {
-                    html += "<singleline label='button'><a data-cke-saved-href='#' href='" + UrlContent + "' style='color: #fff;text-decoration: none;outline: none;'>" + "Xác nhận email" + "</singleline>";
-                }
-                //Send mail khi người dùng đăng ký dự án mới
-                else if (UrlContent.Contains("du-an") == true)
-                {
-                    html += "<singleline label='button'><a data-cke-saved-href='#' href='" + UrlContent + "' style='color: #fff;text-decoration: none;outline: none;'>" + "Tham khảo các dự án cùng chủ để" + "</singleline>";
-                }
-                html += "</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></layout></div><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86full_text%E2%97%86%20%2D%2D%3E--></div>";
-            }
-            //Send mail khi có thông báo mới từ FirstStep
-            
+            //Send video to all people
+            html += htmlContent;
+
             #endregion
 
             #region "bottom"
@@ -167,7 +152,7 @@ namespace MvcLibrary.Repository
             #region "footer"
             html += "<div rev='footer' contenteditable='false' class='cke_editable cke_editable_inline cke_contents_ltr' tabindex='0' spellcheck='true' role='textbox' aria-label='false' aria-describedby='cke_5568' title='' style='position: relative; border: none; cursor: move; padding: 0px;'><table width='640' border='0' align='center' cellpadding='0' cellspacing='0' class='nobg-wrap footer' style='border-collapse: collapse;'><tbody><tr><td align='center' valign='top' class='module-td'><table align='center' width='580' border='0' cellpadding='0' cellspacing='0' class='row' style='border-collapse: collapse;'><tbody><tr><td height='25'></td></tr><tr>";
             //phan noi dung thay doi
-            html += "<td align='center' class='content' mc:edit='unsub' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'><unsubscribe><a data-cke-saved-href='#*|UNSUB|*' href='http://firststep.vn/Content/Email-template/Basic_1.html#*|UNSUB|*' style='color: #909090;text-decoration: none;outline: none;'>To stop receiving these emails unsubscribe.</a></unsubscribe></td></tr><tr><td align='center' class='content' mc:edit='copyright' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'><singleline label='copyright'><span class='gray-text' style='color: #909090;'>Copyright E-newsletter Template</span></singleline></td></tr><tr>";
+            html += "<td align='center' class='content' mc:edit='unsub' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'><unsubscribe><a data-cke-saved-href='#*|UNSUB|*' href='#' style='color: #909090;text-decoration: none;outline: none;'>To stop receiving these emails unsubscribe.</a></unsubscribe></td></tr><tr><td align='center' class='content' mc:edit='copyright' style='font-family: &#39;Roboto&#39;,Tahoma,Arial;font-size: 14px;line-height: 22px;font-weight: 400;color: #495161;-webkit-font-smoothing: antialiased;'><singleline label='copyright'><span class='gray-text' style='color: #909090;'>Copyright E-newsletter Template</span></singleline></td></tr><tr>";
 
             html += "<td align='center' class='in' style='padding: 15px 0 40px;'><img data-cke-saved-src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' src='http://firststep.vn/Content/cssFrontEnd/images/logo.png' alt='logo' width='120' height='34' mc:edit='logo' editable='true' label='logo' class='minilogo' style='border: 0;display: block;-ms-interpolation-mode: bicubic;height: 34px;max-height: 34px;width: auto;'></td></tr></tbody></table></td></tr></tbody></table><!--{cke_protected}{C}%3C!%2D%2D%20end%20-%20%E2%97%86footer%E2%97%86%20%2D%2D%3E--></div>";
             #endregion

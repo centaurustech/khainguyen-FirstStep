@@ -201,6 +201,7 @@ namespace khainguyen_FirstStep.Controllers
                     db.SubmitChanges();
 
                     EntityDuAn duan = new EntityDuAn();
+                    duan.LoaiHinhGoiVon = daModel.Loaihinhkeugoivon;
                     duan.TenDuAn = daModel.TenDuAn;
                     duan.IdDanhMuc = daModel.IdDanhMuc;
                     duan.TienDauTuMucTieu = daModel.TienDauTuMucTieu;

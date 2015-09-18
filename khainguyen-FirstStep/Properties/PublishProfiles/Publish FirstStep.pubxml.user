@@ -45,13 +45,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/10/2015 16:46:14</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/AdminBanner/Edit.cshtml">
-      <publishTime>08/04/2014 17:02:52</publishTime>
+      <publishTime>09/07/2015 16:26:07</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/AdminBanner/Index.cshtml">
-      <publishTime>08/04/2014 17:02:52</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/AdminBanner/Insert.cshtml">
-      <publishTime>11/17/2014 03:14:45</publishTime>
+      <publishTime>09/07/2015 16:26:07</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/AdminChonDuAn/Index.cshtml">
       <publishTime>08/22/2014 10:34:51</publishTime>
@@ -123,19 +123,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/17/2014 18:28:45</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/AdminUser/Index.cshtml">
-      <publishTime>08/04/2014 17:02:52</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
+    <File Include="Areas/AdminCP/Views/AdminUser/Sendmail_AllUser.cshtml">
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/Shared/AdminLayout.cshtml">
-      <publishTime>11/17/2014 18:22:27</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/Shared/PartialLeftMenu.cshtml">
       <publishTime>11/17/2014 18:21:24</publishTime>
     </File>
     <File Include="Areas/AdminCP/Views/Web.config">
-      <publishTime>08/04/2014 17:02:52</publishTime>
+      <publishTime>09/08/2015 09:48:26</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>08/04/2014 17:03:27</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.pdb">
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/CKFinder.dll">
       <publishTime>08/04/2014 17:02:51</publishTime>
@@ -144,16 +150,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>08/04/2014 17:03:22</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/Facebook.dll">
-      <publishTime>08/04/2014 17:03:18</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.dll">
-      <publishTime>09/03/2015 16:41:43</publishTime>
+      <publishTime>09/11/2015 22:11:18</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.pdb">
-      <publishTime>09/03/2015 16:41:43</publishTime>
+      <publishTime>09/11/2015 22:11:18</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/04/2014 17:03:21</publishTime>
@@ -162,7 +171,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:24</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>08/04/2014 17:03:29</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/PayooBusinessAPI.dll">
       <publishTime>04/09/2015 17:03:50</publishTime>
@@ -174,43 +183,43 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:32</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>08/04/2014 17:03:19</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Net.Http.WebRequest.dll">
       <publishTime>08/04/2014 17:03:32</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>08/04/2014 17:03:24</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>08/04/2014 17:03:25</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>08/04/2014 17:03:19</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>08/04/2014 17:03:20</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>08/04/2014 17:03:24</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.Providers.dll">
-      <publishTime>08/04/2014 17:03:25</publishTime>
+      <publishTime>09/04/2015 14:19:07</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>08/04/2014 17:03:27</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>08/04/2014 17:03:24</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>08/04/2014 17:03:24</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>08/04/2014 17:03:24</publishTime>
+      <publishTime>09/04/2015 14:19:07</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>08/04/2014 17:03:27</publishTime>
+      <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="Content/cssAdmin/ajax/activities.html">
       <publishTime>08/04/2014 17:02:52</publishTime>
@@ -1281,7 +1290,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:02</publishTime>
     </File>
     <File Include="Content/cssAdmin/css/style.css">
-      <publishTime>08/04/2014 17:03:02</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssAdmin/font/BebasNeue-webfont.eot">
       <publishTime>08/04/2014 17:03:02</publishTime>
@@ -2577,7 +2586,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/09/2014 22:28:30</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/main.css">
-      <publishTime>08/31/2015 16:42:58</publishTime>
+      <publishTime>09/07/2015 15:45:38</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/css/page-account.css">
       <publishTime>09/22/2014 15:42:25</publishTime>
@@ -2670,7 +2679,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:17</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js">
-      <publishTime>08/04/2014 17:03:17</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/bxslider/jquery.bxslider.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/chartjs/Chart.min.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
@@ -2700,181 +2712,271 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.barRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.barRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.BezierCurveRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.BezierCurveRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.BezierCurveRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.blockRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.blockRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.blockRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.bubbleRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.bubbleRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.bubbleRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisLabelRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasOverlay.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasOverlay.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasOverlay.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasTextRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasTextRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.canvasTextRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.categoryAxisRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.categoryAxisRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.categoryAxisRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ciParser.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ciParser.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ciParser.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.cursor.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.cursor.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.cursor.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dateAxisRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dateAxisRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dateAxisRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.donutRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.donutRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.donutRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dragable.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dragable.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.dragable.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.enhancedLegendRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.enhancedLegendRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.funnelRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.funnelRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.funnelRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.highlighter.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.highlighter.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.highlighter.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.json2.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.json2.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.json2.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.logAxisRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.logAxisRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.logAxisRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoAxisRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoAxisRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoAxisRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mekkoRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.meterGaugeRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.meterGaugeRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.meterGaugeRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mobile.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mobile.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.mobile.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ohlcRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ohlcRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.ohlcRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pieRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pieRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pieRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pointLabels.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pointLabels.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pointLabels.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidAxisRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidAxisRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidAxisRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidGridRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidGridRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidGridRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidRenderer.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidRenderer.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.pyramidRenderer.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.trendline.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.trendline.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/jqplot/plugins/jqplot.trendline.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/jquery-mirage/jquery-migrate-1.2.1.min.js">
       <publishTime>08/06/2015 23:25:13</publishTime>
@@ -2958,10 +3060,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/letterfx/jquery-letterfx.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/letterfx/jquery-letterfx.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/main.js">
-      <publishTime>09/02/2015 23:00:22</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/MaxLength.min.js">
       <publishTime>08/06/2012 16:47:06</publishTime>
@@ -2988,13 +3093,211 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/owlcarousel/owl.carousel.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/owlcarousel/owl.carousel.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/owlcarousel/owl.theme.css">
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/owlcarousel/owl.transitions.css">
       <publishTime>08/04/2014 17:03:16</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrowleft.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrowright.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrows.psd">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_large_left.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_large_right.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_left.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_left2.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_right.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/arrow_right2.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/black50.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/boxed_bgtile.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/bullet.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/bullets.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/bullets.psd">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/bullets2.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/bullet_boxed.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/coloredbg.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/grain.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/gridtile.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/gridtile_3x3.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/gridtile_3x3_white.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/gridtile_white.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/large_left.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/large_right.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/loader.gif">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/loader2.gif">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/navigdots.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/navigdots_bgtile.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/shadow1.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/shadow2.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/shadow3.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/small_arrows.psd">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/small_left.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/small_left_boxed.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/small_right.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/small_right_boxed.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/Thumbs.db">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/timer.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/timerdot.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/transparent.jpg">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/assets/white50.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/css/settings-ie8.css">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/css/settings.css">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/font/revicons.eot">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/font/revicons.svg">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/font/revicons.ttf">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/font/revicons.woff">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/decor_inside.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/decor_inside_white.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/decor_testimonial.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/dummy.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/gradient/g30.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/gradient/g40.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/images/gradient/Thumbs.db">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/js/jquery.themepunch.plugins.min.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/js/jquery.themepunch.revolution.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/js/jquery.themepunch.revolution.min.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/js/jquery.themepunch.revolution.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/demo.captions.vtt">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video-js.css">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video-js.min.css">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video-js.png">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video-js.swf">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video.dev.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/rs-plugin/videojs/video.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/scrolltofixed/jquery-scrolltofixed-min.js">
       <publishTime>08/04/2014 17:03:16</publishTime>
@@ -3003,7 +3306,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/superslides/jquery.superslides.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/superslides/jquery.superslides.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/superslides/superslides.css">
       <publishTime>08/04/2014 17:03:16</publishTime>
@@ -3012,7 +3318,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/tooltipster/jquery.tooltipster.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/tooltipster/jquery.tooltipster.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/tooltipster/themes/tooltipster-light.css">
       <publishTime>08/04/2014 17:03:16</publishTime>
@@ -3033,7 +3342,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:03:16</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/js/waypoints/waypoints.min.js">
-      <publishTime>08/04/2014 17:03:16</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Content/cssFrontEnd/js/waypoints/waypoints.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Content/cssFrontEnd/upload/avatar/ava0.jpg">
       <publishTime>08/04/2014 17:03:15</publishTime>
@@ -3230,6 +3542,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/jquery.ui.theme.css">
       <publishTime>08/04/2014 17:03:02</publishTime>
     </File>
+    <File Include="Content/themes/base/menu.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
     <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>08/04/2014 17:03:02</publishTime>
     </File>
@@ -3308,14 +3623,44 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
       <publishTime>08/04/2014 17:03:02</publishTime>
     </File>
+    <File Include="Content/themes/base/progressbar.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/resizable.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectable.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectmenu.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/slider.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/sortable.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/spinner.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/tabs.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/theme.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
+    <File Include="Content/themes/base/tooltip.css">
+      <publishTime>09/06/2015 16:36:22</publishTime>
+    </File>
     <File Include="dbFirstStep.dbml">
-      <publishTime>09/02/2015 12:55:52</publishTime>
+      <publishTime>09/08/2015 09:48:24</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>08/04/2014 17:02:43</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="robots.txt">
       <publishTime>08/05/2015 11:24:40</publishTime>
@@ -3332,6 +3677,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-1.8.2.min.js">
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
+    <File Include="Scripts/jquery-2.1.4.js">
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.4.min.map">
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
     <File Include="Scripts/jquery-ui-1.8.24.js">
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
@@ -3345,25 +3702,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/19/2015 17:39:06</publishTime>
     </File>
     <File Include="Scripts/jquery.confirm.min.js">
-      <publishTime>03/19/2015 17:39:06</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.confirm.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js.map">
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Scripts/knockout-2.2.0.debug.js">
       <publishTime>08/04/2014 17:02:51</publishTime>
@@ -3371,11 +3740,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/knockout-2.2.0.js">
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
+    <File Include="Scripts/knockout-3.3.0.debug.js">
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
+    <File Include="Scripts/knockout-3.3.0.js">
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>08/04/2014 17:02:51</publishTime>
     </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>09/06/2015 16:36:19</publishTime>
+    </File>
     <File Include="Scripts/_references.js">
-      <publishTime>08/04/2014 17:02:51</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="testNotify_VNBT.html">
       <publishTime>06/26/2015 15:20:35</publishTime>
@@ -3384,7 +3762,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/25/2015 03:06:21</publishTime>
     </File>
     <File Include="Views/Account/DaGuiEmailQuenMK.cshtml">
-      <publishTime>12/20/2014 12:15:31</publishTime>
+      <publishTime>09/10/2015 19:13:04</publishTime>
     </File>
     <File Include="Views/Account/DangKy.cshtml">
       <publishTime>08/21/2015 17:55:54</publishTime>
@@ -3450,7 +3828,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/22/2015 22:31:30</publishTime>
     </File>
     <File Include="Views/DuAn/ChiTietDuAn.cshtml">
-      <publishTime>07/27/2015 17:19:03</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Views/DuAn/Index.cshtml">
       <publishTime>08/16/2015 01:38:21</publishTime>
@@ -3492,7 +3870,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:02:52</publishTime>
     </File>
     <File Include="Views/DuAn/_ChiTietDuAn_SoNguoiThamGia.cshtml">
-      <publishTime>06/17/2015 17:59:46</publishTime>
+      <publishTime>09/11/2015 21:38:45</publishTime>
     </File>
     <File Include="Views/DuAn/_ChiTietDuAn_TagsDuAn.cshtml">
       <publishTime>01/24/2015 21:44:29</publishTime>
@@ -3528,7 +3906,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/03/2015 14:53:02</publishTime>
     </File>
     <File Include="Views/DuAn/_LoadTabXemTruoc.cshtml">
-      <publishTime>09/03/2015 15:21:06</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Views/DuAn/_PopupLuuDuAn.cshtml">
       <publishTime>11/11/2014 14:30:36</publishTime>
@@ -3624,7 +4002,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/23/2014 13:44:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/01/2015 23:33:19</publishTime>
+      <publishTime>09/08/2015 09:48:39</publishTime>
     </File>
     <File Include="Views/Home/Nhappass.cshtml">
       <publishTime>01/25/2015 02:54:58</publishTime>
@@ -3645,10 +4023,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/27/2015 16:20:04</publishTime>
     </File>
     <File Include="Views/Home/_TaiKhoan_DuAn.cshtml">
-      <publishTime>04/10/2015 11:36:53</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_Item_Trend_Category.cshtml">
-      <publishTime>09/02/2015 13:14:28</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_NoiBat.cshtml">
       <publishTime>08/04/2014 17:02:52</publishTime>
@@ -3666,7 +4044,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/14/2015 15:13:42</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_Slide.cshtml">
-      <publishTime>08/17/2015 22:02:24</publishTime>
+      <publishTime>09/07/2015 09:50:40</publishTime>
     </File>
     <File Include="Views/Home/_TrangChu_Trend_Category.cshtml">
       <publishTime>08/16/2015 14:34:13</publishTime>
@@ -3681,7 +4059,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:02:52</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>08/14/2015 22:46:34</publishTime>
+      <publishTime>09/08/2015 09:48:39</publishTime>
     </File>
     <File Include="Views/ThanhToan/HoanTatThanhToan.cshtml">
       <publishTime>05/28/2015 17:21:05</publishTime>
@@ -3705,13 +4083,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/07/2014 02:31:29</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>08/04/2014 17:02:52</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>08/04/2014 17:02:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/03/2015 16:51:27</publishTime>
+      <publishTime>09/06/2015 16:36:19</publishTime>
     </File>
   </ItemGroup>
 </Project>

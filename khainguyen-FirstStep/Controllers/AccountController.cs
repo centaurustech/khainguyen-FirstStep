@@ -27,6 +27,11 @@ namespace khainguyen_FirstStep.Controllers
         [HttpPost]
         public ActionResult LoginLife(string link)
         {
+            var user = db.EntityUsers.Where(p => p.Id == int.Parse(Request.Cookies["ftid"].Value)).FirstOrDefault();
+            if (user.Pass == null)
+                ViewBag.Flag = 2;
+            else
+                ViewBag.Flag = 1;
             ViewBag.link = link;
             return View();
         }
@@ -161,7 +166,7 @@ namespace khainguyen_FirstStep.Controllers
                     }
 
                     user.Email = "ok";
-                    Session["fsduytrihoatdong"] = "1";
+                    //Session["fsduytrihoatdong"] = "1";
                     return Json(user);
                 }
                 else
@@ -405,7 +410,6 @@ namespace khainguyen_FirstStep.Controllers
                 Response.Cookies["ftavatar"].Expires = DateTime.Now.AddDays(30);
                 //Response.Cookies["TTBUserType"].Expires = DateTime.Now.AddDays(30);
                 Session["fsduytrihoatdong"] = "1";
-
             }
         }
         #endregion 
@@ -576,7 +580,7 @@ namespace khainguyen_FirstStep.Controllers
                      else
                      {
                          //string Pass = GenerateRandomText();
-                         string Pass = "Pas1hahahaafs";
+                         string Pass = GeneratePassword(4, 1, 3);
                          Security ser = new Security();
                          string Passhex = ser.GetHashPassword(Pass);
                          query.First().Pass = Passhex;
@@ -584,7 +588,7 @@ namespace khainguyen_FirstStep.Controllers
                          string HoTen = query.First().HoTen;
                          string Email = Mtnew.Email;
                          string HasCode = Pass;
-                         GuiMailQuenMK(HoTen, Email, HasCode);
+                         MailHelper.SendMail_Laylaimatkhau(HoTen, Email, HasCode);
                          return RedirectToAction("DaGuiEmailQuenMK", "Account");
                      }
                  }
@@ -596,17 +600,36 @@ namespace khainguyen_FirstStep.Controllers
              }
              return View(Mtnew);
          }
-        public static string GenerateRandomText()
-        {
-            int textLength = 10;
-            const string Chars = "ABCDEFGHIJKLMNPOQRSTUVWXYZ0123456789";
-            var random = new Random();
-            var result = new string(
-                Enumerable.Repeat(Chars, textLength)
-                    .Select(s => s[random.Next(s.Length)])
-                    .ToArray());
-            return result;
-        }
+         public static string GeneratePassword(int lowercase, int uppercase, int numerics)
+         {
+             string lowers = "abcdefghijklmnopqrstuvwxyz";
+             string uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+             string number = "0123456789";
+
+             Random random = new Random();
+
+             string generated = "!";
+             for (int i = 1; i <= lowercase; i++)
+                 generated = generated.Insert(
+                     random.Next(generated.Length),
+                     lowers[random.Next(lowers.Length - 1)].ToString()
+                 );
+
+             for (int i = 1; i <= uppercase; i++)
+                 generated = generated.Insert(
+                     random.Next(generated.Length),
+                     uppers[random.Next(uppers.Length - 1)].ToString()
+                 );
+
+             for (int i = 1; i <= numerics; i++)
+                 generated = generated.Insert(
+                     random.Next(generated.Length),
+                     number[random.Next(number.Length - 1)].ToString()
+                 );
+
+             return generated.Replace("!", string.Empty);
+
+         }
         public void GuiMailQuenMK(string HoTen, string Email, string HasCode)
         {
             StringBuilder mailBody = new StringBuilder();

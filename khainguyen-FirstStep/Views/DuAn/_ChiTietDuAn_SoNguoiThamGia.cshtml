@@ -10,13 +10,13 @@
             
             if(item.EntityUser.Avatar.Contains("fbcdn-profile-a.akamaihd.net"))
             {
-                <a href="/user/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
+                <a href="/thong-tin-ca-nhan/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
                     <img src="https://graph.facebook.com/@item.EntityUser.IdFacebook/picture?type=square" />
                 </a>
             }
             else
             {
-                <a href="/user/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
+                <a href="/thong-tin-ca-nhan/@item.EntityUser.VanityURL" class="tooltip" title='@temp'>
                     <img src="@item.EntityUser.Avatar" />
                 </a> 
             }

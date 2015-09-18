@@ -21,8 +21,9 @@ namespace khainguyen_FirstStep.Controllers
         {
             if (Request.Cookies["ftid"] != null)
             {
-                if (Session["fsduytrihoatdong"] == null)
-                {
+                var user = db.EntityUsers.Where(p => p.Id == int.Parse(Request.Cookies["ftid"].Value)).FirstOrDefault();
+                if (Session["fsduytrihoatdong"] == null || user.Pass == null)
+                {                    
                     ViewBag.Life = Request.Url.AbsoluteUri.ToString();
                     return PartialView();
                 }
