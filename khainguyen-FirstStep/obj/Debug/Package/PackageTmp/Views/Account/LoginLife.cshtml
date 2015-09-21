@@ -17,12 +17,27 @@
                 </div>*@
                  <a href="javascript:void(0);" class="btn btn-login-fb"><i class="fa-facebook-square"></i>&nbsp;THÔNG BÁO</a>
                 <div class="form-login">
+                    <div class="">
+                        @if (Request.Cookies["ftavatar"].Value.ToString().Contains("fbcdn-profile-a.akamaihd.net"))
+                        {
+                            <img  src="https://graph.facebook.com/@Request.Cookies["ftidFacebook"].Value.ToString()/picture?type=square" style="height:30px;width:30px;"/>
+                        }
+                        else
+                        {
+                            <img src="@Request.Cookies["ftavatar"].Value.ToString()" style="height:30px;width:30px;"/>
+                        }                        
+                        <span>@HttpUtility.UrlDecode(Request.Cookies["fthoten"].Value.ToString())</span>
+                    </div>
                     <br />
-                   <span style="color:white;">Bạn đã lâu chưa hoạt động, hãy nhập lại <a href="javascript:void(0);">mật khẩu</a>.</span>
-                    <br />
-                   <span>Nếu bạn đăng nhập bằng <a href="javascript:void(0);">facebook</a>, hãy nhập mật khẩu bất kỳ, Nó sẽ có tác dụng cho những lần sau.</span> 
-                        <div class="space_20"></div>
-
+                   @if(ViewBag.Flag == 1)
+                    {
+                        <span style="color:white;">Bạn đã lâu chưa hoạt động, hãy nhập lại mật khẩu.</span>
+                    }
+                    else
+                    {                        
+                        <span>Bạn đăng nhập bằng tài khoản Fb trên FirstStep nên chưa có mật khẩu. <br /> Vui lòng xác nhận mật khẩu để tiếp tục.</span>
+                    } 
+                        <div class="space_20"></div>                    
                     <div class="">
                         Nhập mật khẩu:
                         <input type="password" id="Password_life" />
@@ -31,6 +46,7 @@
                         <br />
                         <label style="color:red;padding:2px;" id="LifeError"></label>
                     </div>
+                    <a href="@Url.Action("QuenMatKhau", "Account")">Quên mật khẩu ?</a>
                 </div>
             </div>
 

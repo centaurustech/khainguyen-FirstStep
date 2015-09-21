@@ -18,7 +18,7 @@
     $(function () { create("vi", "NoiDung") });
 
     $(document).ready(function () {
-       @* $("#IdDanhMuc").val("@Model.IdDanhMuc");*@
+        @* $("#IdDanhMuc").val("@Model.IdDanhMuc");*@
     });
     function checkField() {
         var image = $("#HinhAnh").val();
@@ -54,53 +54,61 @@
         <p id="msgNofError">This is an error message.</p>
     </div>
     <!-- notification msgerror -->
-
     @using (Html.BeginForm("Insert", "AdminBanner",
             new { ReturnUrl = ViewBag.ReturnUrl },
             FormMethod.Post, new { @class = "stdform stdform2", @enctype = "multipart/form-data" }))
-    {  
+    {
         <div class="contenttitle radiusbottom0">
             <h2 class="table"><span>Thêm Banner</span></h2>
         </div>
-          <!--contenttitle-->
+        <!--contenttitle-->
         <p>
-            <label>Hình Ảnh</label>
+            <label>Loại banner</label>
             <span class="field">
-                <input type="file" id="Anh" name="Anh" />
+                @Html.EnumDropDownListFor(model => model.LoaiBanner, new { @class = "loaibanner" })
+                <span class="des">Video clip: Vui lòng copy ......</span>
             </span>
         </p>
-         <p>
+        <div class="typeimage">
+            <p>
+                <label>Hình Ảnh</label>
+                <span class="field">
+                    <input type="file" id="Anh" name="Anh" />
+                </span>
+            </p>
+            <p>
+                <label>Tiêu Đề</label>
+                <span class="field">
+                    <input type="text" id="TieuDe" name="TieuDe" />
+                </span>
+            </p>
+            <p>
+                <label>Nội Dung</label>
+                <span class="field">
+                    <textarea id="NoiDung" name="NoiDung"></textarea>
+                </span>
+            </p>
+            <p>
+                <label>Tên Nút</label>
+                <span class="field">
+                    <input type="text" id="TenNut" name="TenNut" />
+                </span>
+            </p>
+        </div>
+        <p>
             <label>Vị trí</label>
             <span class="field">
-                <input type="number" id="ViTri" name="ViTri" />
+                @Html.EditorFor(model => model.ViTri)
             </span>
         </p>
-         <p>
-            <label>Tiêu Đề</label>
-            <span class="field">
-                <input type="text" id="TieuDe" name="TieuDe" />
-            </span>
-        </p>
-         <p>
-            <label>Nội Dung</label>
-            <span class="field">
-                <textarea id="NoiDung" name="NoiDung"></textarea>
-            </span>
-        </p>
-         <p>
-            <label>Tên Nút</label>
-            <span class="field">
-                <input type="text" id="TenNut" name="TenNut" />
-            </span>
-        </p>
-         <p>
+        <p>
             <label>Link Nút</label>
             <span class="field">
                 <input type="text" id="LinkNut" name="LinkNut" />
             </span>
-        </p>  
+        </p>
         <p class="stdformbutton">
-            <input type="submit" value="Ok"/>
+            <input type="submit" value="Ok" />
             <input type="submit" value="Back" onclick="javascript: history.back(); return false" />
         </p>
 
@@ -108,3 +116,16 @@
 </div>
 <!--maincontentinner-->
 
+<script>
+    $(document).ready(function () {
+        var typeimagechange = function () {
+            if ($('.loaibanner').val() == '0') {
+                $('.typeimage').show();
+            } else {
+                $('.typeimage').hide();
+            }
+        }
+        $('.loaibanner').change(function () { typeimagechange(); });
+        typeimagechange();
+    });
+</script>

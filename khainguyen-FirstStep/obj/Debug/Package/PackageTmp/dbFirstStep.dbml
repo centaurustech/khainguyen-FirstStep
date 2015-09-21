@@ -24,6 +24,7 @@
       <Column Name="TenNut" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="LinkNut" Type="System.String" DbType="NVarChar(450)" CanBeNull="true" />
       <Column Name="ViTri" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Member="LoaiBanner" Type="LoaiBanner" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.EntityBaoCao" Member="EntityBaoCaos">

@@ -72,12 +72,17 @@
                     </div>
                     <div class="clearfix"></div>
                             <p id="whichpreson">
-                                <h3>Bạn kêu gọi vốn với tư cách <i class="fa-question-circle tooltip color-tiny tooltipstered" title="Mỗi đối tượng sẽ có quy định khác nhau"></i></h3>
+                                <h3>Bạn kêu gọi vốn với tư cách </h3>
                                 <label class="form-label"><input type="radio" value="Cá nhân" checked="checked" name="whichpreson">Cá nhân</label>
                                 <label class="form-label"><input type="radio" value="Doanh nghiệp" name="whichpreson">Doanh nghiệp</label>                                
                                 <label class="form-label"><input type="radio" value="Tổ chức từ thiện" name="whichpreson">Tổ chức từ thiện</label>
                             </p>
-                  
+                    <div class="clearfix"></div>
+                            <p id="loaihinhkeugoivon">
+                                <h3>Loại hình kêu gọi vốn của bạn </h3>
+                                <label class="form-label"><input type="radio" value="0" checked="checked" name="Loaihinhkeugoivon">Kêu gọi vốn cố định <i class="fa-question-circle tooltip color-tiny tooltipstered" title="Bạn sẽ phải đạt mục tiêu huy động vốn để có thể nhận được chi phí tài trợ của mọi người"></i></label>
+                                <label class="form-label"><input type="radio" value="1" name="Loaihinhkeugoivon">Kêu gọi vốn linh hoạt <i class="fa-question-circle tooltip color-tiny tooltipstered" title="Bạn không cần phải đạt mục tiêu huy động vốn mà vẫn có thể nhận toàn bộ chi phí tài trợ của mọi người"></i></label>
+                            </p>
                     @*<div class="loginerror">Vui lòng điền đầy đủ thông tin dự án.</div>
                     <div class="loginerror2">Vui lòng nhập đúng tổng kinh phí.</div>*@
                     <p><button type="submit" class="btn btn-big" onclick="taoduan();">Tạo dự án</button></p>

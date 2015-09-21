@@ -166,7 +166,7 @@ namespace khainguyen_FirstStep.Controllers
                     }
 
                     user.Email = "ok";
-                    //Session["fsduytrihoatdong"] = "1";
+                    Session["fsduytrihoatdong"] = "1";
                     return Json(user);
                 }
                 else

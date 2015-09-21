@@ -1,42 +1,61 @@
-﻿@model IEnumerable<khainguyen_FirstStep.EntityBanner>
+﻿@using khainguyen_FirstStep.Areas.AdminCP.Models
+@model IEnumerable<khainguyen_FirstStep.EntityBanner>
 
 <div id="slides">
-    <!-- #slides -->
-    <ul class="slides-container">
-        @{
-            foreach (var item in Model)
-            {
-                <li>
-                    <img src="~/Content/Images/Banner/@item.HinhAnh" />
-                    @*<div class="container">
-                            <h1>@item.TieuDe</h1>
-                            <div class="contrast">
-                                <p>
-                                    @Html.Raw(item.NoiDung)
-                                </p>
-                                @if (item.TenNut == null || item.TenNut == "" || item.LinkNut == null || item.LinkNut == "" )
-                                {
-
-                                }
-                                else
-                                {
-                                <p>
-                                    <a href="@item.LinkNut" class="btn">@item.TenNut</a>
-                                </p>
-                                }
+    <div class="tp-banner-container">
+        <div class="tp-banner">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    if (item.LoaiBanner == LoaiBanner.Image)
+                    {
+                        <li data-transition="fade" data-slotamount="3" data-masterspeed="500" data-saveperformance="on" data-title="Intro Slide">
+                            <img src="~/Content/cssFrontEnd/js/rs-plugin/images/dummy.png" alt="slidebg1" data-lazyload="/Content/Images/Banner/@item.HinhAnh" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                        </li>
+                    }
+                    else
+                    {
+                        <li data-transition="fade" data-slotamount="7" data-masterspeed="600" data-saveperformance="on" data-title="Full-Width Video">
+                            <img src="~/Content/cssFrontEnd/js/rs-plugin/images/dummy.png" style='background-color:#000000' alt="" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption tp-fade stb fullscreenvideo rs-parallaxlevel-0"
+                                 data-x="0"
+                                 data-y="0"
+                                 data-speed="500"
+                                 data-start="1000"
+                                 data-easing="Power1.easeOut"
+                                 data-elementdelay="0.1"
+                                 data-endelementdelay="0.1"
+                                 data-endspeed="600"
+                                 data-endeasing="Power1.easeOut"
+                                 data-autoplay="true"
+                                 data-autoplayonlyfirsttime="false"
+                                 data-nextslideatend="true"
+                                 data-forcerewind="on" style="z-index: 2;">
+                                <iframe src='@item.LinkNut?hd=1&wmode=opaque&controls=1&showinfo=0' width='100%' height='100%' style='width:100%px;height:100%px;'></iframe>
                             </div>
-                        </div>*@
-                </li>
-            }
-        }
-
-    </ul>
-    <nav class="slides-navigation">
-        <a href="#" class="next">
-            <i class="fa-chevron-right"></i>
-        </a>
-        <a href="#" class="prev">
-            <i class="fa-chevron-left"></i>
-        </a>
-    </nav>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption blue_bold_bg_20 lft ltt tp-resizeme rs-parallaxlevel-0"
+                                 data-x="center" data-hoffset="0"
+                                 data-y="30"
+                                 data-speed="1000"
+                                 data-start="1500"
+                                 data-easing="Power3.easeInOut"
+                                 data-splitin="none"
+                                 data-splitout="none"
+                                 data-elementdelay="0.1"
+                                 data-endelementdelay="0.1"
+                                 data-end="5200"
+                                 data-endspeed="1000"
+                                 style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;">
+                                Now Showing a Full-Width Video
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+            <div class="tp-bannertimer tp-bottom"></div>
+        </div>
+    </div>
 </div>

@@ -159,10 +159,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 16:36:22</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.dll">
-      <publishTime>09/11/2015 22:11:18</publishTime>
+      <publishTime>09/21/2015 19:05:56</publishTime>
     </File>
     <File Include="bin/khainguyen-FirstStep.pdb">
-      <publishTime>09/11/2015 22:11:18</publishTime>
+      <publishTime>09/21/2015 19:05:56</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>08/04/2014 17:03:21</publishTime>
@@ -3783,13 +3783,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/29/2015 17:56:37</publishTime>
     </File>
     <File Include="Views/Account/LoginLife.cshtml">
-      <publishTime>11/04/2014 14:39:48</publishTime>
+      <publishTime>09/16/2015 18:19:04</publishTime>
     </File>
     <File Include="Views/Account/QuenMatKhau.cshtml">
       <publishTime>08/21/2015 17:22:22</publishTime>
     </File>
     <File Include="Views/Account/SuaThongTin.cshtml">
-      <publishTime>09/01/2015 16:02:03</publishTime>
+      <publishTime>09/16/2015 15:37:33</publishTime>
     </File>
     <File Include="Views/Account/TrungEmail.cshtml">
       <publishTime>08/21/2015 17:46:42</publishTime>
@@ -3837,7 +3837,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/12/2015 15:09:19</publishTime>
     </File>
     <File Include="Views/DuAn/TaoDuAn.cshtml">
-      <publishTime>08/31/2015 17:25:06</publishTime>
+      <publishTime>09/16/2015 19:04:23</publishTime>
     </File>
     <File Include="Views/DuAn/TaoDuAn_Buoc2.cshtml">
       <publishTime>09/03/2015 16:34:35</publishTime>
@@ -3903,7 +3903,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/03/2015 15:21:46</publishTime>
     </File>
     <File Include="Views/DuAn/_LoadTabThongTin.cshtml">
-      <publishTime>09/03/2015 14:53:02</publishTime>
+      <publishTime>09/16/2015 19:18:14</publishTime>
     </File>
     <File Include="Views/DuAn/_LoadTabXemTruoc.cshtml">
       <publishTime>09/06/2015 16:36:19</publishTime>
@@ -4059,7 +4059,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2014 17:02:52</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/08/2015 09:48:39</publishTime>
+      <publishTime>09/21/2015 18:29:03</publishTime>
     </File>
     <File Include="Views/ThanhToan/HoanTatThanhToan.cshtml">
       <publishTime>05/28/2015 17:21:05</publishTime>
@@ -4083,7 +4083,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/07/2014 02:31:29</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>09/06/2015 16:36:19</publishTime>
+      <publishTime>09/18/2015 09:53:46</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>08/04/2014 17:02:52</publishTime>
